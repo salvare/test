@@ -1,0 +1,6 @@
+@ cookie的数量和总大小受浏览器限制，数量在40个左右，大小在4k左右
+* 参考：http://blog.csdn.net/marising/article/details/4842719
+
+@ 参考：
+http://blog.csdn.net/talking12391239/article/details/9665185【Cookie的格式及组成】
+http://blog.csdn.net/qq_25600055/article/details/50895759【setCookie】

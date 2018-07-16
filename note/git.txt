@@ -1,0 +1,132 @@
+. 简单命令
+  . git init
+  . git add <file> // 工作区 -> 暂存区
+  . git commit -m <message>
+  . git status
+  . git reflog // 查看历史命令
+  
+  
+  
+. git diff
+. git log --pretty=oneline --graph
+. git reset [--hard] 
+. git fetch
+
+. git push origin master
+  <=> git push origin master:master
+
+
+git commit -a 提交所有文件，但是不是添加`untracked file`
+
+
+
+workspace(工作区) add index/stage(暂存区) commit repository(仓库)
+
+
+
+git reset <file> <tag>
+. 本质：用指定的版本覆盖暂存区(index)，清空暂存区，但工作区会保留（即当前编辑的内容仍存留）
+. --hard 覆盖暂存区 和 工作区
+
+`git add`可以用`git reset HEAD`撤销
+
+
+
+
+
+工作区和暂存区
+https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000
+
+
+checkout ???
+暂存区 -> 工作区
+
+
+
+git branch
+git branch <name> // 创建分支
+git checkout <name>
+git checkout -b <name> // 创建+切换分支
+git merge [--no-ff] <name>
+git branch -d <name> // 删除分支
+
+
+冲突
+发生冲突后，解决冲突(add)之前，不能切换分支
+Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容
+
+
+工作区 或 暂存区 不为空时 切换分支
+不冲突的话都可以切换分支
+冲突的话 stash -> checkout -> pop
+说明工作区和暂存区并不与分支绑定
+
+
+分支策略
+
+
+
+
+
+
+
+git rm --cached <file>
+从暂存区删除文件，工作区则不做出改变
+
+
+
+
+
+
+
+
+
+Counting objects: 6140, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5926/5926), done.
+Writing objects: 100% (6140/6140), 299.79 MiB | 26.00 KiB/s, done.
+Total 6140 (delta 1299), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1299/1299), done.
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+remote: error: Trace: 54ab1be6d237e08bf27cb9fcd74d8011
+remote: error: See http://git.io/iEPt8g for more information.
+remote: error: File domain/img.test.com/res/demo.mkv is 270.90 MB; this exceeds GitHub's file size limit of 100.00 MB
+To git@github.com:salvare/test.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'git@github.com:salvare/test.git'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

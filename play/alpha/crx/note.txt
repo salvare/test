@@ -1,0 +1,4 @@
+http://www.tuicool.com/articles/zYZN7jV
+谷歌官方API： https://developer.chrome.com/extensions/getstarted
+	https://developer.chrome.com/extensions/samples
+360的文档： http://open.chrome.360.cn/extension_dev/overview.html

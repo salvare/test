@@ -1,0 +1,8 @@
+http://www.cnblogs.com/witer666/archive/2013/07/28/3221218.html【API框架需要的特性】【important】
+结构：/api/version/service/method/param
+HOOK
+Parsers 返回 文本、json、xml etc.
+
+
+http://www.cnblogs.com/lmule/archive/2010/10/27/1862725.html
+http://www.cnblogs.com/lmule/archive/2010/10/27/1862734.html

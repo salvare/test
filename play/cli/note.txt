@@ -1,0 +1,71 @@
+
+6.[php] CLI模式 (Command Line Interface)
+@PHP的运行模式
+ http://www.cnblogs.com/xia520pi/p/3914964.html
+@CLI模式 与 Web开发者熟悉的 CGI模式 有很大不同。
+ CGI模式PHP运行 与HTTP服务器密切相关。只有用户发出HTTP请求，且需要PHP生成动态页面时，才会调用相应的脚本。
+ 而CLI模式是直接运行在主机上的（没有客户端浏览器概念）
+@优点（from 鸟哥）: 
+  . 使用多进程, 子进程结束以后, 内核会负责回收资源 
+  . 使用多进程,子进程异常退出不会导致整个进程Thread退出. 父进程还有机会重建流程. 
+  . 一个常驻主进程, 只负责任务分发, 逻辑更清楚. 【其实并不能理解说的什么。。】
+@应用
+  . 多线程应用
+  . 开发桌面程序 (使用PHP-CLI和GTK包即可开发桌面,但没人会用PHP来编写桌面程序的)
+  . 编写PHP的shell脚本，在linux环境下还方便设置定时执行
+@判断PHP当前运行模式
+  echo php_sapi_name(); 
+  //cli, apache2handler, olserver, apache, apache2filter, caudium, cgi (until PHP 5.3), cgi-fcgi, cli, continuity, embed, isapi, litespeed, milter, nsapi, phttpd, pi3web, roxen, thttpd, tux, and webjames.
+@参数
+  . -h 查看帮助
+  . -f <file>	Parse and execute <file>.	执行php文件（此时可以不用.php扩展名）
+  . -r <code>	Run PHP <code> without using script tags <?..?>	直接执行php代码
+@标准输入/输出
+// ask for input
+fwrite(STDOUT, "Enter your name: ");
+// get input
+$name = trim(fgets(STDIN));
+// write input back
+fwrite(STDOUT, "Hello, $name!");
+@获取自定义参数
+print_r($argv); //获取具体的参数;
+print_r($argc); //获取参数的数目;
+*例 C:\Users\Adminstrator>php test.php arg1 arg2
+3 Array
+(
+	[0] => test.php
+	[1] => arg1
+	[2] => arg2
+)
+@脚本风格的参数
+D:\wamp\www>php test.php -g group -m module -a age
+<?php
+$args = getopt('g:m:a:'); //只能是单个单词,如果不是单个单词就会出错;
+print_r($args);
+?>
+Array
+(
+    [g] => group
+    [m] => module
+    [a] => age
+)
+@在框架中的应用
+在CI, ThinkPHP框架环境中运行【见参考文章】
+@大多数PHP-CLI都是在crontab中应用,俗称'跑脚本'。
+@常需要使用shell功能：
+* string exec ( string $command [, array &$output [, int &$return_var ]] )
+echo exec('mkdir -p zhouzhou/1/2/3/') ."\n"; //创建目录树
+echo exec('ls -l',$fileList) ; //本句只能输出最后一条,但如果有第二个参数的话,就可以把输出的结果作为数组元素扔进去;
+print_r($fileList); //把所有ls -l的结果都给了$fileList;
+* string shell_exec ( string $cmd ) 
+$fileList = shell_exec('ls -l'); //$fileList是一个string格式,就等于linux命令在终端输出的格式,保留了\s\n等换行符
+@多线程
+* cli模式下的php彻底的是属于多线程。这个时候php属于linux的一个守护进程【？】。
+* 所谓多线程，就像JAVA的 new Thread()
+* 
+@参考
+http://www.tuicool.com/articles/I3yIJjr【excellent 全干货】
+http://php.net/manual/zh/features.commandline.php 【手册】
+http://www.jb51.net/article/37796.htm
+http://www.cnblogs.com/loveyoume/p/5866299.html
+http://www.cnblogs.com/ellisonDon/archive/2012/11/19/2777523.html【重点看 处理I/O通道 一节】

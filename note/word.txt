@@ -1,0 +1,238 @@
+estate			房地产
+mortgage		抵押	
+pledge			保证
+vehicle			车辆
+deal			交易
+risk			风险
+approve			批准
+garage			车库
+commission		佣金	
+privilege		特权	
+permission		允许	
+snippet			摘要
+segment			分割
+clipboard		剪贴板
+recursive		递归
+rebate			回扣
+prosperity		繁荣
+APR：Annual percentage rate，年利率。
+prompt			提示
+annex,attachment	附件		
+frequently		频繁	
+urgent			紧急
+interval		间隔	
+vice			副
+remainder		余数	
+parse			解析
+assessment		评定
+practise		实践
+wraper			包装
+thumbnail		缩略图
+octet			八位字节
+archive			文档
+indicate		表明
+block			块，阻塞
+e-commerce		电子商务
+expire			到期
+scope			作用域
+capital			资本
+infrastructure		基础设施
+provisional 		临时
+foundation		基础
+innovative		创新
+productivity		生产率
+plot			策略
+toggle			切换
+bootstrap		引导程序
+remit			汇（款）
+fault			故障
+stalled			停滞
+directive		指示
+Illuminate		照亮
+deferred		延期的
+singleton		单独
+convenient		方便
+manually		手动
+impose			强加
+serial			顺序的
+repository		仓库
+closure			关闭，闭包
+manifest		表明，货单
+plugin			插入，插件
+dispatch		调度，派遣
+interoperability	互用性，协同工作的能力
+collaboration		合作
+deprecate		反对
+deprecated		过时的
+trait			特征
+prepend			前置
+optimize		优化
+concrete		具体的
+resolve			解析
+mapping			
+映射
+sue			起诉
+
+wipe
+announce
+addable
+forge
+sibling
+pace
+suggest
+credit
+threshold
+fold
+interaction
+case by case
+miracle
+popup
+bubble
+refrain
+revive
+disposition
+dispose
+remind
+quota
+quarter
+wraper
+reject
+rest
+merry
+settle
+truncate
+derived
+optimization
+raffle
+remain
+schema
+nonce
+encryption
+decryption
+algorithm
+rebase 
+stage
+wretch
+detach
+orphan 
+revise
+amend
+illusion
+upstream
+archive
+deploy
+fetch
+prune
+aggregate
+styx 
+helix
+hotfix
+though
+profession
+examine
+remaining
+fault
+squash
+bisect
+tune
+cluster
+Influencing
+consecutive
+nonconsecutive
+acknowledge
+blob
+related
+implicit
+block
+sanity
+practice
+reward
+march
+fallback
+implement
+lite
+reminder
+essential
+regard
+needle
+haystack
+recover
+scalar
+scale
+pattern
+genocide
+hyper
+hypervisor
+ultra
+extreme
+mega
+teletype
+currency
+artisan
+foundation
+erase
+eloquent
+facade
+concrete
+contextual
+Indicate
+deferred
+symfony
+mock
+
+asset
+complicated
+immutable
+specific
+specify
+overload
+override
+aggregate
+aggressive
+iteration
+literal
+suffix
+farewell
+eager
+manifest
+maintenance
+substitute
+persistent
+particular
+wildcard
+payload
+halt
+migrate
+reserved
+appropriate
+tinker
+anticipate
+traverse
+propagation
+several
+delegate
+mock
+mockery
+yield
+pluck
+dusk
+dawn
+premium
+deliquent
+selenium
+component
+mount
+mountain
+interval
+flavor
+coconut
+mandatory
+lift
+credentials
+conquest
+apologize
+cropper
+pause
+bench
+card
+delimiter

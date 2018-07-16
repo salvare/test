@@ -1,0 +1,75 @@
+# 提供基于文件名的访问控制。<Files>段将根据他们在配置文件中出现的顺序被处理：在<Directory>段和.htaccess文件被处理之后，但在<Location>段之前。<Files>能嵌入到<Directory>段中以限制它们作用的文件范围。也可用于.htaccess文件当中，以允许用户在文件层面上控制对文件的访问
+# 加上 ~ 后支持正则
+<Files ~ "^(404|503|403)\.html$">
+# 禁止所有来源，也可以禁止特定的IP
+deny from all
+</Files>
+order deny,allow
+
+# 配置各错误页面
+ErrorDocument 503 /503.html
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+
+# 先检查禁止设定，没有禁止的全部允许
+
+
+<IfModule mod_rewrite.c>
+# Options +FollowSymlinks -Multiviews
+# RewriteEngine On
+# 排除已存在的目录
+# RewriteCond %{REQUEST_FILENAME} !-d
+# 排除已存在的文件
+# RewriteCond %{REQUEST_FILENAME} !-f
+# 重写                      原格式       重写后格式      FLAG_参数
+# RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
+# L|last 意思: 字符 'L' 或者 字符串 'last' 表示当前规则是最后一条规则，停止分析以后规则的重写。该标志的使用频率非常高.
+# E|env 意思: 字符 'E' 或者 字符串 'env' 表示你可以设置一个环境变量. php中会体现为$_SERVER["PATH_INFO"]
+
+# RewriteEngine on
+# 301和302重定向，会直接在地址栏显示新地址
+# RewriteRule ^old.html http://www.test.com/new.html [r=302] 
+# R|redirect 意思: 字符 'R' 或者 字符串 'redirect' 表示进行重定向, 状态码在300-399里随机出, 默认是 302 重定向.通常和标志L一起使用. 使用模式: [R[=302]]
+# RewriteRule ^test.ph/([^/]+)/([^/]+)/([^/]+) test.php?cat=$1&brand=$2&prod=$3
+
+</IfModule>
+
+# https://blog.csdn.net/qq_36031499/article/details/54317366【Apache Rewrite详细配置与使用说明】
+# https://www.jianshu.com/p/103742cccaff【Apache Rewrite】
+# http://www.drupal001.com/2012/05/apache-rewrite-url-debug/【如何调试Apache的URL重写】
+# https://www.cnblogs.com/langren1992/p/5160912.html【Apache httpd.conf配置详解】
+# http://blog.jpdou.top/httpd-htaccess/
+# http://www.xiezewen.com/web/781.html【htaccess文件写法详细教程】
+
+
+
+
+
+
+
+
+
+
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks -Multiviews
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^home(/.*)?$ home.php [END,E=PATH_INFO:$0]
+  
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^((?!home).*|home[^/]+.*)$ index.php [END,E=PATH_INFO:$0]
+  
+# RewriteRule ^(.*)$ index.php [E=PATH_INFO:$1]
+</IfModule>
+
+# 正则语法的差异
+# 1. 正则中`/`符号不需要转义
+
+# something strange
+# /home/a/b --rewrite1-> /home.php --rewrite2-> /index.php
+# 并非匹配到一个规则就会停止，`L`标志也没有按预想的标记最后一条规则
+# ↑ You might be looking for the END flag (Available in 2.3.9 and later) 

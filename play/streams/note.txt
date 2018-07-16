@@ -1,0 +1,192 @@
+https://www.oschina.net/translate/understanding-streams-in-php 【excellent】
+http://www.jb51.net/article/65933.htm 【good】
+
+4.[php] php:// — Accessing various I/O streams
+@ php://input
+*只读
+*可以获取POST请求的 原生请求体(RequestBody)
+*例：$_POST = Array([foo] => bar,[name] => John)
+RequestBody:  Hello World&foo=bar&name=John
+*$HTTP_RAW_POST_DATA 常量内容 与 php://input相同，当时需要在php.ini中作相应配置才能使用
+*特殊地，当POST方法 Content-Type=multipart/form-data时，php://input接受不到RequestBody
+*参考：http://www.jb51.net/article/31317.htm【excellent 详细深入，顺带复习了一段http】
+@ php://output
+* file_put_content('php://output','something not important...');
+等同与echo
+@php://stdin php://stdout php://stderr
+*只用于CLI模式，标准输入/输出/错误流
+*以后详细研究CLI
+@php://fd/#
+*以 文件描述符(file descriptor) 获取文件流
+【没有找到资料】
+@php://filter
+*是一个元包装类，用于为stream增加filter功能
+*例：
+file_put_contents("php://filter/write=string.rot13/resource=file:///path/to/somefile.txt","Hello World");
+readfile("php://filter/read=string.toupper|string.rot13/resource=http://www.google.com");
+*图：php_filter.png
+*自定义Filter,代码如下：
+* Define our filter class */
+class  strtoupper_filter  extends  php_user_filter  {
+    function  filter ( $in ,  $out , & $consumed ,  $closing )
+    {
+        while ( $bucket  =  stream_bucket_make_writeable ( $in )) {
+            $bucket -> data  =  strtoupper ( $bucket -> data );
+            $consumed  +=  $bucket -> datalen ;
+            stream_bucket_append ( $out ,  $bucket );
+        }
+        return  PSFS_PASS_ON ;
+    }
+}
+stream_filter_register ( "strtoupper" ,  "strtoupper_filter" )
+or die( "Failed to register filter" );
+ 
+$fp  =  fopen ( "foo-bar.txt" ,  "w" );
+stream_filter_append ( $fp ,  "strtoupper" );
+
+fwrite ( $fp ,  "Line1\n" ); 
+fclose ( $fp );
+readfile ( "foo-bar.txt" );
+
+@php://temp php://memory
+* php://memory 和 php://temp 是一个类似文件包装器的数据流，允许读写临时数据。 
+  两者的唯一区别是 php://memory 总是把数据储存在内存中；
+  而 php://temp 会在内存量达到预定义的限制后（默认是 2MB）存入临时文件中。 
+  临时文件位置的决定和 sys_get_temp_dir() 的方式一致。
+*例：
+$handle = fopen('php://temp', 'r+');
+fwrite($handle, 'hhh');
+rewind($handle);
+$content = fread($handle, 1024);
+var_dump($content);
+@Stream上下文(Context)
+*例如 获取一个网络流，要使用HTTP协议。发送一个HTTP请求，可以包含RequsetHeader和RequsetBody。
+ Context就是为 数据流封装协议 设置上下文/参数
+*CURL方法可以实现这样的功能
+*例：
+$postdata = http_build_query(
+    array(
+        'var1' => 'some content',
+        'var2' => 'doh'
+    )
+);
+$opts = array('http' =>
+    array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => $postdata
+    )
+);
+$context = stream_context_create($opts);
+$result = file_get_contents('http://example.com/submit.php', false, $context);
+* http://php.net/manual/zh/context.http.php 【HTTP，FTP，SSL等多种数据流包装协议 的上下文规定】
+
+@参考：
+http://www.oschina.net/translate/understanding-streams-in-php 【excellent PHP streams】
+http://www.phpddt.com/php/php-streams.html
+
+5.[concept] 流(Stream) 及 相关概念
+@首先，先看一下对Stream的各种解释
+*可以分为输入流 输出流
+*JAVA - An object from which we can read a sequence of bytes is called an input stream. An object to which we can write a sequence of bytes is called an output stream.
+*C - 流就是字节序列
+*编程语言里的Stream，我认为应该说是一种“延迟执行”的序列构造
+*流只有一个特征就是连续，流可以没有头可以没有尾，甚至可能没有绝对的位置（因为无头无尾），但是由于流是连续的，所以有相对位置。
+*流不是一个容器，所以流不存在拷贝。我们可以拷贝文件，拷贝内存，但是不能拷贝一个流。
+*流绝对不是一个容器，这是一个典型的误解。容器可以被视为一个流，或者可以用流的方式来读写，但流不是容器。
+*流（stream）是一种面向多种设备的（通常是文件（file））的逻辑的接口（logical interface）
+@上边有许多对Stream的定义/解释/理解/观点，但是它们的说法并不一样。
+有的出发自不同角度：C，JAVA，.NET，OS；有的从正面定义，有的从反面说明。
+粗略的看，它们是在讲同一个东西(Stream)，但是又都有各自的结论。让我无法得到一个结论。
+@用另一个情形来类比。问题：CPU是什么？
+*一般人：淘宝可以买到的，Intel或者AMD 的盒装或者散片，主机的部件之一。
+*对计算机有一定了解的人：CPU由控制器、运算器、寄存器组成。不包括缓存、集显等等。
+*电子行业技术员：记不清了。。大概意思是CPU的唯一功能就是搬运数据
+*【结论】同一个名词，可能有着同一核心，但是范畴不同的 多种含义。
+  而且，在讨论中，不明确这个“范畴”，将会造成无意义的争辩。
+@ 下面是我对 Stream 在各个范畴中的理解。表达可能不严谨，甚至可能有错误。
+@ IT领域 Stream
+*无论怎么看，Stream都跟数据有关，Stream是我们获得数据的一个方式【定义】
+*根据数据格式/内容的不同，存在：比特流、字节流、网络流、视频流等等，但这个范畴的Stream其实不在乎内容是什么
+*流是连续的（这个连续性在数据传输速度慢的情况下才容易体现），读取Stream是一个过程【这是Stream的本质特征】
+*利用这个特性，我们可以“边获取，边处理数据”【应用】
+@ 程序/系统角度 Stream
+*一个程序运行过程中，需要处理各种数据，比如：
+  . 读取配置文件 - 文件流
+  . 获取网络资源 - 网络流
+  . 期待用户输入 - 标准输入流
+  . 显示到屏幕 - 标准输出流
+  . 调用打印机 - 设备流
+*当然这些都是程序运行的操作系统定义的，程序通过系统调用使用它们而已
+*Stream根据读写可分为：read-only, write-only, read-write
+ Stream根据输入/输出可分为：input, output
+*在这个范畴，输入流<=>数据，这么理解也不会有问题
+@ 编程语言(以PHP为例)角度 Stream
+*编程语言为了方便使用者，对数据流 做了进一步处理，将原生的数据流 转换成为 方便用户使用的数据结构
+*例如：
+. php://input。 这个Stream可以获取POST请求的RequestBody。但是获取到的不是原生的请求体(Apache获取的HTTP请求)。
+  它会根据Content-Type头转换 内容的格式；比如multipart/form-data时，php://input为空；比如text/xml时，内容会自动转换为xml格式。
+. php://filter。更为明显，命名 和 使用格式就得知，这个Stream可以读入其它流，并对得到的内容进行参数要求的过滤操作。
+*PHP进程为自己创建了这些Stream，估计是“内存流”，内容是PHP自身规定的，供用户使用。
+ 内存流：http://blog.csdn.net/u012369153/article/details/52858529
+*看一下PHP提供的其它Streams
+.Stream 可以通过<scheme>://<target>方式来引用。
+ 其中<scheme>是包装类(wrapper)的名字。
+ <target>中的内容是由包装类的语法指定，不同的包装类的语法会有所不同
+.print_r(stream_get_transports()); //Retrieve list of registered socket transports, 获取已注册的套接字传输协议列表
+Array
+(
+    [0] => tcp
+    [1] => udp
+    [2] => ssl
+    [3] => sslv3
+    [4] => sslv2
+    [5] => tls
+    [6] => tlsv1.0
+    [7] => tlsv1.1
+    [8] => tlsv1.2
+)
+.print_r(stream_get_wrappers()); //Retrieve list of registered streams, 获取在当前运行系统中已经注册并可使用的流类型列表
+Array
+(
+    [0] => php
+    [1] => file
+    [2] => glob
+    [3] => data
+    [4] => http
+    [5] => ftp
+    [6] => zip
+    [7] => compress.zlib
+    [8] => compress.bzip2
+    [9] => https
+    [10] => ftps
+    [11] => phar
+)
+.print_r(stream_get_filters()); //Retrieve list of registered filters,获取已注册的数据流过滤器列表
+Array
+(
+    [0] => convert.iconv.*
+    [1] => mcrypt.*
+    [2] => mdecrypt.*
+    [3] => string.rot13
+    [4] => string.toupper
+    [5] => string.tolower
+    [6] => string.strip_tags
+    [7] => convert.*
+    [8] => consumed
+    [9] => dechunk
+    [10] => zlib.*
+    [11] => bzip2.*
+)
+*PHP的网络流
+$handle = fopen('http://www.baidu.com','r');//无法以“write”方式打开，这个Stream是只读的。
+while( $content=fread($handle, 128) )
+{
+	echo $content;
+}
+@参考：
+手册 http://php.net/manual/en/wrappers.php.php
+http://blog.csdn.net/five3/article/details/7181521 【http form-data good】
+知乎 https://www.zhihu.com/question/27996269 【excellent 对概念获得帮助极大】
+http://www.phpddt.com/php/php-streams.html
+http://www.phpddt.com/php/php-input-output.html

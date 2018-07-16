@@ -1,0 +1,8 @@
+/shells/chrome.crx
+/shells/chrome.pem
+/shells/firefox/*.xpi
+build
+node_modules
+npm-debug.log
+.DS_Store
+

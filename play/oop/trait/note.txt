@@ -1,0 +1,2 @@
+http://www.cnblogs.com/CraryPrimitiveMan/p/4162738.html
+http://php.net/manual/zh/language.oop5.traits.php#language.oop5.traits

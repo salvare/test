@@ -1,0 +1,161 @@
+1.[php] 
+$_SERVER['SCRIPT_NAME']
+是包含当前运行脚本的路径，这是从客户端来看的路径。假如你访问的URL地址为 http://www.yourdomain.com/test/test.php，那么在脚本中 $_SERVER['SCRIPT_NAME'] 将会是 /test/test.php 
+
+$_SERVER['SCRIPT_FILENAME']
+与 $_SERVER['SCRIPT_NAME'] 不同的是，这是服务器端的绝对路径。假如你访问的URL地址为 http://www.yourdomain.com/test/test.php，那么在脚本中 $_SERVER['SCRIPT_FILENAME'] 可能会是 /home/a88888888/public_html/test/test.php （前一部分路径因服务器而异）。说得通俗一点，这就是服务器硬盘上的路径。
+
+
+2.[php]
+parse_str()
+
+3.[php] 对象作为函数的参数：
+形参和实参是同一个对象。
+实际上变量$obj记录的是这个对象的句柄，将$obj作为参数传入，完全可以对原对象进行操作。
+
+4.[php]
+array_walk($c, create_function('$item, $key', 'include_once(ROOT_PATH . \'includes/libraries/\' . $item . \'.php\');'));
+
+5.[db]
+OPTIMIZE TABLE
+http://blog.sina.com.cn/s/blog_3dbab2840100c13p.html
+
+6.[js] validform	表单验证的js库
+http://validform.rjboy.cn/document.html
+
+7.[architecture] 在页面中点击按钮提交某个请求
+* 过去的做法：
+  直接跳转到某个控制器，在控制器中处理请求，同时展开新页面
+* 胜沃erp的做法：
+  使用ajax请求某个控制器，在控制器中处理请求，然后返回请求结果。根据结果执行跳转。
+* 对比：后者将两个逻辑分开，可能会更好一些。
+  但是后者调试好麻烦。
+
+
+8.[html] 带有指定 tab 键顺序的链接
+<a href="http://www.w3school.com.cn/" tabindex="2">W3School</a>
+<a href="http://www.google.com/" tabindex="1">Google</a>
+<a href="http://www.microsoft.com/" tabindex="3">Microsoft</a>
+
+9.[php] 验证码
+@ 页面
+<img title="点击图片更换验证码" id="captchaCode" onClick="getCaptcha();" style="cursor:pointer; float:left; margin-left:20px; position:absolute;">
+@ ajax 获取验证码图片
+function getCaptcha() {
+    $('#captchaCode').attr('src', '?act=captcha&width=65&height=22');
+}
+// 看来<img/>标签的src属性变化后，能自动重新请求资源
+@ 动态生成图片
+import("captcha.lib.php");
+...
+$_SESSION['seccode'] = $string; // 在后台生成随机字符串，存入session
+@header("Expires: -1"); // 响应头
+@header("Cache-Control: no-store, private, post-check=0, pre-check=0, max-age=0", FALSE);
+@header("Pragma: no-cache");
+header('Content-Type: image/jpeg');
+imagepng($image); // 输出png图片数据
+imagedestroy($image);
+@ 验证
+$_SESSION['seccode']==$captcha ? 'success' : 'fail';
+@ something important
+验证码必须在后台生成
+
+10.[js] jquery的诡异问题
+$.post('?app=loan&act=confirmRepayAccount', {
+                'loan_id': loan_id,
+	    },
+            function(data){
+                // xxx
+            }, 'json');
+只不过因为 loan_id 没有定义，走到 $.post 的时候整个标签页卡死，
+等待较长时间后，浏览器报错 "Maximum call stack size exceeded"，意思是函数调用达到上限，一般是因为 函数循环调用
+
+11.[html] 表单中出现name相同的表单项
+结果：后者覆盖前者
+
+12.[svn] 报错：svn cleanup failed–previous operation has not finished; run cleanup if it was interrupted
+原文：http://blog.csdn.net/luojian520025/article/details/22196865
+.svn/wc.db	数据库文件
+sqlite3.exe	DBMS，定义了一组操作数据库的命令（SQL）
+
+13.[js] js获取cookie：document.cookie
+http://www.jb51.net/article/64330.htm
+
+14.[php] session有效时间
+http://www.jb51.net/article/52309.htm
+
+* 用于实现SESSION的cookie值
+  echo session_name(); // PHPSESSID
+* $_COOKIE('PHPSESSID')的值
+  echo session_id(); // epckmms8mhjamovtdbme08mq61
+@ 设置 $_COOKIE('PHPSESSID') 的有效期
+  session_set_cookie_params(10*60); 
+  当session_set_cookie_params(0)时，PHPSESSID的有效期是当前会话，即浏览器开启的期间。
+  而session_set_cookie_params(600)后，600秒后，PHPSESSID立刻失效，即使浏览器开启着。
+@ setcookie( 'moon', 'star', time()+100); 
+  echo $_COOKIE['moon'];  // Undefined index: moon
+* cookie是存储在浏览器本地的，服务器端setcookie()后，其实是在 response header 中：
+  Set-Cookie="moon=milk; expires=Thu, 30-Mar-2017 05:28:15 GMT; Max-Age=100" 实现的。
+@ 
+
+
+
+15.[js] 
+if(test&&typeof(test)=="function"){ 
+	test(); 
+}else{ 
+	alert("不存在的函数"); 
+} 
+
+16.[js] ajax的判断方法 & ajax的实现原理
+http://yanue.net/post-107.html
+http://www.w3school.com.cn/xml/xml_http.asp
+
+
+17.[js] jquery中的 $(function(){...}) 什么时候执行
+这个是在页面DOM文档加载完成后加载执行的，等效于$(document).ready(function(){...}); 
+优于window.onload，后者必须等到页面内包括图片的所有元素加载完毕后才能执
+https://zhidao.baidu.com/question/495419462647834404.html
+
+18.[js] validform是怎么提交的？
+正常提交form表单，会直接跳转到新页面。
+而使用validform之后，约定post请求返回{success:false/true}，
+当失败时，不跳转页面。
+成功时，可以跳转到{data:url}
+原理也大概类似，validform在表单submit之前，使用ajax访问form.action。取得返回结果后，按上述处理。
+参考：assets/js/admin.js - L457
+
+19.[php] 类中的静态变量：
+static $var=0;
+用Hello::$var调用，不能用$this->var;
+
+20.[php] extension=php_exif.dll 用于读取图片文件信息的扩展
+
+21.[ecm] 附件（文件）管理机制
+@ includes/libraries/uploadFile.lib.php 上传文件类。提供了以下支持：
+a. 图像处理
+	调整图片尺寸
+	水印
+	生成缩略图
+b. 文件属性控制
+	文件大小
+	文件扩展名
+c. ftp上传
+
+@ site/main/assets/libraries/plupload/plupload.full.min.js 上传文件前端插件
+wraper
+drag-area
+browse
+upload-btn
+file-list
+
+22.[php] && 优先级 高于 || 
+运算符优先级 http://php.net/manual/zh/language.operators.precedence.php
+
+23.[js] 切图插件
+http://foliotek.github.io/Croppie/
+
+
+
+
+

@@ -1,0 +1,85 @@
+2016-1-5
+
+2.[HTML]
+<input type="radio"  未选中
+<input type="radio" checked/>  选中
+<input type="radio" checked=/>  选中 
+<input type="radio" checked=""/>  选中  
+<input type="radio" checked="false"/>  选中  
+<input type="radio" checked="0"/>  选中 
+
+
+3.[PHP]
+$var = NULL; // false
+$var = 0; // true
+$var = false; // true
+var_dump(isset($var));
+
+
+5.[JavaScript] window.document可以直接通过name获取元素，如：
+document.myform
+注意：name而非id
+
+
+6.[JavaScript] 判断js对象为空的方法：
+* if( obj[0]===undefined )
+* undefined可以当false用 if(obj[0])
+
+
+7.[JavaScript] jquery提供了inArray方法：
+$.inArray(one, arr);//判断one是否是数组arr的一个元素
+返回：如果是返回位置，如果不是返回-1
+
+
+1.[JavaScript] 判断JS对象是否拥有某属性:
+* in 运算符 
+var obj = {name:'jack'};
+alert('name' in obj); // true
+alert('toString' in obj); // true toString是对象原型中的函数 相当于继承的函数
+* hasOwnProperty 方法
+var obj = {name:'jack'};
+obj.hasOwnProperty('name'); // true
+obj.hasOwnProperty('toString'); // false 原型链上继承过来的属性无法通过hasOwnProperty检测到
+* 
+var obj = {name:'jack'};
+alert(obj['name']!==undefined); //true
+其实可以直接判断：if(obj['name'])
+* 疑问：多层如obj.a.b.c.d.e是否存在，除了一级级判断还有其它方法吗？？？
+
+
+2.[JavaScript] 算法：js对象数组 根据某个共同字段 分组
+http://zhidao.baidu.com/link?url=eNVdYbhCs3CDbDgPeJgLIOSwKbVyJBS7ntgUM4sxAOTJv6_jYfn6gw8SrO3lEn6g6lhd5FwzD4-WgM8rIaSf3j2mBxAmQqPkF6cDgEzT1La
+
+
+3.[JavaScript] 案例：js正则 匹配英文姓名
+http://zhidao.baidu.com/link?url=USx1Q_LvMkaKSotRot1tRRdZXh8JL4PiM8MHyEzkzA-Z6KVxleVIULrqIGB6PCusoZwo6NyP1Kym-9PTcslXV_
+
+
+1.[JavaScript] 截取字符串方法
+* substr(start [, length])
+* substring(start, end)
+参考：http://www.jb51.net/article/42482.htm 文中有案例
+
+2.[JavaScript] 匹配email
+* email名称原则：
+用户名命名规则：开头必为数字或字母，中间可含"_"、"-"(搜狐邮箱)、"."(Gmail)，长度32
+域名构成规则：开头和结尾必为数字或字母，中间可含"-"，长度32，最多4级域名，顶级域名又2至4个字母
+注：上边所述英文字母只有小写
+
+3.[JavaScript] boolean number string数据类型转换的方法
+http://blog.csdn.net/ufo2910628/article/details/40735691
+
+4.[JavaScript] 匹配url 
+http://yuncode.net/code/c_52ef51ddd6a3423
+
+1.[JavaScript]
+一个 <input type="text"> 有labels属性，虽然可能为空
+一个 <input type="hidden"> 没有labels属性
+其它情况不知道了，坑真多
+
+
+2.[JavaScript] js的 && || 也是有短路机制的
+
+
+阅读http://baike.baidu.com/link?url=9Sjj9j7F6xhwfj_O7g6hgcF1knAPv0gDEX1djKRqocAKie3XY2HCMwahCwENBVHjYcfM2NACkYu8Nrw7X3BSYa
+

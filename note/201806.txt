@@ -1,0 +1,1002 @@
+1.[php] 获取请求方的IP
+http://www.111cn.net/phper/php-cy/59523.htm
+
+2.[other] 正则表达式之零宽断言详解
+# http://blog.csdn.net/hsd2012/article/details/51272902
+# http://www.jianshu.com/p/8c7f803d3f59
+. ?= 正先行断言
+  <= 正后发断言
+  ?! 反先行断言
+  ?<! 反后发断言
+
+3.[php] phptrace
+. 功能：1.打印当前PHP进程调用栈 2.实时追踪PHP调用（显示每一条语句、函数的参数、函数的执行时间）
+. 需要安装 `phptrace`扩张
+  # https://github.com/Qihoo360/phptrace/blob/master/README_ZH.md
+. $ phptrace -p 3130
+  # 3130 为`php-fpm`的进程ID
+    # `php-fpm`是`FastCGI`运行模式下的进程，我使用的`xampp`集成环境是`apache2handler`。不知道这个情形怎么使用`phptrace`
+. 参考
+  # http://mp.weixin.qq.com/s?__biz=MzAxNzMwOTQ0NA%3D%3D&mid=2653354782&idx=2&sn=9b63f6655230bec82d37a97968a55926&chksm=8035d175b74258632c3fecb6f18ed4f961afb5cf69bd2b6f547b44a3f73d9c98bf0f27720a99
+? 在高速的执行过程中怎么分析内容
+# `debug_backtrace`方法已经能解决我大部分的调试需求
+  # 整理这个的目的是：了解`phptrace`的大致用途，需要的时候可以想起它
+
+4.[other] Composer更新慢的终极解决方案 
+http://blog.csdn.net/fishermanmax/article/details/51975692
+
+5.[php] 抽象类(abstract class) 与 接口(interface)
+# https://blog.csdn.net/sunlylorn/article/details/6124319【PHP中的 抽象类（abstract class）和 接口（interface）】
+. interface iG extends iD // 接口可以继承接口 
+. interface iG extends iD,iE // 而且可以多继承
+. interface 强调特定功能的实现，而 abstract class 强调所属关系【？】
+# 不用太纠结 抽象类 的用途，基本 接口 都能替代
+
+6.[other] 前端安全问题
+# http://web.jobbole.com/92875/【8 大前端安全问题】
+# http://web.jobbole.com/92893/
+# https://blog.csdn.net/a401461843/article/details/77622299/【web大前端开发中一些常见的安全性问题】
+. xss(cross site scripting) 
+  . 解决：转义输入
+. csrf(cross site request forge)
+  . 解决：token
+
+7.[other] xss攻击
+. 参考
+  # https://zhuanlan.zhihu.com/p/38327058【浅析前端安全之 XSS】【excellent】
+  # https://zhuanlan.zhihu.com/p/24249045【XSS实战：我是如何拿下你的百度账号】【excellent】
+. 原理
+  1. 寻找输入点。比如讲自己的百度昵称改成 
+     Salvare
+     <script>
+       getcookie=document.cookie // maybe more important info
+       // send cookie to my email
+     </script>
+  2. 你的昵称被写入服务器数据库
+  3. 其它用户在浏览某些页面时（好友、分享），会显示你的昵称
+  4. 与此同时，昵称中的脚本也执行了，你获得了其它用户的cookie
+  5. 打开百度，修改自己的cookie，就能冒充别人的会话
+
+8.[other] psr
+# https://www.php-fig.org/psr/【官网】
+# http://www.cnblogs.com/x3d/p/php-psr-standards.html 【psr】
+# https://my.oschina.net/1pei/blog/485099 【psr-4】【good】
+
+9.[other] 浏览器端可以（恶意）修改js吗，以绕过验证之类？
+. `<tag data-foo="1"/>`修改dom元素后 `<tag data-foo="2"/>`
+  * DOM元素是随意修改，即时生效的
+. `$("tag").data("foo")`没有更新，还是1；`$("tag").attr("data-foo")`有更新，是2
+  * JS中读取DOM元素也是实时的
+. `function foo() { alert("xxx") }` 修改JS为 `function foo() { alert("ooo") }`
+  . 控制台调用`foo()`时，弹出修改后的"ooo"
+  . 但是点击`<button onclick="foo()"></button>`，依然弹出的"xxx"
+  * 直接修改JS代码是无效的。可以理解为页面加载完成之后，JS代码也已完成加载，修改源代码无效
+. `function foo() { alert("ooo") }` 
+  # 在控制台“重新声明”方法
+  * js中，函数可以重复声明方法（覆盖）
+  . 此时点击`<button onclick="foo()"></button>`，弹出"ooo"
+  * 不想函数被覆盖的话
+    . const foo = function() {
+  alert("xxx") } 
+  * 类Class不能重复声明
+  * var变量可以重复声明
+  * let变量不可以重复声明。但是可以赋值。
+. `<tag onclick="handle1()"/>` 修改onclick属性 `<tag onclick="handle2()"/>`
+  . handle1依然有效，先触发handle1后触发handle2
+* 小结
+  . 以上是自己试验内容，浏览器是`Chrome v67`
+  . 修改DOM元素、修改JS，规则没有完全弄清，但是可以得出结论：是可以修改（很多东西）的
+. 如何防止JS被修改
+  * 只能是提高修改难度，不能根本预防
+  . 后端验证
+  . js代码压缩
+  . js变量放到闭包内，可以防止被简单的方式修改
+  # https://www.zhihu.com/question/24657840【解决js变量在客户端浏览器被修改？】
+. 如何绕过前端验证
+  . 拦截并修改HTTP请求
+    # https://www.cnblogs.com/devlige/p/8440736.html
+  . 阅读源代码并利用漏洞
+    # https://www.jianshu.com/p/32411761236f【good】
+  . 浏览器设置禁用脚本
+    # http://www.360doc.com/content/13/0925/21/13812121_317077519.shtml
+    # https://blog.csdn.net/u011250882/article/details/46898571【Chrome谷歌浏览器如何禁用JavaScript】
+
+10.[php] `var_export`函数
+. 返回合法的PHP代码
+# http://www.cnblogs.com/nyapasu/p/5039463.html
+
+11.[js] 
+# http://www.ruanyifeng.com/blog/2016/04/cors.html【跨域资源共享 CORS 详解 - 阮一峰】
+
+12.[sql] 联表查询 vs 子查询
+. 联表查询 又称 关联子查询；子查询 又称 嵌套查询
+. 结论：
+  . 大部分观点：联表查询效率较高
+    # 虽然实测了一个案例速度：内联>嵌套>左联
+  . 小众观点：子查询效率高
+    . 理由：联表查询需要先做笛卡尔积，而嵌套查询实现缩小的结果集
+  .（好像）数据量极大时联表会有问题
+. 参考
+  # http://bbs.csdn.net/topics/310125796【请教联接与子查询的比较，哪个效率高...】
+  # https://www.zhihu.com/question/21657443【mysql 单表多次查询和多表联合查询，哪个效率高?】
+  # https://my.oschina.net/fuckboogie/blog/204656【关于嵌套查询和连接查询的效率问题】【支持嵌套查询】
+  # http://blog.csdn.net/nsj820/article/details/6606732【exist vs in】【excellent】
+* 真结论
+  . `INNER JOIN`的逻辑一定选用联表查询
+    . `INNER JOIN`在 查询优化器 的帮助下，能自动选择主表和从表。
+    . 其实使用子查询时，如果主从表选择正确的话，其执行计划和`INNER JOIN`是一样的
+      . SELECT loan.id FROM oa_loan loan JOIN oa_loan_pay pay ON loan.id=pay.loan_id; -- 优
+      . SELECT loan.id FROM oa_loan loan WHERE loan.id IN (SELECT loan_id FROM oa_loan_pay); -- 执行计划不好看，但其实跑得最快。。
+      . SELECT loan_id FROM oa_loan_pay pay WHERE pay.loan_id IN (SELECT id FROM oa_loan); -- 优
+  . `LEFT JOIN`或子查询 的逻辑下，也使用联表查询
+  . 发生慢查询的话，再拿出来具体分析，查看执行计划和实测
+
+13.[sql] IN vs EXISTS
+# 参考：http://blog.csdn.net/nsj820/article/details/6606732【excellent】
+. 结论
+  1 in适合于外表大而内表小的情况；exists适合于外表小而内表大的情况
+  2 如果两个表相当则in/exists差别不大
+  3 用not exists比not in执行的效率要高的多
+  4 使用in时不对null进行处理
+
+13.5.[sql] 示例，一下几句sql执行计划完全相同
+# 在`test_newoadev`数据库中测试
+EXPLAIN
+SELECT
+	*
+FROM
+	oa_flow_request_approve approve,
+	oa_flow_process process,
+	oa_flow flow
+WHERE
+	approve.process_id = process.id
+AND process.flow_id = flow.id
+AND flow.`name` = 'GPS异常'
+AND approve.mark = 1
+AND process.mark = 1
+AND flow.mark = 1;
+-- -----------------
+EXPLAIN
+SELECT
+	*
+FROM
+	oa_flow_request_approve approve
+LEFT JOIN oa_flow_process process ON process.id = approve.process_id
+LEFT JOIN oa_flow flow ON flow.id = process.flow_id
+WHERE
+	flow.`name` = 'GPS异常'
+AND approve.mark = 1
+AND process.mark = 1
+AND flow.mark = 1;
+-- -----------------
+EXPLAIN
+SELECT
+	*
+FROM
+	oa_flow_request_approve
+WHERE
+	mark = 1
+AND process_id IN (
+	SELECT
+		id
+	FROM
+		oa_flow_process
+	WHERE
+		mark = 1
+	AND flow_id IN (
+		SELECT
+			id
+		FROM
+			oa_flow
+		WHERE
+			mark = 1
+		AND NAME = 'GPS异常'
+	)
+);
+-- -----------------
+EXPLAIN
+SELECT
+	*
+FROM
+	oa_flow_request_approve approve
+WHERE
+	mark = 1
+AND EXISTS (
+	SELECT
+		*
+	FROM
+		oa_flow_process process
+	WHERE
+		process.id = approve.process_id
+	AND mark = 1
+	AND EXISTS (
+		SELECT
+			*
+		FROM
+			oa_flow flow
+		WHERE
+			flow.id = process.flow_id
+		AND mark = 1
+		AND `name` = 'GPS异常'
+	)
+);
+
+14.[sql] 执行计划
+. 字段
+  * id 
+    . 包含一组数字，表示查询中执行select子句或操作表的顺序
+    . id相同，执行顺序由上至下
+      . 先执行的被称为“驱动表”（见下）
+    . id不同，id值越大优先级越高，越先被执行
+  . select_type 
+    . 表示查询中每个select子句的类型
+    . SIMPLE | PRIMARY | SUBQUERY | DERIVED | UNION | UNION RESULT
+  * type
+    . 表示MySQL在表中找到所需行的方式，又称“访问类型”
+    . ALL < INDEX < RANGE < REF < EQ_REF < CONST 
+  . possible_keys
+    . 指出MySQL能使用哪个索引在表中找到行，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询使用
+  . key
+    . 显示MySQL在查询中实际使用的索引
+  . key_len
+    . 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度
+  . ref
+    . 表示上述表的连接匹配条件，即哪些列或常量被用于查找索引列上的值
+  * rows
+    . 表示MySQL根据表统计信息及索引选用情况，“估算”的找到所需的记录所需要读取的行数
+  * Extra
+    . Using index | Using where | Using temporary | Using filesort
+? 驱动表
+  . `LEFT JOIN`直接指定左表为驱动表；`RIGHT JOIN`直接指定右侧表为驱动表
+  . 指定了连接条件时，满足查询条件的记录行数少的表为[驱动表]
+    ? ‘连接条件’理解为‘ON子句’
+    ? 但是事先也不能得知改查询条件下的记录数吧
+  . 未指定连接条件时，行数少的表为[驱动表]（Important!）
+  . 永远用小结果集驱动大结果集
+  . 但是实践时发现：有索引的情况下，会尽可能利用索引，使从表访问类型(type)为`eq_ref|ref`
+. Extra
+  . using filesort（负面）
+    . MySQL需要额外的一次传递，以找出如何按排序顺序检索行。通过根据联接类型浏览所有行并为所有匹配WHERE子句的行保存排序关键字和行的指针来完成排序。然后关键字被排序，并按排序顺序检索行。
+  . using temporary（负面）
+    . 为了解决查询，MySQL需要创建一个临时表来容纳结果。典型情况如查询包含可以按不同情况列出列的GROUP BY和ORDER BY子句时
+  . Using index（正面）
+    . 表示直接访问索引就足够获取到所需要的数据，不需要通过索引回表
+  . Using where
+    . 表示优化器需要通过索引回表查询数据
+  * 基本上，在Extra列里面，尽可能不要出现Use Temporary Table 和 Using file sort，相比较而言，使用临时表的影响更大，file sort会小一些
+. 参考
+  # https://blog.csdn.net/zhuxineli/article/details/14455029【MYSQL explain详解】【excellent】
+  # http://www.cnblogs.com/ggjucheng/archive/2012/11/11/2765237.html【MySQL执行计划解读】【good】
+  # http://blog.itpub.net/29510932/viewspace-1709732【MySQL之SQL分析三部曲】
+  # http://blog.csdn.net/u011244446/article/details/60609495
+
+15.[php] 分片上传
+. 为什么不能直接传大文件
+  . upload_max_filesize = 2M //PHP最大能接受的文件大小
+  . post_max_size = 8M //PHP能收到的最大POST值
+  . memory_limit = 128M //内存上限
+  . max_execution_time = 30 //最大执行时间
+. 前端
+  . 使用`Web Uploader`插件，配置`chunked: true` 
+  # http://fex.baidu.com/webuploader/【Web Uploader】
+. 后端
+  . 参数 $chunks总片数 $chunk当前片编号
+  . 分别接收并存储每一片文件
+  . 检测到已接收到所有分片时，按次序读取各分片内容，写入的目标文件
+  . 删除分片文件和临时目录
+. 参考
+  # https://www.cnblogs.com/AllenChou/p/7852719.html【大文件分片上传，断点续传，秒传 实现】
+  # https://segmentfault.com/a/1190000006909562【分片上传与断点续传解决方案】
+
+？？？断点续传
+
+16.[other] https://blog.fundebug.com/2017/05/31/docker-and-vm/ 【docker VS VM】
+
+17.[php] 二维数组 如何像数据库表一样 按字段排序
+. 数据
+$list = [
+	['a'=>1, 'b'=>50, 'c'=>500,],
+	['a'=>2, 'b'=>10, 'c'=>300,],
+	['a'=>3, 'b'=>30, 'c'=>200,],
+	['a'=>3, 'b'=>20, 'c'=>100,],
+];
+. 方法一
+$column_a = array_column($list, 'a');
+$column_b = array_column($list, 'b');
+$column_c = array_column($list, 'c');
+array_multisort(
+	$column_a, SORT_ASC, SORT_REGULAR,
+	$column_b, SORT_ASC, SORT_REGULAR,
+	$column_c, SORT_ASC, SORT_REGULAR,
+	$list
+);
+. 方法二
+function array_msort($array, $cols)
+{
+    $colarr = array();
+    foreach ($cols as $col => $order) {
+        $colarr[$col] = array();
+        foreach ($array as $k => $row) { $colarr[$col]['_'.$k] = strtolower($row[$col]); }
+    }
+    $eval = 'array_multisort(';
+    foreach ($cols as $col => $order) {
+        $eval .= '$colarr[\''.$col.'\'],'.$order.',';
+    }
+    $eval = substr($eval,0,-1).');';
+    eval($eval);
+    $ret = array();
+    foreach ($colarr as $col => $arr) {
+        foreach ($arr as $k => $v) {
+            $k = substr($k,1);
+            if (!isset($ret[$k])) $ret[$k] = $array[$k];
+            $ret[$k][$col] = $array[$k][$col];
+        }
+    }
+    return $ret;
+}
+$rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
+
+18.[redis] redis
+. `redis`是一个`C-S`架构的应用
+  . 服务端：`redis-server redis.windows.conf`
+  . 客户端：`redis-cli -h 127.0.0.1 -p 6379`
+. 五种数据类型
+  . String
+    # 字符串
+    . set {key} {value}
+    . get {key}
+    . del {key}
+    . exists {key}
+    . setex {key} {seconds} {value}
+      # 设置过期时间
+    . setnx {key} {value}
+      . 只有在 key不存在时设置 key的值
+      ! 由于redis命令都是原子操作，`setnx`命令可以用来实现“锁”
+        # http://blog.csdn.net/fdipzone/article/details/51793837【php 使用redis锁限制并发访问类】
+  . List
+    # 有序字符串列表。可以添加一个元素到列表的头部（左边）或者尾部（右边）。
+    . lpush {key} {value}
+    . lpop {key}
+    . lrange {key} {start} {end} 
+      . start<=end
+      . 0表示第一个元素 
+      . 可以是负数，如-2表示列表的倒数第二个元素
+    . rpush {key} {value}
+  . Hash
+    # 是一个键值(key=>string)对集合
+    # https://www.cnblogs.com/shuo-128/p/7073528.html【Redis 的数据类型 - Hash 对象类型】
+    # 适合存储对象 
+    . hset {key} {field} {value} 
+    . hget {key} {field} 
+    . hdel {key} {field} [{field2} ...]
+    . hgetall {key}
+    . hkeys {key}
+      # 获取所有哈希表中的字段
+  . Set
+    # string类型的无序集合
+      # 集合的元素不能重复的
+    # 是通过哈希表实现的，所以添加，删除，查找的复杂度都是 O(1)
+    . sadd {key} {member} [{member2} ...]
+    . srem {key} {member} [{member2} ...]
+    . smembers {key}
+    . sdiff {key1} {key2}
+    . sinter {key1} {key2}
+    . sunion {key1} {key2}
+    . sismember {key} {member}
+    . scard {key}
+      # 成员总数
+  . Ordered Set 
+    # string类型元素的集合 
+    # 每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行“从小到大”的排序。
+    . zadd {key} {score} {member} [{score2} {member2} ...] 
+    . zrem {key} {member} [{member2} ...] 
+    . zcard {key}
+    . zrange {key} {start} {end} [WITHSCORES] 
+    . zrangebyscore {key} {min} {max} [WITHSCORES] [LIMIT {offset} {count}]
+. 命令返回值
+  . Redis命令 返回1表示成功 0表示失败
+  . Redis命令 只会返回 单个值 或 一个一维数组。数组按照具体情况可能是 `key1,val1,key2,val2...` 或是 `A1,B1,C1,A2,B2,C2...`
+. 事务
+  . Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。
+    . 单个操作是原子性的
+    . 多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。
+. 设置密码
+  . config get requirepass // 查看是否有密码
+  . config set requirepass {password} // 设置密码
+  . auth {password} // 设置密码后，需要通过这个验证，才能使用别的命令
+  . 或者直接在配置文件中 `requirepass {password}`
+. 配置
+  . 启动服务时，要选择配置文件： `redis-server redis.windows.conf`
+  . CONFIG GET {CONFIG_SETTING_NAME} // 读配置项
+  . CONFIG SET {CONFIG_SETTING_NAME} {NEW_CONFIG_VALUE} // 写配置项
+  . CONFIG GET * // 读全部配置
+. 发布/订阅
+  # 客户端可以发布(publish)和订阅(subscribe)频道(channel)
+  . subscribe {channel} [{channel2} ...]
+  . publish {channel} {message} 
+  . unsubscribe {channel} [{channel2} ...]
+. 客户端
+  . client list
+  . client kill [addr {ip}:{port}] [id {client-id}] [type {type}]
+? 其它特性 
+  . 过期
+  . 通知
+. php
+  . `phpredis`扩展
+  . `predis`库
+  # https://segmentfault.com/q/1010000008848852【predis包和phpredis扩展的区别是什么】【good】
+# 参考：http://www.runoob.com/redis/redis-tutorial.html
+. 其它
+  # https://segmentfault.com/q/1010000005115279【redis可以多key对应一个value吗？】
+
+19.[other] http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html【浏览器缓存机制】【excellent】
+
+20.[other] http://blog.csdn.net/hinyunsin/article/details/6401854【一个fopen函数中未使用二进制模式(b)引发的血案】
+
+21.[php] 解决并发问题
+. 有一些情况需要控制不能并发
+  . 如抢购功能： `if ($stock>0) {$stock--; save($stock); return 'success';}`
+. 阻塞 和 非阻塞
+  . 阻塞模式：当遇到并发控制时，尝试获得目标资源，否则进程阻塞，直到资源被其它进程释放
+  . 非阻塞模式：当遇到并发控制时，尝试获得目标资源，如果失败，则进入失败处理业务逻辑
+. 几种实现方式
+  . 文件锁
+  . 数据库行锁
+  . 队列
+  . redis的setnx操作
+. 参考
+  # http://blog.csdn.net/kankan231/article/details/51108450【PHP解决并发问题的几种实现】【good】
+  # http://www.thinkphp.cn/code/2984.html【解决并发详解一：阻塞模式】
+  # http://www.w3school.com.cn/php/func_filesystem_flock.asp【PHP flock函数】
+. 并发(concurrency) 的反义词是 顺序(sequential) 
+
+22.[other] http://blog.csdn.net/tmylzq187/article/details/41677819【Huffman编码】
+
+23.[other] https://www.zhihu.com/question/28557115【怎样用通俗的语言解释REST，以及RESTful？】
+
+24.[sql] http://www.jb51.net/article/27138.htm 【php中在PDO中使用事务(Transaction)】
+
+25.[sql] 数据库的 连接(connection) 和 会话(session)
+. 概念理解
+  . 会话：是通信双方从开始通信到通信结束期间的一个上下文（context），这个上下文是一段位于服务器端的内存；
+  . 连接：是从客户端到数据库实例(instance)的一条物理路径；
+  . 会话 和 连接 是同时建立的，两者是对同一件事情不同层次的描述；
+. 关系
+  . 一个连接可以拥有多个会话也可以没有会话，同一个连接上的不同会话之间不会相互影响
+  . 两个会话之间的影响，体现在锁和锁存，即对相同资源的操作（对象定义或数据块）或请求（CPU/内存），它们的处理一般是按队列来处理的，前面的没有处理好，后面的就要等待。如果以打电话来比喻：connect就好比你接通对方，这时，connect就建立了，有没有通话，不管。双方进行通话，则 session建立了，如果换人，则新的session建立，原session结束，类似的，可以在同一个connect上进行多个会话。最后，挂机，connect结束。
+  # 不理解这些也不重要
+. 所需知道的有
+  . `Navicat`的每一个查询窗口都是一个独立的会话
+  . `$db = new PDO('mysql:host=localhost;dbname=test', 'root', '123456')` 
+    . 在一次请求中，对`$db`的多次使用属于同一会话
+  . `$db = new PDO('mysql:host=localhost;dbname=test', 'root', '123456', [PDO::ATTR_PERSISTENT => true])`
+    . 建立长连接的话，多次请求都属于同一会话
+  . 会话变量/过程/函数 属于当前会话（上下文），会话间互不影响
+. 参考
+  # https://www.cnblogs.com/yasmi/articles/5587868.html【MySQL中的连接、实例、会话、数据库、线程之间的关系】【good】
+  # https://blog.csdn.net/jimsonhappy/article/details/54707694【数据库Connection连接与Session会话的理解】
+
+26.[sql] 存储过程(procedure)
+. 概念
+  . SQL语句需要先编译然后执行，而存储过程（Stored Procedure）是一组为了完成特定功能的SQL语句集，经编译后存储在数据库中，用户通过指定存储过程的名字并给定参数来调用执行它。
+. 语法
+	DELIMITER //
+	CREATE PROCEDURE {name}([[IN|OUT|INOUT] {parameter} {type} [, [IN|OUT|INOUT] {parameter} {type} ...]]) [特性 ...] 
+	{body}
+	//
+	DELIMITER ;
+. 参数类型
+  . IN:参数的值必须在调用存储过程时指定，在存储过程中修改该参数的值不能被返回，为默认值
+  . OUT:该值可在存储过程内部被改变，并可返回
+  . INOUT:调用时指定，并且可被改变和返回
+. 调用
+  . CALL {name}([parameter [, parameter2 ...]])
+. 删除
+  . DROP PROCEDURE [过程1[,过程2…]]
+  . DROP PROCEDURE IF EXISTS {name}
+. 优点
+  . 较快的执行速度（预先编译）
+  . 减少网络流量（减少查询次数）
+. 分隔符
+  . 先设置成`//`再还原，不知道为什么但是需要
+. 查询当前会话的 存储过程/自定义函数 的信息
+  . SELECT * FROM mysql.proc WHERE db='erp';
+  . SELECT * FROM information_schema.routines WHERE routine_schema='erp';
+  . SHOW PROCEDURE STATUS WHERE db='erp';
+  . SHOW FUNCTION STATUS WHERE db='erp';
+  . SHOW CREATE PROCEDURE erp.in_param;
+? 存储过程 应该只是在当前会话有效，不能持久存储
+. 参考
+  # https://www.cnblogs.com/mark-chan/p/5384139.html【MySQL存储过程】【good】
+
+27.[sql] 自定义函数(user-defined function)
+. 语法
+	CREATE [AGGREGATE] FUNCTION {name}([{parameter} {type} [, {parameter2} {type} ...]])
+	RETURNS {type}
+	{body}
+  . 函数体中一定要有返回正确类型的返回值，形如：`RETURN 'hello'`
+. 调用
+  . SELECT {name}([{parameter} ...])
+. 删除
+  . DROP FUNCTION {name}
+  . DROP FUNCTION IF EXISTS {name} 
+. 与存储过程(procedure)的共同点
+  . 当前会话有效
+  . `body`可以包含 复合结构/流程控制/SQL语句/自定义变量 等等内容
+. 区别
+  . 存储过程可以有多个返回值			函数只有一个返回值
+  . 存储过程一般独立的来执行			函数往往是作为其他SQL语句的一部分来使用
+  . 存储过程可以执行`SELECT`语句		函数中不能，但是可以`SET rt = (SELECT id FROM admin_users WHERE id=1);`或`SELECT id INTO rt FROM admin_users WHERE id=1`
+. 参考
+  # https://www.cnblogs.com/zhangminghui/p/4113160.html【MySQL之自定义函数】
+  # https://www.cnblogs.com/caoruiy/p/4486249.html【MySQL存储过程/存储过程与自定义函数的区别】
+
+28.[sql] 
+. 全局变量
+  . `@`修饰全局变量
+  . 全局变量在当前会话有效
+  . 又称用户变量、会话变量
+  . SET @foo = 1
+  . 不需要声明，直接赋值
+. 局部变量
+  . 又称内部变量
+  . 是指 BEGIN ... END 中的变量
+  . 必须先声明  `DECLARE bar varchar(20) DEFAULT 'hello'`
+  . 后赋值 `SET bar = 'world'`
+  . 作用域
+	BEGIN
+	  DECLARE x1 VARCHAR(5) DEFAULT 'outer';
+	    BEGIN
+	      DECLARE x1 VARCHAR(5) DEFAULT 'inner';
+	      SELECT x1;  -- inner
+	    END;
+	  SELECT x1; -- outer
+	END;
+. INTO子句 用于赋值
+  . SELECT 'Hello World' INTO @foo
+  . 等价于 `SET @foo = (SELECT 'Hello World')`
+  . 语句本身不再返回结果集
+. BEGIN ... END
+  . mysql中，begin-end、流程控制语句、局部变量只能用于函数、存储过程、游标（？）、触发器（？）的定义内部
+    # https://www.cnblogs.com/lisuyun/p/6207134.html【begin-end语句块在mysql中的使用问题】
+  . 意义：标记一个代码块，等同于其它语言中的“{}”
+    # https://bbs.csdn.net/topics/290072895【存储过程加上begin end与不加有什么区别？】
+. 控制语句
+	IF ... THEN 
+	  ... 
+	ELSEIF ... THEN 
+	  ... 
+	ELSE 
+	  ... 
+	END IF
+	-- ----------- 
+	CASE ...
+	  WHEN ... THEN
+	    ...
+	  ELSE
+	    ...
+	END CASE
+	-- -----------
+	DECLARE var INT;
+	SET var=0;
+	WHILE var<6 DO
+	  ...
+	  SET var=var+1;
+	END WHILE
+	-- -----------
+	REPEAT
+	  ...
+	  UNTIL ...
+	END REPEAT;
+
+29.[php] 异常(Exception) vs 错误(Error)
+. 异常
+  . 一般是业务逻辑上出现的不合预期的状况
+  . 用户手动抛出
+  . 异常是PHP5新增的特性，与JAVA的异常不一样，JAVA的异常大部分是系统自动抛出
+    # 异常就是意料之外的事情，根本我们意料不到的，如果用手动抛出，证明已经预先预料到了，那异常的意义就变味了
+    # 也就是说，相较一般对业务逻辑问题的处理，使用异常多处的特性就是可以抛出和捕捉
+. 错误
+  . php程序自身的问题，一般是由非法的语法，环境问题导致的，使得编译器无法通过检查，甚至无法运行
+  . 系统自动抛出
+  . 也支持手动抛出 `trigger_error($msg, $type)`
+. 错误级别
+  . Parse error > Fatal Error > Waning > Notice > Deprecated
+  . `Deprecated` `Notice` `Waning` 错误不会导致程序崩溃
+  . `Parse error` `Fatal Error` 错误会终止程序运行
+. 异常处理
+  . 抛出异常如果不被处理的话，会抛出`Fatal error: Uncaught exception ...`
+  . try { ... } catch(SomeException $e) { ... } finally { ... }
+  . set_exception_handler($handler)
+. 错误处理
+  . set_error_handler($handler)
+    # 只能处理Deprecated、Notice、Waning这三种级别错误，而且处理后，脚本将会继续执行发生错误的后一行
+  . register_shutdown_function($handler)
+    # 这个方法是脚本结束前的最后一个回调函数，所以无论是die()/错误（异常）/还是脚本正常结束都会调用
+. 相关配置
+  . ini_set('display_errors', 0); //关闭错误输出(开发环境开启，生产环境关闭)
+  . error_reporting(E_ALL&~E_NOTICE); //设置错误报告级别
+  . ini_set('error_reporting',0); //设置错误报告级别
+. PHP7的性特性
+  . `Error`和`Exception`都实现了`Throwable`接口
+  . `try { ... } catch ([Exception|Error|Throwable] $t) { ... }` 错误也可以用`try...catch`捕捉了
+  . 大部分`Fatel Error`也可以被`try...catch`或`set_error_handler`处理了
+. 参考
+  # https://segmentfault.com/a/1190000009504337【PHP 错误与异常】【excellent】
+  # http://www.cnblogs.com/taijun/p/4234603.html【PHP异常与错误处理机制】【有实例】
+  # https://blog.csdn.net/hguisu/article/details/7464977
+
+30.[php] `new static()` vs `new self()`
+. ```
+	class A {
+		static function foo() {
+			return new static();
+		}
+		static function bar() {
+			return new self();
+		}
+	}
+	class B extends A{
+	}
+	echo get_class(B::foo()); // B
+	echo get_class(B::bar()); // A
+  ```
+. 参考
+  # http://www.cnblogs.com/shizqiang/p/6277091.html【PHP中new self()和new static()的区别探究】
+. 单例模式
+  ```
+  Class A {
+    static $instance = null;
+    private function __construct() {} // 禁止用`new`实例化
+	public static function instance($options = [])
+    {
+        if (is_null(self::$instance))
+        {
+            self::$instance = new static($options);
+        }
+        return self::$instance;
+    }
+  }
+  ```
+. `self::` vs `parent::` vs `static::`
+  . `self::` 指向当前代码所在的类
+  . `parent::` 指向当前代码所在的类的父类
+  . `static::` 指向当前对象的类
+
+31.[other] `swagger`API文档框架
+# https://blog.csdn.net/i6448038/article/details/77622977【5分钟了解swagger】【good】
+# http://www.cnblogs.com/JoiT/p/6378086.html【Swagger入门教程】
+# http://www.cnblogs.com/chenweixuan/p/5737235.html【Swagger RESTful API文档规范】
+
+32.[other] `mock`在programming领域中的意义 
+. 单词译为：模拟的;虚假的。
+1 单元测试
+  . mock就是在测试过程中，对于一些不容易构造/获取的对象，创建一个mock对象来模拟对象的行为
+  # http://baijiahao.baidu.com/s?id=1572237477611353&wfr=spider&for=pc【Mock的应用场景、原则和工具总结】【excellent】
+2 前端接口
+  . 项目中前端和后端通常是并行开发，为了减少等待后端接口开发的时间，我们经常需要在本地模拟后端接口用来测试前端效果。这种做法称之为构建前端Mock
+  # https://www.jianshu.com/p/81373d90f9f0【Mock Server】【good】
+    # `Mock Server`基本上是 路由+静态服务器 ？
+
+33.[php] $_ENV & $_SERVER
+. `get_env`内容与`$_SERVER`相同，而非`$_ENV` 
+. `put_env`的操作可以用`get_env`获取，但不会再写入`$_SERVER`了
+. 总结：没有什么地方是一定要用 `get_env` `put_env` 的
+# http://www.moqifei.com/archives/1002
+
+34.[php] 对运算符结合性的理解
+. 以前认为：先考虑运算符的优先级，优先级相同的情况下考虑结合性。但这是错的
+. 例1 `$a<$b?'xx':$a<$c?'yy':$a<$d?'zz':'oo' // a=1, b=c=d=2`
+  . 等同于 `(($a<$b?'xx':$a<$c)?'yy':$a<$d)?'zz':'oo'`
+  . 而非  `$a<$b?'xx':($a<$c?'yy':($a<$d?'zz':'oo'))`
+  * 分析
+    . 三目运算符是从右向左结合的
+    . 优先级 比较运算>三目运算，所以本例中正好可以不考虑其它运算符的影响，简化为`A ? B : C ? D : E ? F : G`
+    . 从右向左的含义是：最先考虑最右的一组 `?:`运算符
+      . `?:`运算符是顺序的（与之对应，`[]`运算符是嵌套的），解析为`(A ? B : C ? D : E) ? F : G`
+      . 同理最终解析为`((A ? B : C) ? D : E) ? F : G`
+. 例2 `false == $foo = true`
+  . 等同于 `false == ($foo = true)`
+  . 而非 `( false == $foo ) = true`
+  * 分析
+    . 赋值运算符是从右向左结合的；优先级 赋值运算<逻辑运算
+    . 赋值运算`=|+=|*=|...`的左侧必须是一个 左值(left-value)，简单来说就是必须是一个可以被赋值的变量，常量`1`表达式`(1+$a)`都是不行的
+    ? 这么一看，赋值的结合性是最优被考虑的，比优先级的考量还要高
+. 例3 `false==$foo=true==$bar=true`
+  . 等同于 `false==($foo=(true==($bar=true)))`
+  . 而非 `false==($foo=true)==($bar=true)` // 语法错误，见下  
+  * 分析
+    . 赋值运算的右侧就是右侧的所有内容。验证↓
+    . `false==$foo=true+$bar=true` 
+      . => `false==($foo=true+($bar=true)); dump($foo); // 结果是2`;
+. 例4 `false==false==false` // 语法错误
+  * 因为 比较运算符 没有结合性
+* 总结
+  . 结合性并不是某一种性质，而是具体的每种运算符各自的性质
+# http://php.net/manual/zh/language.operators.precedence.php【运算符优先级】
+# http://www.jb51.net/article/29404.htm【三元运算符的结合性介绍】
+
+35.[css] CSS3选择器 `:nth-child` 和 `:nth-of-type` 之间的差异
+# http://www.zhangxinxu.com/wordpress/2011/06/css3选择器nth-child和nth-of-type之间的差异
+. p:nth-child(2)
+  . 选择一个<p>元素 且 该元素是父元素的第二个子元素
+. p:nth-of-type(2)
+  . 选择 父元素的所有子元素中的 <p>元素 的第二个
+
+36.[js] `location`的属性
+. 例：`http://www.erp2.com/admin/user/index?a=b#cd`
+. location.href=http://www.erp2.com/admin/user/index?a=b#cd
+. location.origin=http://www.erp2.com
+. location.pathname=/admin/user/index
+. location.search=?a=b
+. location.hash=#cd
+
+37.[other] `Eclipse`快捷键补充
+. Ctrl+F6 <=> Ctrl+Tab 切换文件
+. Ctrl+F7 切换视图
+. Ctrl+K 快速查找选定的内容
+
+38.[sql] 数据库设计中对于 多对多关系，关联表 VS 逗号分割
+. 例：用户 和 角色两个关系
+  a 关联表 `user_role(user_id, role_id)` `user(id)` `role(id)`
+  b 逗号分割 `user(id, roles)` `role(id)`，其中`roles`形如`1,2,3,10,11`
+. 分析
+  . 判断某用户有哪些权限
+    a SELECT rlat.role_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id 
+      WHERE user.id={user_id}
+    b SELECT roles,* FROM user WHERE id={user_id}
+    . 逗号分割 方式更为简洁
+  . 判断某权限被哪些用户拥有
+    a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
+      WHERE rlat.role_id={role_id}
+    b SELECT user.id,* FROM user WHERE FIND_IN_SET({role_id}, roles)
+    . 虽然 逗号分割 依然简洁，但是`FIND_IN_SET`作查询条件是效率很低的
+  . 判断某‘些’权限被哪些用户拥有
+    a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
+      WHERE rlat.role_id IN ({role_id1},{role_id2}...)
+    b SELECT user.id,* FROM user WHERE FIND_IN_SET({role_id1}, roles)
+      OR FIND_IN_SET({role_id2}, roles) OR ...
+    . 逗号分割 不仅效率低，SQL也变复杂
+  . 判断名为‘修改密码’或‘添加用户’的权限被哪些用户拥有
+    a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
+      JOIN role ON role.id=rlat.role_id
+      WHERE role.name='修改密码' OR role.name='添加用户'
+    b ...
+    . 逗号分割 根本无法实现
+. 总结
+  . 优点：逗号分割 方式少了一个关联表，使查询语句更简洁
+  . 缺点：逗号分割 在功能上有着致命缺陷
+  . 理解：逗号分割 的关联关系是单向的(user->role)
+  . 适用范围：与枚举表关联，与附件表关联，及其他只需单向关联，且关联数量不会太多的情况
+  ! 警告：没有把握的话不要使用 逗号分割
+# 参考： https://blog.csdn.net/u012325403/article/details/47253617【多对多关系使用使用逗号分割关联讨论】【exactly】
+
+39.[js] `==` vs `===`
+# 参考：https://www.zhihu.com/question/20348948
+# 结论
+  . 可以使用 `x==null` 作为 `x===null || x===undefined` 的缩写
+  . 其它情况都该使用`===`
+
+40.[js] 模板字符串
+. 语法
+  . var foo = `bar`
+  . 可以换行
+  . 可以用占位符 `string text ${expression} string text`，${}中可以作运算
+  . 在模版字符串内使用反引号（`）时，需要在它前面加转义符（\）
+  . 可以嵌套
+# 参考： https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings【MDN】
+  . MDN (The Mozilla Developer Network)
+
+41.[js] var VS let VS const VS 
+. var
+  . 语法 `var {name} [={value}]`
+  . 作用域：当前上下文（？）
+    . 如果在外部声明，则是全局变量
+    . 如果在函数内声明，则在函数内有效
+    ! 注意：代码块‘{}’范围不是这里的‘上下文’
+      . if (true) { var foo = 1; } console.log(foo); // 作用域包含代码块外
+  . 变量提升(hoisting)
+    . 变量声明 无论发生在何处，都在上下文内的任何代码之前进行处理
+    . `alert(a); var a=1;` <=> `var a; alert(a); a=1;`
+    ! 注意：声明是提前的，但是赋值不是
+    ! 不建议使用这个特性，老老实实先声明后使用
+  . 未声明赋值
+    . 将隐式的声明一个全局变量
+    . function foo() {a=1}; foo(); console.log(a);
+    ! 如果当前上下文中已经存在变量`a`，`a=1`将只是赋值操作，而不会声明为全局变量 
+  # 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var
+. let
+  . 语法 `var {name} [={value}]`
+  . 作用域：当前块
+    . if (true) { // block }  // ‘{}’的范围就是块
+    . for (let i = 1; i <= 5; i++) { // block }
+      . 每次循环都是另一个“块” 
+      . `let i` 是块内声明的变量
+  . 相同的作用域内重新let声明同一个变量会引发语法错误
+    . `var a=1; var a=2;` // success. 只有多次`var`可以重复声明
+    . `let a=1; let a=2;` // syntaxError
+    . `let a=1; if(true){let a=2};` // success
+    . `var a=1; let a=2;` // syntaxError. 任两种在同一作用域下声明同名变量都不行
+  # 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let
+. const
+  . 声明常量，必须在声明时赋值，且不能再被修改
+    . `const foo = 1; foo = 2;` // error
+    . `const foo = {a:1, b:2}; foo.b = 3;` // success
+  . 作用域同`let`，块级作用域
+  . 同`let`，重复声明会引发语法错误
+  # 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const
+. `html`中的`<script>`标签不对三者的作用域有任何影响
+
+42.[js] 闭包
+. what
+  . 闭包是指可以访问另一个函数作用域变量的函数，一般是定义在外层函数中的内层函数
+  . 即将局部变量暴露给外部
+. why
+  . 局部变量无法共享和长久的保存，而全局变量可能造成变量污染
+  . 需要有一种机制既可以长久的保存变量又不会造成全局污染
+. how
+	var getNum;
+	function getCounter() {
+	    var n = 1; 
+	    var inner = function () { return n++; }
+	    return inner;
+	}
+	getNum = getCounter();
+	console.log(getNum()); // 1
+	console.log(getNum()); // 2
+. feature
+  . 占用更多内存，不易被释放
+. reference
+  # https://zhuanlan.zhihu.com/p/27857268【图解JS闭包】
+  # https://www.zhihu.com/question/34510484?sort=created【JS闭包的真正意义】【有些答案有坑，看评论甄别】
+
+43.[js] call & apply & bind
+. 语法
+  . {funcName}.call({obj} [, {arg1} [, {arg2} ...]])
+  . {funcName}.apply({obj} [, {argArray}])
+  . {funcName}.bind({obj} [, {arg1} [, {arg2} ...]])
+. `call` 和 `apply`
+  . 将传入的`obj`作为方法的调用对象
+    . 即方法内`this`指向`obj`
+  . 两者区别只是传入参数的方式不同
+  . 实现继承
+		function Animal() {
+			this.greeting = ()=>{ console.log(this.voice) }
+		}
+		function Dog() {
+			this.voice = 'wang'
+			Animal.call(this)
+		}
+		dog = new Dog();
+		dog.greeting();
+    ! `ES6`已经真正实现了`Class`和`extends`
+. bind
+  . var newFunc = oldFunc.apply(someObj)
+  . 返回一个函数，而非立刻执行
+  ! `bind`返回的方法再次`bind`无效
+    . let a=1; let b='2'; function foo() {console.log(this;)};
+    . foo.bind(a); // Number{1}
+    . foo.bind(a).bind(b); // Number{1}
+# 参考：http://www.cnblogs.com/libin-1/p/6069031.html【理解JS中的call、apply、bind方法】
+
+44.[js] 解析Json字符串
+1 var obj = eval('{a:"a"}') // 利用了js的 对象字面量 正好是json格式
+2 JSON.parse('{a:"a"}')
+# 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse【JSON.parse()】
+
+45.[js] window.onload VS document.ready
+. 域名解析 -1-> 加载HTML -2-> 加载JS和CSS -3-> 加载图片等非文字媒体文件 -4-> ...
+. `document.ready`在<3>处触发
+. `window.onload`在<4>处触发
+. `jquery`中，`$(function(){	... });` <=> `document.ready`
+. `window.onbeforeunload` 和 `window.onunload` 
+  . 在刷新、关闭、跳转时触发
+  . 不能alert；不能直接阻止关闭/跳转/刷新
+  . 监听`window.onbeforeunload`会在触发时询问“是否确认离开页面”，一般是浏览器自带的格式
+  ↑ 不同浏览器中兼容性不同
+. 参考
+  # https://blog.csdn.net/zhouziyu2011/article/details/64123804【document.ready和onload的区别】
+  # https://www.jb51.net/article/102461.htm【javascript监听页面刷新和页面关闭事件方法详解】
+  # http://www.runoob.com/jsref/event-onbeforeunload.html【onbeforeunload 事件】
+  # https://yq.aliyun.com/ziliao/167356【document.ready嵌套时的执行顺序】【由外至内】
+
+45.[js] `in`运算符
+1 用于循环
+  . for (let k in obj)
+  . console.log(obj[k])
+2 判断 对象/数组 是否存在某键(key)
+  . obj = {a:1, 2:3}
+  . "a" in obj // true
+  . 2 in obj // true
+  . "b" in obj // false
+  . "toString" in obj // true, 原型(proto)中的属性也算
+# 参考：https://www.cnblogs.com/lsy0403/p/5918145.html【js in 关键字的用法】
+
+46.[sql] 查询时间与遍历记录数量成正比
+-- SELECT COUNT(*) AS tp_count FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) LIMIT 1 -- 17.484s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 0,15 -- 0.001s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 100,15 -- 0.001s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 1000,15 -- 0.006s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 10000,15 -- 0.033s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 100000,15 -- 2.514s
+-- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 1000000,15 -- 18.992s
+. 与查询所得的记录数量几乎无关
+. 推论：distinct对效率影响不大
+
+47.[sql] something important
+. 试验
+	EXPLAIN SELECT id FROM oa_loan_repay WHERE mark=1;
+	-- 0.9s type:all
+	EXPLAIN SELECT id FROM oa_loan_repay WHERE mark=1 AND customer_id=666;
+	-- 0.001s type:ref key:idx_customer_id
+. 结论：查询过程中，会先处理能利用索引的 WHERE条件，减小结果集，再处理不能利用索引的条件
+. 基础而重要
+
+48.[sql] 优化建议
+. 避免用`<>` 
+. 避免用`IS NULL`
+  . 给字段设置`not null`或默认值，确保没有`null`值
+. 避免在`where`子句中使用`or`来连接条件
+  . select id from t where num=10 or num=20 改写为
+  . (select id from t where num=10) union all (select id from t where num=20)
+. 尽量用`between`替代`in`
+
+49.[sql] `SELECT *` 与 `SELECT f1,f2,...` 的区别
+. 试验中
+  . 前者比后者数据量稍大一点点（几乎忽略不计）
+  . 当查询到的记录数量很大，或者存在很大的字段如`varchar(1000)`，性能差距很明显
+. 机制上，前者需要数据库先 Query Table Metadata For Columns，一定程度上为数据库增加了负担。
+. 编程角度，后者才是好习惯，所有人都这么推荐
+. 结论：用后者
+
+50.[sql] 
+# https://segmentfault.com/q/1010000004197413【excellent】
+. 结论：当需要读取的数据超过一个临界值时，优化器会放弃从索引中读取而改为进行全表扫描，这是为了避免过多的 random disk.
+
+51.[js] promise
+. 优点：将异步操作以同步操作的形式表达出来，避免了层层嵌套的回调函数
+. 详见`play/js/promise.php`
+. 参考
+  # https://segmentfault.com/a/1190000007678185【promise介绍--基础篇】【good】
+  # https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise【MDN】
+  # https://blog.csdn.net/guoquanyou/article/details/60573633【Promise详解】
+
+52.[js] async & await
+. 优点
+  . 语义更加明确
+  . 处理`then`链
+. 详见 `play/js/async.php`
+. 参考
+  # https://segmentfault.com/a/1190000007535316【理解 JavaScript 的 async/await】【perfect!】
+  # http://www.ruanyifeng.com/blog/2015/05/async.html【async 函数的含义和用法】
+
+53.[js] for ... of
+. 语法 `for(let {val} of {s}) { ... }`
+. `val`是数组的值(value) 而不是键(key)
+  . 与`for ... in`相反
+. 适用
+  . let a = ['a', 'b', 'c'];
+  . let s = new Set(['a', 'b', 'c']);
+  . let m = new Map([[1, 'a'], [2, 'b'], [3, 'c']]);
+  ! let o = {a:1, b:2, c:3} // 普通对象是不可以的：`o is not iterable`
+# 参考：https://blog.csdn.net/chicNancy/article/details/73844585【JS里的for…in和for…of的用法】
+
+54.[js] js的单线程如何实现异步
+# https://www.zhihu.com/question/20866267
+# http://blog.csdn.net/hotdogcug/article/details/2312615
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

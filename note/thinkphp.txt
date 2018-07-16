@@ -1,0 +1,8 @@
+'app_multi_module=> true, // url三级路径
+define('BIND_MODULE','main'); // url二级路径
+'app_multi_module=> false, // url二级路径，application目录下不需要有模块目录
+
+define('EXTEND_PATH','../vendor/'); // EXTEND_PATH下可以自动注册命名空间
+\think\Loader::addNamespace('my','../application/extend/my/'); // 手动注册
+
+/application/extra 扩展配置

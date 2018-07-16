@@ -1,0 +1,30 @@
+ThinkPHP加深学习笔记
+
+1. 动态配置赋值仅对当前请求有效，不会对以后的请求造成影响。
+而 批量配置 参数会合并到现有的全局配置中	http://www.kancloud.cn/manual/thinkphp/1694
+
+？common作为公共模块，可不可以有Model文件夹放置公共模型类
+
+2. 配置 禁止访问模块 
+*配置 'MODULE_DENY_LIST'      =>  array('Common','Runtime','Api'),
+*注意：需要在Common下配置
+*作用：设置后，Api模块不能通过URL直接访问，事实上，可能我们只是在该模块下面放置一些公共的接口文件，因此都是内部调用即可。
+
+3. 设置 绑定模块、控制器
+*语句：	define('BIND_MODULE','Admin');
+	define('BIND_CONTROLLER','Index'); 
+*说明：如果一个入口文件绑定了一个模块，那么从这个入口将无法访问到其他模块的控制器；
+如果一个入口文件绑定了一个模块和一个控制器，那么从这个入口将无法访问到这个模块的其他控制器，只能访问到这个控制器下的方法；
+*有做法是 采用多入口分别绑定不同的模块
+
+4. 配置 默认模块、默认控制器
+*语句：	DEFAULT_MODULE	=>	'Admin'
+	DEFAULT_CONTROLLER	=>	'Index'
+	DEFAULT_ACTION	=>	'index'
+
+5. 在url中隐藏掉 模块 的方法
+*举例：	http://www.test.com:8080/erp/index.php/Admin/Index/system.html可以写作
+	http://www.test.com:8080/erp/index.php/Index/system.html
+*语句：	'MODULE_ALLOW_LIST' => array('Home','Admin'),//允许访问模块列表
+    	'DEFAULT_MODULE' => 'Admin',
+*参考：	http://www.bcty365.com/content-83-1093-1.html

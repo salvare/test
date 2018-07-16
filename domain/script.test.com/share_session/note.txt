@@ -1,0 +1,15 @@
+sso:
+1. 一般的ajax不行，好像是本地浏览器没有存储下sso中设置的session_id
+2. jsonp可以
+3. ajax 设置 xhrFields: { withCredentials: true }, 即可，表示保存cookie	【http://blog.csdn.net/wzl002/article/details/51441704】
+即使域名不同，session_id相同的话，session依然存在保护机制
+jsonp与Access-Control-Allow-Origin择一可跨域
+
+http://www.ruanyifeng.com/blog/2016/04/cors.html
+
+优化ERP跳转OA：
+在做 优化ERP登录状态跳转OA 的功能中，遇到了“ajax请求中，session数据（似乎）写入失败”的问题。
+当时经过系列试验，猜测为“请求过程中，同时有多个ajax后台请求，后结束的ajax，覆写了先结束的ajax的session”。
+但是进一步试验后，发现session有着完善的“锁机制”，不会允许多个并发的请求同时拥有session的写权限。
+但不排除我本地与线上环境服务器差异或配置差异 而导致 session机制不同。
+于是检查了与“单点登录”并发的请求，共有两个，给它们在开头添加session_write_close()，提交后问题解决。

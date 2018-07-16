@@ -1,0 +1,366 @@
+
+
+
+4.[MySQL] 字符串连接函数
+* CONCAT 连接同一行的不同字段
+* GROUP_CONTACT 连接多行的某一字段，支持分组查询
+* http://mn960mn.blog.163.com/blog/static/1141030842011825775392/
+
+
+5.[MySQL] LEFT() RIGHT()函数
+*功能：	返回内容的左/右几位
+*例：	select left(name,3) from Table_3
+*评价：	好冷门。。。
+
+
+数据库DQL、DML、DDL、DCL
+http://blog.csdn.net/tomatofly/article/details/5949070
+
+
+4.[MySQL] 字符串连接函数
+* CONCAT 连接同一行的不同字段
+* GROUP_CONTACT 连接多行的某一字段，支持分组查询
+* http://mn960mn.blog.163.com/blog/static/1141030842011825775392/
+
+
+5.[MySQL] LEFT() RIGHT()函数
+*功能：	返回内容的左/右几位
+*例：	select left(name,3) from Table_3
+*评价：	好冷门。。。
+
+
+7.[MySQL] SQL语句中的 HAVING，GROUP BY，聚合函数
+* http://blog.163.com/hks_blog/blog/static/214926090201382225845920/
+
+
+1.[Keyword] 数据库系统的 数据锁( Lock )
+*目的：数据库采用锁来实现事务的隔离性
+*部分原理：
+	a.一个select语句，需要先获取“资源”的共享锁；add、update、delete语句需要获取资源的独占锁
+	b.如果无法立即获得相应锁的话，就需要等待锁
+	c.上述“资源”的含义：根据数据库的不同和配置的不同，可以是你所请求的行、页、键、键范围、索引、表或数据库
+	d.接c，可以引入“锁的粒度”概念，锁粒度是被封锁目标的大小。很好理解：封锁粒度小则并发性高,但开销大,封锁粒度大则并发性低但开销小
+*缺少数据锁，可能会发生下列问题：
+	a.丢失更新：A和B同时修改某项数据，B可能会破坏A的修改结果（好像很多情况这样的机制可以接受。。覆盖嘛）
+	b.脏读：A读取时，B在更新，导致A读取的内容不是最新的
+	c.不可重复读：A在某一事务中读取同一资源两次，但此期间B对资源作了修改，导致A两次读取结果不一样
+	注：挺混淆的，别太在意
+	参考：http://my.oschina.net/sansom/blog/121712
+*参考：http://blog.csdn.net/howlaa/article/details/12757805
+http://www.cnblogs.com/quanweiru/archive/2013/05/24/3097367.html（这篇较深）
+*关于数据锁作用的讨论：http://tieba.baidu.com/p/1860387493
+*起因：http://bbs.csdn.net/topics/390893655就是看了这篇才想好好研究一下数据锁的
+
+
+3.[DB] 数据库水平切分的实现原理解析
+*原文：http://www.cnblogs.com/zhongxinWang/p/4262650.html	nice article
+*目的：数据库优化，减小单机负载，降低宕机可能性，提高访问速度和并发性
+*数据切分可以是物理上的，数据切分也可以是数据库内的
+*负载均衡策略（LoadBalancePolicy）
+*集群（Group）
+
+
+2.[DB] Insert All的介绍及用法
+原文：http://www.tuicool.com/articles/BzAFZbY
+(MySql大概不支持吧..)
+
+
+2.MySQL导出数据库的方法
+mysqldump -u root -p 数据库名 表名 > 导出的文件名
+
+
+2.一些表拥有 副表。可能因为字段太多，出于管理或效率的考虑。主表与副表之前可通过id关联。
+除了将字段分离的“纵向分割”，还有因为行数太多而“横向分割”。
+如10000行数据，可以按末位数字分为10张表。
+？水平分割和垂直分割的意义？
+
+
+`IN` `NOT IN` `EXISTS` `NOT EXISTS` 性能比较？
+
+
+*升级关联模型
+1.从表字段可以作搜索条件
+2.非主键关联
+
+
+数据表关联架构 知识。
+遇到两个情况，感觉数据表很难用。
+1.product_web_order product_web_order_product product_order_product_original
+2.order_web_product
+字段	id	order_web_id	code_id	set_sku	order_product_id	price	discount_price	number	status
+其中`set_sku`体现了套件关系，
+然而这个套件关系非常难使用。。。
+不分单件、套件查询该表时，得到的套件中的每个item是很难相关的；
+如果想要使用其表达的套件关系，要先获得set_sku,再以order_web_id、set_sku为条件查询才能获得一个套件的items详情。。。。
+所以如果想保留套件关系，还是建order_web_product_set和order_web_product_set_detail表方便很多
+如果如现在的order_web_product方式建表，就别再想用套件信息
+其实这个表 是联表查询的结果格式 order_product left join sku_relate
+
+
+@ php连接数据库的底层
+pdo mysqli mysql
+tp: model -> db -> mysql -> dirver -> pdo
+http://blog.csdn.net/breeze_life/article/details/8964024
+http://bbs.csdn.net/topics/390342304
+adodb是哪层？
+
+
+代码有版本控制工具svn、git。数据库有这种工具吗？？？
+
+-----------------------------------------------------------------------
+
+question:
+数据库存储机制
+增删改查原理
+锁机制
+索引
+与编程语言接口
+怎样优化数据库操作？
+数据库种类？
+分布式数据库
+引擎？	myisam	innodb
+数据类型定义
+事务	隔离级别
+日志
+sql优化
+读写参数？
+数据库前端代理层？
+NoSQL
+约束？
+
+
+
+-----------------------------------------------------------------------
+
+http://www.dba.cn
+阿里dba题	
+MySQL 性能优化方案（转载）。	较深入
+MySQL优化 my.ini 配置说明
+
+http://www.cnblogs.com/lumnm/archive/2010/11/08/1871783.html
+超键(super key)、候选键(candidate key)、主键(primary)区别？
+
+http://baike.baidu.com/link?url=8IBn3bcpnrLk-dveqhUjV76D3xxdlc8fIvmqy40jrG9HVuyuySwtMGzyB3rQtQiMs1pkMwW2Zui3eImyRztakTlGc0yrw9y9Cj3N3Lb5AXPC78qPv_3KorOI3R4PtCzJWvUcq4G9Chdn_mXOd0JoFq
+数据库管理系统
+
+http://blog.csdn.net/jokes000/article/details/7521259
+【知识框架 improtant!!!】
+
+http://www.csdn.net/article/2012-04-11/2804419
+不是很懂 以后再看
+
+
+
+
+-----------------------------------------------------------------------
+
+
+元组(Tuple)：数据表中的一行，也作“记录”？？？
+
+模式（Schema）：一个数据库的描述，包括对数据库结构，数据类型，还有约束。？？？
+实例（Instance / State）：数据库中在某一时刻存储的真实的数据。（Instance是Schema在某一时刻的具体化、实例化）
+↑ 类(class) 与 对象(object)
+
+
+数据操纵语言（DML：Data Manipulation Language）：增删改查
+数据定义语言（DDL：Data Definition Language）：定义、删除、修改数据库中的对象？？？
+数据控制语言（DCL：Data Control Language）：用于控制用户对数据库操纵的权限
+
+数据模型（Data Model）：现实世界数据特征的抽象，用来定义数据如何组织，数据之间的关系怎样？
+↑ 模式（schema）？
+
+关系<=>表 ？？？	实体
+（Relation）（tables）	文件（files）
+关系看上去像一张二维表
+关系的域（属性的取值范围）为一组原子值（不可再分割的值）
+关系中的元组必须各不相同
+关系代数
+
+entity
+weak entity
+relationship
+identifying relationship
+attrbute
+key attribute	multivalued 	composite attribute	derived attribute
+total participation of e2 in r
+cardinality ratio ...
+
+
+
+
+并相容性（Union Compatibility）：两个关系具有并相容性需要保证具有相同的属性个数，以及对于每个属性都有相同的域
+
+视图（VIEW）：视图是虚拟的表，并不是物理存储的数据。而是由基本表或其他视图派生的数据。对视图的更新，实际上转换为对实际基表的更新。
+
+1.数据定义：DBMS提供数据定义语言DDL（Data Definition Language），供用户定义数据库的三级模式结构、两级映像以及完整性约束和保密限制等约束。
+
+
+数据锁的颗粒度（数据锁的控制范围，表、页、元组等）
+
+数据的约束条件：完整性约束
+1. 域约束：对属性取值范围的约束
+2. 键约束：每个关系必须要有主键，且每个主键必须不相同
+3. 非空约束：属性值不能为NULL
+4. 实体完整性约束：主键值不能为空
+5. 参照完整性约束：外键可以取NULL值，但若外键为另一关系主键，则不能为NULL。
+6. 用户定义的完整性
+
+SQL语句执行顺序：
+1. FROM子句组装来自不同数据源的数据
+2. WHERE子句基于指定的条件对记录进行筛选
+3. GROUP BY子句将数据划分为多个分组
+4. 使用聚集函数进行计算
+5. 使用HAVING子句筛选分组
+6. 计算所有的表达式
+7. 使用ORDER BY对结果集进行排序
+
+【控制冗余（Controlled Redundancy)】与非控制冗余（Uncontrolled Redundancy）的区别：
+未受控制的数据存储冗余会导致如下的问题：
+1. 更新数据时的重复工作
+2. 浪费空间
+3. 数据可能会不一致
+
+
+表结构的复制（不包含表之间的关系）
+SELECT  *  INTO  COPY_DEPARTMENT  FROM DEPARTMENT  WHERE 1=0;
+
+
+数据库范式
+http://www.cnblogs.com/linjiqin/archive/2012/04/01/2428695.html
+第一范式：单一属性不可拆分
+第二范式：（如果主键是复合属性）不允许其它属性对主键属性 存在部分函数依赖关系
+	或者说：主键列 与 非主键列遵循完全依赖关系
+第三范式：非主键列 之间不存在 传递函数依赖关系
+http://baike.baidu.com/link?url=f8AZBkXT3hKU82-AKystV4es5smp9AERyO-i6GnCn8tgcrJ3uXKM1uAg2fc7CcLVUdVsKBz95nStLTIoowZ-3_
+BC范式：
+https://zhuanlan.zhihu.com/p/24342860
+
+NoSQL
+键值(Key-Value)存储数据库	redis memcache
+列存储数据库
+文档型数据库
+图形(Graph)数据库
+???NoSQL数据库没有标准的查询语言(SQL)，因此进行数据库查询需要制定数据模型。
+
+
+
+
+http://www.zhihu.com/question/21760988/answer/19235639【excellent】
+
+http://www.csdn.net/article/2012-04-11/2804419
+
+Redis Memcache
+
+
+http://www.cnblogs.com/lzh007blog/p/3884995.html【SQL中两种表复制语句】
+
+
+mysql中没有 SCOPE_IDENTITY() 只有 last_insert_id()
+http://www.cnblogs.com/fish-li/archive/2011/04/05/2006107.html【MySql与SqlServer的一些常用用法的差别】
+
+
+http://www.cnblogs.com/yasmi/articles/5587868.html【MySQL中的连接、实例、会话、数据库、线程之间的关系】【perfect】
+
+
+http://www.jb51.net/article/27138.htm【php中在PDO中使用事务(Transaction)】
+
+
+
+
+distinct
+*SELECT DISTINCT a, DISTINCT b FROM Orders 效果:
+语法错误，DISTINCT作用范围是后面所有字段
+*a,b两个字段整体不重复怎么写：
+DISTINCT a,b
+*GROUP BY 比DISTINCT 更好用，可以使用合计函数
+
+
+SELECT * FROM Persons WHERE Year>'1965'
+INSERT INTO Persons SET Year='1995'
+INSERT INTO Persons SET Year=1995
+*都是正确的，数字内容的字符串 和 真正的数字 没发现什么区别（自）
+*ORDER BY可以排序字符串，BETWEEN也是
+
+
+insert如何插入多条数据 
+INSERT INTO mythird (name,age) VALUES ('6','6'),('7','7')
+INSERT INTO mythird (name,age) SELECT '6','6' UNION SELECT '7','7'
+//注意：这里可以看出SELECT的的结果类似一个新的临时表
+INSERT INTO mythird (name,age) SELECT name,age FROM mythird  //对比上一条就很容易理解
+$sql = "INSERT INTO mythird (name,age) SELECT name*3,age-1 FROM mythird WHERE id<3";
+//对选择的字段操作
+$sql = "INSERT INTO mythird (name,age) SELECT a.name,b.id FROM myleft as a JOIN myright as b";
+//花哨的^^
+
+
+插入时返回id
+*php的mysql_query(insert ...)就会返回插入的id；
+不知道为什么查资料都没说到这一点；
+如果插入多行的话只会返回第一行id
+*（最优PHP 函数 mysql_insert_id()
+使用条件：1.auto_increment 2.insert之后使用；
+每次INSERT后，其实autoincrement值就已经返回给PHP；
+此函数仅对当前链接有用，即它是多用户安全型的；
+*SELECT last_insert_id()或
+SELECT @@IDENTITY
+*参考：http://www.jb51.net/article/51473.htm
+
+
+LIKE使用sql方式匹配：%_
+RLIKE使用正则方式匹配
+如果真的要查通配符呢
+
+
+INNER JOIN	可以没有ON,此时例如count(a.*)=7,count(b.*)=3,就会查到21条
+LEFT JOIN	必须有ON
+LEFT JOIN	必须有ON
+不支持FULL JOIN
+注意：如果两个表字段明相同的话，不用别名是不能输出右表的
+*相同条件下，LEFT JOIN/LEFT JOIN的结果一定>=INNER JOIN
+*如果条件下，left_table的每一行都有匹配，LEFT JOIN=INNER JOIN
+
+
+UNION合并SELECT的结果集，注意：
+*两表选择的字段数同，且对应字段数据类型“相似”
+*最终字段名按前表的算
+*当选择的字段出现完全重复时，只会取一个！！！
+*UNION ALL不管重不重复都会插入结果集
+
+
+SELECT count(*),id FROM myleft GROUP BY name
+虽然GROUP BY name，但不仅可以取count这样的统计值；
+还可以取其它字段，是该分组的第一个
+
+
+合计函数
+avg
+count	//count(*) count(id)对； count(id,name)错；
+max	
+min
+sum
+
+
+Scalar 函数
+now	//2015-12-26 16:38:05
+last_insert_id???
+
+
+SELECT COUNT(DISTINCT name) FROM myleft		错
+SELECT COUNT(name) FROM myleft GROUP BY name	对
+
+
+*在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用:
+SELECT Customer,SUM(OrderPrice) FROM Orders
+GROUP BY Customer
+HAVING SUM(OrderPrice)<2000
+
+
+INSERT INTO SELECT 
+SELECT INTO FROM  //mysql不支持
+
+
+
+
+
+
+

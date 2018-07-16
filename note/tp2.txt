@@ -1,0 +1,337 @@
+ThinkPHP加深学习笔记
+
+1. 动态配置赋值仅对当前请求有效，不会对以后的请求造成影响。
+而 批量配置 参数会合并到现有的全局配置中	http://www.kancloud.cn/manual/thinkphp/1694
+
+？common作为公共模块，可不可以有Model文件夹放置公共模型类
+
+2. 配置 禁止访问模块 
+*配置 'MODULE_DENY_LIST'      =>  array('Common','Runtime','Api'),
+*注意：需要在Common下配置
+*作用：设置后，Api模块不能通过URL直接访问，事实上，可能我们只是在该模块下面放置一些公共的接口文件，因此都是内部调用即可。
+
+3. 设置 绑定模块、控制器
+*语句：	define('BIND_MODULE','Admin');
+	define('BIND_CONTROLLER','Index'); 
+*说明：如果一个入口文件绑定了一个模块，那么从这个入口将无法访问到其他模块的控制器；
+如果一个入口文件绑定了一个模块和一个控制器，那么从这个入口将无法访问到这个模块的其他控制器，只能访问到这个控制器下的方法；
+*有做法是 采用多入口分别绑定不同的模块
+
+4. 配置 默认模块、默认控制器
+*语句：	DEFAULT_MODULE	=>	'Admin'
+	DEFAULT_CONTROLLER	=>	'Index'
+	DEFAULT_ACTION	=>	'index'
+
+5. 在url中隐藏掉 模块 的方法
+*举例：	http://www.test.com:8080/erp/index.php/Admin/Index/system.html可以写作
+	http://www.test.com:8080/erp/index.php/Index/system.html
+*语句：	'MODULE_ALLOW_LIST' => array('Home','Admin'),//允许访问模块列表
+    	'DEFAULT_MODULE' => 'Admin',
+*参考：	http://www.bcty365.com/content-83-1093-1.html
+
+6. URL_PATHINFO_DEPR 在公共模块中配置 和 在普通模块下配置 的区别
+*举例：	在公共模块配置：http://www.test.com:8080/erp/index.php/Admin-Index-index
+	在普通模块配置：http://www.test.com:8080/erp/index.php/Admin/Index-index
+
+？多层Model的作用是什么
+数据层Model 逻辑层Logic 服务层Service
+
+7. Behavior  
+*直观：	Behavior是TP中的一种类，如Controller类、Model类等；
+*特点：	a.Behavior类文件命名如：TestBehavior.class.php;
+	b.不需要继承核心父类
+	c.必须有run()函数，Behavior的钩子（Hook）被触发后就会自动调用这个run函数
+*标签/位（tag）：
+	a.框架在处理一次访问时，有着一定的流程，系统在其中设置了14个系统标签位
+	b.标签：即程序运行过程中的某个位置，即程序的一个切面；程序运行过程中的任何一个点都可以设置标签位
+*钩子(Hook)：我们可以在程序的标签位设置钩子，Hook连接了Behavior和Tag，当程序运行的Tag时，就会触发Hook，依次运行该Hook上的所有Behavior
+*绑定Behavior与Tag：
+	a.创建Application/Common/Conf/tag.php文件
+	b.如果是TP系统核心提供的标签位：
+	return array(
+	//	"tag名" => array("钩子1","钩子2","钩子3",...)
+		"action_begin" => array("Admin\Behavior\TestBehavior")
+	);
+	c.自己添加的标签位，在目标位置：
+	\Think\Hook::listen('tag_test',$param);
+	d.接c，绑定：
+	\Think\Hook::add('tag_test','Admin\Behavior\TestBehavior');
+	注意d需要写在c之前，实际直接写在c前面好了
+*Behavior形如：
+	namespace Admin\Behavior;
+	class TestBehavior{
+	    public function run(&$params)
+	    {
+        	do something...
+	    }
+    
+	}
+*意义：	这是面向切面编程的思想，tag就是程序的一个切面，通过tag我们可以在Behavior中对框架底层进行定制，而不必直接在框架中修改
+*TP框架中本身有一些功能就是通过CBD实现的，框架中有着几个核心行为，在ThinkPHP/Behavior/目录下
+*在同一标签位中，自定义的Behavior会在核心Behavior之后按配置顺序执行；有方法覆盖系统的行为定义：
+	在tag.php中
+	return array(
+		......
+		'_overlay' => true,
+	);
+*除了触发tag执行，Behavior其实可以主动运行：在控制器中使用B()函数，
+	B('Home\Behavior\AuthCheck');
+*参考：	http://www.kancloud.cn/manual/thinkphp/1699
+	http://www.thinkphp.cn/topic/10206.html
+*插件概念：
+	http://www.thinkphp.cn/topic/10198.html
+	http://www.thinkphp.cn/topic/21323.html
+
+8. 命名空间 与 自动加载
+*框架中的类库多使用namespace：
+  模块下的：
+	namespace Admin\Behavior;
+	namespace Admin\Event;
+	namespace Home\Controller
+  ThinkPHP/Library下的：
+	namespace Behavior;
+	namespace Org\Net;
+*规则：	a.命名空间与类库目录一致，例如：
+	namespace Admin\Behavior;的类库就在Admin/Behavior目录下
+	b.文件名与类名一致，例如
+	TestBehavior.class.php文件中的类class TestBehavior{ ... }
+*机制：	当实例化类时：new \Org\Util\Auth();
+	就会自动引入对应文件：include_once "....../Library/Org/Util/Auth.class.php"
+*ThinkPHP/Library目录下的文件夹都会自动注册一个同名的根目录空间
+*注册自定义命名空间,同上边一样可自动加载文件：
+	'AUTOLOAD_NAMESPACE' => array(
+	    'My'     => LIB_PATH.'My',
+	    'One'    => LIB_PATH.'One',
+	)
+
+9. 类库映射
+*原因：	如果定义了较多的命名空间的话，效率会有所下降。所以引用“类库映射”来自动加载
+*位置：	在Config目录下新加alias.php
+*代码：	return array(
+    	//	'namespace\class名'        =>    '类文件目录',
+    		'My\Test'   =>    './Public/Hello.php', 
+	);
+
+10. 自动加载的优先级
+	a.判断是否有注册了Test\MyClass类库映射，如果有则自动加载类库映射定义的文件；
+	b.判断是否存在Library/Test目录，有则以该目录为初始目录加载；
+	c.判断是否有注册Test根命名空间，有则以注册的目录为初始目录加载；
+	d.如果以上都不成立，则以Test为模块目录进行初始目录加载；
+
+11. 手动加载
+*import函数，见http://www.kancloud.cn/manual/thinkphp/1701
+*如果第三方类库都放在Vendor目录下面，并且都以.php为类文件后缀，可以：
+	Vendor('Zend.Filter.Dir');来引入Vendor\Zend\Filter\Dir.php
+
+？？？http://www.kancloud.cn/manual/thinkphp/1704
+7.错误处理机制
+8.调用Think\Storage类进行存储初始化
+9.部署模式下如果存在应用编译缓存文件则直接加载（直接跳转到步骤22）
+18.语言包（普通模式是 ThinkPHP/Lang/zh-cn.php）
+21.调试配置文件（默认是 Application/Common/Conf/debug.php）
+22.状态配置文件（如果APP_STATUS常量定义不为空的话）
+26.动态配置
+27.调用Think\Dispatcher::dispatch方法进行URL请求调度
+28.自动识别兼容URL模式和命令行模式下面的$_SERVER['PATH_INFO']参数
+29.检测域名部署以及完成模块和控制器的绑定操作（APP_SUB_DOMAIN_DEPLOY参数开启）
+36.模块的路由检测（URL_ROUTER_ON开启）
+38.URL后缀检测（URL_DENY_SUFFIX以及URL_HTML_SUFFIX处理）		有什么用
+42.调用SESSION_OPTIONS配置参数进行Session初始化（如果不是命令行模式）
+44.如果控制器不存在则检测空控制器是否存在	空控制器
+46.默认调用系统的ReadHtmlCache行为读取静态缓存（HTML_CACHE_ON参数开启）
+48.判断操作方法是否存在，如果不存在则检测是否定义空操作方法
+49.判断前置操作方法是否定义，有的话执行
+53.调用Think\View的fetch方法解析并获取模版内容
+57.模版引擎解析模版内容后生成模版缓存
+58.模版过滤替换（template_filter）标签位侦听并执行绑定行为
+59.默认调用系统的ContentReplace行为进行模版替换
+61.默认调用系统的WriteHtmlCache行为写入静态缓存（HTML_CACHE_ON参数开启）
+62.调用Think\View类的render方法输出渲染内容
+64.判断后置操作方法是否定义，有的话执行
+67.执行系统的ShowPageTrace行为
+68.日志信息存储写入
+
+12. 路由定义
+*开启：	'URL_ROUTER_ON'   => true, 
+*定义规则：
+	'URL_ROUTE_RULES'=>array(
+	//  '匹配URL格式'	=> '转译成目标url'
+	    'news/:id'		=> 'News/read?id=:1',	//字符串形式
+	    'news/:date'	=> array('News/archive', 'date=:1'),	//数组形式
+	    'news/:year/:mouth'	=> array('News',array('year'=>:1,'mouth'=>:2),	//参数也用数组形式
+	    'news/:id'		=> 'http://www.bilibili.com/loli/:1',	//重定向
+	),
+*闭包函数 形式：
+	a.'news/:id'=> function($id){echo $id}	//可以直接输出内容
+	b.默认情况输出后结束运行；想要继续，设置$_SERVER['PATH_INFO']='...';return false;
+	http://www.kancloud.cn/manual/thinkphp/1710
+*路由参数：补充规定路由规则的生效条件。例：
+	'blog/:id'=>array('blog/read','status=1',array('ext'=>'html')),	//限定html后缀
+	'blog/:id'=>array('blog/read','status=1',array('method'=>'get')),	//限定get请求方式
+	'blog/:id'=>array('blog/read','status=1',array('callback'=>'checkFun')),//自定义回掉函数检测
+	？那么问题来了，checkFun在哪写
+*动态参数都是GET参数：
+	例：'blog/:id'=>'blog/read?article=:1',
+	有$_GET['id']==$_GET['article']
+*数字约束
+	例：'blog/:id\d'=>'Blog/read',	//只匹配id参数为数字的url
+*可选定义：规则路由中[]中包含的变量表示可选变量
+	例：'blog/:year\d/[:month\d]'=>'Blog/archive',	
+	这条规则可以匹配 blog/1993/09 也可以匹配 blog/1993
+*对比上条：
+	例：'news/:id' => 'News/read?id=:1',
+	可以匹配new/1,也可以匹配new/1/xxx/xxx...
+	例：'news/:id$' => 'New/read',	//$是结束符，这是完整匹配
+	可以匹配new/1,不可以匹配new/1/xxx/xxx...
+*当我的路由规则以admin开头时，因为有admin模块，框架总是不使用自定义的路由规则
+*感觉规则路由问题挺多，算了别用了
+*正则路由：http://www.kancloud.cn/manual/thinkphp/1708
+
+13. 多层控制器
+*Controller 访问控制器	通过URL请求响应
+ Event 事件控制器	负责内部的事件响应，并且只能在内部调用
+*Event类不需要继承Controller类 
+
+14. URL大小写
+*Windows下不区分大小写，Linux下会区分
+*'URL_CASE_INSENSITIVE' => true,可以设置不区分大小写
+http://www.kancloud.cn/manual/thinkphp/1717
+
+15. ajax返回
+*来源：	ajaxReturn() Think\Controller类中的方法
+*作用：	用于ajax所请求的Action方法中，将数据转换为指定的格式返回给js
+*使用：	a. ajaxReturn($data) //默认json方式 传送 json格式数据
+	b. ajaxReturn($data,'xml'), //xml方式 传送 xml格式数据
+	c. ajaxReturn($data,'eval'), //eval方式 传送 字符串格式数据？
+	d. jsonpReturn($data), //jsonp方式 传送 json格式数据
+	注：前者是跨域数据交互协议，后者是数据格式
+*有ajax_return标签位 可以绑定行为 对ajax返回 进行定制或拓展？
+
+
+在调用save方法更新数据的时候 会自动判断当前的数据对象里面是否有主键值存在，如果有的话会自动作为更新条件
+
+
+join方法支持多次调用，但指定的数据表必须是全称（即需要有前缀）
+->join('think_work ON think_artist.id = think_work.artist_id')
+
+
+？缓存机制
+http://www.kancloud.cn/manual/thinkphp/1749
+
+
+fetchSql用于直接返回SQL而不是执行查询，适用于任何的CURD操作方法。 例如：
+$result = M('User')->fetchSql(true)->find(1);
+
+
+？token方法可用于临时关闭令牌验证，例如：
+$model->token(false)->create();
+即可在提交表单的时候临时关闭令牌验证（即使开启了TOKEN_ON参数）。
+http://www.kancloud.cn/manual/thinkphp/1754
+？？？默认提交表单时有令牌验证？
+
+？create 表单数据赋值
+数据自动完成，自动验证，令牌验证，数据状态有什么用
+
+result $User->add();
+$insertId = $result; // 如果主键是自动增长型 成功后返回值就是最新插入的值
+
+
+数据写入：
+？add($data='',$options=array(),$replace=true) 	$options参数是什么？
+？$replace=true 是否添加数据时允许覆盖	添加数据的什么怎么会要覆盖？
+？relation	用于关联查询（需要关联模型支持）	字符串
+？validate	用于数据自动验证	数组
+？auto	用于数据自动完成	数组
+？filter	用于数据过滤	字符串
+$User->data($data)->filter('strip_tags')->add();？怎么对每个字段分别验证？
+？bind	用于数据绑定操作	数组
+
+
+？数据读取：
+lock	用于数据库的锁机制	布尔值
+relation	用于关联查询（需要关联模型支持）	字符串
+result	用于返回数据转换	字符串
+bind	用于数据绑定操作	数组
+
+*find() select() getField('id',true)
+
+
+数据更新
+***注意：save方法的返回值是影响的记录数，如果返回false则表示更新出错，因此一定要用恒等来判断是否更新失败。
+*setField
+*而对于统计字段（通常指的是数字类型）的更新，系统还提供了setInc和setDec方法
+*setInc和setDec方法支持延迟更新
+$Article->where('id=5')->setInc('view',1,60); // 文章阅读数加1，并且延迟60秒更新（写入）
+
+
+删除数据
+*注意：delete方法的返回值是删除的记录数，如果返回值是false则表示SQL出错，返回值如果为0表示没有删除任何数据
+*$User->where('id=5')->delete(); 等同delete(5)
+
+
+字段映射
+* 在Model文件中：
+     protected $_map = array(
+         'name' =>'username', // 把表单中name映射到数据表的username字段
+         'mail'  =>'email', // 把表单中的mail映射到数据表的email字段
+     );
+* 配置'READ_DATA_MAP'=>true后，
+查询select、find操作的字段会反映射成name、mail
+* $data = $User->find(3);
+$data = $User->parseFieldsMap($data);同上
+
+
+统计查询
+*count();max('score');>min('score');avg('score');sum('score');
+
+SQL查询
+*$Model->query("select * from __USER__ where status=1");
+__USER__ 对应user表，自动获得前缀
+或者 __PREFIX__user
+
+动态查询 getBy字段名();
+$user = $User->getByName('liu21st');
+$user = $User->getByEmail('liu21st@gmail.com');
+$user = $User->getByAddress('中国深圳');
+$userId = $User->getFieldByName('liu21st','id');
+
+
+*buildSql(); select(false); 
+表示不执行当前查询，而只是生成查询SQL。
+
+
+自动验证
+http://www.kancloud.cn/manual/thinkphp/1776
+
+
+一旦调用了add方法（或者save方法），创建在内存中的数据对象就会失效
+
+
+？HAS_ONE 和 BELONGS_TO类型的关联查询
+http://www.kancloud.cn/manual/thinkphp/1781
+
+
+T('Extend://Admin@Public/menu');
+// 返回 Extend/Admin/View/Public/menu.html (Extend目录取决于AUTOLOAD_NAMESPACE中的配置）
+
+
+fetch('模板文件')模板文件的调用方法和display方法完全一样，区别就在于fetch方法渲染后不是直接输出，而是返回渲染后的内容，例如：
+$content = $this->fetch('Member:edit');
+
+
+模板引擎
+* tp的核心标签库 叫 Cx
+* 自定义标签库http://www.thinkphp.cn/topic/6258.html
+
+
+
+
+
+
+
+
+
+
+
+
+

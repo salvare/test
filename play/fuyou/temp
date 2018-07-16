@@ -1,0 +1,498 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 06:56:48 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=43C34E35CBEB47E8E62C499DD312063B; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 06:57:43 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=7E6E5EA06EBDE356A2FCE84C6F1097CF; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:00:51 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=A6228DC97E26D992F60274C5123974A5; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:01:27 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=5A9CE944307648E0F90B582F8CFD9D35; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:01:55 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=83B07B3F28C2EF88FC2161B3F340D1BC; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:02:56 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=1E1F36B72BE1533B73D6A134727519B8; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文格式错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:05:03 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=D3BD50FC563F95F658813BB354810875; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文格式错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:09:00 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=4252FFBD82F55D45C92BEAC2A33BF4EB; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文格式错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:09:48 GMT
+Content-Length: 160
+Connection: keep-alive
+Set-Cookie: JSESSIONID=8F3B2CBA7F75918D86AB64F5FE5F66C1; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>手机号、账号和身份证号 选一必填</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:10:25 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=77DE3EBD20F8C00304E47F1210EB3494; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:11:44 GMT
+Content-Length: 132
+Connection: keep-alive
+Set-Cookie: JSESSIONID=12617D9C54A32272E9EBC89CE41BFABE; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文不能为空</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:12:11 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=63B2CB8114D0074189E0C6B20C2FC8E7; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:14:32 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=98346FF2543BD7E56A8D1F87F0BF2711; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:17:50 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=68C71DF569758170F502975A95364BB0; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:21:36 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=80FA9A5A08DA6DAA508669C9AF2D45CF; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文格式错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:22:13 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=0EC5591F4759C6B67C232A11EC19B993; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:23:08 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=6CC6BA520B1C3B3FFDE14FEB1C4A1C3F; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:32:13 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=8C2F283E3AAA22494B5D946266CF1B17; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:33:31 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=A5B7F1856EFF5D4F3C5CD3B670FA9ECC; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:33:32 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=A44925C26ACFA1C0984A3E839509C040; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:47:23 GMT
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><qrytransrsp><ret>000000</ret><memo>成功</memo><trans><merdt>20170701</merdt><orderno>1707010900003905442253</orderno><accntno>9558880200005052286</accntno><accntnm>北京汇利万家房地产经纪有限公司</accntnm><amt>10466</amt><entseq>1707010900003905442253</entseq><memo>代收标721号/1期的用户划扣还款金</memo><projectid>0345142_20170701_001082</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170701</merdt><orderno>1707011800003905482822</orderno><accntno>9558880200005052286</accntno><accntnm>北京汇利万家房地产经纪有限公司</accntnm><amt>10466</amt><entseq>1707011800003905482822</entseq><memo>代收标721号/1期的用户划扣还款金</memo><projectid>0345142_20170701_007713</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170702</merdt><orderno>1707020900003905552543</orderno><accntno>6226220615841342</accntno><accntnm>李尚</accntnm><amt>338346</amt><entseq>1707020900003905552543</entseq><memo>代收标723号/1期的用户划扣还款金</memo><projectid>0345142_20170702_001335</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170703</merdt><orderno>20170703102641229967</orderno><accntno>6222020111122220000</accntno><accntnm>张宝</accntnm><amt>95250</amt><entseq>20170703102641229967</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001144</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170703</merdt><orderno>20170703102651759450</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>95250</amt><entseq>20170703102651759450</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001145</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170703</merdt><orderno>549424656257124</orderno><accntno>6212222222222222222</accntno><accntnm>张三</accntnm><amt>19799500</amt><entseq></entseq><memo></memo><projectid>0345142_20170615_010096</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170703</merdt><orderno>550786206518209</orderno><accntno>6333333333333333333</accntno><accntnm>胡开平</accntnm><amt>260000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020013</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170703</merdt><orderno>552616695241608</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>5050100000</amt><entseq></entseq><memo></memo><projectid>0345142_20170628_010181</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易金额超限</reason></trans><trans><merdt>20170703</merdt><orderno>20170703165830429138</orderno><accntno>6226220615841870</accntno><accntnm>龙奥</accntnm><amt>133534</amt><entseq>20170703165830429138</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001146</projectid><state>2</state><result>商户已复核,交易失败</result><reason>数据库插入失败</reason></trans><trans><merdt>20170703</merdt><orderno>20170703165839729299</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>133534</amt><entseq>20170703165839729299</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001147</projectid><state>2</state><result>商户已复核,交易失败</result><reason>数据库插入失败</reason></trans><trans><merdt>20170703</merdt><orderno>20170703165939457752</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>121440</amt><entseq>20170703165939457752</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001148</projectid><state>2</state><result>商户已复核,交易失败</result><reason>数据库插入失败</reason></trans><trans><merdt>20170703</merdt><orderno>20170703170234554021</orderno><accntno>6222020111122220000</accntno><accntnm>张宝</accntnm><amt>4500</amt><entseq>20170703170234554021</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001149</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170703</merdt><orderno>20170703170609564451</orderno><accntno>6222020111122220000</accntno><accntnm>张宝</accntnm><amt>101000</amt><entseq>20170703170609564451</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001150</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170703</merdt><orderno>20170703170618628239</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>101000</amt><entseq>20170703170618628239</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001151</projectid><state>2</state><result>商户已复核,交易失败</result><reason>数据库插入失败</reason></trans><trans><merdt>20170703</merdt><orderno>553506447810125</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>9910000</amt><entseq></entseq><memo></memo><projectid>0345142_20170630_010184</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170703</merdt><orderno>20170703171637040337</orderno><accntno>6226220615378512</accntno><accntnm>龙奥奥</accntnm><amt>109397</amt><entseq>20170703171637040337</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001189</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170703</merdt><orderno>20170703171649848912</orderno><accntno>6226220615378512</accntno><accntnm>龙奥奥</accntnm><amt>32346</amt><entseq>20170703171649848912</entseq><memo>益芯自扣</memo><projectid>0345142_20170703_001190</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>608727618279583</orderno><accntno>6333333333333333333</accntno><accntnm>胡开平</accntnm><amt>260000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020013</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170704</merdt><orderno>17070409350847611307</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D0B3C9EBCBE216330B9CF</entseq><memo>代收业务</memo><projectid>0345142_20170704_364316</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>3815189443488</orderno><accntno>6225230185420972</accntno><accntnm>柳余春</accntnm><amt>10310700</amt><entseq></entseq><memo></memo><projectid>0345142_20170622_010146</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>17070410025046111304</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50200</amt><entseq>AC100171015D0B55FADE99780DF1B3B7</entseq><memo>代收业务</memo><projectid>0345142_20170704_778334</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>6495865539352</orderno><accntno>6217001680004771715</accntno><accntnm>汪鹏</accntnm><amt>100000</amt><entseq></entseq><memo></memo><projectid>0345142_20170629_010148</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170704</merdt><orderno>20170704105107609974</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>764</amt><entseq>20170704105107609974</entseq><memo>益芯自扣</memo><projectid>0345142_20170704_001152</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>20170704105132837794</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>101758</amt><entseq>20170704105132837794</entseq><memo>益芯自扣</memo><projectid>0345142_20170704_001153</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>20170704105649212144</orderno><accntno>6226220615841870</accntno><accntnm>龙奥</accntnm><amt>234855</amt><entseq>20170704105649212144</entseq><memo>益芯自扣</memo><projectid>0345142_20170704_001154</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>17070411004202711306</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>100200</amt><entseq>AC100171015D0B8AF3AC28277F29E642</entseq><memo>代收业务</memo><projectid>0345142_20170704_084032</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>17070411114111811317</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>100300</amt><entseq>AC100171015D0B95023E1BBF364E635D</entseq><memo>代收业务</memo><projectid>0345142_20170704_489982</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>20170704111254875570</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>1200</amt><entseq>20170704111254875570</entseq><memo>益芯自扣</memo><projectid>0345142_20170704_001155</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170704</merdt><orderno>17070411150983511320</orderno><accntno>6217001680004771715</accntno><accntnm>null</accntnm><amt>54975</amt><entseq>AC100171015D0B98318C11551FEF39A7</entseq><memo>代收业务</memo><projectid>0345142_20170622_208604</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170704</merdt><orderno>17070411151679711321</orderno><accntno>6217001680004771715</accntno><accntnm>null</accntnm><amt>54975</amt><entseq>AC100171015D0B984CBD398352CE14F6</entseq><memo>代收业务</memo><projectid>0345142_20170622_208604</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170704</merdt><orderno>17070411503310411332</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>50200</amt><entseq>AC100171015D0BB897903B30459B4D79</entseq><memo>代收业务</memo><projectid>0345142_20170704_527374</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170704</merdt><orderno>17070411512450011333</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>100174</amt><entseq>AC100171015D0BB96055534616F77B18</entseq><memo>代收业务</memo><projectid>0345142_20170704_705308</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>23928623767709</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>2166700</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060001</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>24409935345678</orderno><accntno>6217001680004771715</accntno><accntnm>汪鹏</accntnm><amt>1000000</amt><entseq></entseq><memo></memo><projectid>0345142_20170629_010148</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170704</merdt><orderno>23936049658714</orderno><accntno>6333333333333333333</accntno><accntnm>胡开平</accntnm><amt>8068477</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020013</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170704</merdt><orderno>25637406402544</orderno><accntno>6217001680004771715</accntno><accntnm>汪鹏</accntnm><amt>1000000</amt><entseq></entseq><memo></memo><projectid>0345142_20170629_010148</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170704</merdt><orderno>25727973071170</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>2166700</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060001</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>31629485678731</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>528900</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>31662816579597</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>528900</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>72017070417232817419</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>472680</amt><entseq>72017070417232817419</entseq><memo>14285</memo><projectid>0345142_20170704_000027</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170704</merdt><orderno>32264174589682</orderno><accntno>6217001680004771715</accntno><accntnm>汪鹏</accntnm><amt>1000000</amt><entseq></entseq><memo></memo><projectid>0345142_20170629_010148</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170704</merdt><orderno>6201408221</orderno><accntno>6228480393878353414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_169525</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170704</merdt><orderno>2661474578</orderno><accntno>6228480393878353414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_169525</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170704</merdt><orderno>3366669876</orderno><accntno>6228480393878353414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_169525</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>1707050900013904790515</orderno><accntno>6226220615841342</accntno><accntnm>李尚</accntnm><amt>169595</amt><entseq>1707050900013904790515</entseq><memo>代收标726号/1期的用户划扣还款金</memo><projectid>0345142_20170705_004354</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>1707050900003905939336</orderno><accntno>6226220615841342</accntno><accntnm>李尚</accntnm><amt>169595</amt><entseq>1707050900003905939336</entseq><memo>代收标726号/1期的用户划扣还款金</memo><projectid>0345142_20170705_001450</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>5596670800</orderno><accntno>6228480393878353414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_993774</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>6054248140589</orderno><accntno>6214830215235077</accntno><accntnm>王晓</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170620_010134</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170705</merdt><orderno>6079184939547</orderno><accntno>6216690800000156584</accntno><accntnm>　　　　</accntnm><amt>3503300</amt><entseq></entseq><memo></memo><projectid>0345142_20170620_010133</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170705</merdt><orderno>7779914529289</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>981200</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010001</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>8118140582927</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>19927483</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010001</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>5205945019</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_139221</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>9480294622</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_139221</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>9051452603915</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>2000</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010001</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>0715977426</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1234</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_641265</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>17070511072905211311</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D10B7859D5CA835F04A1E</entseq><memo>代收业务</memo><projectid>0345142_20170705_282742</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>72017070511184153920</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>100000</amt><entseq>72017070511184153920</entseq><memo>14285</memo><projectid>0345142_20170705_000028</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>72017070511462019221</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>50000</amt><entseq>72017070511462019221</entseq><memo>14285</memo><projectid>0345142_20170705_000029</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070511574297411322</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>120300</amt><entseq>AC100171015D10E582BEAB3D5A261914</entseq><memo>代收业务</memo><projectid>0345142_20170705_291053</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>72017070514001286022</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>10000</amt><entseq>72017070514001286022</entseq><memo>14285</memo><projectid>0345142_20170705_000030</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>23620002684416</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>1200000</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>23649450430084</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>1200</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>23899805098341</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>10571300</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070514504365511303</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>50100</amt><entseq>AC100171015D1183E847CC723D3D2F6D</entseq><memo>代收业务</memo><projectid>0345142_20170705_326572</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>24733289669773</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>100000</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>26337279122088</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>10560000</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070515203842911309</orderno><accntno>6214830215235077</accntno><accntnm>王晓辉</accntnm><amt>50200</amt><entseq>AC100171015D119F4B1D0373023800E8</entseq><memo>代收业务</memo><projectid>0345142_20170705_846370</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>25728048459774</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>100000</amt><entseq></entseq><memo></memo><projectid>0345142_20170704_060002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>25877154443333</orderno><accntno>410421198808021012</accntno><accntnm>王晓辉</accntnm><amt>796700</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>26968021953755</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>9498800</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>72017070515351552123</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>28000</amt><entseq>72017070515351552123</entseq><memo>14285</memo><projectid>0345142_20170705_000031</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>26937741219017</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>796700</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>26957261749963</orderno><accntno>6214832142324669</accntno><accntnm>孙静</accntnm><amt>796700</amt><entseq></entseq><memo></memo><projectid>0345142_20170705_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070515565792211301</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>50100</amt><entseq>AC100171015D11C08CC36A9E42CB1DD6</entseq><memo>代收业务</memo><projectid>0345142_20170705_929304</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070515575632711304</orderno><accntno>6214830215235077</accntno><accntnm>王晓辉</accntnm><amt>60200</amt><entseq>AC100171015D11C170E73F7060CF9DFA</entseq><memo>代收业务</memo><projectid>0345142_20170705_371316</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>17070516214318311316</orderno><accntno>6214830215235077</accntno><accntnm>王晓辉</accntnm><amt>60200</amt><entseq>AC100171015D11D7368F23E107880CEB</entseq><memo>代收业务</memo><projectid>0345142_20170705_764764</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>72017070516215139725</orderno><accntno>6226220615819185</accntno><accntnm>萤火二</accntnm><amt>25000</amt><entseq>72017070516215139725</entseq><memo>14286</memo><projectid>0345142_20170705_000032</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170705</merdt><orderno>72017070516223031726</orderno><accntno>6226220615819185</accntno><accntnm>萤火二</accntnm><amt>25000</amt><entseq>72017070516223031726</entseq><memo>14286</memo><projectid>0345142_20170705_000033</projectid><state>2</state><result>商户已复核,交易失败</result><reason>户名验证失败</reason></trans><trans><merdt>20170705</merdt><orderno>72017070516291807227</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>13300</amt><entseq>72017070516291807227</entseq><memo>14285</memo><projectid>0345142_20170705_000034</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070516535850311301</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>100200</amt><entseq>AC100171015D11F4BE684F2A348BF208</entseq><memo>代收业务</memo><projectid>0345142_20170705_081321</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>17070517053108511302</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>100200</amt><entseq>AC100171015D11FF4FCD219961551903</entseq><memo>代收业务</memo><projectid>0345142_20170705_081321</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>17070517284121311304</orderno><accntno>6214830215235077</accntno><accntnm>王晓辉</accntnm><amt>60200</amt><entseq>AC100171015D121485FDED804CF9F95E</entseq><memo>代收业务</memo><projectid>0345142_20170705_675531</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170705</merdt><orderno>72017070517331436333</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>20000</amt><entseq>72017070517331436333</entseq><memo>14287</memo><projectid>0345142_20170705_000035</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070517354161811306</orderno><accntno>6214830215235077</accntno><accntnm>王晓辉</accntnm><amt>60200</amt><entseq>AC100171015D121AF03213D7105F3672</entseq><memo>代收业务</memo><projectid>0345142_20170705_683639</projectid><state>2</state><result>商户已复核,交易失败</result><reason>持卡人手机号码有误</reason></trans><trans><merdt>20170705</merdt><orderno>170705180000390366148</orderno><accntno>6214920207319706</accntno><accntnm>任宝宫</accntnm><amt>100000</amt><entseq>170705180000390366148</entseq><memo>代收标425号/2期的用户划扣还款金</memo><projectid>0345142_20170705_002346</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>170705180000390366152</orderno><accntno>6212260200083257580</accntno><accntnm>钟健</accntnm><amt>123000</amt><entseq>170705180000390366152</entseq><memo>代收标508号/2期的用户划扣还款金</memo><projectid>0345142_20170705_000890</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>170705180001390366157</orderno><accntno>6222080200008247762</accntno><accntnm>陈有鑫</accntnm><amt>180000</amt><entseq>170705180001390366157</entseq><memo>代收标564号/2期的用户划扣还款金</memo><projectid>0345142_20170705_008000</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>170705180001390366161</orderno><accntno>6217000210008877093</accntno><accntnm>康腾达</accntnm><amt>88000</amt><entseq>170705180001390366161</entseq><memo>代收标643号/2期的用户划扣还款金</memo><projectid>0345142_20170705_005622</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170705</merdt><orderno>72017070518013139534</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>142308</amt><entseq>72017070518013139534</entseq><memo>14287</memo><projectid>0345142_20170705_000036</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170705</merdt><orderno>72017070518024333535</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>142308</amt><entseq>72017070518024333535</entseq><memo>14287</memo><projectid>0345142_20170705_000037</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070518064042811315</orderno><accntno>6217001210036802211</accntno><accntnm>秦尧尧</accntnm><amt>50100</amt><entseq>AC100171015D12374D2CA57D0A264748</entseq><memo>代收业务</memo><projectid>0345142_20170705_525455</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070518142519611322</orderno><accntno>6217001210036802211</accntno><accntnm>秦尧尧</accntnm><amt>120500</amt><entseq>AC100171015D123E64AC238218942C42</entseq><memo>代收业务</memo><projectid>0345142_20170705_621620</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070518180872611325</orderno><accntno>6225230185420973</accntno><accntnm>柳余春</accntnm><amt>100200</amt><entseq>AC100171015D1241CDD676A36E95CC12</entseq><memo>代收业务</memo><projectid>0345142_20170705_081321</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170705</merdt><orderno>17070518212734011330</orderno><accntno>6217001210036802211</accntno><accntnm>秦尧尧</accntnm><amt>60200</amt><entseq>AC100171015D1244D5AD8DAA67D1DE8B</entseq><memo>代收业务</memo><projectid>0345142_20170705_097134</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170705</merdt><orderno>17070518292427111336</orderno><accntno>6217001210036802211</accntno><accntnm>秦尧尧</accntnm><amt>100200</amt><entseq>AC100171015D124C1CAF65246025734E</entseq><memo>代收业务</memo><projectid>0345142_20170705_604277</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>170706090000390740170</orderno><accntno>6217991000024947108</accntno><accntnm>孙悦涵</accntnm><amt>320000</amt><entseq>170706090000390740170</entseq><memo>代收标319号/2期的用户划扣还款金</memo><projectid>0345142_20170706_006498</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090002390740186</orderno><accntno>6217000010102125898</accntno><accntnm>李长江</accntnm><amt>210000</amt><entseq>170706090002390740186</entseq><memo>代收标348号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007331</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090003390740194</orderno><accntno>6228480018358510875</accntno><accntnm>王志华</accntnm><amt>80000</amt><entseq>170706090003390740194</entseq><memo>代收标421号/2期的用户划扣还款金</memo><projectid>0345142_20170706_003385</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090004390740202</orderno><accntno>6212260412000994613</accntno><accntnm>杨茂元</accntnm><amt>140000</amt><entseq>170706090004390740202</entseq><memo>代收标458号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009480</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090005390740211</orderno><accntno>6228481262606360415</accntno><accntnm>何旺</accntnm><amt>120000</amt><entseq>170706090005390740211</entseq><memo>代收标469号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009525</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090006390740221</orderno><accntno>6227000010850563190</accntno><accntnm>刘天祥</accntnm><amt>170000</amt><entseq>170706090006390740221</entseq><memo>代收标517号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007961</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090007390740229</orderno><accntno>6212260200066799103</accntno><accntnm>齐博铭</accntnm><amt>150000</amt><entseq>170706090007390740229</entseq><memo>代收标520号/2期的用户划扣还款金</memo><projectid>0345142_20170706_001839</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090008390740238</orderno><accntno>6222020504007839575</accntno><accntnm>范海亮</accntnm><amt>70000</amt><entseq>170706090008390740238</entseq><memo>代收标554号/2期的用户划扣还款金</memo><projectid>0345142_20170706_002610</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090009390740247</orderno><accntno>6217000010034140577</accntno><accntnm>马雪</accntnm><amt>50000</amt><entseq>170706090009390740247</entseq><memo>代收标563号/2期的用户划扣还款金</memo><projectid>0345142_20170706_000914</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090010390740255</orderno><accntno>6212260200053707465</accntno><accntnm>刘丽娟</accntnm><amt>160000</amt><entseq>170706090010390740255</entseq><memo>代收标611号/2期的用户划扣还款金</memo><projectid>0345142_20170706_004998</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090011390740263</orderno><accntno>6217000010026551336</accntno><accntnm>王子钰</accntnm><amt>118000</amt><entseq>170706090011390740263</entseq><memo>代收标608号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007393</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090012390740271</orderno><accntno>6217000010084359853</accntno><accntnm>孙波</accntnm><amt>90000</amt><entseq>170706090012390740271</entseq><memo>代收标599号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009366</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090013390740280</orderno><accntno>6217568400029248630</accntno><accntnm>张旭东</accntnm><amt>115000</amt><entseq>170706090013390740280</entseq><memo>代收标596号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009398</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090014390740289</orderno><accntno>6227002745010332931</accntno><accntnm>华宇</accntnm><amt>170000</amt><entseq>170706090014390740289</entseq><memo>代收标590号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009573</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090014390740297</orderno><accntno>6212260200052781735</accntno><accntnm>陈臻</accntnm><amt>88000</amt><entseq>170706090014390740297</entseq><memo>代收标678号/2期的用户划扣还款金</memo><projectid>0345142_20170706_006199</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609244969137</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609244969137</entseq><memo>14287</memo><projectid>0345142_20170706_000038</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609254992738</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609254992738</entseq><memo>14287</memo><projectid>0345142_20170706_000039</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609291369439</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609291369439</entseq><memo>14287</memo><projectid>0345142_20170706_000040</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609315259940</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609315259940</entseq><memo>14287</memo><projectid>0345142_20170706_000041</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609384903741</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609384903741</entseq><memo>14287</memo><projectid>0345142_20170706_000042</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6486879952837</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6626314255207</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6770538069010</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6899067732150</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610093135542</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610093135542</entseq><memo>14287</memo><projectid>0345142_20170706_000043</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610104363343</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610104363343</entseq><memo>14287</memo><projectid>0345142_20170706_000044</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7230131565074</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>7270698285018</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610135841844</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610135841844</entseq><memo>14287</memo><projectid>0345142_20170706_000045</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7430022443956</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610161933845</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610161933845</entseq><memo>14287</memo><projectid>0345142_20170706_000046</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610191766046</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>300</amt><entseq>72017070610191766046</entseq><memo>14285</memo><projectid>0345142_20170706_000047</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>7789917582535</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7969919135134</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070610485630711308</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D15CCE6F3AFBC52041104</entseq><memo>代收业务</memo><projectid>0345142_20170706_127415</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610523624047</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>1100</amt><entseq>72017070610523624047</entseq><memo>14285</memo><projectid>0345142_20170706_000048</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610560006848</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>25000</amt><entseq>72017070610560006848</entseq><memo>14287</memo><projectid>0345142_20170706_000049</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>20170706105839806632</orderno><accntno>6222020111122220001</accntno><accntnm>钱宝</accntnm><amt>126957</amt><entseq>20170706105839806632</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001156</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>11030543908053</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>12972614184045</orderno><accntno>62222222222222222222</accntno><accntnm>胡冰楠</accntnm><amt>225000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020016</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>11330154158008</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>11629893414297</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>13658285922168</orderno><accntno>62222222222222222222</accntno><accntnm>胡冰楠</accntnm><amt>225000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020016</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070611351225211319</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100300</amt><entseq>AC100171015D15F7427C695A55128FDB</entseq><memo>代收业务</memo><projectid>0345142_20170706_708765</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070611390557311320</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D15FAD1E5FA5F652B683C</entseq><memo>代收业务</memo><projectid>0345142_20170706_961050</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>14374883100830</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>14432449147496</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>15023515500681</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>15212959636867</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>21482971658832</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>21688458197339</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>0340253881</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070613472392503402</orderno><accntno>6225230185420972</accntno><accntnm>柳余春</accntnm><amt>58775</amt><entseq>C0A80122015D16704996DB75557AF5BA</entseq><memo>代收业务</memo><projectid>0345142_20170706_121662</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070613481691203404</orderno><accntno>6225230185420972</accntno><accntnm>柳余春</accntnm><amt>58775</amt><entseq>C0A80122015D167118912AB41287E4EC</entseq><memo>代收业务</memo><projectid>0345142_20170706_385804</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>22412169593915</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>22919884394925</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>2329412664</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070614143203111321</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100300</amt><entseq>AC100171015D16892160F44A55ABADB3</entseq><memo>代收业务</memo><projectid>0345142_20170706_708765</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>120201707060000000110</orderno><accntno>6216260000006223334</accntno><accntnm>订单一</accntnm><amt>51050</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_000331</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>5472795123</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易金额过小</reason></trans><trans><merdt>20170706</merdt><orderno>2798746142</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>23300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170706</merdt><orderno>24504418716196</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>24523611291613</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>24574479261748</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>20170706144116926062</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>247424</amt><entseq>20170706144116926062</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001157</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>20170706144125473114</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>247424</amt><entseq>20170706144125473114</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001158</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>25254162541708</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010006</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070614443244811327</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16A49A41D3F40D83A5CF</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614461376449</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>122511</amt><entseq>72017070614461376449</entseq><memo>14287</memo><projectid>0345142_20170706_000050</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070614463579511328</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16A67C13F36133ACB4A1</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614482777650</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>343414</amt><entseq>72017070614482777650</entseq><memo>14285</memo><projectid>0345142_20170706_000051</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614484068151</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>123969</amt><entseq>72017070614484068151</entseq><memo>14285</memo><projectid>0345142_20170706_000052</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614490753552</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>122511</amt><entseq>72017070614490753552</entseq><memo>14287</memo><projectid>0345142_20170706_000053</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>25793521712451</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010007</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26222450752948</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26774472963742</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26872833485786</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070615151020011329</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16C0A4F827DF5604D4E7</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27173026173052</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27472924396041</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070615255056711336</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>115500</amt><entseq>AC100171015D16CA6A672A8B7F394BFC</entseq><memo>代收业务</memo><projectid>0345142_20170706_434669</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27772819275500</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28072869098874</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28372815863950</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28672848400752</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>28856092241348</orderno><accntno>6228488838185903879</accntno><accntnm>谢小蓓</accntnm><amt>476000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_020002</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>28972775828397</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>29272804170703</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans></qrytransrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 07:49:10 GMT
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><qrytransrsp><ret>000000</ret><memo>成功</memo><trans><merdt>20170706</merdt><orderno>170706090000390740170</orderno><accntno>6217991000024947108</accntno><accntnm>孙悦涵</accntnm><amt>320000</amt><entseq>170706090000390740170</entseq><memo>代收标319号/2期的用户划扣还款金</memo><projectid>0345142_20170706_006498</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090002390740186</orderno><accntno>6217000010102125898</accntno><accntnm>李长江</accntnm><amt>210000</amt><entseq>170706090002390740186</entseq><memo>代收标348号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007331</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090003390740194</orderno><accntno>6228480018358510875</accntno><accntnm>王志华</accntnm><amt>80000</amt><entseq>170706090003390740194</entseq><memo>代收标421号/2期的用户划扣还款金</memo><projectid>0345142_20170706_003385</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090004390740202</orderno><accntno>6212260412000994613</accntno><accntnm>杨茂元</accntnm><amt>140000</amt><entseq>170706090004390740202</entseq><memo>代收标458号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009480</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090005390740211</orderno><accntno>6228481262606360415</accntno><accntnm>何旺</accntnm><amt>120000</amt><entseq>170706090005390740211</entseq><memo>代收标469号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009525</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090006390740221</orderno><accntno>6227000010850563190</accntno><accntnm>刘天祥</accntnm><amt>170000</amt><entseq>170706090006390740221</entseq><memo>代收标517号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007961</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090007390740229</orderno><accntno>6212260200066799103</accntno><accntnm>齐博铭</accntnm><amt>150000</amt><entseq>170706090007390740229</entseq><memo>代收标520号/2期的用户划扣还款金</memo><projectid>0345142_20170706_001839</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090008390740238</orderno><accntno>6222020504007839575</accntno><accntnm>范海亮</accntnm><amt>70000</amt><entseq>170706090008390740238</entseq><memo>代收标554号/2期的用户划扣还款金</memo><projectid>0345142_20170706_002610</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090009390740247</orderno><accntno>6217000010034140577</accntno><accntnm>马雪</accntnm><amt>50000</amt><entseq>170706090009390740247</entseq><memo>代收标563号/2期的用户划扣还款金</memo><projectid>0345142_20170706_000914</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090010390740255</orderno><accntno>6212260200053707465</accntno><accntnm>刘丽娟</accntnm><amt>160000</amt><entseq>170706090010390740255</entseq><memo>代收标611号/2期的用户划扣还款金</memo><projectid>0345142_20170706_004998</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090011390740263</orderno><accntno>6217000010026551336</accntno><accntnm>王子钰</accntnm><amt>118000</amt><entseq>170706090011390740263</entseq><memo>代收标608号/2期的用户划扣还款金</memo><projectid>0345142_20170706_007393</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090012390740271</orderno><accntno>6217000010084359853</accntno><accntnm>孙波</accntnm><amt>90000</amt><entseq>170706090012390740271</entseq><memo>代收标599号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009366</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090013390740280</orderno><accntno>6217568400029248630</accntno><accntnm>张旭东</accntnm><amt>115000</amt><entseq>170706090013390740280</entseq><memo>代收标596号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009398</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090014390740289</orderno><accntno>6227002745010332931</accntno><accntnm>华宇</accntnm><amt>170000</amt><entseq>170706090014390740289</entseq><memo>代收标590号/2期的用户划扣还款金</memo><projectid>0345142_20170706_009573</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>170706090014390740297</orderno><accntno>6212260200052781735</accntno><accntnm>陈臻</accntnm><amt>88000</amt><entseq>170706090014390740297</entseq><memo>代收标678号/2期的用户划扣还款金</memo><projectid>0345142_20170706_006199</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609244969137</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609244969137</entseq><memo>14287</memo><projectid>0345142_20170706_000038</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609254992738</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609254992738</entseq><memo>14287</memo><projectid>0345142_20170706_000039</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609291369439</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609291369439</entseq><memo>14287</memo><projectid>0345142_20170706_000040</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609315259940</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609315259940</entseq><memo>14287</memo><projectid>0345142_20170706_000041</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070609384903741</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070609384903741</entseq><memo>14287</memo><projectid>0345142_20170706_000042</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6486879952837</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6626314255207</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6770538069010</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>6899067732150</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610093135542</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610093135542</entseq><memo>14287</memo><projectid>0345142_20170706_000043</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610104363343</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610104363343</entseq><memo>14287</memo><projectid>0345142_20170706_000044</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7230131565074</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>7270698285018</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>481000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610135841844</orderno><accntno>6226220615843099</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610135841844</entseq><memo>14287</memo><projectid>0345142_20170706_000045</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7430022443956</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610161933845</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>30000</amt><entseq>72017070610161933845</entseq><memo>14287</memo><projectid>0345142_20170706_000046</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610191766046</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>300</amt><entseq>72017070610191766046</entseq><memo>14285</memo><projectid>0345142_20170706_000047</projectid><state>2</state><result>商户已复核,交易失败</result><reason>通信异常拒绝连接</reason></trans><trans><merdt>20170706</merdt><orderno>7789917582535</orderno><accntno>6214830213015232</accntno><accntnm>陈红凯</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080001</projectid><state>2</state><result>商户已复核,交易失败</result><reason>当日扣款次数超限</reason></trans><trans><merdt>20170706</merdt><orderno>7969919135134</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070610485630711308</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D15CCE6F3AFBC52041104</entseq><memo>代收业务</memo><projectid>0345142_20170706_127415</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610523624047</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>1100</amt><entseq>72017070610523624047</entseq><memo>14285</memo><projectid>0345142_20170706_000048</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070610560006848</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>25000</amt><entseq>72017070610560006848</entseq><memo>14287</memo><projectid>0345142_20170706_000049</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>20170706105839806632</orderno><accntno>6222020111122220001</accntno><accntnm>钱宝</accntnm><amt>126957</amt><entseq>20170706105839806632</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001156</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>11030543908053</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>12972614184045</orderno><accntno>62222222222222222222</accntno><accntnm>胡冰楠</accntnm><amt>225000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020016</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>11330154158008</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>11629893414297</orderno><accntno>6228480038362296675</accntno><accntnm>毛克勇</accntnm><amt>4554300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_080002</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>13658285922168</orderno><accntno>62222222222222222222</accntno><accntnm>胡冰楠</accntnm><amt>225000</amt><entseq></entseq><memo></memo><projectid>0345142_20170613_020016</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070611351225211319</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100300</amt><entseq>AC100171015D15F7427C695A55128FDB</entseq><memo>代收业务</memo><projectid>0345142_20170706_708765</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070611390557311320</orderno><accntno>6216690800000155543</accntno><accntnm>孙静</accntnm><amt>50100</amt><entseq>AC100171015D15FAD1E5FA5F652B683C</entseq><memo>代收业务</memo><projectid>0345142_20170706_961050</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>14374883100830</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>14432449147496</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>15023515500681</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>15212959636867</orderno><accntno>6214830222221111</accntno><accntnm>龙奥奥</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010003</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>21482971658832</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>21688458197339</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>0340253881</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070613472392503402</orderno><accntno>6225230185420972</accntno><accntnm>柳余春</accntnm><amt>58775</amt><entseq>C0A80122015D16704996DB75557AF5BA</entseq><memo>代收业务</memo><projectid>0345142_20170706_121662</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070613481691203404</orderno><accntno>6225230185420972</accntno><accntnm>柳余春</accntnm><amt>58775</amt><entseq>C0A80122015D167118912AB41287E4EC</entseq><memo>代收业务</memo><projectid>0345142_20170706_385804</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>22412169593915</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>22919884394925</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>2329412664</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>未签约</reason></trans><trans><merdt>20170706</merdt><orderno>17070614143203111321</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100300</amt><entseq>AC100171015D16892160F44A55ABADB3</entseq><memo>代收业务</memo><projectid>0345142_20170706_708765</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>120201707060000000110</orderno><accntno>6216260000006223334</accntno><accntnm>订单一</accntnm><amt>51050</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_000331</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>5472795123</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>1</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易金额过小</reason></trans><trans><merdt>20170706</merdt><orderno>2798746142</orderno><accntno>6228480393878363414</accntno><accntnm>李玉磊</accntnm><amt>23300</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_807922</projectid><state>2</state><result>商户已复核,交易失败</result><reason>还款金额大于项目回款余额</reason></trans><trans><merdt>20170706</merdt><orderno>24504418716196</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>24523611291613</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>24574479261748</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>20170706144116926062</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>247424</amt><entseq>20170706144116926062</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001157</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>20170706144125473114</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>247424</amt><entseq>20170706144125473114</entseq><memo>益芯自扣</memo><projectid>0345142_20170706_001158</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>25254162541708</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010006</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070614443244811327</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16A49A41D3F40D83A5CF</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614461376449</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>122511</amt><entseq>72017070614461376449</entseq><memo>14287</memo><projectid>0345142_20170706_000050</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>17070614463579511328</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16A67C13F36133ACB4A1</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614482777650</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>343414</amt><entseq>72017070614482777650</entseq><memo>14285</memo><projectid>0345142_20170706_000051</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614484068151</orderno><accntno>6226220615819185</accntno><accntnm>龙奥</accntnm><amt>123969</amt><entseq>72017070614484068151</entseq><memo>14285</memo><projectid>0345142_20170706_000052</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>72017070614490753552</orderno><accntno>6226220615842069</accntno><accntnm>萤火</accntnm><amt>122511</amt><entseq>72017070614490753552</entseq><memo>14287</memo><projectid>0345142_20170706_000053</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>25793521712451</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010007</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26222450752948</orderno><accntno>6225210118809900</accntno><accntnm>王高飞</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010004</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26774472963742</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>450000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>26872833485786</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070615151020011329</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>100200</amt><entseq>AC100171015D16C0A4F827DF5604D4E7</entseq><memo>代收业务</memo><projectid>0345142_20170706_696882</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27173026173052</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27472924396041</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>17070615255056711336</orderno><accntno>622908211916558411</accntno><accntnm>卞景贺</accntnm><amt>115500</amt><entseq>AC100171015D16CA6A672A8B7F394BFC</entseq><memo>代收业务</memo><projectid>0345142_20170706_434669</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>27772819275500</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28072869098874</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28372815863950</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>1</state><result>商户已复核,交易成功</result><reason>交易成功</reason></trans><trans><merdt>20170706</merdt><orderno>28672848400752</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>28856092241348</orderno><accntno>6228488838185903879</accntno><accntnm>谢小蓓</accntnm><amt>476000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_020002</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>28972775828397</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>29272804170703</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans><trans><merdt>20170706</merdt><orderno>29572815872203</orderno><accntno>6217007200020566074</accntno><accntnm>张氏</accntnm><amt>250000</amt><entseq></entseq><memo></memo><projectid>0345142_20170706_010008</projectid><state>2</state><result>商户已复核,交易失败</result><reason>交易超时</reason></trans></qrytransrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 08:50:39 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>9494313049</orderno><project_id>0345142_20170706_287994</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 08:52:19 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>4400030575</orderno><project_id>0345142_20170706_032226</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 08:57:28 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>5748222061</orderno><project_id>0345142_20170706_595275</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:11:46 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>999999</ret><memo>交易超时</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:21:03 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>999999</ret><memo>交易超时</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:21:08 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>999999</ret><memo>交易超时</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:25:01 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>4757639181</orderno><project_id>0345142_20170706_850219</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:26:27 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>999999</ret><memo>交易超时</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:40:37 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=631D433E7056459EE2883FA486DCF8D4; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:46:20 GMT
+Content-Length: 696
+Connection: keep-alive
+Set-Cookie: JSESSIONID=FEE3967FFE819A2627DA118DFC001A35; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <custmrBusi>
+    <busiCd>AC01</busiCd>
+    <userNm>李玉磊</userNm>
+    <mobileNo>15861800733</mobileNo>
+    <credtNo>321081199309052410</credtNo>
+    <acntNo>6228480393878363414</acntNo>
+    <mchntCd>0002900F0345142</mchntCd>
+    <contractNo>000036257986</contractNo>
+    <contractSt>1</contractSt>
+    <acntIsVerify1>1</acntIsVerify1>
+    <acntIsVerify2>0</acntIsVerify2>
+    <acntIsVerify3>1</acntIsVerify3>
+    <acntIsVerify4>0</acntIsVerify4>
+    <respCd>0000</respCd>
+    <respDesc>6228480393878363414卡号户名验证成功,卡号密码验证失败,户名证件号验证成功,手机号码验证失败,签约已生效</respDesc>
+  </custmrBusi>
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:47:01 GMT
+Content-Length: 696
+Connection: keep-alive
+Set-Cookie: JSESSIONID=648614EA3D36884FD5818BC2E4B0A56C; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?>
+  <custmrBusi>
+    <busiCd>AC01</busiCd>
+    <userNm>李玉磊</userNm>
+    <mobileNo>15861800733</mobileNo>
+    <credtNo>321081199309052410</credtNo>
+    <acntNo>6228480393878363414</acntNo>
+    <mchntCd>0002900F0345142</mchntCd>
+    <contractNo>000036257986</contractNo>
+    <contractSt>1</contractSt>
+    <acntIsVerify1>1</acntIsVerify1>
+    <acntIsVerify2>0</acntIsVerify2>
+    <acntIsVerify3>1</acntIsVerify3>
+    <acntIsVerify4>0</acntIsVerify4>
+    <respCd>0000</respCd>
+    <respDesc>6228480393878363414卡号户名验证成功,卡号密码验证失败,户名证件号验证成功,手机号码验证失败,签约已生效</respDesc>
+  </custmrBusi>
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:49:11 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=D37D7FFC73E8F636C3B1168028EFFCBF; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>报文格式错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:49:28 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=B801F219AB57E724847A177FEE729BAB; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:49:35 GMT
+Content-Length: 141
+Connection: keep-alive
+Set-Cookie: JSESSIONID=0ACDE1DA3431A0471DCEA4C21D6C2884; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300001</respCd>
+  <respDesc>没有查询到任何数据</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 06 Jul 2017 09:50:28 GMT
+Content-Length: 129
+Connection: keep-alive
+Set-Cookie: JSESSIONID=ADAFD60D8EA788EFF887D6618876101E; Path=/fuMer; HttpOnly
+
+<?xml version="1.0" encoding="UTF-8"?><custmrBusi>
+  <respCd>300002</respCd>
+  <respDesc>报文验签错</respDesc>
+</custmrBusi>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 07 Jul 2017 01:06:14 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>7098381167</orderno><project_id>0345142_20170707_396301</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 07 Jul 2017 01:07:03 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>999999</ret><memo>交易超时</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 07 Jul 2017 01:51:46 GMT
+Content-Length: 126
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>000000</ret><memo>交易成功</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 10 Jul 2017 06:47:24 GMT
+Content-Length: 149
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>299998</ret><memo>项目序列号必须从000001到999999之间</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Mon, 10 Jul 2017 09:06:59 GMT
+Content-Length: 149
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>299998</ret><memo>项目序列号必须从000001到999999之间</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:36:54 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>6377822363</orderno><project_id>0345142_20170711_252716</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:38:19 GMT
+Content-Length: 144
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>100010</ret><memo>项目身份信息校验失败</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:38:48 GMT
+Content-Length: 132
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>100011</ret><memo>户名验证失败</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:38:58 GMT
+Content-Length: 132
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>100011</ret><memo>户名验证失败</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:40:37 GMT
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>7478001223</orderno><project_id>0345142_20170711_070007</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 03:41:07 GMT
+Content-Length: 141
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><incomeforrsp><ret>100011</ret><memo>持卡人手机号码有误</memo></incomeforrsp>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 07:51:58 GMT
+Content-Type: text/html;charset=UTF-8
+Content-Length: 165
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>299998</ret><memo>项目期限以天为单位，不能超过5位，格式错误</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 08:24:53 GMT
+Content-Type: text/html;charset=UTF-8
+Content-Length: 197
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>0000</ret><orderno>9171127969</orderno><project_id>0345142_20170711_123456</project_id><memo>项目录入成功</memo></project>
+HTTP/1.1 200 OK
+Server: nginx
+Date: Tue, 11 Jul 2017 08:25:01 GMT
+Content-Type: text/html;charset=UTF-8
+Content-Length: 149
+Connection: keep-alive
+
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><project><ret>299998</ret><memo>当日项目序列号重复或流水号重复</memo></project>

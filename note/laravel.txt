@@ -1,0 +1,61 @@
+php artisan --version 查看版本
+
+laravel-admin
+http://www.mamicode.com/info-detail-1715776.html 【laravel-admin后台的安装】
+https://github.com/z-song/laravel-admin/blob/master/docs/zh/README.md
+https://www.oschina.net/p/laravel-admin
+
+
+
+autoload机制
+bootstrap/autoload.php
+vendor/autoload.php
+vendor/composer/ 【composer生成的自动加载规则】
+vendor/composer/autoload_real.php
+	vender:psr-0 psr-4 
+	laravel:classmap 
+	file 引入文件（不是类文件）【有机制避免重复引入】
+https://laravel-china.org/topics/1002/deep-composer-autoload【good】
+
+composer
+"type": "project", // 所以会在同级目录下新建vendor目录？
+"type": "library", // 所以会在 上两级 目录下引入require的包？
+http://blog.csdn.net/nick_php/article/details/53994310【常用命令】
+
+如果依赖发生变动？
+composer dump-autoload 如果更新了composer.json需要更新autoload
+
+require和require-dev的区别
+前者用于声明项目发布版本的依赖包，后者用于声明项目开发或测试中依赖的包。
+
+psr-4:
+namespace prefix --map--> path
+类名中的 下划线_ 不转换为目录
+psr-0:
+不存在 namespace对path 的映射
+http://blog.csdn.net/loophome/article/details/52066981【psr-4 VS psr-0】
+
+\Closure
+http://www.dewen.net.cn/q/3998【php 给对象添加函数 excellent】
+
+laravel版本号
+vendor/laravel/framework/src/Illuminate/Foundation
+const VERSION = '5.4.24';
+
+vendor/laravel/framework/src/Illuminate/Contracts目录下定义的全是 Interface
+
+
+这个由于这种写法的类实现了ArrayAccess 这个接口以后就可以实现了像访问数组一样访问对象，即
+$this['key'] == $this->key
+
+getenv — 获取一个环境变量的值
+
+
+        $ref = new \ReflectionObject($route);
+        print_r($ref);exit;
+        print_r($ref->getProperties());exit;
+        print_r($ref->getMethods());exit;
+
+
+@ open/laravel-admin-master/vendor/laravel/framework/src/Illuminate/Routing/Router.php 
+	-> runRouteWithinStack

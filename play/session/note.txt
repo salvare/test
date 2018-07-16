@@ -1,0 +1,41 @@
+@ session的意义 - 从 HTTP协议“无连接、无状态”的特点 说起
+* HTTP协议诞生与互联网，即它可能需要接收全网用户的访问。而且早期互联网内容特点（我猜比如：新闻、博客），使得客户端与服务器间交换数据具有 突发性、瞬时性、两次传送的数据关联性很低 等特性。
+* 所以HTTP协议 采用了“无连接、无状态”的设计，以适应早期互联网环境
+* 无连接：HTTP使用的传输层协议：TCP协议，具有面向连接的特性。保持一个连接，会持久的占用 客户端 和 服务端资源。因此HTTP协议在请求-响应完成后，即刻断开连接
+* 无状态：同一个客户端 两次向 服务器 发送的请求 是相互独立 的，服务器不会知道两者是有关联的，后者的响应无法因为前者发生变化
+* ↑ 现在的互联网环境显然差异很大 ↓ HTTP协议做出了响应的改进
+* Keep-Alive: 比如请求的网页中可能包含很多图片资源，使用`Connection: Keep-Alive`后，在下载完html文档后，连接不会断开，请求该服务的其它资源时，继续使用该连接
+* Session: Session是服务器用于保存客户端状态的，客户端发起的每一次请求，都可以记录信息在session中。典型的例子是登录。
+* ↑ `Keep-Alive` 和 `session` 就是HTTP补充的对 面向连接 和  有状态的支持。
+# 参考： http://www.cnblogs.com/rinack/p/5209345.html【如何理解HTTP协议的“无连接，无状态”特点】
+
+
+@ session的实现原理
+* session依赖cookie实现
+* 客户端的请求 被服务器的脚本处理时，脚本可以控制开启session，现假设session默认开启
+  . 第一次请求时，服务器端发现请求中没有携带$_COOKIE['PHPSESSID'] (`PHPSESSID`是服务端定义的一个标识)，则生成一个PHPSESSID数值并保存，同时在响应中`Set-Cookie: PHPSESSID=xxx`
+  . 之后的请求，客户端的请求中就会包含$_COOKIE['PHPSESSID']，服务器从而得知该会话的$_SESSION内容
+* 当执行PHP脚本时，通过使用session_register()函数注册session变量。
+* 当PHP脚本执行结束时，未被销毁的session变量会被自动保存在本地一定路径下的session库中，这个路径可以通过php.ini文件中的session.save_path指定，下次浏览网页时可以加载使用。
+# 相关： @ /play/curl/curl/session.php 详细表现了session的实现原理
+
+
+@ session.save_handler 设置用户自定义会话存储方法
+* php.ini中默认 `session.save_handler=files`，这是php自带的session存储方式
+* `session.save_path`配置 是提供给 `save_handler` 的参数
+* 有时候需要session按别的方式存储：
+  . 存储在内存中可以使得读写更快
+  . 存储在数据库中可以使得不同主机共享session
+  # http://blog.sina.com.cn/s/blog_495697e6010143tj.html【几种session存储方式比较】
+  # https://segmentfault.com/q/1010000000657945【https://segmentfault.com/q/1010000000657945】
+* . 需要以自行编写扩展的方式自定义`save_handler`
+    # http://php.net/manual/zh/session.configuration.php#ini.session.save-handler
+  . `memcache`中包含了对`session.save_handler`的支持：`session.save_handler = memcached` `session.save_path = "localhost:11211" `
+    # http://php.net/manual/zh/memcached.sessions.php
+* 代码中可以用`session_set_save_handler(SessionHandlerInterface $sessionhandler)`函数 动态的注册 自定义会话存储函数
+  . 实现 SessionHandlerInterface 的 `close` `destroy` `gc` `open` `read` `write` 方法
+  # http://php.net/session_set_save_handler
+  # http://php.net/manual/zh/class.sessionhandlerinterface.php
+  
+  
+  

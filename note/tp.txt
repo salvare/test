@@ -1,0 +1,535 @@
+1.模板中用<volist>循环数组时，用$i获取当前循环次数，用$key获取当前健值
+
+2.在js中使用想用的常量：(head.html)
+在模板的layout公共部分加类似代码:
+<script>var _CONTRLLLER_ = '__CONTROLLER__'</script>
+
+3.模板中循环二维数组
+<volist name="list" id="vo">
+	...
+	<volist name="vo['extra']" id="extra_vo">
+		...
+	</volist>
+	...
+</volist>
+
+4.模板中：
+<if condition="$Think.get.id eq 1"></if> 正确
+<if condition="$Think.get.id eq $id"></if> 错误，其中$id是assgin传入的变量
+<if condition="$Think.get.id eq $id "></if> 正确，加一个空格就好了
+
+5.
+<empty name="$Think.get.sku_id">hhh</empty> 错误
+<empty name="Think.get.sku_id">hhh</empty> 正确
+
+6.模板中判断空值
+<if condition="($Think.get.sku_id neq null) or ($Think.get.relate_id neq null)">disabled="disabled"</if>
+
+7.使用3.的循环嵌套时，如果使用$i，会在多层循环中全局增加
+解决方法：给两层循环指定不同的key属性 
+<volist ... key="j">则该层循环变量变为{$j}
+{$key}不会有影响，貌似。。。
+
+8.$a && $b = $c; 同：
+if($a){ $b = $c };
+
+9.[mysql] 如何添加/修改datetime类型字段？？？
+试验1：插入时间戳，结果0000-00-00 00:00:00
+试验2：插入2016-02-12T10:20:07 ，结果 2016-02-12 10:20:07
+
+10.[php] func_get_arg func_get_args func_num_args函数
+功能：函数中使用，获取单个参数，所有参数，参数数量
+
+11.[tp] 加载js文件时的缓存问题
+<scritp src="....js?v={:time()}">
+
+12.[tp] 模板
+<eq name="where['currency']" value="$currency_vo.currency">selected="selected"</eq>
+name不加{$ }	value不加{}
+
+13.[css] 
+*情景：页面整体使用的全局样式，但其中有一部分不希望使用
+*try：重写要舍弃的样式，将目标属性值改为inherit,initial,unset试试
+http://www.jb51.net/css/354517.html
+http://www.ziqiangxuetang.com/cssref/css-initial.html
+http://www.djjwz.com/news/news1719.html
+
+14.[tp] 支持子查询
+
+15.[tp] 模型类中可以自定义 连贯操作
+做法例如：	return $this->where(.....)->join(......);
+
+16.关于 分页，排序，筛选的兼容
+
+17.[tp] U函数
+可以 U('xx/xx/xx?a=1','b=2&c=3&a=4'),参数重复时后面的会覆盖掉前面的
+
+18.[tp] 关联模型 深度关联 !important
+'relation_deep'			=>	'code_info',
+
+19.[js] 如何使用锚点，不影响地址栏的url
+http://www.fuqianrong.com/article-detail-7652.html
+
+20.[php] 表单中设置不可编辑 的两种方法
+一、
+* input有readonly属性
+* input有disabled属性，但是设置后表示禁用，无法提交值
+* 但是：select没有readonly属性！
+* 解决：将select设为disabled，通过js提交，在js中取消disabled属性
+* 参考：http://blog.csdn.net/haqer0825/article/details/8706281
+二、设置为hidden，使用普通的文字展示信息
+
+21.[php] function hello(&$arr){...}
+其中$arr是个数组，它的内容是否也被传递地址?
+* 不会。
+* 如果想实现，需要 $arr = array(&a,&b,&c...);
+* 此时，function hello($arr)即可，不必须要& ，因为在function中处理的是$a,$b...本身
+* 有实例可以帮助理解：
+function hello(&$arr)
+{
+	$arr[0] = 'wait'; $arr[1] = 'for'; 
+	$arr[2] = 'your'; $arr[3] = 'touch'; $arr[4] = 'please';
+}
+
+$a = 'a';$b = 'b';$c = 'c';$d = 'd';
+$arr = array(&$a,&$b,&$c,&$d,'e');
+
+echo "$a $b $c $d \n";
+var_dump($arr);
+
+hello($arr);
+
+echo "$a $b $c $d \n";
+var_dump($arr);
+* 新的例子：
+function hello(&$arr)
+{
+//	$aa = $arr[0];	//$arr[0]此时指向$a的地址；但如果新赋值给$aa,$aa依然是另一个变量，与$a无关
+	$aa = &$arr[0];
+	$aa = 'wait';
+}
+
+$a = 'a';
+$arr = array(&$a);
+
+echo "$a \n";
+hello($arr);
+echo "$a \n";
+
+
+22.[tp] 显示复杂的列表（多表深度关联）时，有三种方案：
+a.使用tp提供的关联模型
+* 优点：定义表间关系不复杂(param $_link in RelationModel) ，结构清晰，使用方便
+	加上其深度关联功能，表关系如网交织，一目了然。
+* 缺点：由于会在多处场景使用，或是没有详细定义关联表的字段时，使用时经常会读取冗余的字段，运行效率不高；
+b.直接sql级联查询
+* 优点：最大优点是可以将 子表字段 作为查询条件！！！
+	如果只用到两张表，还是好用的，效率也高
+* 缺点：如果级联三张以上表，取出的数据结构将很不好用
+c.逐层查询单表，并组织数组
+* 优点：也就是一般做法，自由处理数据，功能强大；
+	也可以 分析子表字段；也可以 统计各种数量；
+* 缺点：全要手动写
+s.总结
+* 简单的两表级联直接用b方法
+* 真正复杂的大列表，建议踏踏实实用c；
+* 有一次经验教训。写订单列表时，使用了关联模型，一开始很省事，很好用；
+  但随后遇到了这么些情况：
+  . 通过user_id查user_name,只用到了很少字段，不想为其添加关联
+	解决：在模板中调用公共函数。解决成本不高。
+  . 计算订单总价，order --hasmany--> order_product --field--> `price`*`num`
+	解决：可以在模板中处理，但这种规模的运算在 模板中处理已经很不方便了；
+	      还有就是遍历原数据数组处理。。。
+  . 筛选 未关联sku的订单；sku与code的关联关系体现在order_product表中；
+	这个的难点在于不能使用sql的查询条件判断
+	解决：先sql级联查询符合条件的订单id，再使用关联模型
+	      还有就是遍历原数据数组处理。。。
+	小技巧:这里的级联查询写成 连贯操作 的形式（参考OrderPlatFormModel/status()方法）
+  . 统计本次请求中，`未关联sku订单`的数量，`超时未处理订单`的数量
+	解决：同上。这里另外强调一下，这是个很复杂的操作。程序中原本有很多where条件，当你级联查询时，如果关联表中有重名字段作为where条件时，结果可能会错误，
+			为此你需要将原本where条件全都改写成a.where
+	      还有就是遍历原数据数组处理。。。
+* 当费了很多心思寻找较好解决方法的之后，
+  会发现还不如踏踏实实，逐层查询处理构造一次数组 ￣へ￣
+o.对关联模型的理解：
+* 原理：其实也是在逐层构造数组
+* 将对构造数组的方法规则 集中在$_link这个配置参数数组中，以方便用户使用
+* 但很明显，功能还不够强大
+* 但也相对的，要实现更强大的功能，就需要设置 更复杂的配置，就会增加使用难度，增加学习成本
+* 技术总是在相互妥协与取舍，重要的是寻找一个平衡点。thinkphp的关联模型还应该再进一步。例如能解决我以上几个需求 ^_^
+
+23.[tp] model连贯操作，limit与find不兼容
+
+24.[php] 数据库原子操作（事务）
+？？？？？？？？？？？？？？？？？？？？？？？？？？？
+
+25.[tp] 模板引擎判断 boolean值 的方法: 
+<notempty name="var"> 或
+<if condition=" $var eq true "> 或
+<if condition=" $var "> 
+<eq name="var" value="true">不行，会当成字符串'true'
+
+26.[js] 
+function hello(arg1){...}; hello(null); //null参数在传入js后是什么？
+$.ajax({
+	data:{'arg1':arg1}	//其中arg1传入时为null，再提交时是什么？目前
+})
+
+27.[other] 经验：【未整理】
+复杂的功能，制作/调试的时候尽量多的分别输出 结果类型/错误类型 有利于开发和debug
+
+做功能时的 上线和下线
+下线： 以所有数据 和 操作的正确性 为前提，编程时将此正确性 作为默认条件，不针对这些因素做考虑
+上线： 时刻对数据的合法性/完整性、对人为操作的正确性保持怀疑，对这些因素进行判断处理，这些工作保证的程序的健壮性
+
+28.[db] limit关键字只能用于查询（select）
+
+29.[js] 
+* arguments变量，所有参数组成的数组
+* js 中的函数其实是对象，函数名是对 Function 对象的引用
+	function a(){...}
+	b = a;
+	b(); //b和a即为同一个函数
+* apply call方法
+  http://uule.iteye.com/blog/1158829
+* 解决js window.onload不能多次使用 的问题
+  http://blog.sina.com.cn/s/blog_75ad10100101fqdd.html
+
+30.[php] urlencode
+* urlencode和rawurlencode两个方法在处理字母数字，特殊符号，中文的时候结果都是一样的
+* 唯一的不同是对空格的处理，urlencode处理成“+”，rawurlencode处理成“%20”
+* 不能理解[space]被转义成[+]的理由
+* http://blog.csdn.net/amonest/article/details/6431183/
+
+31.[svn] 找回 由于他人提交代码钱未更新 而丢失的代码
+* 右键 -> tortoise -> show log
+* 找到目标版本，右键 -> compare with working copy
+* 找回需要的代码，提交
+* 优点：可以找回代码，并且不会影响后来其他人的修改
+* 局限：如果事故引起大量文件的代码丢失，一个个文件找回很麻烦
+* 方向：tortoise中的 revert to this version 和 revert change from this version 可能提供帮助，下次出问题一定要试试
+
+32.[php] <<<tag 与 tag; 可以作为
+$str = <<<tag 
+	"God Bless Amercia ." 
+tag;
+
+33.[tp] 使用tp模型类查询数据库 得到的字段 会被自动转换为小写。。。
+
+34.[http] GET POST 大小限制
+* GET 
+	. 源于 浏览器、服务器甚至操作系统 对url长度的限制，GET通过URL提交数据
+	. 大小不一定，约2M
+* POST
+	. HTTP协议对POST大小没有限制（其实GET也一样）
+	. 但是会受限于服务器配置之类:maxPostSize
+	. 一般默认大于2M
+* http://www.cnblogs.com/zxj159/articles/2428376.html
+  http://blog.chinaunix.net/uid-26602509-id-4495786.html【good】
+
+35.[tp] 关联模型怎么进行条件查询
+*设置：
+protected $_link = array(
+	'product' => array(
+		...
+		"condition" => "status=1",
+	),
+)
+*性质：	只是从表自身的查询条件，而非与主表联查条件；【注意】不是联表查询。
+*结论：	没什么用。。。
+*http://www.thinkphp.cn/topic/3829.html
+
+36.[db] 多字段 IN 的用法
+SELECT * FROM product_stock WHERE 
+	code_id IN (SELECT code_id FROM `product_stock` WHERE `style`=1 GROUP BY `code_id`,`place` HAVING count(*)>1)
+    AND `style`=1 
+ORDER BY place, code_id
+变成了：
+SELECT * FROM product_stock WHERE 
+	(code_id,place) IN (SELECT code_id,place FROM `product_stock` WHERE `style`=1 GROUP BY `code_id`,`place` HAVING count(*)>1)
+    AND `style`=1 
+ORDER BY place, code_id
+
+多个字段的in 和 not in 及其替代写法（exists，not exists）
+http://blog.csdn.net/moklee/article/details/3730282
+select * from b where (aaa,bbb)  in ( select aaa,bbb from a where 查询条件A);
+select * from b where exists ( select * from a where a.aaa=b.aaa and a.bbb=b.bbb and 查询条件A);
+
+
+36.[other] 关于 程序健壮性：
+比如erp的订单页有一个“强行转换订单状态”功能。
+订单状态 标志着 订单在处理流程中的 当前环节，在程序中，很多直接通过status来认定当前的 数据关系情况。
+我们编程时 如果以“数据的合理合法”为前提，在遇到这种情况，就会出现难以预料的结果。。轻则页面报错，严重的会扰乱数据库记录。
+可见“强行转换订单状态”功能，在系统运行过程中，不可避免的会产生“不合理的，不合逻辑的，出人意料的”数据。成为影响系统稳定的潜在威胁。
+
+所以应该：
+不信任用户的任何输入；
+不信任用户的任何操作；
+甚至不信任数据库内容，不信任“逻辑上必然的存在的”数据间的联系。
+
+判断程序中各个关键性的数据，分别针对这些情况进行错误提示，引导用户正确完成操作 或 引导程序回到一个正常状态，而不要直接报错导致应用崩溃。
+
+
+37.[other] 关于 程序的可扩展性：
+【待补充】
+
+
+38.[tp] Model类 提供的where方法，因为参数数组的 键名（数据表字段）不能重复：
+*	$where['date'] = array('gt','2015-08-08');
+	$where['date'] = array('lt','2015-10-01');是错误的
+*	$where['date'] = array('between',array(..,..); 只能一定程度解决问题；
+*	$where[] = 'date<2015-08-08 OR date>2015-10-01' 这样就自由自在了
+
+39.[tp] 关联模型 实现子表作查询条件
+*在Model中自定义函数
+public function enhanced_where($status,$enhanced_where){...}
+*定义关系树
+$relation_tree = array(
+	'order_web' => array('master'=>null, 'foreign_key'=>null),
+	'order_web_address' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_nightwear_customization' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_product' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_product_extra' => array('master'=>'order_web_product', 'foreign_key'=>'order_web_product_id'),
+	'order_web_product_customization' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_product_original' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_product_original_set' => array('master'=>'order_web_product_original', 'foreign_key'=>'order_web_product_original_id'),
+	'order_web_status' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_web_status_history' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_delivery_detail' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+	'order_delivery_detail_vice' => array('master'=>'order_web', 'foreign_key'=>'order_web_id'),
+);
+*参数 $enhanced_where 形如：
+array(3) {
+  ["order_plat_form"] => array(5) {
+    ["come_from_id"] => string(2) "20"
+    ["order_number"] => string(26) "312704-20160920-0942850381"
+    ["currency"] => string(3) "GBP"
+    ["name"] => array(2) {
+      [0] => string(4) "LIKE"
+      [1] => string(14) "%星野仁美%"
+    }
+    ["date_time"] => array(2) {
+      [0] => string(3) "egt"
+      [1] => string(19) "2016-08-09 00:00:00"
+    }
+  }
+  ["order_plat_form_shipping"] => NULL
+  ["order_delivery_detail"] => array(1) {
+    ["delivery_number"] => string(10) "1008611111"
+  }
+}
+*组织SQL：
+reach($enhanced_where as $key=>$val)
+{
+	if( $relation_tree[$key] && $val )//保证表已在relation_tree中注册，且该表where条件不为空
+	{
+		//FROM
+		$TEMP_FROM = $this->parse_relation_tree($key, $relation_tree);
+		if( $TEMP_FROM=='invaild' ) continue;//该表在relation_tree中有错误，忽略
+		$FROM = array_merge($FROM, $TEMP_FROM);//合并
+		//WHERE_RELATE
+		if( $relation_tree[$key]['master'] )
+		{
+			$WHERE_RELATE[] = "{$relation_tree[$key]['master']}.id={$key}.{$relation_tree[$key]['foreign_key']}";
+		}
+		//WHERE
+		foreach ($val as $k=>$v)
+		{
+			if( is_numeric($k) )
+			{
+				$WHERE[] = $v;
+			}
+			else
+			{
+				$WHERE["$key.$k"] = $v;
+			}
+		}
+	}
+}
+*兼容连贯操作：
+return $this->where("id IN ($main_sub_sql) AND id IN ($status_sub_sql)");
+*其它
+. 将复杂的数据处理 与 业务（Controller）剥离。使业务逻辑更为清晰。这也是Model在MVC中的意义
+. 复用
+. 为了以通用的方法 操作数据库，相对于每个特定情形，一定程度牺牲了代码效率和数据库效率 <= 框架本身就大量存在 便利与性能 间的取舍
+
+
+
+40.[js] js生命周期
+*遇到这样一个问题：
+some_code_before_jump();
+location.href="www.baidu.com";
+some_code_after_jump();
+页面跳转前后的js代码能否执行？
+*浏览器下载完成HTML文档后，开始解释文档。
+ 包括渲染页面 和 执行js（但两者不同时进行）。
+*如果发生页面跳转，那么直到下载完新的HTML文档，js一直在执行
+ 即页面跳转的过程中，旧页面的js任然有效
+*试验：
+var myDate = new Date();
+var s = myDate.getSeconds();
+var ms = myDate.getMilliseconds();
+$.ajax({
+	type : "POST",
+    url : "http://localhost/test/0826/2.php",//路径  
+    data : {s:s,ms:ms},//数据，这里使用的是Json格式进行传输  
+    success : function(result) {//返回数据根据结果进行相应的处理  
+    	
+    },	
+});
+
+location.href='http://www.baidu.com';
+
+setTimeout(function(){
+	var myDate = new Date();
+	var s = myDate.getSeconds();
+	var ms = myDate.getMilliseconds();
+	$.ajax({
+		type : "POST",
+	    url : "http://localhost/test/0826/2.php",//路径  
+	    data : {s:s,ms:ms},
+	    success : function(result) {//返回数据根据结果进行相应的处理  
+	    	
+	    },	
+	});
+},10);
+
+
+40.[js] ajax的同步与异步
+*示例：
+$.ajax({ 
+	type: "post", 
+	url: "path", 
+	async:false, 	//important
+	dataType: ($.browser.msie) ? "text" : "xml", 
+	success: function(data){
+		func1();
+        } 
+});
+func2();
+*同步：async:false 
+ ajax发送请求后，js线程停止继续执行，等待得到响应后，执行success（或error）中的func1()函数，然后再顺序执行func2()
+*异步：async:true
+ ajax发送请求后，继续执行js代码，即func2()...等到ajax的请求得到响应是，才执行success中的func1()
+*jquery的ajax方法默认使用 异步
+*从表面看，异步执行的func1()由一个新的js线程完成【但其实呢？】
+*参考：http://www.cnblogs.com/xmphoenix/archive/2011/11/21/2257651.html
+
+
+41.[js] js的单线程性
+*通常一个浏览器会至少存在三个线程：JS引擎线程（用于处理JS）、GUI渲染线程（用于页面渲染）、浏览器时间触发线程（用于控制交互）。
+ 而因为JS可以操作DOM元素，进而会影响到GUI的渲染结果，因此JS引擎线程与GUI渲染线程是互斥的。也就是说当JS引擎线程处于运行状态时，GUI渲染线程将处于冻结状态。
+ JS引擎是基于事件驱动，采用的是单线程运行机制。即JS引擎会只会顺序的从任务列表中取任务，并执行。
+ JS引擎本身就只能单线程运行，因此定时器需要由其他的外部线程来启动。所以对JS引擎而言，定时器线程可以被视为异步线程。但当定时器时间到达后，所触发的事件则必须在任务列表中排队，等候JS引擎的处理。
+*例：
+setTimeout(function () { while (true) { } }, 1000);
+setTimeout(function () { alert('end 2'); }, 2000);
+setTimeout(function () { alert('end 1'); }, 100);
+alert('end');
+*例2： setInterval() 【未验证】
+*例3： ajax async:true【未验证】
+*参考：http://www.cnblogs.com/o--ok/archive/2012/11/04/JS.html
+
+42.[php] phar
+*PHAR归档之于PHP 类似 JAR归档之于JAVA
+*打包代码为phar：
+$phar = new Phar('phar-demo.phar');//phar文件名
+$phar->buildFromDirectory(dirname(__FILE__).'/phar-demo', '/\.php$/');//匹配 目标文件
+$phar->compressFiles( Phar::GZ );
+$phar->stopBuffering();
+$phar->setStub( $phar->createDefaultStub('index.php') );//入口
+*引用phar
+require_once 'phar://phar-demo.phar';
+*修改php.ini:	phar.readonly = Off
+*参考：http://my.oschina.net/u/242853/blog/508206
+http://blog.csdn.net/ugg/article/details/25335079 性能测试
+
+43.[php] composer
+Composer 是 PHP5以上 的一个依赖管理工具。
+你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer会帮你安装这些依赖的库文件。
+http://www.phpcomposer.com/
+Composer首先是个软件
+1.创建一个 composer.json 文件
+2.安装 Composer
+3.命令行模式 php composer.phar install
+【待补充】
+
+44.[js] console.log()异步吗？
+http://www.cnblogs.com/sevenskey/p/5476386.html
+【待补充】
+
+45.[js] console 控制台
+*输出信息，辅助调试
+https://segmentfault.com/a/1190000000481884
+http://www.cnblogs.com/see7di/archive/2011/11/21/2257442.html
+*timeline、profiles性能分析
+http://www.oschina.net/translate/performance-optimisation-with-timeline-profiles
+【待补充】
+
+46.[db] SQL中SUBSTRING函数的用法
+http://www.cnblogs.com/xionglee/articles/1444927.html
+【待补充】
+
+47.[php] 传递函数体为参数内容
+http://www.cnblogs.com/mxw09/archive/2011/08/06/2129452.html
+【待补充】
+
+48.[db] 
+执行一句sql时，执行了30+秒，如下：
+SELECT * FROM `id_product_attribute` WHERE `id`  IN (SELECT DISTINCT  `color_id` FROM `id_product_code` WHERE `product_id` = 2 ) 
+很普通的子查询，排查：
+	1. SELECT DISTINCT  `color_id` FROM `id_product_code` WHERE `product_id` = 2	极快
+	2. SELECT * FROM `id_product_attribute` WHERE `id`  IN ( 1,2,3 ) 极快
+	3. 去掉DISTINCT	依然慢
+	4. 其它类似的sql，也很快。。。
+	5. 暂时没发现 数据表结构 有什么特殊。。。
+解决方法：SELECT * FROM `id_product_attribute` WHERE `id`  IN  (SELECT `color_id` FROM (SELECT DISTINCT  `color_id` FROM `id_product_code` WHERE `product_id` = 2 ) as hhh)
+原因：不能理解。。。
+参考：http://www.cnblogs.com/xh831213/archive/2012/05/09/2491272.html
+后续：偶然将数据库引擎从MyISAM改为InnoDB，执行时间变成了3s，虽然快了10倍，可是仍让不能接受
+
+
+？tp 的vendor函数与直接include不同。
+引入文件的变量无法传递到外部。
+有空的时候查看原因。
+
+？单元测试框架 phpunit
+
+？求值策略(Evaluation Strategy)
+按值传递(call by value) 与 按引用传递
+
+？学习CLI
+
+？阅读linxu源码
+
+？跳出率？概念？如何统计
+
+？PHP7
+http://www.oschina.net/news/68630/php-7-and-php-6
+
+？benchmark 性能压测  QPS压测
+
+？js能否操作本地文件
+
+？闭包
+
+？url重写
+
+？SAPI,CGI
+
+？模型类插入 add('xxfield'=>null)时会报错，怎么改机制
+
+？哪些网站并发性
+
+？导出excel； php://output； post请求时页面不会刷新； 原理？
+<=
+
+
+
+
+
+
+
+
+
+

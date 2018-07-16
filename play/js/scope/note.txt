@@ -1,0 +1,32 @@
+1.同一个<script>标签内的js：可以先调用，后定义函数
+<script>
+inside(); 
+function inside() {
+	console.log("inside");
+}
+</script>
+
+2.不同<script>中不行
+<script>
+inside(); 
+</script>
+<script>
+function inside() {
+	console.log("inside");
+}
+</script>
+
+3.点击事件没问题，因为页面加载早已完成
+<span onclick="inside();">inside</span>
+<script>
+function inside() {
+	console.log("inside");
+}
+</script>
+
+4.引入外部js文件 和 写在另一个<script>标签规则一样
+<script src="./wish.js"></script> 
+
+5.iframe中 无法直接使用 父窗口的js
+<iframe src="./frame.php"></iframe>
+但好消息是：浏览器会缓存资源，所以应该不会造成重复的请求

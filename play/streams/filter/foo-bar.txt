@@ -1,0 +1,3 @@
+LINE1
+WORD - 2
+EASY AS 123

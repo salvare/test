@@ -1,0 +1,80 @@
+相关概念
+. angularjs	
+. pjax
+. single page application
+. 前端mvc
+
+
+单页应用
+. 加载一次html，其余数据都用json封装，每次请求只是数据交换，模板放在前端，由js操作数据并加载
+. 所以整站式ajax不适合基于内容的网站，适合数据操作频繁，交互过多的后台应用。
+. 利用`hashchange`或`popstate`事件对 前进/后退操作 优化
+. 缺点
+  . 对SEO不友好
+  . 开发成本会提高
+  . 不能跨域
+  . 地址栏的地址（pjax可以解决）
+  . 没有一个URI，你每次都要从首页一点点的去找你要的内容吗
+. 优点
+  . 极大的复用html，同一段html模板，可以加载数次数据，而不用耗费流量和带宽。
+. 示例见 `www.play.com/history/single.php`
+
+
+问题：iframe在使用 后退按钮或history.back() 时，如果当前iframe已经是最初的页面，那么浏览器会后退父窗口
+. 目标：如果当前iframe已经是最初的页面，那么关闭当前iframe
+. 问题转化为：如何监听 后退行为
+  . 理所当然的想找一个后退行为事件。。。但是并没有
+. `hashchange`事件
+  . 当`location.hash`发生变化时触发。url为`www.abc.com/foo/#hello`时，`hash`的值为`#hello`
+  . 显然不适用于不使用`#`的一般应用
+. `popstate`事件
+  . `state`是指`history.state`
+  . 后退、前进按钮、`history.back()`、`history.forward()`、`history.go()` 等会触发
+    # 但是实测时发现并不触发。。
+    ! 实际上，只有`pushState`产生的步骤间，前进/后退才会触发`popstate`
+      . 例如 `page1 -jump-> page2 -pushState-> page3`
+        . `page1 -forward-> page2` 不触发
+        . `page2 -forward-> page3` 触发
+        . `page2 <-back- page3` 触发
+        . `page1 <-back- page2` 不触发
+! window.history  
+  . `history.length` 当前历史步骤长度
+  . `history.state` 可以记录当前步骤的状态
+  . `history.replaceState(state, title, url)` 
+    . 设置当前步骤的`state`
+    . `title`参数：新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填null
+    . `url`参数：新历史纪录的地址。新URL必须和当前URL在同一个域。
+  . `history.pushState(state, title, url)`
+    . 插入新历史记录
+    . 只有该方法插入的记录 能触发 `popstate` （见上）
+* 用以上素材 实现监听前进后退
+  . 页面跳转设计为 `(1L-1C-1R) -> (2L-2C-2R) -> (3L-3C-3R)`
+  . 通过`pushState`每个页面设置三个步骤，分别标记为`L-C-R`
+  . `C`是显示给用户的稳定步骤，处在中间位置的`C`，前进/后退 都能被监听到
+  . 如果从`2C`后退，`2L`的`onpushstate`会触发
+    . 如果允许后退，则`history.go(-2)`到`1C`
+    . 如果不允许后退，则`history.go(1)`回到`2C`
+  . 从`2C`前进类似
+  . 但是从`2C`链接跳转到`3`时，`2R`会丢失，变成`(2L-2C) -> (3L-3C-3R)`
+    . 所以还需将单纯链接改成js，在跳转前先`2C->2R`
+. 其它        
+  . js不能通过history知悉 之前/之后步骤的任何信息，也不能知晓当前步骤在history中是第几步
+    . 只能得到当前状态`history.state`和总长度`history.length`和通过`back`、`forward`、`go`方法进行页面跳转
+    . 浏览器为安全考虑。浏览器的“安全”是 限制恶意代码（恶意网站，或是网站被恶意用户注入攻击代码），保障普通用户的使用安全
+  . 发现 通过pushstate插入的history，在后退前进时是不触发js的；链接跳转,前进后退时都会触发js。
+    . 其根本原因大概是`pushstate`不会真正发出http请求，而链接跳转在前进后退时都会重新请求（如果没有缓存的话）。
+. 参考
+  # http://frontenddev.org/article/html-5-pushstate-popstate-operating-history-no-refresh-to-change-the-current-url.html【HTML5之pushstate、popstate操作history，无刷新改变当前url】【good】
+  # https://www.zhihu.com/question/19796017【父页面js控制iframe后退,子页面无上一页时,父页面也会发生后退.如何才能不让父页面后退?】【没有答案】
+  # http://blog.csdn.net/zhengyang7754/article/details/62884767【JS监听手机端浏览器的后退按钮的事件方法】
+  # http://www.cnblogs.com/yeer/archive/2013/01/21/2869827.html【location.hash详解】
+  # https://developer.mozilla.org/zh-CN/docs/Web/API/Window/onpopstate【window.onpopstate】
+. 示例见 `www.play.com/history/listen_back`
+
+
+pjax
+. pjax = pushstate + ajax
+# https://www.jianshu.com/p/557cad38e7dd【pjax使用小结】
+. 示例见 `www.play.com/history/pjax.php`
+
+

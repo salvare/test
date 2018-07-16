@@ -1,0 +1,48 @@
+ECMA	European Computer Manufactures Association	
+ISO	International Organization for Standardization
+IEC	
+ISOC	Internet Society	RFC
+W3C	World Wide Web Consortium
+
+中文RFC文档目录 http://man.chinaunix.net/develop/rfc/default.htm
+
+
+http://justcoding.iteye.com/blog/1950270	OAuth
+http://openid.net.cn/about.bml			OpenID
+http://www.cnblogs.com/likebeta/archive/2012/06/28/2568786.html
+http://desert3.iteye.com/blog/1701626
+
+进程 线程
+http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html【注意看评论】
+cpu调度对象基本上是线程，与进程无关【机制视系统而定，但目前大多系统是这样的】【为了简化调度机制】【search "FredWe"】
+http://www.cnblogs.com/lmule/archive/2010/08/18/1802774.html
+线程的同步和异步http://bibo531651225.iteye.com/blog/1819018
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+
+----start 关于浏览器缓存 开始很乱-----------------------------------------------------
+@ 浏览器缓存
+@ Expires 
+	* 指定一个绝对的过期时间(GMT格式)  HTTP/1.0
+	* HTML <meta http-equiv="expires" content="某时间格式。。。">
+	* PHP 
+	* 不推荐使用
+*Cache-Control 指定的是从文档被访问后的存活时间，这个时间是个相对值,单位“秒”  HTTP/1.1
+	1.header('Cache-Control:no-cache,must-revalidate');  
+	2.header('Pragma:no-cache');
+@HTML缓存机制
+* <meta http-equiv="expires" content="Sunday 26 October 2008 01:00 GMT" />
+  这个值小于当前时间，则表示不缓存
+  header('Pragma:no-cache');
+@ cache-control【？】
+*在新窗口重新打开页面	
+*地址栏回车/F5刷新	
+*后退按钮		这三种情况，如果设置了max-age，则使用缓存；如果设置了no-cache则重新请求
+*刷新按钮		即使max-age，仍重新请求
+* http://blog.sina.com.cn/s/blog_9c7ba64d01012vn2.html
+@HTTP缓存机制
+* http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html【perfect】
+@
+Content-Length:178
+Date:Tue, 26 Jul 2016 02:04:31 GMT
+ETag:"b2-5388050d6668f"
+Last-Modified:Tue, 26 Jul 2016 02:04:06 GMT
+
+Cache-Control:max-age=0
+If-Modified-Since:Tue, 26 Jul 2016 02:04:06 GMT
+If-None-Match:"b2-5388050d6668f"
+
+Status Code:304 Not Modified
+Date:Tue, 26 Jul 2016 02:06:51 GMT
+ETag:"b2-5388050d6668f"
+---------------------------------------------------------------------
+@ 静态页面 与 php动态页面 缓存机制不同
+* 静态页面，试验得：
+	. 初次访问：浏览器响应ETag和Last-Modified
+	. 再次访问：请求If-Modified-Since和If-None-Match，
+		    服务器在判断200或是304（Not Modified）
+* 动态页面【？】
+
+@ Expires策略 和 Cache-control策略
+* Expires
+	. HTTP/1.0 ，HTTP/1.1仍兼容，但不推荐使用
+* Cache-control
+	. 常用：no-cache，max-age（单位：秒），
+
+@ Last-Modified策略 与 Etag策略
+* 当判断已有缓存并且未过期（expires或max-age规定），会使用缓存；
+  当缓存已过期，会走Etag和Last-Modified策略
+* Last-Modified
+	. 服务器主机会记录文件的修改时间，例如linux会记录文件的mtime；
+	  客户端第二次请求web服务器，会发送本地已缓存的“最后修改时间”If-Modified-Since；
+	  服务器判断If-Modified-Since与最新的“修改时间”，
+	  如果相同，返回状态码304，使用缓存，
+	  如果又有新的修改，则请求服务器，重新获取数据，状态码200
+	. Last-Modified策略 分析 文件修改时间，来判断内容是否更新
+	. 问题：动态页面，PHP/ASP...怎么判断【？】
+* Etag
+	. 过程同上
+	. Etag策略 分析 文件的修改时间和“文件内容”
+	  iNode+Size+MTime->Hash 获取特征值
+*同时设置Etag和Last-Modified的话，优先使用Etag
+
+@ 用户行为 影响缓存
+* 地址栏回车/链接跳转/新窗口打开/
+  前进、后退/
+  F5/
+  刷新按钮/
+
+@ HTML<head> 和 PHP设置响应头
+* HTML<head>
+	. <meta http-equiv="Expires" content="0">
+	  <meta http-equiv="Pragma" content="no-cache">
+	  <meta http-equiv="Cache-control" content="no-cache">
+* PHP
+	. header ("Last-Modified: " . gmdate ('r', $max));
+	  header ("Expires: " . gmdate ("r", ($max + $interval)));
+	  header ("Cache-Control: max-age=$interval");
+	  header ("Pragma: cache");
+* 郁闷的是，实际测试时使用两种方法都没有效果，基本上只有后退会使用缓存。
+  这个问题因素较多：浏览器、用户操作、缓存策略。
+  因该是还忽略了什么东西。。暂时不花时间研究了
+----end--------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

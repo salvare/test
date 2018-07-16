@@ -1,0 +1,65 @@
+http://jingyan.baidu.com/article/3c48dd34491d47e10be358b8.html【win查看端口占用】
+
+http://zhidao.baidu.com/link?url=3iFjv2m0E-hAsBhsn8VSxAtahopkNicS3Ap8Xgqz9qEdeOduZhl1yoekvXZxSz3j4i0nsT8Y98XpewkbQg10la【使用路由器构成局域网的原理？】
+
+http://blog.csdn.net/code_style/article/details/38764203【git for windows】
+
+http://www.kancloud.cn/kancloud/a-programmer-prepares【程序员的自我修养】【excellent】
+
+PEAR
+https://www.ibm.com/developerworks/cn/linux/sdk/php/pear1/
+http://www.php100.com/html/webkaifa/PHP/PHPyingyong/2008/1224/270.html
+ 
+php magic method
+__construct
+__invoke
+http://www.php.net/manual/zh/language.oop5.magic.php
+
+
+[js] iframe
+* iframe获取父dom： var parent = window.parent;
+* 调用父页面的js函数： window.parent.hello()
+* 父页面获取iframe的dom： var _iframe = document.getElementById('iframeId').contentWindow;
+* js中DOM对象指的是document,window包含document,window是所有对象的容器
+Window 对象是全局对象，所有的表达式都在当前的环境中计算.
+http://bbs.csdn.net/topics/390674050
+* 直接调用的函数其实都是window调用的
+
+
+[js] 犯了个很蠢的错误，写了一个名为refresh的js函数，调试中一直错，还以为是缓存问题，其实是函数名与window中的固有函数重复了。。。。。
+
+
+特殊符号：
+https://zhidao.baidu.com/question/1434118652361513379.html
+http://www.360doc.com/content/15/0801/05/805501_488664977.shtml 
+alt+41420 = √
+alt+215   = ×
+alt+41466 = →
+alt=41467 = ←
+alt=41468 = ↑
+alt=41469 = ↓
+
+
+<meta>
+name		keywords|description|title		规定了一些供搜索引擎或用户查看的信息
+http-equiv	content-type|expires|refresh...		规定了浏览器展示页面方式的一些设置
+schme		UNKNOWN					规定了content的类型/格式/解析方式
+
+
+线程：
+是程序执行流的最小单元
+是被系统独立调度和分派的基本单位
+线程自己不拥有系统资源，只拥有一点儿在运行中必不可少的资源。但它可与同属一个进程的其它线程共享进程所拥有的全部资源
+同一进程中的多个线程之间可以并发执行
+线程也有就绪、阻塞和运行三种基本状态
+线程是程序中一个单一的顺序控制流程【顺序！】
+
+多线程执行【并发】有先后顺序吗？ 
+异步执行，没有规律
+CPU 随机选的，没有固定顺序
+多线程理论上每次跑的结果都是不一样
+
+系统调用、POSIX、C库、系统命令和内核函数
+http://www.th7.cn/system/lin/201601/149576.shtml 【excellent】
+
+

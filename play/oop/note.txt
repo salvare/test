@@ -1,0 +1,7 @@
+2.子类、父类中有相同函数名时：例如:Child extends Parent
+*通过实例调用
+	$child->fun()	调用的是child
+	$parent->fun()	调用的是parent
+*在child调用
+	$this->fun()	调用的是child
+	parent::fun()	调用的是parent

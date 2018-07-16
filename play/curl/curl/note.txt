@@ -1,0 +1,62 @@
+@ 参考
+  http://www.php.net/manual/en/function.curl-setopt.php【curlopt手册】
+  http://kb.cnblogs.com/page/130970/【HTTP 协议详解】
+
+@ 获取RequsetHeader
+* $headers = getallheaders();
+	. 局限：一些任何环境下不存在，比如fastcgi
+* $_SERVER中包含header信息
+	. 字段名略有改变
+	. $_SERVER内容丰富，还有很多服务器环境变量
+@ 获取ResponseHeader
+# 想要直接在 php服务器端 打印 即将要作出的响应，是做不到的【大概。。】
+* CURLOPT_HEADER=true 可以返回相应头信息
+* CURLOPT_HEADERFUNCTION='headerCallback' 可以设置一个回调函数，形如：
+	function headerCallback($ch, $string) 
+	{
+		//$string即header的一行，每返回一行header都会调用一次该函数
+		global $headerContents;
+		$bytesWritten = fwrite($headerContents, $string);
+		return $bytesWritten;//若返回sizeof($string)则继续下载后续内容；返回0则不会；分析header内容以判断是否继续抓取
+	}
+	// 参考：http://blog.csdn.net/pud_zha/article/details/18084611 【CURLOPT_HEADERFUNCTION】
+* file_get_contents("http://example.com");
+  var_dump($http_response_header);	
+		
+		
+@ 如何验证传输内容是否一致
+* 请求方 使用 base64_encode(md5($data))获取数据的特征码
+* 放在请求头中发送 
+	$header[] = "Content-MD5 $md5";
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+* 响应方获取$data和$header后，重新计算MD5，
+	$new_md5 = base64_encode(md5($data));
+	$result = $new_md5===$md5 ? 'success' : 'error';
+	
+	
+@ 使用cURL时，响应报文出现 HTTP/1.1 100 Continue
+* http://zhidao.baidu.com/link?url=17s8WUyAFboAhA6bDbIt2wWSWtvSrg24g-cWKNBJmmckTe_NLX2Fv_TikOg8KLoBZLPyfbpWwgXXjHi8mGRnCVIbZzqqkh36IBR59kQfDFe
+* http://baike.baidu.com/link?url=5gUk-2RNqTrQOGqZQSsz0yIvshYmJQtLsXZX2bZL2vgC-r7HCeG2u0dIM1aG-DGZhECeEvRqZn6S5m8x5eQDAq#1_1
+
+
+@ php cURL 常用选项
+// 回调
+CURLOPT_WRITEFUNCTION
+CURLOPT_HEADERFUNCTION
+CURLOPT_FOLLOWLOCATION //返回的头部中有Location(一般直接请求的url没找到)，则继续请求Location对应的数据
+// 文件
+CURLOPT_FILE:这个文件将是你放置传送的输出文件，默认是STDOUT.
+CURLOPT_INFILE:这个文件是你传送过来的输入文件。
+CURLOPT_INFILESIZE
+// timeout
+CURLOPT_TIMEOUT //用来告诉成功PHP脚本，从服务器接收缓冲完成前需要等待多长时间。如果目标是个巨大的文件，生成内容速度过慢或者链路速度过慢，这个参数就会很有用。
+CURLOPT_CONNECTTIMEOUT //用来告诉PHP脚本在成功连接服务器前等待多久（连接成功之后就会开始缓冲输出），这个参数是为了应对目标服务器的过载，下线，或者崩溃等可能状况；
+// 其它
+CURLOPT_MAXREDIRS //CURLOPT_FOLLOWLOCATION=true时有意义。设置查找次数，防止查找太深。
+CURLOPT_AUTOREFERER //当根据Location:重定向时，自动设置header中的Referer:信息
+CURLOPT_VERBOSE //在屏幕打印请求连接过程和返回http数据
+
+
+@ 拓展
+  http://blog.sina.com.cn/s/blog_3eba8f1c0102x5bx.html 【PHP利用Curl实现多线程抓取网页和下载文件】
+  http://www.jb51.net/article/113809.htm 【php使用curl实现ftp文件下载功能】
