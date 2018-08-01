@@ -1,3 +1,659 @@
+@ 核心流程
+* public/index.php
+  * bootstrap/autoload.php
+    . 直接使用的composer提供的autoload类型和配置
+  * bootstrap/app.php
+    & Illuminate\Foundation\Application@__construct
+  * $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    # 实际实例化的kernel类是 `Illuminate\Contracts\Http\Kernel extends Illuminate\Foundation\Http\Kernel implements App\Http\Kernel`
+      # `bootstrap/app.php`中就绑定了`$app->singleton(Illuminate\Contracts\Http\Kernel::class, SmartWiki\Http\Kernel::class);`
+      # 而`index.php`中，指定了`Illuminate\Contracts\“Http”\Kernel`
+      ？ 那么`Illuminate\Contracts\“Console”\Kernel`怎么用？
+    & Illuminate\Contracts\Http\Kernel@__construct
+  & $response = $kernel->handle($request);
+  . $response->send();
+  . $kernel->terminate($request, $response);
+* Illuminate\Foundation\Application@__construct
+  . $this->registerBaseServiceProviders(); // 注册服务提供者
+    . $this->register(new EventServiceProvider($this)); // Illuminate\Events\Dispatcher
+      . $app['events'] 绑定了 `Illuminate\Events\Dispatcher`类
+      ？$app['events']提供了怎样的机制？
+    . $this->register(new RoutingServiceProvider($this));
+      # 做了一些绑定，其中重要的有：
+      . $app['router'] => Illuminate\Routing\Router
+      . $app['url'] => Illuminate\Routing\UrlGenerator
+      . $app['redirect'] => Illuminate\Routing\Redirector
+    # 此时`$app->booted==false`，应用尚未启动
+      # 应用何时启动： `Kernel@bootstrap` => `Illuminate\Foundation\Bootstrap\BootProviders` => `App@boot`
+      # 详见下`Illuminate\Foundation\Bootstrap\BootProviders`
+    # 服务提供者的主要作用也就是做各种绑定吧
+  . $this->registerCoreContinerAliases(); // 注册别名
+  . $this->setBasePath($basePath); // 绑定各种路径
+* Illuminate\Contracts\Http\Kernel@__construct
+  # `SmartWiki\Http\Kernel`中自定义了`$middleware` `$middlewareGroups` `$routeMiddleware`属性
+    # 用户就是在这里定义自己应用所需的中间件的
+  * 将`$middlewareGroups` `$routeMiddleware`属性传递给了 `Illuminate\Routing\Router`
+* $response = $kernel->handle($request);
+  . $request->enableHttpMethodParameterOverride();
+    # Enables support for the _method request parameter to determine the intended HTTP method.
+    # laravel允许在表单中`_method`表单项的值作为请求方法。
+    # 虽然HTTP层面依然是post/get方法，但laravel将之视为`_method`意图(intend)的方法
+    ？ 查看一下具体实现
+  ! kernel@bootstrap
+    # `Illuminate\Foundation\Http\Kernel`中定义了 `$bootstrappers`属性
+      # 而`SmartWiki\Http\Kernel`中也没有覆盖`$bootstrappers`属性
+        ! 启动项是不建议让用户自定义的
+          # 启动项定义了内核(Kernel)的核心流程
+          # 不同内核(Http|Console)可以有不同的启动项
+            ？有几种不同的内核？怎么使用？
+          # 用户想要添加自己的逻辑，应该添加在中间件：`$kernel->middleware(全局) | middlewareGroups(路由分组) | routeMiddleware(路由) | $controller->middleware(局部)`
+            # 详见下
+    . if (! $this->app->hasBeenBootstrapped()) { ... } // 判断$App->hasBeenBootstrapped
+    . $this->bootstrappers() // $kernel->bootstrappers 启动项
+    * $this->app->bootstrapWith($this->bootstrappers());
+      . $this->hasBeenBootstrapped = true; // 设置$App->hasBeenBootstrapped状态
+      . foreach ($bootstrappers as $bootstrapper) { $this->make($bootstrapper)->bootstrap($this); }
+        # 依次调用各启动项的`bootstrap`方法
+        . Illuminate\Foundation\Bootstrap\DetectEnvironment
+          # 加载`/.env`文件，将其内容写入`$_ENV` `$_SERVER` `putenv`
+          # 使用了`vlucas/phpdotenv`插件用来加载配置文件
+        . Illuminate\Foundation\Bootstrap\LoadConfiguration
+          # 绑定了`Illuminate\Config\Repository`到$app->instances['config']
+          # 录入了`/config`下的所有配置文件
+        . Illuminate\Foundation\Bootstrap\ConfigureLogging
+          # 绑定了`Illuminate\Log\Repository`到$app->instances['log']
+          # 使用了`monolog/monolog`插件来记录日志
+          # 使用`/storage/logs/laravel.log`作为日志文件
+            ？log_level 参数是用作什么的？
+        . Illuminate\Foundation\Bootstrap\HandleExceptions
+          # 定义了异常/错误处理方法
+          . set_error_handler
+          . set_exception_handler
+          . register_shutdown_function
+        . Illuminate\Foundation\Bootstrap\RegisterFacades
+          # 给Facade类注册别名
+        ! Illuminate\Foundation\Bootstrap\RegisterProviders
+          # /config/app.php 的 `providers`项 定义了 ServiceProvider列表
+          # 用户如果自己需要添加ServiceProvider的话，也挺该添加在这里
+          # 因为一个应用需要的服务一般不会变动，因此会将 服务清单(manifest) 会缓存在`/bootstrap/cache/services.php`中
+          * 机制
+            . 初始化manifest： [providers=>[...], eager=>[], when=>[], deferred=>[]]
+              . providers中是配置中的服务提供者文件列表
+              . eager是立刻注册的服务(defer==false)
+              . deferred是推迟注册的服务(efer==true)
+              . when是推迟注册的服务的触发注册事件
+            . ServiceProvider按照约定都有: 
+              . `provides`方法：返回该服务提供者中注册了哪些服务（即绑定了哪些类）
+              . `defer`属性：标记是否推迟注册
+              . `when`方法：如果$provider->defer==true的话，when方法返回了哪些“事件”会触发注册
+                ？ “事件”是 $app[event]->fire制造的
+            # 即使没有`when`，或是设置了`when`但事件尚未触发
+              . `App@make(abstract)`时也会注册: if (isset($this->deferredServices[$abstract])) { $this->loadDeferredProvider($abstract); }
+              . 另外在命令行模式下，`Kernel@bootstrap`中随即就加载了所有延迟服务提供者
+            . 为什么要有“延迟注册(deferredServices)”这样的机制
+              # 依赖关系? <= 不存在的，有依赖关系的一般都在同一个ServiceProvider内
+                ! ServiceProvider中如果要使用其它服务，要写在`boot`方法中。因为不确定其它服务当前是否已绑定。`boot`才是依赖的解决方案。
+              # 惰性加载 
+                # If the service providers are not deferred, we will simply add it to an 
+                  array of eagerly loaded providers that will get registered on every
+                  request to this application instead of "lazy" loading every time.
+                # 来自注释 `Illuminate\Foundation\ProviderRepository@compileManifest`
+                . 惰性加载优点是需要时才进行绑定，能节省资源。
+                  ？那么为什么不全部采用惰性加载呢？
+                # https://blog.csdn.net/qw_xingzhe/article/details/54907215
+                # http://www.jb51.net/article/61623.htm
+                # https://www.cnblogs.com/kidsitcn/p/4578921.html
+            # 服务提供者都可以实现`boot()`方法
+              . 应用有一个是否已启动`App@booted`状态（见下）
+              . `App@loadDeferredProvider`时如果`App@booted==false`，则使用`App@booting()`方法将`Provider@boot()`方法加入`App@bootingCallbacks`，该数组中的方法会在 应用启动 时调用
+              . 已注册的服务提供者的`boot`方法，也会在应用启动时调用（见下）
+        ! Illuminate\Foundation\Bootstrap\BootProviders
+          . $app->boot();
+          . $this->fireAppCallbacks($this->bootingCallbacks);
+          . array_walk($this->serviceProviders, function ($p) { $this->bootProvider($p); }); // 调用各provider的boot方法
+          . $this->booted = true; // 从此 应用已启动！
+          . $this->fireAppCallbacks($this->bootedCallbacks); // 启动后回调
+            # 可以通过`App@booted($callback)`方法添加`bootedCallbacks`回调
+      # bootstrap结束
+  ! (new Pipeline($this->app)->send($request)->through($this->middleware)->then( & $this->dispatchToRouter())
+    # 依次调用中间件，将$request作为参数
+    # 最后调用`$this->dispatchToRouter()`
+    # 在此过程中`$request`被多重处理
+    ! Illuminate\Routing\Pipeline extends Illuminate\Pipeline\Pipeline 
+      . 子类覆盖了父类的`getSlice` `getInitialSlice`方法，只是添加了异常处理
+        # 覆盖`getSlice`的写法很有意思
+      # https://www.jianshu.com/p/3c2791a525d0【理解Laravel中的pipeline】
+      # `Illuminate\Pipeline\Hub`(大概)是用于选择某一组管道(Send an object through one of the available pipelines.)
+    . Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode
+      # 判断系统是否处于维护状态。设计为`/storage/framework/down`文件存在时为维护状态
+        . 使用命令 `php artisan down`
+    . SmartWiki\Http\Middleware\InstallMiddleware
+      # 检查`smartwiki`是否安装，如果未安装，则会引导向安装页面
+* Illuminate\Routing\Router
+  # `$request`经历`$kernel->middleware`过滤后，最终传递给`Router@dispatch`
+  * SmartWiki\Providers\RouteServiceProvider 
+    # 预先工作，加载路由配置
+    . app/Http/routes.php &
+      app/Http/Routes/*.php
+    . $router->group(['namespace' => $this->namespace, 'middleware' => 'web',], function ($router) { // 上述文件 });
+    # 这是用户自己注册的provider
+  . 路由相关类及其功能
+    . Illuminate\Routing\Router
+      # 路由核心类，用户接口
+      . `group | get|post|match ` 等方法 设置路由
+      . `$router->routes`属性是`Illuminate\Routing\RouteCollection`类型
+      . `$router->current`属性是`Illuminate\Routing\Route`类型
+    . Illuminate\Routing\RouteCollection
+      # 存储路由配置，加载的路由文件最终存储在这里
+    . Illuminate\Routing\Route
+      # 单个路由信息
+    ? Illuminate\Routing\UrlGenerator
+    ? Illuminate\Routing\ControllerDispatcher
+  . Router@dispatch($request)
+    . $route = $this->findRoute($request);
+      . $this->current = $route = $this->routes->match($request); // 根据request匹配符合的路由
+      . $this->substituteBindings($route); // 绑定参数。实例化模型类。
+    . $response = $this->runRouteWithinStack($route, $request);
+      . $middleware = $shouldSkipMiddleware ? [] : $this->gatherRouteMiddlewares($route); // 根据分组(group)获得中间件
+        # `$kernel->middlewareGroups`传递给了`$router->middlewareGroups`
+        # `$kernel->routeMiddleware`传递给了`$router->middleware`
+          # 这个只是一个别名对照表，如果`$kernel->middlewareGroups`中用了中间件别名的话，会用它找到真正的中间件类
+    . SmartWiki的Web中间件组
+      . SmartWiki\Http\Middleware\EncryptCookies
+        . $request = $this->decrypt($request)
+        . $response = $next($decrypted);
+        . $response = $this->encrypt($decrypted);
+        . return $response;
+        # 解密接收到的`cookie`，并传递给下层中间件，然后对得到的`response`再进行`cookie`加密
+        ! 中间件中不仅可以处理`request`，还可以处理`response`
+      . Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse
+        ？写`cookie`
+      . Illuminate\Session\Middleware\StartSession
+        # 开启`session`
+        # 但不是(不一定是)WEB服务器自带的会话功能(体现在PHP里就是session_start和$_SESSION)
+        # 同样利用cookie，但是用 文件/数据库/数组(不持久) 等存储会话数据，都算是实现了`session`
+        ？ `manager`是什么 `Illuminate\Session\SessionManager extends Illuminate\Support\Manager`
+      . Illuminate\View\Middleware\ShareErrorsFromSession
+      . SmartWiki\Http\Middleware\VerifyCsrfToken
+        # 有好几种实现方式：form | header | cookie
+  . $route->run($request)
+    # 执行目标控制器/闭包
+    ! ControllerDispatcher@callWithinStack
+      # 此过程中还可以经过控制器中定义的中间件
+      # 控制器类都有实现`Illuminate\Routing\Controller`，拥有方法`getMiddleware(){ return $this->middleware; }`
+      # `$controller->middleware`形如：
+        [
+          '\SmartWiki\Http\Middleware\Authenticate' => ['only'=>['index', 'detail']], // 中间件类名 => 仅`index|detail`方法
+          'auth.basic' => ['except'=>['drop']], // 中间件别名($kernel->middlewareGroups) => 除了`drop`方法
+          'web' => ['only'=>['edit']], // 中间件组名($kernel->routeMiddleware) => 仅`edit`方法
+        ]
+  # `Kernel@handle`结束
+* `Response@send`
+* `Kernel@terminate`
+  # 执行所有经过的中间件的`terminate`方法
+  # 执行所有`$app->terminatingCallbacks`回调
+
+
+@ 容器重要方法解析
+* App@instance
+  . `unset($this->aliases[$abstract]);`  // 一旦注册为一个共享实例(instance as shared in the container)，就不能再作为别名
+  * `$this->instances[$abstract] = $instance;` // core
+  . `if ($bound) { $this->rebound($abstract);}`
+    . `rebound`行为时，可以执行`reboundCallbacks`回调
+    . 通过`App@rebinding`方法注册`reboundCallbacks`回调
+      ! 意义：例如`Illuminate/Routing/RoutingServiceProvider`中
+        . $url = new UrlGenerator($routes, $app->rebinding('request', function ($app, $request) {
+            $app['url']->setRequest($request);
+          } ) );
+        # `UrlGenerator`在创建时需要注入`Request`
+          # 而当`Request`类更新(如：$app->instance('request', $new) 或 $app->extend() 或 $app->bind() )时
+          # `UrlGenerator`也需要更新注入的`Request`为最新的
+        ？但是这个操作很容易忽略吧？而重新绑定操作应该是默认的，框架却没有去实现它？ 
+* App@bind($abstract, $concrete = null, $shared = false)
+  . 单词`concrete`译作'具体物'。参数类型为`\Closure|string|null`，但在方法中都会转化为`\Closure`
+  . `unset($this->instances[$abstract], $this->aliases[$abstract]);`
+  . `$this->bindings[$abstract] = compact('concrete', 'shared');` // 是一个键为concrete和shared的数组
+  . `if ($this->resolved($abstract)) { $this->rebound($abstract);}` // 如果已解析，则`rebound`
+  * 【important】$shared参数表示是否共享，如果$shared=true的话，多次$app[abstract]将获得同一个实例，否则将获得多个不同的实例
+    . 试验:$app->bind('salvare', 'Illuminate\Routing\Pipeline', FALSE);
+           dump($app['salvare']); // #199
+           dump($app['salvare']); // #1024
+* App@singleton($abstract, $concrete = null)
+  . 即 `$this->bind($abstract, $concrete, true);`
+* App@register($provider, $options = [], $force = false)
+  . if (($registered = $this->getProvider($provider)) && ! $force) { return $registered;} // 先检查$app->serviceProviders是否已存在
+  * $provider->register(); // 调用服务提供者的register方法。 说是‘注册’，其实就是提供的服务内容？
+  . foreach ($options as $key => $value) { $this[$key] = $value; }
+    . App implements ArrayAccess
+    . public function offsetGet($key){ return $this->make($key); }
+    . public function offsetSet($key, $value){ // $value打包为closure;  $this->bind($key, $value); } 
+    * 注册服务时，可以添加选项参数，可以直接以`$app[key]`形式访问
+  * markAsRegistered
+    ？ $this['events']->fire($class = get_class($provider), [$provider]);
+    . $this->serviceProviders[] = $provider; // 添加入$app->serviceProviders，但奇怪的是没有用类名之类作为键名
+    . $this->loadedProviders[$class] = true; // 添加入$app->loadedProviders，已加载服务
+  * if ($this->booted) { $this->bootProvider($provider); } // 如果此时`application has already booted`，则会尝试调用服务提供者的`boot`方法
+    ？ 是什么时候才是应用已启动($this->booted==true)?
+* App@make($abstract, array $parameters = [])
+  . if (isset($this->instances[$abstract])) // 检查共享实例
+  . $concrete = $this->getConcrete($abstract); 
+    . $this->contextual -> $this->bindings -> $abstract
+  * $object = $this->build($concrete, $parameters); // 实例化
+  . foreach ($this->getExtenders($abstract) as $extender) { $object = $extender($object, $this); }
+    . 可以通过`App@extend($abstract, Closure $closure)`方法设置额外的回调
+  . if ($this->isShared($abstract)) { $this->instances[$abstract] = $object; } // 如果共享
+  ? $this->fireResolvingCallbacks($abstract, $object); // 又是各种回调
+  . $this->resolved[$abstract] = true; // 该实例解析完成
+* App@build($concrete, array $parameters = [])
+  . if ($concrete instanceof Closure) { return $concrete($this, $parameters); } // 如果是闭包，直接执行得返回值
+  . $reflector = new ReflectionClass($concrete); // 如果是类，通过反射(reflect)机制分析它
+  ! $this->buildStack[] = $concrete; // 
+    . 【important】在实例化过程中，可能参数又包含其它类，因此会递归调用`App@make``App@build`
+    . 因此设置这个栈存储实例化过程中的状态
+  . $instances = $this->getDependencies($dependencies, $parameters);
+    . App@make -> App@build -> App@getDependencies -> App@resolveClass -> App@make // 从而可能造成
+* App@share(Closure $closure)
+  . 目前只看到用来构造 `concrete`
+  . 试验：$concrete = $app->share(function($app) {
+             return new \Illuminate\Routing\Pipeline($app['app']);
+          });
+          $app->bind('salvare', $concrete, FALSE);
+          dump($app['salvare']); // # 197
+          dump($app['salvare']); // # 197
+     # 就算 $shared参数为false，也会获得同一个实例
+
+
+@ 容器属性全解析
+$app->bindings
+  . 给`abstract`设置`concrete`和`shared`属性
+  . `concrete`是一个闭包，会直接返回一个值 或 make/build一个实例
+  . `shared==true`则将`abstract`和对应 实例/值 加入`$app->instances`。下次在make时，将直接从`$app->instances`取用
+$app->instances 
+  . 归根到底，`$app->instances`只有在被`App@make`方法使用
+$app->aliases
+  . 别名，任何输入的`abstract`都要先经过`App@getAlias`过滤
+$app->resolved
+  . 当`make`后,`$app->resolved[abstract]`会被置为true
+  . 唯一用处是：在`App@bind`中，如果发现该abstract已解析过，则会触发`rebound`
+$app->contextual &
+$app->buildStack
+  . `App@make`中递归解析构造方法参数时要用的
+  . 对外界功能不大
+$app->extenders
+  . `App@make`方法中，给得到的 实例/值 添加扩展的过滤函数
+$app->tags
+  . 可以给多个`abstract`设置多个`tag`
+  . 不知道怎么用（没什么大用）
+$app->reboundCallbacks
+  . 触发`rebound`时的回调
+  . 当一个 已绑定(bindings) 或 已共享(instances) 的`abstract`发生变化时，就会触发`rebound`
+    . App@bind
+    . App@extend
+    . App@instance
+$app->globalResolvingCallbacks
+$app->resolvingCallbacks
+$app->globalAfterResolvingCallbacks
+$app->afterResolvingCallbacks
+  . `App@make`在得到目标 实例/值 后，会将$app->resolved[abstract]置为true，并触发`fireResolvingCallbacks`
+  . 以上是执行顺序
+  . global 是所有abstract都要执行，
+    没有global 则会判断 $object的类型 和 $abstract值 执行对应的回调
+
+
+@ 事件机制
+* 核心类 `Illuminate\Events\Dispatcher`
+  # 应用容器中用`$app['event']`获取`Dispatch`实例
+. 重要方法
+  . `Dispatcher@listen($events, $listener, $priority = 0)`
+    # 注册监听
+    . 参数
+      . $events : 单个事件名 或 事件名数组。如果传递数组的话可以同时给多个事件注册同一个Listener
+      . $listener : 监听者。格式可以是 Closure | Class@func | Class(默认方法handle) 
+      . $priority : 权重。数值越高越优先执行
+    . if (Str::contains($event, '*')) { $this->setupWildcardListen($event, $listener); } // 如果事件名带有通配符‘*’，则添加入`wildcards`
+    & else { $this->listeners[$event][$priority][] = $this->makeListener($listener); } // 否则加入`listeners`
+  * `Dispatcher@makeListener`
+    . Dispatcher@createClassCallable($listener, $container)
+      . if ($this->handlerShouldBeQueued($class)) { ... }
+        # 如果`$listener`实现了`ShouldQueue`，则将在事件触发时加入队列
+        . Dispatcher@createQueuedHandlerCallable($class, $method)
+        . $this->resolveQueue()->push('Illuminate\Events\CallQueuedHandler@call', [...]);
+          # `$this->resolveQueue()`得到的是`QueueManager`类
+            # 其定义了`__call`方法，可以调用默认的($config['queue.default'])连接的`push`方法
+      . else { return [$container->make($class), $method]; }
+        # 将在触发时直接执行
+  . `Dispatcher@fire($event, $payload = [], $halt = false)`
+    . foreach ($this->getListeners($event) as $listener) // 依次处理listener
+    & if ( ... instanceof ShouldBroadcast) { $this->broadcastEvent(...); }
+    . $response = call_user_func_array($listener, $payload); // 调用listener中的方法
+      . 如果`$event`是一个Event实例的话，该实例将作为唯一参数
+      . 否则`$payload`将作为传给`$listener`的参数
+    . if (! is_null($response) && $halt) { return $response; } // 如果`$halt==true`，则任意一次收到response时，返回该response，而且将终止后面的listeners
+    . if ($response === false) { break; } // 如果`$response===false`时，则返回目前已执行的所有listener的返回的集合responses，而且将终止后面的listeners
+  . Dispatcher@broadcastEvent($event)
+    . $connection = $event instanceof ShouldBroadcastNow ? 'sync' : null;
+      # $event instanceof ShouldBroadcastNow ? 同步 : 默认队列驱动
+    . $this->resolveQueue()->connection($connection)->pushOn($queue, 'Illuminate\Broadcasting\BroadcastEvent', [...]);
+      # 加入队列，由`Illuminate\Broadcasting\BroadcastEvent@fire`处理
+. 属性
+  . `listener`属性，形如：
+    [
+    SmartWiki\Events\SomeEvent => [ // 事件名
+      100 => [ // 权重
+        listener1 // 监听者
+      ],
+      50 => [
+        listener2
+        listener3
+        listener1 // 重复监听的话，触发时也会被多次调用
+      ],
+      10 => [
+        listener4
+      ],
+      0 => [ // 默认权重是0
+        listener5
+      ],
+    ]
+  . `sorted`属性
+    # 按照权重，将`$listener[someevent]`转为一维数组
+    # 当`$listener`发生变化时，即该事件有新的注册监听(Dispatcher@listen)时，会删除`$listener[someevent]`，下次触发事件时会重新计算存储`$sorted`
+  . `wildcards`属性
+    # `$wildcards[key]`是一维数组，不能设置权重
+    # 实质上其整体拥有最低权重。触发事件时，`$listener`在先，`$wildcards`合并到后面，然后依次调用
+  . `firing`属性
+    # 触发中的事件，是一个栈(stack)
+    # `fire('someevent')`时，将`someevent`压入`$firing`；处理完`listeners`后，`$firing`弹出`someevent`
+    ？因为是栈，所以`firing`属性是为嵌套调用`Dispatcher@fire`时准备的。
+      但是`laravel`本身没有用到，我也想不到必须要用它的情景。
+    # 结论：无视这个
+. artisan命令 生成 事件类和监听器类
+  . `EventServiceProvider`的`listen`属性中添加 事件类和监听器类 全名
+  . php artisan event:generate
+
+createQueuedHandlerCallable ？？？
+
+(new ReflectionClass($class))->implementsInterface(
+                'Illuminate\Contracts\Queue\ShouldQueue'
+            )
+
+    	dump(debug_backtrace(~DEBUG_BACKTRACE_PROVIDE_OBJECT & DEBUG_BACKTRACE_IGNORE_ARGS));exit;
+
+
+@ 队列
+. 目的：1.异步；(如果有2的话)2.重试
+. 实现方式
+  . 生产者-消费者模式(producer-customer) :
+    # 生产者进程将消息(message) 加入队列(存储，可以有多种驱动)；消费者是另开的一个进程，读取并处理消息
+  . 发布者-订阅者模式(publisher-subscriber)
+  # https://blog.csdn.net/qq_37610423/article/details/72659306【redis队列的实现】【good】
+    # https://www.cnblogs.com/George1994/p/6702084.html【阻塞和非阻塞，同步和异步】
+. 梗概
+  . 任务(Job)
+    . `use Queueable;`
+      . `$connection` 队列驱动
+      . `$queue` 选择哪个队列
+      . `$delay` 设置延迟
+    . use InteractsWithQueue
+      . 如果`use InteractsWithQueue`，将会使用`setJob`方法注入`DatabaseJob`实例，可以对队列进行操作
+      . 实现于`CallQueuedHandler@setJobInstanceIfNecessary`
+    . `public $tries` 
+    . `public $timeout` 
+    . `funcion handle` 任务内容
+    . 使用
+      . `$job = (new XxxJob())->delay(Carbon::now()->addMinutes(10))->onConnection('sqs')->onQueue('processing');`
+      & `dispatch($job);`
+    # 创建Job类的命令：`php artisan make:job SomeJob`
+  & 运行队列进程
+    . `php artisan queue:work --tries=3 --timeout=30 redis --queue=high,low --daemon`
+    . --tries
+      # 参数项来设置队列任务允许的最大尝试次数（当报错或超时），如果没有指定 --tries 选项的值，任务会被无限期重试
+    . --timeout
+      # 每个任务的最长时间。如果超时，会停止任务，认为失败（之后会重试）
+      . 配置项 `$config['queue.someconn.retry_after']`
+        # 定义任务在执行以后多少秒后释放回队列。
+          如果retry_after 设定的值为 90, 任务在运行 90 秒后还未完成，那么将被释放回队列而不是删除掉。
+        # 注意：参数项 --timeout 的值应该是中小于配置项 retry_after 的值，这是为了确保队列进程总在任务重试以前关闭。
+          如果 --timeout 比retry_after 大，则你的任务可能被执行两次。
+      ! 实测时，发现我的v5.4没有`--timeout`选项
+        ! 文档细节是不可靠的，一切以代码为准，但是文档描述的概念是相似的
+    . redis 
+      # 连接名(connection)
+    . --queue=high,low
+      # 队列名
+      # 前后顺序表示了队列优先级
+    . --daemon
+      # 加了`--deamon`后将持续等待并处理工作，不加的话只会处理一条工作。
+  . 配置文件 `config/queue.php`
+  . 任务失败
+    # 任务 超时或报错 时，会被认为任务失败
+    # 在`$config['queue.someconn.retry_after']`时间后会重试，最多重试`--tries`或`public $tries`次
+    # 依然失败，任务会被插入到 failed_jobs 表
+      . 即使不是db驱动，也是通过数据库`failed_jobs`表实现的
+    . 命令
+      . 查看失败任务 `php artisan queue:failed`
+      . 重试失败任务 `php artisan queue:retry JobID|all`
+      . 删除 `php artisan queue:forget JobID | php artisan queue:flush`
+    . `SomeJob@failed(Exception $e)`方法会在任务出错是调用
+  . 任务事件
+    . Queue::failing
+    . Queue::before
+    . Queue::after
+    . Queue::looping
+. 关键类
+  . Illuminate\Queue\QueueServiceProvider
+    # 注册所有队列服务和命令
+  . Illuminate\Queue\Console\WorkCommand
+    # artisan queue:work 命令
+  . Illuminate\Queue\Worker
+    # 是执行队列工作的核心类
+    # 其`manager`属性是`Illuminate\Queue\QueueManager`实例
+  . Illuminate\Queue\QueueManager
+    # 管理各类型连接(connection)，并且可以设置队列各种运行状态(JobProcessing|JobProcessed|looping...)的回调
+  . Illuminate\Queue\Connectors\DatabaseConnector
+    # 各队列驱动的连接类，这里以`database`为例
+    # 实现`connect`方法，返回队列驱动
+  . Illuminate\Queue\DatabaseQueue
+    # 各队列驱动核心类
+    # `Worker`类通过`XxxConnector`获得`XxxQueue`，赋给变量`$connection`
+      # 然后用`$connection`统一处理队列逻辑
+      # 所以必须实现同样的一些接口
+        . extends Illuminate\Queue\Queue implements Illuminate\Contracts\Queue\Queue
+  . Illuminate\Queue\Jobs\DatabaseJob
+    # 各队列驱动的‘工作’类，封装从驱动中取出的`job`的内容和执行状态
+    . extends Illuminate\Queue\Jobs\Job implements Illuminate\Contracts\Queue\Job\JobContract
+    . 其`database`属性是`DatabaseQueue`实例
+  . Illuminate\Queue\Failed\DatabaseFailedJobProvider
+    # 失败任务处理类
+    # 实质上就是管理`failed_jobs`表的类
+      . 命令 `php artisan queue:failed-table` `php artisan migrate`
+    # 注意：各队列驱动都使用`DatabaseFailedJobProvider`处理失败任务
+      . QueueServiceProvider@registerFailedJobServices
+        # 如果没有配置`$config['queue.failed']`，则使用`NullFailedJobProvider`，实质上丧失‘失败任务’机制
+  . Illuminate\Queue\CallQueuedHandler
+    # 用户在`dispatch($someJob)`时，实际上存储的工作是`CallQueuedHandler@call`，同过这个类执行`SomeJob@handle`
+    # 数据形如： "payload": "{"job":"Illuminate\\Queue\\CallQueuedHandler@call","data":{"commandName":"SmartWiki\\Jobs\\SomeJob" ...}}
+    # 详情见下
+. 运行队列进程 `artisan queue:work | Illuminate\Queue\Console\WorkCommand@fire`
+  # 维护模式下，不运行队列。带`--deamon`或`--force`选项时除外。
+  . WorkCommand@listenForEvents
+    . 监听`JobProcessed | JobFailed`，将运行完成/失败的信息输出到控制台。
+  . Worker@pop($connectionName, $queue = null, $delay = 0, $sleep = 3, $maxTries = 0)
+    # 获取和执行队列中下一个任务
+    . $job = $this->getNextJob($connection, $queue);
+      . foreach (explode(',', $queue) as $queue) { ... }
+        # 体现了队列的优先级
+      ! $job = $connection->pop($queue)
+        # `$connection`是`DatabaseConnector`类
+        # `$job`是`DatabaseJob`类
+        . DatabaseQueue@pop
+          . $job = $this->getNextAvailableJob($queue)
+            # 从`jobs`表获取队列的下一个Job
+            # `$job`是一个标准对象(stdClass)
+            . 条件
+              . ( reserved=0 AND available_at<$now ) OR (reserved=1 AND reserved_at<$now-$expire ) ORDER BY id ASC
+                ？ 难道还有保存之后不立刻执行的吗
+                ？ reserved 和 expire 起了什么作用？
+          . $job = $this->markJobAsReserved($job);
+            . $job->reserved = 1; // 注意
+            . $job->attempts = $job->attempts + 1;
+            . $job->reserved_at = $this->getTime();
+          . return new DatabaseJob($this->container, $this, $job, $queue);
+    . Worker@process($connection, Job $job, $maxTries = 0, $delay = 0)
+      # 执行任务
+      . if ($maxTries>0 && $job->attempts()>$maxTries) { // 任务失败处理 }
+        # 如果设置了选项`--tries=3`，当前却是第4次($job->attempts)尝试执行，则将视为该任务失败
+        . Worker@logFailedJob($connection, Job $job)
+          . $failedId = $this->failer->log($connection, $job->getQueue(), $job->getRawBody());
+            # 将新记录插入`failed_job`表
+          . $job->delete()
+            . $job->deleted = true;
+            . $this->database->deleteReserved($this->queue, $this->job->id);
+              # 删除原队列（就database驱动而言就是jobs表）中的记录
+          . $job->failed();
+            # 执行原工作类的`failed`方法
+          . $this->events->fire(new Events\JobFailed($connection, $job, $data, $failedId));
+            # 触发 队列工作失败 事件
+      . try { //执行工作 } catch { //异常 }
+        # 执行工作
+          . $this->events->fire(new Events\JobProcessing($connection, $job, $data)); // 触发 JobProcessing 事件
+          ! $job->fire();
+            . Job@resolveAndFire(array $payload)
+              . CallQueuedHandler@call(Job $job, array $data)
+                . Illuminate\Bus\Dispatcher@dispatchNow($command);
+                  # 内部使用`pipeline`，支持设置中间件
+                  . SmartWiki\Jobs\SomeJob@handle
+                    # 执行 用户自定义的工作类 的`handle`方法
+                ! if (! $job->isDeletedOrReleased()) { $job->delete(); }  
+                  # 工作正常结束，删除记录
+          . $this->events->fire(new Events\JobProcessed($connection, $job, $data)); // 触发 JobProcessed 事件
+        # 处理异常
+          . Worker@handleJobException($connection, Job $job, $delay, $e)
+            . $this->events->fire(new Events\JobExceptionOccurred($connection, $job, $data, $exception)); // 触发 JobExceptionOccurred 事件
+            . $job->release($delay)
+              . $job->released = true;
+              . $this->delete();
+                # 删除`jobs`表原来的记录
+              . $this->database->release($this->queue, $this->job, $delay);
+                # 插入`jobs`表新记录，和原来相比，attempts字段+1
+                ! 【important】此时任务在队列的最末
+            . throw $e; // 仍然抛出异常，给上级处理
+          . Worker@pop
+            . $this->exceptions->report($e);
+              . Illuminate\Foundation\Exceptions\Handler@report
+                . $this->log->error($e); // 记录日志
+    . $this->sleep($sleep);
+      # 如果队列中没有可执行的Job，休眠`--sleep`秒
+  . Worker@daemon
+    # 大概就是死循环调用`Worker@pop`，队列为空时休眠`--sleep`秒
+  ! 另外，全程没有看到关于超时(timeout)的代码
+    . 好吧，v5.3之前没有`retry_after`和`timeout`，我用的是v5.2代码
+    # https://phpartisan.cn/news/97.html【retry_after/expire】
+. 分发任务 `dispatch($someJob) | Illuminate\Bus\Dispatcher@dispatch()`
+  . 如果`$someJob instanceof ShouldQueue`则分发给队列(dispatchToQueue)，否则直接执行(dispatchNow)
+  . Dispatch@dispatchToQueue($someJob)
+    . $queue = call_user_func($this->queueResolver, $connection); 
+      # 返回`DatabseQueue`
+      . Dispatch@pushCommandToQueue($queue, $someJob)
+        . $queue->push|later
+          # 队列驱动(DatabseQueue)存储任务数据
+          . Queue@createPayload
+            # 将`someJob`序列化为字符串，将`Illuminate\Queue\CallQueuedHandler@call`作为job
+. 其它驱动
+  . sync
+    # 选用`sync`驱动，实际不存在队列，而是同步调用，所以是不可能在`artisan queue:work`中被调用的
+    # 其存在的意义在于方便调试
+    . SyncQueue@push
+      # `Queue@push`方法原本是用来将 工作 加入队列的，但是`SyncQueue@push`中直接执行了 工作，内容同`Worker@process`差不多
+      . $this->container['events']->fire(new Events\JobProcessing('sync', $job, $data)); // 触发 JobProcessing
+      . $queueJob->fire(); // CallQueuedHandler@call -> SomeJob@handle
+      . $this->container['events']->fire(new Events\JobProcessed('sync', $job, $data)); //  触发 JobProcessed
+      . try { ... } catch { // 异常处理 }
+        . $this->container['events']->fire(new Events\JobExceptionOccurred('sync', $job, $data, $exception)); // 触发 JobExceptionOccurred
+        . $job->failed(); // 用户自定义的failed方法
+        . $this->container['events']->fire(new Events\JobFailed('sync', $job, $data)); // 触发JobFailed事件
+    . SyncQueue@pop
+      # 是空的，因为不需要
+  ？redis
+# 附`DatabaseJob`结构：
+ Illuminate\Queue\Jobs\DatabaseJob {#633
+  #database: Illuminate\Queue\DatabaseQueue {#634
+  #job: {#646
+    +"id": 1
+    +"queue": "foo"
+    +"payload": "{"job":"Illuminate\\Queue\\CallQueuedHandler@call","data":
+     {"commandName":"SmartWiki\\Jobs\\SomeJob","command":"O:22:\"SmartWiki\\Jobs\\SomeJob\":4:
+     {s:10:\"connection\";s:8:\"database\";s:5:\"queue\";s:3:\"foo\";s:5:\"delay\";O:13:\"Carbon\\Carbon\":3:
+     {s:4:\"date\";s:26:\"2018-06-05 14:24:20.920122\";s:13:\"timezone_type\";i:3;s:8:\"timezone\";s:3:\"PRC\";}
+      s:6:\"\u0000*\u0000job\";N;}"}}"
+    +"attempts": 1
+    +"reserved": 1
+    +"reserved_at": 1528256037
+    +"available_at": 1528180860
+    +"created_at": 1528179830
+  }
+  #instance: null
+  #container: Illuminate\Foundation\Application {#3}
+  #queue: "foo"
+  #deleted: false
+  #released: false
+ }
+# 关于超时
+  # 超时的实现是阅读代码时最大的困惑
+  # 相关的概念有
+    . timeout / expire
+    . {queue}:delayed / {queue} / {queue}:reserved
+  # v5.2 似乎确实‘超时’概念，但是`expire`和`reserved`的存在很奇怪
+  # v5.4 似乎用`pcntl`扩展的信号机制，定时(timeout)发送`SIGALRM`信号，在回调中结束进程
+    # 但是不该呀，超时应该从 {queue}:reserved 回到 {queue}:delayed
+  ! 不管了
+# 参考
+  # https://www.lijinma.com/blog/2017/01/31/laravel-queue/ 【使用 Laravel Queue 不得不明白的知识】【good】
+  # https://www.cnblogs.com/yjf512/p/6571941.html?utm_source=tuicool&utm_medium=referral【laravel的消息队列剖析】【good】
+  # http://laravelacademy.org/post/6922.html 【文档】
+  # https://www.zhihu.com/question/34243607【消息队列的使用场景是怎样的】
+  # https://www.cnblogs.com/dump/p/8243868.html【PHP消息队列实现及应用】【excellent】
+  # https://www.cnblogs.com/haoxinyue/p/6613706.html 【消息延迟】
+
+
+@ 控制台
+. 创建命令类(command)
+  . 命令 `php artisan make:console SomeCommand`
+  . 目录 `/app/Console/Commands`
+  . `signature` 属性
+    # 含义类似方法签名，这里是命令签名，定义了命令的参数(arguments)和选项(options)
+    . email:send {user} // 参数
+    . email:send {user?} // 可选参数
+    . email:send {user=foo} // 带默认值
+    . email:send {user*} // 数组参数。 如`email:send user1 user2`，用`$this->argument('user')`将得到一个数组
+    . email:send {user} {--queue} // 没有值的选项，得到的是true/false
+    . email:send {user} {--queue=} // 需要值的选项
+    . email:send {user} {--queue=default} // 带默认值的选项
+    . email:send {user} {--Q|queue} // 选项缩写。 `email:send --queue` 等同 `email:send -Q`
+    . email:send {user} {--queue=*} // 数组选项。如`email:send user1 --queue=high --queue=low`
+  . `description` 属性
+    # 描述。`help`命令 和 `list`命令会用到
+  . `handle | fire`方法：命令内容
+. 注册命令
+  . 将类名加入`$kernel->commands`属性
+  . 或者 服务提供者 中，`$this->commands(SomeCommand::class)`
+. 编写命令
+  . 输入
+    . Command@argument($key = null) // 不设置key时，以数组形式返回所有参数
+    . Command@option($key = null)
+  . 输出
+    . Command@line
+    . Command@info
+    . Command@ask
+    . Command@secret
+    . Command@confirm
+    . Command@choice
+
+
+
+
+
+
+
 php artisan --version 查看版本
 
 laravel-admin
@@ -59,3 +715,112 @@ getenv — 获取一个环境变量的值
 
 @ open/laravel-admin-master/vendor/laravel/framework/src/Illuminate/Routing/Router.php 
 	-> runRouteWithinStack
+	
+	
+https://blog.csdn.net/qq_20678155/article/details/69542836【laravel数据库日志】
+
+
+
+http://laravelacademy.org/post/2012.html 【基于 Redis 实现任务队列】【--daemon】
+https://segmentfault.com/a/1190000004997982 【基于 Pusher 驱动的 Laravel 事件广播（上）】
+
+
+
+？？那些缓存文件
+getCachedServicesPath
+\bootstrap\cache\compiled.php
+php artisan config:cache    \bootstrap\cache\config.php
+\bootstrap\cache\services.php
+php artisan route:cache | php artisan route:clear
+ cache 文件夹用于包含框架为提升性能所生成的文件，如路由和服务缓存文件；
+
+
+【解决】deferredServices
+↓ Illuminate\Foundation\Application@make($abstract, array $parameters = [])
+   $app->loadDeferredProvider($abstract)
+   $provider = $this->deferredServices[$abstract];
+   ↓ $app->registerDeferredProvider($provider, $service);
+      $this->register($instance = new $provider($this));
+      $this->booting(function () use ($instance) { $this->bootProvider($instance); });
+从这里看，deferredServices是指那些先register后boot的服务
+
+
+【解决】绑定
+↓ Illuminate\Foundation\Application@registerCoreContainerAliases
+   aliases: [
+    "Illuminate\Foundation\Application" => "app"
+    "Illuminate\Contracts\Container\Container" => "app"
+    "Illuminate\Contracts\Foundation\Application" => "app"
+    ...
+    ]
+↓ Illuminate\Foundation\Application@registerBaseBindings
+   $this->instance('app', $this);
+↓ index.php
+   $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+   ↓ SmartWiki\Http\Kernel extends Illuminate\Foundation\Http\Kernel
+      use Illuminate\Contracts\Foundation\Application;
+      public function __construct(Application $app, Router $router)
+      ↓ Illuminate\Foundation\Application@make
+         Illuminate\Contracts\Foundation\Application -getAlias-> app -bind-> Illuminate\Foundation\Application
+绑定(bind/singleton) 和 别名(alias)的工作原理
+router对象也是这么实例化的。其绑定是在
+   ↓ Illuminate\Foundation\Application@registerBaseServiceProviders
+      RoutingServiceProvider中完成的
+
+
+【已解决】怎么打印报错
+storage/logs/laravel.log
+.env 中 APP_ENV 设置为 testing
+
+
+【概念】interface -> contracts / 契约
+
+
+【风格】：
+1. 喜欢用属性的同名方法作getter方法
+    protected function bootstrappers()
+    {
+        return $this->bootstrappers;
+    }
+2. resolve/make/build 都有创建对象的意思
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

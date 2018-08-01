@@ -2,30 +2,29 @@
 require 'public.php';
 require 'head.php';
 
-?>
+class A extends B implements C{
+	
+}
 
-<script src="./test.js"></script>  
+class B {
+	
+}
 
-<?php 
-exit;
-?>
-<button onclick="handleClick()" data-foo="1">click</button>
-<script>
+interface C {
+	
+}
 
-var a = 1
-function bar() {
-	let a = 2; 
-	function qux() {
-		let a = 3;
-		console.log(a)
-	};  
-	qux();
-	console.log(a);
+class D {
+	
 }
 
 
+$o = new A;
+dump($o instanceof D);
 
-</script>
+
+?>
+
 
 
 

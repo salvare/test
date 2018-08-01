@@ -1,132 +1,494 @@
-. 简单命令
-  . git init
-  . git add <file> // 工作区 -> 暂存区
-  . git commit -m <message>
-  . git status
-  . git reflog // 查看历史命令
+@ 简单命令
+. git init
+. git clone <url>
+. git fetch // 远程仓库 -> 本地仓库
+. git add <file> // 工作区 -> 暂存区
+. git commit -m <message> // 暂存区 -> 仓库
+. git status
+. git reflog // 查看历史命令
+. git rm [--cached] <file> // 删除 
+
+
+@ branch
+. git br [-a] // 列出分支
+. git br <newBranch> // 新建
+. git br -M <oldName> <newName> // 改名
+. git br -D <branch> // 删除 
+. git co -B <newBranch> // 新建并切换分支
+. git push origin :<branch> // 删除远程分支
+
+
+@ diff
+. git diff [--stat] [--] <filename> // 暂存区..工作区 
+. git diff <branch> <filename> // some分支..工作区
+. git diff <commit> <filename> // any版本..工作区
+. git diff --cached <filename> // HEAD..暂存区 
+. git diff --cached <commit> <filename> // any版本..暂存区
+. git diff <commit1> <commit2> <filename> // any版本..anyOther版本
+* `diff`将前一个对象作为基准，将后一个对象与之比较
+# 参考：https://www.jianshu.com/p/80542dc3164e
+
+
+@ merge
+. git merge [option] [-m <msg>] <branch>  
+. --no-commit // 操作后处于`master|MERGING`状态，可以编辑后再提交，提交后合并完成
+. --no-ff // 强制非fastforward模式
+. --squash 
+  . 将版本间的差异，合并到暂存区中；提交后，内容实质上合并了，但是版本没有合并过来
+  # 参考：https://www.cnblogs.com/wangiqngpei557/p/6026007.html【聊下git merge --squash】
+. git merge --abort // `master|MERGING`状态时，可以取消合并
+# 参考：https://www.jianshu.com/p/58a166f24c81【git-merge完全解析】
+! 是可以同时合并多个分支的
+  . git merge <branch1> <branch2> ...
+  . 但是发生冲突时会合并失败（不多介绍）
+  * 结论：不要使用这个特性
+
+
+@ rebase
+. git rebase [-i] <branch>
+. `rebase` VS `merge`
+  . 初始
+    C1---C2---C4---C6(master)
+         \
+          --C3---C5(dev)
+  . git merge dev
+    C1---C2---C4---C6--C7(master)
+         \            /
+          --C3---C5---
+  . git rebase dev
+    C1---C2---C3---C5---C4'---C6'(master)
+. 如同字面含义，`rebase`功能将当前`master`分支，以`dev`分支为基础，进行重写
+  . `C4`和`C4'`内容一样，但是版本号不同
+. --interactive
+  . 可以选择合并待重写的版本
+  . 如`C1---C2---C4---C6---C7---C8`
+  . 会增加如下交互
+    . pick C4 bugfix-a
+    . squash C6 bugfix-a-2
+    . pick C7 bugfix-b
+    . squash C8 bugfix-b-2
+  . C4将和C6合并成一个版本，C7和C8同
+  . 最终`C1---C2---C3---C5---C4&6---C7&8`
+. 如果发生冲突
+  . git rebase --abort // 取消
+  . git rebase --continue // 解决冲突后，继续rebase
+. 如果在`master`分支`git rebase dev`，那么实质上合并了`dev`的内容
+# 参考
+  . http://gitbook.liuhui998.com/4_2.html【git rebase】【good】
+  . https://www.jianshu.com/p/4abb2f92a967【到底什么是 rebase（变基）？】
+  . https://www.cnblogs.com/tocy/p/git-rebase-merge-commit.html【】
   
-  
-  
-. git diff
-. git log --pretty=oneline --graph
-. git reset [--hard] 
-. git fetch
-
-. git push origin master
-  <=> git push origin master:master
-
-
-git commit -a 提交所有文件，但是不是添加`untracked file`
-
-
-
-workspace(工作区) add index/stage(暂存区) commit repository(仓库)
-
-
-
-git reset <file> <tag>
-. 本质：用指定的版本覆盖暂存区(index)，清空暂存区，但工作区会保留（即当前编辑的内容仍存留）
-. --hard 覆盖暂存区 和 工作区
-
-`git add`可以用`git reset HEAD`撤销
-
-
-
-
-
-工作区和暂存区
-https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000
-
-
-checkout ???
-暂存区 -> 工作区
-
-
-
-git branch
-git branch <name> // 创建分支
-git checkout <name>
-git checkout -b <name> // 创建+切换分支
-git merge [--no-ff] <name>
-git branch -d <name> // 删除分支
-
-
-冲突
-发生冲突后，解决冲突(add)之前，不能切换分支
-Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容
-
-
-工作区 或 暂存区 不为空时 切换分支
-不冲突的话都可以切换分支
-冲突的话 stash -> checkout -> pop
-说明工作区和暂存区并不与分支绑定
-
-
-分支策略
-
-
-
-
-
-
-
-git rm --cached <file>
-从暂存区删除文件，工作区则不做出改变
-
-
-
-
-
-
-
-
-
-Counting objects: 6140, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (5926/5926), done.
-Writing objects: 100% (6140/6140), 299.79 MiB | 26.00 KiB/s, done.
-Total 6140 (delta 1299), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1299/1299), done.
-remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
-remote: error: Trace: 54ab1be6d237e08bf27cb9fcd74d8011
-remote: error: See http://git.io/iEPt8g for more information.
-remote: error: File domain/img.test.com/res/demo.mkv is 270.90 MB; this exceeds GitHub's file size limit of 100.00 MB
-To git@github.com:salvare/test.git
- ! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to 'git@github.com:salvare/test.git'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@ Re:那些可以压缩版本的操作
+. 工作时经常提交若干次完成一个功能
+  . 历史版本如：
+    . feature-a-2(HEAD)
+    . feature-a-1
+  . 但是功能完成后，呈现为一个版本`feature-a`更加清晰
+1 git reset --soft <feature-a-1>
+  git commit -a -m 'feature-a'
+2 git rebase -i <before-feature-a-1>
+  // pick `feature-a-1` & squash `feature-a-1`
+3 git co master
+  git merge --squash feature-a
+  git commit -a -m 'feature-a'
+4 // 首次正常提交`feature-a`，之后：
+  git commit --amend
+
+
+@ show
+. git show <commit> <filename> // 查看文件在提交时（相对于前一版本）的变动
+. git show <commit>:<filename> // 查看某版本的文件内容
+. git show <commit> // 查看本次提交所有变动
+
+
+@ cherry-pick
+. git cherry-pick <commits>
+. 选定某些提交，将其内容合并到暂存区，提交后生成一个新版本
+. git cherry-pick --continue // 解决冲突后，继续`cherry-pick`操作
+. git cherry-pick --[quit|abort] // 取消（两者区别不明）
+
+
+@ stash
+. git stash // 将工作区 和 暂存区 的所有修改压入一个堆栈
+. git stash pop // 堆栈内容弹出到 工作区
+. git stash list // 当前stash栈
+* 一般不会用到多层堆栈，不多了解了
+# 参考：https://www.cnblogs.com/tocy/p/git-stash-reference.html【git-stash用法小结】
+
+
+@ 永久删除某文件的所有记录
+. 情景：误传了包含敏感信息的`password.txt`到`github`
+  . 即使在新版本中删除了`password.txt`，别人也可以在历史记录中找到
+. 方法
+  1 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch password.txt' --prune-empty --tag-name-filter cat -- --all
+  2 git push --all --force
+. 结果
+    0c6dbef pwd2 & readme
+    1d504e1 pwd1 // 该版本只变动了`pwd`一个文件，操作后该版本直接消失
+    6d4de56 readme
+  => 
+    9bf870b pwd2 & readme // 改写了该版本，删除了`pwd`的变动，版本号改变
+    6d4de56 readme // 和`pwd`无关的版本，不受影响
+. 该命令会改写所有分支
+# 参考：https://blog.csdn.net/lwfcgz/article/details/49453375【Git 永久删除文件】【excellent】
+  . 包含原理详解
+
+
+@ `git push --force` 后恢复远程库
+. 方法
+  1 git fetch
+  2 git reset origin/master@{1} // 被push的前一个版本
+  3 git push --force
+  4 git reset HEAD@{1} // 恢复本地master
+. 参考
+  # https://stackoverflow.com/questions/12568628/how-to-recover-from-a-git-push-force
+  # title: How to recover from a git push -force?
+  . 文中所说`git push --force`作用了所有分支，我试验时没有发生
+. 思路
+  . `git fetch`可以将远程库同步到本地（可能是所有信息）
+  . 可以像本地一样，对`origin`操作
+    . git log origin/master // 查看远程库日志
+    . git reflog show origin/master // 查看远程库reflog
+
+
+@ Re:本地分支 和 远程分支 是否完全相同
+. 假设某版本两者完全相同，记为初始版本`v1`
+1 fast-forward
+  . local:  v1 -> v2
+    remote: v1
+  . `git push` 使用 `fast-forward` 模式合并
+  * 然后 `local` 和 `origin` 一致
+2 非`fast-forward`
+  . local:  v1 -> v2
+    origin: v1 -------> v3
+  . git pull
+    . 如果发生冲突，需要先解决
+    . 形成一个新版本`merge commit`
+    .   v1 -------> v3--> vm
+      .    ↘-v2-------↗
+    * 此时`local`领先于`origin`，`git push`会成功，而后两者完全相同
+  . git push
+    . 会推送失败 `[rejected] master -> master (non-fast-forward)`
+    . 不管是否冲突都不能推，毕竟不像pull，pull后还可以进行 解决冲突/提交合并 操作
+    . git push --force
+      . 强制推送本地到远程，而后两者完全相同
+      ! 会导致远程库未同步到本地的版本消失
+* 结论：`git push`后 本地分支 和 远程分支 是否完全相同
+    
+
+@ checkout
+1 检出历史版本的文件
+  . 语法：`git checkout [<commit>] [--] <files>`
+  . 功能
+    . 检出某版本的文件到 暂存区 和 工作区 (history -> index & workspace)
+    . 直接覆盖 工作区 和 暂存区 的该文件
+      . 其它文件不论是`unchanged`、`unstaged`、`uncommitted`都不受影响
+    . 文件路径和分支名不会有歧义时，可以省略`--`
+  ! `<commit>`的含义
+    . 某版本的`commit hash`值
+    . 分支名称
+    . `tag`名称
+    * 它们本质上对应的都是一个`commit hash`值
+2 检出暂存区文件
+  . 语法：`git checkout <files>`
+  . 功能
+    . 检出 暂存区 的文件到 工作区 (index -> history)
+    . 直接覆盖 原工作区的该文件
+  * 总结
+    . 用法2和用法1 不会改变HEAD头指针
+    . 都是用于检出指定文件
+3 切换分支
+  . 语法：`git checkout <branch>`
+  . 功能
+    . 切换分支
+      ! 本质是修改了`.git/HEAD`
+    . `unmodified`状态的文件的文件 直接被版本库覆盖
+      ↑ 从这一点看，和 用法1、用法2 是相同的
+    . `unstaged`和`uncommitted`状态的文件
+      . 如果`oldBranch`和`newBranch`的该文件相同，则在`oldBranch`时的变动保留，文件保持原状态
+      . 如果不同，切换分支会失败
+        . error: Your local changes to the following files would be overwritten by checkout
+        . 解决
+          1 `git stash` -> `git co master` -> `git stash pop`
+          2 `git co -f master` // 强制切换，会丢失文件当前位于暂存区或工作区的修改
+      * 并不建议在非`clean`状态下切换分支
+4 分离头(detached HEAD)
+  . 语法：`git checkout <commit>`
+  . 理解
+    . 与其说功能，不如说是自然存在的一个状态
+    . 语法其实与切换分支相同，功能其实也是
+    . `git checkout HEAD^`进入分离头状态
+    . 查看`.git/HEAD`，内容是`604a68...`是原`HEAD^`的版本号
+    . 正常情况下`.git/HEAD`的内容形如`ref: refs/heads/master`
+    ! 切换分支 = 修改`.git/HEAD` + 覆盖工作区和暂存区
+    . 因此分离头的本质是切换分支，但是这个分支没有通过`git branch`创建，也没有名字
+    . 事实上在分离头可以做和分支一样的任何操作
+    . 比如做一次修改，然后提交
+      . v1 -> v2 -> v3(master)
+      .       ↓
+      .       d(detached HEAD)
+    . 分离头从指向`v2`
+    . 唯一不同的是，当离开分离头后，它处于无法被索引到的状态
+      . 能被索引的状态是:各分支的历史版本(HEAD - HEAD~N)、标签(tag)
+      . 最终被`git`的默认回收机制所回收
+  . 应用
+    . 可以在分离头的基础上新建一个分支
+    . 在分离头状态下 `git co -B <newBranch>`
+5 检查当前分支
+  . 语法：`git checkout`
+  . 功能
+    . 显示`modified`和`staged`文件
+  . 结论：没什么用
+. 参考
+  # http://www.cnblogs.com/hutaoer/archive/2013/05/07/git_checkout.html【git checkout 命令详解】
+  # https://blog.csdn.net/working_harder/article/details/52219743【分离头指针】【good】
+  # https://git-scm.com/docs/git-checkout
+
+
+@ `git`中文件的状态
+. 状态
+  . untracked // 未追踪，文件不受`git`管理
+  . unmodified/committed // 工作区 = 暂存区 = 版本库
+  . unstaged/modified // 工作区 ≠ 暂存区 = 版本库
+  . uncommitted/staged // 工作区 = 暂存区 ≠ 版本库
+. 转换关系
+    .  untracked    unmodified 
+    .      |		↗		|
+    .     add   commit     edit
+    .      ↓	 ╱			↓
+    .  uncommitted <-add- unstaged 
+. clean状态
+  . 仓库的所有文件处于`unmodified`时的状态
+# 参考：https://www.cnblogs.com/shangdawei/p/3348694.html【Git 中文件的状态】【good】
+  . 文中有更详细的转换关系图
+
+
+@ Re:如何查看暂存区的文件内容
+1 git diff <file>
+  . 对比`暂存区..工作区`（前者为基础，后者较前者的变化）
+  . 工作区是可见的，从而得到暂存区内容
+2 git diff --cached <file>
+  . 对比`工作区..HEAD`
+  . `git show <commit>:<file>`可以获得版本库内容
+3 git ls-files -s [<file>]
+  . 可以获得Blob对象的索引号，形如`100644 e6456a... 0 README.md`
+  . `git cat-file -p e6456a` 直接获得暂存区文件内容
+  ! 注意：不用研究`ls-files`和`cat-file`命令，没什么用
+. 参考
+  # https://blog.csdn.net/leedaning/article/details/44976105【查看已暂存文件】
+  # http://www.findme.wang/share/detail/id/331.html【查看暂存区文件】
+
+
+@ 忽略提交
+1 `.gitignore`
+  . 每个目录下都可以设置`.gitignore`文件（分布式）
+  ! `.gitignore`文件即使`untracked`也是有效的
+  * 特点：`.gitignore`本身可以加入仓库，推给别的仓库，在别的工作区生效
+2 `.git/info/exclude`
+  . 特点：作用于当前仓库，也无法推送到远程库
+3 配置忽略文件
+  . 语法：`git config --global core.excludesfile <myFile>`
+  . 特点：是`git`应用级配置，作用于当前主机
+. 忽略文件读取顺序
+  ↓ <core.excludesfile>
+  ↓ .git/info/exclude
+  ↓ 依次上层目录中`.gitignore`
+  ↓ 本目录.gitignore 
+. 忽略规则语法
+  . # 注释
+  . ! 重新包含一个 前面配置中忽略的文件
+  . ** 匹配零或多级目录
+  . ? 匹配单个任意字符
+  . * 匹配零或多个任意字符
+  . [] 匹配单个字符列表
+. 重新包含`!`
+  . 需要先忽略，再重新包含。注意忽略文件读取顺序。
+  . 如果忽略了一个目录，则目录下所有文件和目录和子目录都将彻底忽略
+    . `someDir` -> `!someDir/foo` fail
+    . `someDir` -> `!someDir` success
+    ! `someDir/*` -> `!someDir/foo` success
+* `git`只关注文件，不关注目录
+  . 新建一个空目录，是无法加入仓库的
+  . 忽略规则中`foo`和`foo/`意义相同，`foo/*`意义不同
+* 忽略提交文件的 具体功能
+  . `git add .` 时忽略掉相应的 `untracked file`
+  . `git st` 的打印信息中`Untracked files`项忽略掉相应文件
+  ! 但是 `git add foo` 具体指定`foo`文件，是一定可以加入仓库的，忽略文件无法影响
+    . 同样，已被追踪的文件，后加入.gitignore是无效的，变动依然会被提交
+    . 同样，使用 `git pull`时远程库新加了`foo`文件，本地的忽略文件也影响
+# 参考
+  . https://www.cnblogs.com/youyoui/p/8337147.html【Git 忽略提交】【excellent】
+  . https://blog.csdn.net/twx843571091/article/details/52045379【git忽略跟踪已在远程仓库里的文件】
+
+
+@ remote
+. git remote add <name> <url> // 添加
+. git remote remove <name> // 删除
+. git remote [-v] // 列出所有远程仓库
+. git remote show <name> // 查看远程仓库详情
+. git remote set-url [--push] <name> <url> // 修改远程库`fetch/push`链接
+# 参考：https://git-scm.com/docs/git-remote
+
+
+@ config
+. git config [<option>] --list // 查看所有；获得的是最终生效的结果
+. git config <key> // 查看；获得的是最终生效的结果
+. git config --get-all <key> // 查看；获得所有配置文件中的值
+. git config <key> <val> // 添加/修改
+. git config --unset <key> // 删除
+. 三级配置
+  . --local // 本地；当前仓库
+  . --global // 用户
+  . --system // 系统；本机
+  * 优先级： `local > global > system`
+. 常用配置
+  . user.name
+  . user.email
+  . alias.* // 命令别名
+  . core.editor // 文本编辑器
+  . merge.tool // 差异分析工具
+  . credential.helper // 密码存储
+! 添加/修改/删除 操作默认都是 `--local`，用户级配置 和 系统级配置 需要手动加相应选项   
+. 参考
+  # https://www.yiibai.com/git/git_config.html【git config】
+  # https://www.jianshu.com/p/0ad3d88c51f4【切换Git账号】
+  # https://blog.csdn.net/peterxiaoq/article/details/79020801【git config 常用配置】
+
+
+@ tag
+. git tag // 列出所有标签
+. git tag -l <reg> // 列出符合模式的标签
+. git tag <name> // 添加轻量标签
+. git tag -m <message> <name> // 添加附注标签
+. git tag -a <name> -m <message> <commit> // 后期添加附注标签
+. git tag -d <name> // 删除
+. git show <name> // 展示标签信息
+. git push origin <tagName> // 将标签提交到远程仓库
+. git push origin –tags // 将全部标签提交到远程仓库
+  . 通常的git push不会将标签对象提交到git服务器，我们需要进行显式的操作
+. 参考
+  # https://git-scm.com/book/zh/v1/Git-基础-打标签#验证标签
+  # https://blog.csdn.net/albertsh/article/details/63253614【git tag常用操作】
+
+
+@ log
+. git log [<option>] [-- <file>]
+. 选项
+  . -p // 显示较前版本的内容差异
+  . --oneline // 单行：版本号 + 备注
+  . --decorate // 显示 HEAD指针、标签、检出新分支
+  . --graph
+  . --after="2014-7-1" // 检索时间
+  . --before="yesterday" // 检索时间
+  . --author="John" // 检索提交者
+  . --grep="hotfix-*" // 检索备注
+  . -S // 检索修改内容
+  . -<N> // 指定数量
+. 指定范围
+  . git log <since>..<until>
+  . git log <branch1>..<branch2> // 两分支间的版本差异
+  . git log <commit> // 某版本之前的记录
+# https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/Git_log高级用法.md#按提交信息【excellent】
+
+
+@ Re: 回退
+1 假设当前状态 `v1 -> v2 -> v3(HEAD)`，想要回退到`v1`
+a 回退版本
+  . git reset --hard <commit>
+  . 回退后 `v1(HEAD)`
+b 回退到某版本的内容，提交一个新版本
+  . git revert <commit> // 注意：`revert`只是回退某个版本的变动，并不是回退到半个版本前的状态
+  . git revert v1..v3 // 回退多个版本
+  . 回退后 `v1 -> v2 -> v3 -> v4(HEAD)`
+. 对比：如果意图保留回退行为的记录的话，使用`revert`，否则使用`reset`
+2 假设需要回退合并操作
+  . v1 -> v3 --> v5(master)
+  . v2 -> v4 ╱ (dev)
+a git reset --hard HEAD^
+b git revert [--mainline|-m] <N>
+  . `revert`作用`merge commit`时，必须有`--mainline`参数
+  . `--mainline`指示该保留合并的两个分支的哪一边 作为主线 从而被保留
+  . 主线用数字1表示，另一个用数字2
+  . 分辨主线：使用 `git log --graph`，最左边的分支就是主线
+  . 其实可能同时有多个分支合并的，从左到右1,2,3,4...
+  ! 一旦`revert`后，被撤销的`v2``v4`版本再也不会被合并到`master`
+   . 因为`revert`被撤销的版本不再需要合并
+   . 想要重新取回它们的话必须`revert`这个`revert`
+  . 参考
+    # https://segmentfault.com/q/1010000000140446【Git怎样撤销一次分支的合并Merge】【good】
+    # https://www.cnblogs.com/ShaYeBlog/p/5368064.html【revert】
+
+
+@ pull
+. git pull = git fetch + git merge 
+. git pull --rebase = git fetch + git rebase.
+
+
+@ push
+. git push <remote> <localBranch>:<remoteBranch>
+. git push origin master <=> git push origin master:master // 同名的话可以简写
+. git push -u origin master // 当前分支与远程分支之间建立追踪关系，以后可以直接`git push`简写
+. git push --force // 强制推送，完全用本地分支覆盖远程分支
+. git push --tags // 推送标签 
+. git push origin :master // 删除远程分支
+
+
+@ 其它
+. workspace(工作区) VS index/stage(暂存区) VS repository(仓库)
+  # https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000【工作区和暂存区】
+. 版本索引
+  . <commit>^ // 前一个版本
+  . <commit>~<N> // 前N个版本
+  . HEAD@{<N>} // `reflog`中的记录
+. pull request
+  # https://www.zhihu.com/question/21682976【GitHub的Pull Request是什么】【good】
+  # https://www.zhihu.com/question/263901073【为什么pull request不叫 push request?】
+. 工作流
+  # http://www.ruanyifeng.com/blog/2012/07/git.html#comment-text【git-flow】
+  # http://www.ruanyifeng.com/blog/2015/12/git-workflow.html【Git 工作流程】
+  # http://blog.jobbole.com/76843/【Git工作流指南】
+. gitlab
+  # https://segmentfault.com/q/1010000005817314【git vs github vs gitlab】
+  # https://www.jianshu.com/p/8d497989f704【Git，Github和Gitlab简介和基本使用】
+. http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html【常用 Git 命令清单】
+. http://gitbook.liuhui998.com/5_4.html【Git Bisect】
+
+
+@ 一个仓库可以同时 拥有远程库 和 作为远程库吗
+尝试将一个本地仓库作为远程库
+git clone ssh://127.0.0.1/e/foo 
+失败 `Please make sure you have the correct access rights and the repository exists`
+需要安装`openssh`
+会让用户确认远程主机的指纹，将远程主机和指纹加入`known_hosts`
+  . 指纹(fingerprint)是根据公钥生成的数据串，可以理解为公钥的简化版
+    . 遗憾的是算法我也没明白
+    . ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub // 但是我得到的和用ssh让我确认的不一致
+  . 这里是让用户确认指纹是否正确，以保证连接正确的远程主机，而不是中间人攻击
+  . 有两种格式
+    . 0d:df:2b:e4:ee:79:f2:98:ab:38:93:f3:44:1d:c5:4d
+    . lj3DuJyvOMl8WdHfRyv5RqQ9P6c3cWzg0+8LF5nmOUk
+  . 使用github时，需要将客户端的公钥传给github。
+    . 自己对应操作大概是将公钥加入`authorized_keys`文件
+    https://git-scm.com/book/zh/v1/服务器上的-Git-生成-SSH-公钥
+    https://www.jianshu.com/p/a3b4f61d4747【Git安装及SSH Key管理】
+    https://segmentfault.com/q/1010000009057659【ssh 登录服务器的指纹如何获取、验证】【good】
+    https://blog.csdn.net/u012789986/article/details/76092083【CentOS搭建git服务器】
+    https://www.cnblogs.com/whthomas/p/3643974.html【Git 远程仓库搭建】
+    https://help.github.com/articles/github-s-ssh-key-fingerprints/【github站的指纹】
+最后还是失败了
+  Please make sure you have the correct access rights and the repository exists.
+  . 不清楚是 还有什么权限问题 还是路径问题
+--
+git clone git@127.0.0.1:/e/foo 
+也失败了
+git协议大概是必须要用gitlab
+https://segmentfault.com/q/1010000005743028【gitlab git clone 提示我输入密码】
+--
+git clone file://127.0.0.1/e/foo 
+成功！
+克隆成功了，`git remote add file://127.0.0.1/e/foo`失败了
+---
+https://www.jianshu.com/p/5e3f9dfd2cb4【SSH、SSL与HTTPS】
+
+
+https://git-scm.com/docs/【官方文档】
