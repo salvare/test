@@ -1,0 +1,172 @@
+# 基于版本5.0
+
+* index.php
+* start.php
+* base.php
+  . 定义常量
+  . 注册自动加载
+  . 注册错误和异常处理机制
+    # https://segmentfault.com/a/1190000009504337 【PHP 错误与异常】【excellent】
+    . set_error_handler // 处理errror
+      . 经常将error打包为exception抛出以完善异常机制
+    . set_exception_handler // 处理exception
+      . 将错误信息和运行时的其它数据按模板格式化输出
+    . register_shutdown_function // `fatalError`或正常结束都会执行
+    . 捕捉异常与错误 try {} catch (Exception $e) {...} catch (Error $e) {...}
+  . 加载惯例配置文件 THINK/convention.php
+* 初始化应用
+  . 注册`App`命名空间
+  . 读取配置文件
+    . APP/config.php
+    . APP/database.php
+    . APP/extra/*.php
+    . APP/{$config[app_status]}.php // 应用状态配置
+  . 加载 APP/common.php
+  * Hook
+    . 添加 Hook::import(include APP/tags.php); 或 Hook:add('app_end', 'app\admin\behavior\Test')
+    . 监听 Hook::listen($tag, &$params = null, $extra = null, $once = false)
+    . 行为 class Test { public function appEnd(&params, $extra) { ... return false; } }
+      . 方法名为标签名的驼峰写法，默认方法名run
+      . 一个参数通过引用传递，一个普通参数
+      . return false 将阻止后面的behavior，但不停止程序
+    # 行为的存在让你无需改动框架和应用，而在外围通过扩展或者配置来改变或者增加一些功能。
+    # https://www.kancloud.cn/manual/thinkphp/1699
+    # https://www.kancloud.cn/manual/thinkphp5/118130
+  * 设置App::$debug
+    . 是控制是否报错等的重要配置
+    . 在此处设置之前默认false
+. 模块绑定
+  . 定义`BIND_MODULE`常量可以绑定模块
+  . 配置`auto_bind_module`，可以在使用其它入口（文件）时自动绑定同名模块（没必要，在新的入口文件中定义`BIND_MODULE`更直观）
+. Lang
+  . 侦测/设置系统语言，加载语言包
+  . Lang::get('hell'); // 当不存在于语言包时，原样输出
+* 路由检测
+  . config::url_route_on // 路由关闭后，不会解析任何路由规则，采用默认的PATH_INFO 模式访问URL
+  . config::route_config_file // 路由配置文件
+  . config::url_domain_deploy // 域名部署
+  * 解析（兼容模式下，即`config::url_route_on=true;config::url_route_must=false`）
+    1. 定义的路由规则
+    2. 如果不存在，按`path_info`的`module-controller-action`规则解析
+  . 记录当前调度信息
+    . $request->dispatch($dispatch);
+? 请求缓存
+* App::exec()
+  . type=function 
+    * App::invokeFunction($function, $vars = [])
+      1 $reflect = new \ReflectionFunction($function); // 利用PHP5的反射(reflection)机制
+    * App::bindParams($reflect, $vars = [])
+      2 $vars = Request::instance()->route(); OR // 顺序参数，如`/m/c/a/v1/v2`
+        $vars = Request::instance()->param(); // 成对参数，如`/m/c/a/p1/v1/p2/v2`
+      3 $reflect->getNumberOfParameters() // 获取函数参数列表 [ReflectionParameter...]
+      4.1 如果参数类型是类(class)
+        ↓ 查看是否绑定了`Request`:`Request::instance()->$name`(Request对象中与参数名同名的属性)
+        ↓ 查看类是否存在`static invoke`（注意不是`__invoke`）方法，用该方法实例化类，会将`Request`对象作为参数
+        ↓ 查看类是否存在`static instance`方法
+        ↓ new $className;
+      4.2 如果url是‘顺序参数’，则按顺序将‘url参数’对应‘方法参数’
+        ! 因此url的‘顺序参数’模式是不支持参数缺省的
+      4.3 如果url是‘成对参数’，则按参数名对应
+        ! 如果url中不存在该参数，则试图取用方法定义中的默认参数:`$reflectionParameter->getDefaultValue()`
+  . type=method
+    * App::invokeMethod($method, $vars = [])
+      1 静态方法: `$reflect = new \ReflectionMethod($method);`
+      2 非静态方法: 分析类的`__construct`方法 -> 进行依赖注入（但不支持对其它参数绑定？）-> 实例化类 -> 
+        类和方法名获得`ReflectionMethod` -> 依赖注入，参数绑定 -> $reflect->invokeArgs($class, $args)
+  . type=module
+    * App::module($dispatch, $config, $convert = null)
+      1 分析`$dispatch`获得`M.C.A`
+      *2  初始化模块: App::init($module)
+      ? 模块请求缓存检查
+* response->send()
+
+
+Log
+  appShutdown -> Log::save()
+Route
+  Route::check
+  Route::import
+  Route::parseUrl
+  设置路由之后会屏蔽原url
+  Route::rule('test/:a/[:b]', 'admin/ajax/test?hello=world', 'get'); // 隐式参数不是GET参数，和$a,$b一样
+Debug
+  Debug::remark('behavior_start', 'time');
+Request
+  filter
+  langset
+Response
+
+
+config::root_namespace 可以配置命名空间
+config::extra_file_list 额外需要加载的文件
+config::default_ajax_return
+config::default_return_type
+config::app_trace
+config::default_module // 调用某些方法时，会取用作默认值，如`App::module`
+config::url_convert // 是否自动转换URL中的控制器和操作名(为小写)
+config::url_param_type // URL参数方式 0 按名称成对解析 1 按顺序解析
+
+TP多入口
+https://segmentfault.com/q/1010000002491453
+
+
+
+
+
+
+
+'app_multi_module=> true, // url三级路径
+define('BIND_MODULE','main'); // url二级路径
+'app_multi_module=> false, // url二级路径，application目录下不需要有模块目录
+
+define('EXTEND_PATH','../vendor/'); // EXTEND_PATH下可以自动注册命名空间
+\think\Loader::addNamespace('my','../application/extend/my/'); // 手动注册
+
+/application/extra 扩展配置
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
