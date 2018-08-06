@@ -2,26 +2,8 @@
 require 'public.php';
 require 'head.php';
 
-class A extends B implements C{
-	
-}
-
-class B {
-	
-}
-
-interface C {
-	
-}
-
-class D {
-	
-}
-
-
-$o = new A;
-dump($o instanceof D);
-
+$rt = str_pad('2m40tbnabwgx2zarmhecdcd08tx8dsg0', 64, 'D');
+dump($rt);
 
 ?>
 
