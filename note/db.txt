@@ -1,0 +1,168 @@
+  ↑ 
+←  →
+  ↓  
+↘↙  
+↗↖   
+
+-----------------------------------------------------------------------
+
+偶尔发生过一次查询超过10s的情况，导致应用几乎不可用。
+*由于不清楚数据库运行原理，所以无法分析原因，无法优化查询
+除了这种极端情况，在一般的数据库操作中，可能也有一定的优化空间。
+所以学习数据库。
+
+-----------------------------------------------------------------------
+
+question:
+数据库存储机制
+增删改查原理
+锁机制
+索引
+与编程语言接口
+怎样优化数据库操作？
+数据库种类？
+分布式数据库
+引擎？	myisam	innodb
+数据类型定义
+事务	隔离级别
+日志
+sql优化
+读写参数？
+数据库前端代理层？
+NoSQL
+约束？
+
+
+
+-----------------------------------------------------------------------
+
+http://www.dba.cn
+阿里dba题	
+MySQL 性能优化方案（转载）。	较深入
+MySQL优化 my.ini 配置说明
+
+http://www.cnblogs.com/lumnm/archive/2010/11/08/1871783.html
+超键(super key)、候选键(candidate key)、主键(primary)区别？
+
+http://baike.baidu.com/link?url=8IBn3bcpnrLk-dveqhUjV76D3xxdlc8fIvmqy40jrG9HVuyuySwtMGzyB3rQtQiMs1pkMwW2Zui3eImyRztakTlGc0yrw9y9Cj3N3Lb5AXPC78qPv_3KorOI3R4PtCzJWvUcq4G9Chdn_mXOd0JoFq
+数据库管理系统
+
+http://blog.csdn.net/jokes000/article/details/7521259
+【知识框架 improtant!!!】
+
+http://www.csdn.net/article/2012-04-11/2804419
+不是很懂 以后再看
+
+
+
+
+-----------------------------------------------------------------------
+
+
+元组(Tuple)：数据表中的一行，也作“记录”？？？
+
+模式（Schema）：一个数据库的描述，包括对数据库结构，数据类型，还有约束。？？？
+实例（Instance / State）：数据库中在某一时刻存储的真实的数据。（Instance是Schema在某一时刻的具体化、实例化）
+↑ 类(class) 与 对象(object)
+
+
+数据操纵语言（DML：Data Manipulation Language）：增删改查
+数据定义语言（DDL：Data Definition Language）：定义、删除、修改数据库中的对象？？？
+数据控制语言（DCL：Data Control Language）：用于控制用户对数据库操纵的权限
+
+数据模型（Data Model）：现实世界数据特征的抽象，用来定义数据如何组织，数据之间的关系怎样？
+↑ 模式（schema）？
+
+关系<=>表 ？？？	实体
+（Relation）（tables）	文件（files）
+关系看上去像一张二维表
+关系的域（属性的取值范围）为一组原子值（不可再分割的值）
+关系中的元组必须各不相同
+关系代数
+
+entity
+weak entity
+relationship
+identifying relationship
+attrbute
+key attribute	multivalued 	composite attribute	derived attribute
+total participation of e2 in r
+cardinality ratio ...
+
+
+
+
+并相容性（Union Compatibility）：两个关系具有并相容性需要保证具有相同的属性个数，以及对于每个属性都有相同的域
+
+视图（VIEW）：视图是虚拟的表，并不是物理存储的数据。而是由基本表或其他视图派生的数据。对视图的更新，实际上转换为对实际基表的更新。
+
+1.数据定义：DBMS提供数据定义语言DDL（Data Definition Language），供用户定义数据库的三级模式结构、两级映像以及完整性约束和保密限制等约束。
+
+
+数据锁的颗粒度（数据锁的控制范围，表、页、元组等）
+
+数据的约束条件：完整性约束
+1. 域约束：对属性取值范围的约束
+2. 键约束：每个关系必须要有主键，且每个主键必须不相同
+3. 非空约束：属性值不能为NULL
+4. 实体完整性约束：主键值不能为空
+5. 参照完整性约束：外键可以取NULL值，但若外键为另一关系主键，则不能为NULL。
+6. 用户定义的完整性
+
+SQL语句执行顺序：
+1. FROM子句组装来自不同数据源的数据
+2. WHERE子句基于指定的条件对记录进行筛选
+3. GROUP BY子句将数据划分为多个分组
+4. 使用聚集函数进行计算
+5. 使用HAVING子句筛选分组
+6. 计算所有的表达式
+7. 使用ORDER BY对结果集进行排序
+
+【控制冗余（Controlled Redundancy)】与非控制冗余（Uncontrolled Redundancy）的区别：
+未受控制的数据存储冗余会导致如下的问题：
+1. 更新数据时的重复工作
+2. 浪费空间
+3. 数据可能会不一致
+
+
+表结构的复制（不包含表之间的关系）
+SELECT  *  INTO  COPY_DEPARTMENT  FROM DEPARTMENT  WHERE 1=0;
+
+
+数据库范式
+http://www.cnblogs.com/linjiqin/archive/2012/04/01/2428695.html
+第一范式：单一属性不可拆分
+第二范式：（如果主键是复合属性）不允许其它属性对主键属性 存在部分函数依赖关系
+	或者说：主键列 与 非主键列遵循完全依赖关系
+第三范式：非主键列 之间不存在 传递函数依赖关系
+http://baike.baidu.com/link?url=f8AZBkXT3hKU82-AKystV4es5smp9AERyO-i6GnCn8tgcrJ3uXKM1uAg2fc7CcLVUdVsKBz95nStLTIoowZ-3_
+BC范式：
+https://zhuanlan.zhihu.com/p/24342860
+
+NoSQL
+键值(Key-Value)存储数据库	redis memcache
+列存储数据库
+文档型数据库
+图形(Graph)数据库
+???NoSQL数据库没有标准的查询语言(SQL)，因此进行数据库查询需要制定数据模型。
+
+
+
+
+http://www.zhihu.com/question/21760988/answer/19235639【excellent】
+
+http://www.csdn.net/article/2012-04-11/2804419
+
+Redis Memcache
+
+
+
+
+
+
+
+
+
+
+
+

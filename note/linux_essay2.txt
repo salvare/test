@@ -1,0 +1,1065 @@
+-------对近阶段学习linux的期望------------------------------------------------
+* linux是一种计算机操作系统，本身就是IT领域及其重要庞大的一环。
+  能了解“计算机操作系统”的方式很少，linux因为其开源的特性，方便学习。相关资料也十分丰富。
+* 了解操作系统的大致架构：
+  . 操作系统性质上作为软件，运行于硬件之上，目的是管理硬件，分配资源。。。
+  . 内核检测、并驱动硬件，提供“系统调用”
+  . 软件可以使用“系统调用”，或者更易用的“函数库（libirary）”
+  . 开机流程
+  . 用户机制，登录机制，多用户机制
+  . 权限机制，目录机制，
+  . shell
+  . 文件系统
+  . 软件，进程，服务
+  . 日志
+  ．备份
+  . 防火墙
+  $ 这部分是操作系统和系统软件，期望是了解系统系统的主要架构，工作原理
+  $ 目标一：管理linux主机，安装软件，部署一些网络服务，维护正常运行
+  $ 目标二：能够以较高的视角，推测、排查、解决系统/软件层面的错误
+  $ 目标三：了解操作系统，学习其原理、逻辑、哲学思想。以后如果能站在更高角度，自然能以这些知识和感悟，
+            或归纳演绎，或印证类比
+* 同时学习一些软件：
+  . 压缩
+　. 文本编辑器
+  . 正则表达式
+  $ 目标一：学习软件的 使用方法，结构逻辑。
+	    很多工具软件（如svn）会有多种操作系统版本，我正常接触的是window图形界面软件，
+	    而linux独特的命令行操作，方便了解命令对文件做出哪些操作，更容易理解透彻一个软件。
+  $ 目标二：软件脱离“平台、系统、语言”后，可以抽象为存粹的逻辑。
+	    了解软件/系统（如权限、日志）的逻辑后，将为我用php开发类似功能时带来启发
+* 一个完整的操作系统所涉十分繁杂，还从OS的角度，去理解了：硬件、外设、网络等
+  . 例如我使用php搭建网站，入门时我对建站的认知是：xampp集成环境+zend编辑器+chrome浏览器；
+	使用浏览器访问localhost/test/hhh.php，浏览器就会展示页面，像是天经地义一样。
+  . 但是xampp中到底包是什么呢？研究后得知这个集成环境包含了apacheWeb服务器、php、MySQL数据库，
+	以及phpmyadmin等实用小工具；
+    认知扩展为：chrome地址栏->apache->php->chrome，还了解服务器端与客户端的概念区别
+  . 再顺着线索研究下去，会陆续了解到：
+	` 数据库，SQL高级语法，数据库引擎，数据库锁机制。。。
+	` php,php语法,php的诸多应用方式，php的多种运行模式，php数据库支持模块。。。
+	` HTML、JS、CSS、浏览器的兼容性。。。
+	````
+  . 然而很久之后在研究一些接口时，我才认知这个环节中到HTTP这一至关重要的存在。
+	以php为中心，对其它节点的研究探索，根据与php的关联程度不同，有的理解透彻，有的雾里看花，有的了解其一面
+  $ 学习linux会是一个相似的历程，并且一路将有更多的风景，
+  $ 时而会与php之路穿插，从而可以从另一个角度看待一些东西
+* 人力有尽时，结合以前的教训，希望学习时避免一些误区
+  $ 带着目的学习，对知识点的掌握程度要有一个预期，可以分为：
+	认知 -> 使用 -> 理解 -> 拓展
+  $ 用心学习任何东西，
+	是什么 -> 为什么（优缺点）-> 怎么做
+* 以上。
+
+-------正则表达式--------------------------------------------------------
+@ RE regular express 正则表达式
+
+@ grep 显示匹配的行
+*选项：	-A -B -n -v -i
+
+@ 基础正则：	
+* [:alnum:] [:alpha:] [:upper:] [:lower:] [:digit:] [:space:]
+* [afk] [a-z] [^a] ^ $ . * \{\} \
+@ 扩展正则：
+* egrep命令支持扩展正则
+* + ? | ()
+
+@ 特殊字符解释
+*	CR	回车键		CarriageReturn
+	NUL	空
+	LF	换行
+	ACK	承认
+* 更多：http://tool.oschina.net/commons?type=4
+
+@ sed 文本处理工具
+* 以“行（line）”为对象处理文本。
+* 逻辑： 选择行 + 对行操作
+* 选择行 有两种方式：
+	. 行号：n1,n2
+	. 正则：/RE/
+* 操作：
+	. a(add) i(insert)
+	. d(delete)删除
+	. p(print)打印
+	. c 替换选中行
+	. s/SEARCH_RE/REPLACE_STR/g 替换行内内容
+* 参数：
+	. -n 静默模式。只输出选中的行。因为默认会显示所有内容
+	. -i 直接修改文件。一般不用。
+
+@ awk 
+* 以“列（column）”为对象处理文本
+* 逻辑： 
+	1. 读取一行，按分隔符将行分割为字段，用$1,$2...$0表示
+	2. 判断“条件1”，以确定是否执行“动作1”
+	3. 如2处理所有条件和动作
+	4. 如123，处理其余所有行
+* 变量：
+	NF 总字段数
+	NR 当前行数
+	FS 分隔符
+	$0 当前行
+	$N 第N字段
+* 条件：
+	> < >= <= == !=
+	BEGIN 该条件是指读入第一行之前，长用于指定分隔符： 'BEGIN {FS=":"} ....'
+* 动作：
+	print printf
+
+@ 制作“补丁文件（patch）”
+* diff -Naur passwd.old passwd.new > passwd.patch 生成补丁
+* patch -p0 < passwd.patch  更新passwd.old
+* patch -R -p0 < passwd.patch  还原passwd.new
+* 原理：. diff -Naur 制作patch文件，内容包含 新旧版本的文件名 和 文件之间差异
+	. 差异记录形式如：新文件较旧文件 多了少了改了哪几行
+
+@ 本章其它命令：
+* printf 格式化输出
+* diff 比较文本文件 或者 目录，比较行
+* cmp 比较二进制文件，比较字节
+
+-------shell script--------------------------------------------------------
+
+@ 梗概
+*作用：	批处理
+*优点：	跨平台
+*局限：	代码效率低，不适宜处理大量数据
+
+@ 执行方式
+*直接执行 或 用bash命令 执行： 在子bash中运行
+*source 或 . 执行： 直接在当前bash中运行。【为什么我使用会重新登陆？】
+
+@test
+* -e -f -d  文件
+  -eq -ne -gt -lt -ge -le 数值比较
+  -z -n = !=  字符串
+  -r -w -x -u -g -k  权限
+  -a -o ! 与或非
+* [] 用法同test
+
+@默认变量
+* $? 回传码
+* $0 命令本身（无参数）
+* $1 $2 ... 参数
+* $# 参数个数
+* $@ $* 所有参数
+
+@shift [N]
+* 移除前面的参数
+* 方便依次处理参数
+
+@ if [ ... ]; then
+...
+elif [ ... ]; then
+else
+...
+fi
+
+@ case $var in
+a)
+	...;;
+b)
+	...;;
+*)
+	...;;
+esac
+*如果值为c,d时做相同的处理，怎么写？【？】
+
+@ 函数
+* function func_name(){ }
+* 先定义后使用
+* 函数内有自己的默认变量
+	. $1 $2 ...
+	. $@ $#
+	. 局部变量，不影响函数外部的同名变量
+* 调用：
+	. func_name
+	. func_name p1 p2 p3
+
+@ while 逻辑表达式
+do 
+	...
+done
+@ until 逻辑表达式
+do
+	...
+done
+
+@ 本章其它命令
+*echo -e
+*read -p
+*date --date='2 days ago' +%Y%m%d
+	. %s 时间戳
+*file 判断文件类型
+*cut -d ":" -f1 /etc/passwd
+	. 同：awk 'BEGIN{FS=":"}{print $1}' /etc/passwd
+*seq 获取一组等差数列
+	. seq begin end 	例：seq 1 5
+	. seq begin step end	例：seq 1 2 5	seq 5 -1 1
+*bash xxx.sh
+	. -x 显示过程
+	. -n 仅检查语法
+	. -v 执行前先打印脚本
+
+-------账号管理 ACL权限--------------------------------------------------------	
+@ UID GID
+*系统大多使用UID/GID 而非 用户名/组名【感觉误：/etc/shadow 和 /etc/group都是记录的用户名而非id】
+ 只不过显示时查询/etc/passwd得到用户名【但是文件属性记录的是uid，gid】
+*0 root
+ 1-499 系统账号
+ 500-65535 可登录账号
+
+@/etc/passwd
+* NAME:PASSWD:UID:GID:COMMENT:HOME:SHELL
+@/etc/shadow
+
+@/etc/group 
+* NAME:PASSWD:GID:MEMBER
+* 为用户添加一个组 需要修改对应组的MEMBER字段（逗号分隔）
+@/etc/gshadow
+* NAME:PASSWD:ADMIN:MEMBER
+* 添加“组管理员”： 修改ADMIN字段
+* MEMBER字段同/etc/group
+* 【？】为什么权限为0000
+
+@用户组分类
+*私有组/初始组（initial）
+	. 记录在/etc/passwd
+	. 一般是创建时就产生的同名组
+	. 是用户登录后默认的有效组【大概。。】
+*有效组（effective)
+	. 单一时刻只有一个有效组
+	. 效果：创建文件时，文件属组为当前有效组
+*次要组
+	. 记录在/etc/group和/etc/gshadow
+	. 用户拥有所有次要组的组权限
+
+@ useradd 添加用户
+* 有丰富的选项可以设置/etc/passwd,/etc/shadow,/etc/group的各个字段
+* 默认值 文件：
+	. /etc/default/useradd
+	. /etc/login.defs
+	. /etc/skel 主目录
+@ usermod 修改用户设置
+* -G -a 修改/追加次要组
+@ userdel 删除用户
+
+@ gpasswd 
+* 修改组密码【组密码有什么用？？】
+* -A设置“组管理员”
+* -a添加“组成员” gpasswd -a user group
+  -d删除
+
+@ ACL(access control list)
+*传统ugo/rwx权限机制的扩展，使授权方式更加灵活
+*逻辑：某文件/目录 --- 某用户/组 --- rwx 
+*【注意】 ACL是针对owenr/group以外的用户和组设置权限！！！！
+@ getfacl FILENAME
+@ setfacl 
+*例：	. setfacl -m u:user1:rx somefile 为用户user1设置rx权限
+	. setfacl -x u:user1 somefile 删除user1的权限
+	. setfacl -m g:group1:rx somefile
+	. setfacl -m d:u:user1:rx
+	. setfacl -m m:rx 设置mask
+	. setfacl -m d:u:user1:rx 设置默认权限
+*mask：	表示u/g权限的上限
+	.【？】但是我setfacl -m u:user1:rwx时，mask也跟着变为rwx，起不到限制作用。。。
+*default： 目录设置了default的话，其子文件/目录会继承default属性
+
+@ su
+* su USERNAME 
+	. 以non-login方式读取配置文件
+* su -l USERNAME 
+	. 以login shell方式读取配置文件
+* su -[m|p] 
+	. 使用当前环境，不读取配置文件
+@ sudo
+*配置文件：/etc/sudoers
+	. 需要visudo命令编辑该文件，因为有特殊格式
+
+@ mail 邮件
+*mail 查看邮件
+	. 是个交互式命令，内部操作有：
+	. h [N] 列出邮件列表，N表示前N条
+	  d[N|N1-N2] 删除
+	  s N FILENAME 保存邮件
+	  x 退出不保存操作
+	  q 保存操作并推出
+*信箱文件在/var/spool/mail/USERNAME
+*书上说阅后的邮件会转入 ~mbox，但我试了并没有【？】
+
+
+
+@ 本章其它命令
+*passwd 改密
+	. root可以修改任何用户
+	. 其它用户只能修改自己。并且要重新输入当前密码
+*groups 查看当前用户所有组
+	. 其中第一个为 有效组（effective）
+*newgrp 切换有效组
+	. newgrp group2
+	. 实际上开启了一个新的bash子进程，其用户组环境改变了【是否会失去普通变量？】【<-会失去】
+	. 【？】另外发现user=group时umask为0002，使用newgrp后umask变为了0022。配置在哪？
+*finger 查看用户详细信息
+	. 【？】我的centos7怎么没有这个命令
+*id 查看用户简略信息
+*groupadd,groupmod,groupdel
+*sh -c "command1;/
+command2;/
+command3;"
+可以执行一串命令
+*w|who 当前登录信息
+*last 近期登录记录【基于时间】
+ lastlog 用户登录记录【基于用户】
+*write 用户对谈
+	. write USERNAME [终端接口]
+	. 只能在线用户同信
+	. mesg [y|n] 开启|关闭接收信息
+*wall "MESSAGE" 发送广播，所有在线用户都能收到
+
+
+-------磁盘配额（Quota）与 高级文件系统管理（RAID，LVM）-------------------------------------
+@ Quota机制
+*目标：限制用户/组对磁盘的使用
+*逻辑：
+	. 限制对象：用户（usrquota） 和 用户组（grpquota）
+	. 限制方式：磁盘容量（block） 和 文件数量（inode）
+	  另有： soft,hard,gracetime
+	. 作用范围：单个整个文件系统
+*使用条件：
+	. 内核支持。大多发行版默认支持；如果自行编译内核需要选中quota功能
+	. 文件系统支持。ext2/3....
+*step1:文件系统支持
+	. mount -o remount rw,usrquota,grpquota /home 重新挂载，添加参数
+*step2:新建quota配置文件
+	. quotacheck [-avug] [/mount_point]
+	. 检查某一/全部挂载的文件系统，如果支持usrquota或grpquota的话，新建/mount_point/[quota.group|quota.user]
+*step3:启动quota服务
+	. [quotaon|quotaoff] [-auvg] [/mount_poing] 启动/关闭
+	. 只第一次手动执行。以后重启系统时，/etc/rc.d/rc.sysinit会自动执行
+*step4:设置
+	. edquota [-u|g] NAME
+	. 字段： Filesystem blocks(kb) soft hard inode(个) soft hard
+*step5:查看
+	. quota [-ugvs] NAME
+
+@RAID (RedundantArrays of Inexpensive Disks)
+*概要：
+	. 容错廉价磁盘阵列	
+	. 一种存储机制
+	. 将很多小磁盘 整合成 一个大容量磁盘
+	! 扩大容量；提高读写性能；数据安全；
+*分类	
+	等级		容量	读	写	安全
+	RAID-0等量模式	100%	+	+	-
+	RAID-1		50%	+	*	+
+	0+1		50%	+	+	+
+	1+0		50%	+	+	+
+	RAID-5		N-1/N	+	+	+
+*预备磁盘（Spare Disk）
+ 	. 在磁盘阵列中加入一块闲置磁盘，当某一块磁盘损毁时，会自动替换掉它
+*分类
+	硬件磁盘阵列	磁盘阵列卡	价格昂贵		/dev/sd[a-p]
+	软件磁盘阵列	软件，mdadm	消耗CPU、总线资源	/dev/md[0-]
+@mdadm 磁盘阵列仿真软件
+*step1:准备素材
+	. 新建好“大小相同”的若干分区
+*step2:创建RAID
+	. mdadm --create --auto=yes /dev/md0 --level=5 \
+		--raid-devices=4 --spare_devices=1 /dev/hda{6,7,8,9,10}
+*step3:查看RAID
+	. mdadm --detail /dev/md0 【或者查看/proc/mdstat，有简略信息】
+	. Active Devices	当前启动的设备
+	  Working Devices	=Actice+Spare
+	  Failed Devices	损坏设备
+	  Spare Devices		预备设备
+	. Chunk Size		数据写入时分割成的区块大小
+	. UUID			设备标识符
+*step4:格式化+挂载【正常】
+	. mkfs -t ext3 /dev/md0
+	. mkdir /mnt/raid
+	. mount /dev/md0 /mnt/raid
+*step5:设置开机自动挂载【差异】
+	. 编辑/etc/mdadm.conf，写入RAID的 设备文件 和 UUID【why？】
+	  【<- 可能因为系统不能直接“驱动”/dev/md0，需要mdadm支持】
+	. 编辑/etc/fstab
+*step6:仿真错误，自动救援
+	. mdadm --manage /dev/md0 --fail /dev/hda8 设置磁盘状态为错误
+	  /dev/hda8[2] -> /dev/hda8[5](F) -> /dev/hda[4](F)
+	. 预备磁盘hda10 会自动替代
+	  /dev/hda10[4](S) -> /dev/hda10[4] -> /dev/hda[2]
+	. 新建分区替换损毁的hda8
+	  mdadm --manage /dev/md0 --add /dev/hda11 --remove /dev/hda8
+	  hda11自动作为预备磁盘
+*step7:关闭RAID
+	. 卸载 unmount /dev/md0 
+	. 取消自动挂载：/etc/fstab /etc/mdadm.conf
+	. 关闭：mdadm --stop /dev/md0 【hda[6-10] 不再与 md0 有关】
+
+@ LVM
+*概要：
+	. 整合多个物理分区，然后自由分配给“逻辑卷”
+	! 弹性调整文件系统容量
+*逻辑：	物理分区 --格式化--> 物理卷（PV）--添加--> 卷组（VG） --划分--> 逻辑卷（LV） --格式化--> 文件系统
+*物理卷层面的写入机制：
+	1. linear。如果LV实际使用/dev/sda1和/dev/sdb1的话，会用完sda1后再使用sdb1
+	2. triped。交错模式。将数据分割写入sda1和sda2。
+	!  理论上triped读写性能好，类似RAID-0。缺点是一个分区损坏会失去所有数据。
+	!  LVM最重要的优点是其弹性容量，因此推荐使用linear模式
+*条件： 需要内核支持【大多发行版默认支持】
+@ lvm2 逻辑卷管理软件
+*step1: PV
+	. 新建分区，Id System 设为 8e Linux LVM
+	. 格式化为PV，pvcreate /dev/hda{6,7,8,9}
+	. 查看PV，pvscan 或 pvdisplay
+	. 取消PV，pvremove
+*step2: VG
+	. 新建：vgcreate -s 16M my_vg /dev/hda{6,7,8}
+		` -s 设置PE大小
+		` 卷组名称 my_vg
+		` 将 PV hda6,7,8 加入 VG my_vg
+	. 查看：vgscan 或 vgdisplay
+	. 添加一个PV： vgextend my_vg /dev/hda9
+		` hda9 会按照“卷组”的属性 PE Size=16M
+	. 去除一个PV：
+		` pvdisplay 			//查看PV=/dev/hda6是否被使用。即Allocated PE不为0
+		  pvmove /dev/hda6 /dev/hda10	//将使用hda6的PE 移至 hda10
+		  vgreduce my_vg /dev/hda6	//移除PV=/dev/hda6
+*step3: LV
+	. 新建，lvcreate [-L 容量大小 | -l PE数量] [-n LV名称] VG名称
+	. 查看，lvscan 或 lvdisplay
+	! 扩容：
+		` lvresize -l +179 /dev/my_vg/my_lv 给LV添加若干数量PE【此操作不需要卸载分区】
+		` 【注意】此时LV扩容了，但此分区文件系统并未改变
+		` resize2fs /dev/my_vg/my_lv
+	! 缩小
+		` 扩容可以直接操作，但是缩小不行：
+		` umount -> 				//卸载
+		  e2fsck -f /dev/my_vg/my_lv -> 	//检查文件系统
+		  resize2fs /dev/my_vg/my_lv 2000M -> 	//调整文件系统大小
+		  mount	->				//挂载
+		  lvresize -l -89 /dev/my_vg/my_lv ->	//调整LV大小。此处会警告，缩小后容量不能小于实际数据大小
+		  
+*step4: FS
+	. mkfs
+@ LVM的系统快照
+* lvcreate -l 60 -s -n my_snapshot /dev/my_vg/my_lv
+		
+-------例行性工作 at cron-------------------------------------
+@ at
+*指定某一时刻执行一段命令【一次性工作调度】
+*需要atd服务支持：
+	. /etc/init.d/atd restart【我的centos7没有该文件。。】
+	. chkconfig atd on
+*白名单：/etc/at.allow 
+	. 只有名单上的用户可以使用at
+ 黑名单：/etc/at.deny
+	. 当白名单不存在时才有效
+	. 黑名单之外的用户都可以使用at
+ 当以上两者都没有时，只有root可以使用at
+*创建工作调度
+	. at now + 5 minutes 或：
+	. at HH:MM YYYY-MM-DD
+*查看当前所有工作
+	. at -l
+*查看某一工作实际内容
+	. at -c NUMBER
+	.原理：每个工作调度会在/etc/spool/at目录下生成一个文件
+*删除
+	. at -d NUMBER
+*机制
+	. 后台执行，脱机运行，与当前bash无关
+	. 执行命令的任何输出，会以邮件方式发送
+	. 使用一个特殊的 at shell 执行命令
+
+@ cron
+*定期循环执行一段命令【例行性工作调度】
+*crond服务
+*/etc/cron.allow 
+ /etc/cron.deny
+*/var/spool/cron
+@ crontab 
+*crontab [-u USER] [-l|e|r] 
+* 针对普通用户【相对于系统用户】
+* -u 只有root 才能帮 其它用户创建 crontab工作调度【受黑白名单限制吗？】
+* -e 编辑crontab
+	. 实际上编辑的是/var/spool/cron/USERNAME，每个用户会有一个cron文件【类似at】
+	. 可以添加/删除一项工作调度
+* -l 仅查阅
+* 字段 
+	.	分	时	天	月	周	命令
+		0-59	0-23	1-31	1-12	0-7	
+	. 特殊符号
+		` * 任意
+		` 1,3,5 或
+		` 1-5 连续
+		` /3 3,6,9...整除
+	. 周 不可以与 月/天同时 设置
+@ /etc/crontab
+* 系统用户 设置 例行性工作调度
+
+@ anacron
+*起因：例行任务 会因为关机等原因 而遗漏执行
+*作用：检查遗漏的任务，并按定义好的规则处理
+*逻辑：
+. anacron命令在开机时执行一次，此外也可以依赖crontab定时执行
+. 检查/etc/anacrontab，分析其中定义的工作，例如：第一个工作cron.daily
+. 取时间戳文件：/etc/spool/anacron/cron.daily，该文件记录最近一次执行该job的时间，记为last_time
+  【注：时间戳文件只记录到“天”】
+. 如果(current_time-last_time > period ) 其中period定义了该job原本应该的执行周期（crontab中）
+. 执行anacron时的参数：
+	-s -n 判断上一条所说的时间戳文件 以决定是否执行任务。-s会按照delay字段延时执行，-n立刻执行
+	-u 仅更新时间戳文件，不做任何工作【好像也只有-u会更新时间戳戳。。。】
+	-f 不判断时间戳文件，强行执行任务
+. 结束
+*【我认为这个逻辑很奇怪，而且是有漏洞的】
+ 【已经较上劲了，试了各种方法，发现/etc/anacrontab中定义的命令根本不会通过anacron -f执行】
+
+-------程序管理 SELinux-------------------------------------
+@ 程序 进程
+*概念：程序是磁盘中的文件，载入内存执行后就是进程
+*进程的构成：
+	. PID: 进程ID
+	. UID/GID: 执行者身份，将作为进程的身份，
+	. 程序代码
+*子进程：
+	. 进程可以创建另一个进程
+	. 于是进程之间存在关联：父进程->子进程
+	. child.PPID = parent.PID。 PPID即父进程PID
+*创建子进程的过程：fork & exec
+	. 父进程 PID=x 程序=zzz  --fork-->
+	  中间暂存进程 PID=y PPID=x 程序=zzz  --exec-->
+	  子进程 PID=y PPID=x 程序=qqq
+*服务（daemon）
+	. 【注意】daemon在linux中的含义：服务。【service呢？】
+	. 特征：一般命令创建的进程执行完毕就会终止，释放资源；
+	        而服务则是“常驻进程”，常驻与内存中。
+	. 分类：1.系统服务：为系统本身提供功能
+		2.网络服务：【特点】会启动一个负责监听网络的端口port，等待客户端连接
+
+@ 数据重定向
+*linux有两种标准输出：STDOUT，STDERR
+*两者默认都输出到终端，也就是显示器之类
+*文件标识符（file descriptor）：
+	. 1=>STDOUT，2=>STDERR
+	. 3-9默认没有定义
+	. 就好像是变量一样，其值可以是 STDOUT或STDERR或空
+* echo 'this is stdout' >&1 表示作为STDOUT输出
+  echo 'this is stderr' >&2 表示作为STDERR输出
+* COMMAND 1>'stdout.txt' 表示将STDOUT重定向到stdout.txt
+  COMMAND 2>'stderr.txt' 表示将STDERR重定向到stderr.txt
+* COMMAND 3>&2 2>&1 1>&3
+  COMMAND 2>&1 1>&2
+
+@ bash的job control
+*前台（foreground）：可以控制【通过信号？】，可以执行命令，可以交互
+ 后台（background）：工作可能运行(running)或暂停(stop)，但是不能控制
+*将job置入后台“执行”：
+	. COMMAND &
+	. 会打印 job number 和 PID
+	. job在后台执行过程中，STDOUT和STDERR依然会输出到屏幕
+	. 当job执行完毕后，会有一行提示job完成
+*将job置入后台“暂停”：
+	. [ctrl]-z
+*查看后台工作：
+	. jobs [-lrs]
+	. -l 显示PID
+	. -r 仅列出running job ; -s 仅列出stopped job
+*让后台的stopped job转为running
+	. bg 
+	. bg %jobNumber
+*将后台job移回前台：
+	. fg 移回当前默认job，即最后一个置入后台的job【有+号标识】
+	. fg %jobNumber
+*【注意】这里所说的“后台”，是指“终端机模式”的后台，而非“系统后台”
+	. 后台running的进程 产生的输出 依然会输出到终端机
+	. 当用户登出时【脱机】，后台进程会被中断掉
+  与之对比，真正在系统后台工作的：
+	. 守护进程/服务
+	. at/crontab 指定的工作
+
+@ nohup 将进程置于“系统后台”
+*hup含义是hang up，挂断。nohup直观含义是：用户脱机时，工作不被中断
+*不支持bash内部命令，只能使用外部命令【因为不在bash环境中运行？】
+*输出信息 重定向到~/nohup.out，而不会发送到某个终端
+*nohup命令本身只是将进程在“系统后台”执行，而不管工作本身
+*http://zhidao.baidu.com/link?url=z5JYLDDMFEH_yFrFmMt7uKOWT9OcZWJjp1smrtPjiFfmFL286kUdUy_BsKic1xbucGh2C2ploJQNi2weBZepha
+
+@ ps 查看进程
+* ps aux 查看所有进程
+  ps -l 仅查看自己bash的相关进程
+  ps -lA 查看所有进程
+*可以查看到：进程状态，Priror和Nice值，CPU使用量，内存用量，开始时间，执行者，所在终端，命令
+
+@ top 查看进程
+*功能：	指定一种排序维度，查看系统中前N条进程。
+ 是一个交互式程序，因为只能显示一屏，N其实由屏幕大小决定的。
+ 会不断刷新，动态监控。
+*top [-d 刷新间隔/秒] [-p PID] 指定某一进程查看
+*top -b -n 2 > top.txt 执行2次，写入文件
+	. 此时不受屏幕限制，会查看到所有进程
+*排序：P:CPU M:Memery N:PID T:Time
+*其它：	k 发送一个singal给某进程
+	n 设置nice值
+	q 退出
+
+@ pstree 查看进程树
+*pstree [-A] [-up] 
+
+@ 进程状态：
+*	. R(Running) 运行
+	. S(Sleep) 睡眠，可以被唤醒
+	. D 不可被唤醒的睡眠状态【通常是在等待I/0】
+	. T(Stop) 暂停，
+	. Z(Zombie) 僵尸。
+*Sleep
+	. bash在执行子进程时，就是sleep状态
+*Zombie
+	. 进程已终止，但无法删除占用的内存
+	. 产生：1.系统不稳定 2.用户操作不良 3.程序自身问题
+	. 解决：重启系统。因为所有僵尸进程由init控管
+*Stop	. [ctrl]-Z的job 就是这个状态
+
+@ 信号 signal
+* 1 SIGHUP	启动被终止的进程【？】
+* 2 SIGINT	中断。同[ctrl]-c
+* 9 SIGKILL	强制中断。【和2有什么不同？】
+* 15 SIGTERM	试图用正常步骤终止进程
+* 17 SIGSTOP	暂停。
+
+@ kill 向进程发送信号
+* kill -signal PID	通过PID选择进程
+  kill -signal %JOB	通过JobNumber选择进程
+* killall -signal COMMAND	选择某个命令产生的进程【可能多个】
+	. -i interactive
+	. -I insensitive
+	. -e exact
+
+@ 查看系统资源
+*free 内存
+*uname
+*uptime 开机时间
+*dmesg 内核产生的信息
+*vmstat 系统资源。内存，交换内存，磁盘io，cpu
+@ netstat 网络跟踪
+*有两部分内容：网络相关port 和 系统自身socket
+* -a all;
+  -t tcp; -u udp;
+  -n 显示端口号port;
+  -l listen
+  -p PID
+@ /proc 
+*虚拟文件系统，位于内存中，实际上就是记录了内存数据
+*内容：
+	. 每个进程都有一个以PID命名的目录
+	. 还有记录系统信息的诸多文件
+*由于是内存中，系统状态的最原始信息都来自这里。
+ 如果自己需要编辑工具软件的话，需要来/proc采集数据
+
+@ fuser 
+* 查看文件/目录 被进程使用的情况
+* fuser -uv FILE
+* fuser -uv -m FILE 
+	. 查看整个文件系统 被那些进程使用
+	. FILE是文件系统下任意文件
+* fuser -ki FILE 
+	. 强行中断（SIGKILL）使用某文件的进程
+
+@ pidof 通过程序名找PID
+
+-------系统服务 daemons-------------------------------------
+@ deamon 与 service
+*其实不用分那么清啦
+*提供的功能是service，如web
+ 实现service的程序是daemon，如apache
+*有的daemon会产生多个服务【？】
+
+@ stand_alone
+*可独立启动，独立管理。启动后载入内存，之后一直占用内存资源
+*优点：	相应请求迅速
+*例：	WWW(httpd), FTP(vsftpd)
+
+@ super_daemon
+*一些服务 由super_daemon统一管理。没有请求时，这些服务不会启动；
+ 当发生请求时，super_daemon唤醒相应服务，结束后重新关闭释放资源。
+* super_daemon服务自身是一个stand_alone服务
+*优点：
+	1.节省系统资源
+	2.防火墙功能：允许/禁止 IP/hostname
+	3.其它安全管控：访问时间限制，连接数【？】
+*举例：	telnet
+*multi-thread 
+	. 多线程模式
+	. 多个用户同时请求某服务时，该服务会同时触发多几个进程来相应不同用户【所有服务都能支持多进程吗？】
+*single-thread
+	. 单线程模式
+【？stand_alone的服务也应当存在单线程/多线程的区别吧？】
+*按工作形态分类：
+	. signal-control: 信号管控
+	. interval-control: 定时执行
+
+@网络服务 端口
+*网络服务 对网络中的主机提供服务
+*网络涉及的概念：
+	. 协议（protocol）：TCP UDP 
+	. 端口（port）
+	. IP 域名(domain) 主机名(hostname)
+*我们的linux服务器 作为网络中主机的一员，
+ 提供的网络服务 通过监听主机的某一端口(port) 供client连接发起请求
+*一些广泛运用的服务有了约定俗成的固定端口：
+	. WWW 80
+	. FTP 21
+	. SSH 22
+	...
+*/etc/services 记录服务与端口的对应关系【这个对应用在哪里？】
+【我猜：用于用户可以用 IP+服务名 的形式请求，而不仅仅是 IP+port】
+【这个文件是写死的吗，全世界一样 还是每个主机不同？可否修改？】
+
+@/var/run目录
+*每一个daemon启动后 会在这里 记录下PID
+
+@服务 与 普通程序
+*服务的主体部分daemon 就是一段普通程序，
+ 但这段程序能成为服务，不是简单运行就可以，而是由复杂的操作
+*启动服务要做这些事：
+	. 环境监测
+	. 配置文件分析
+	. 记录PID 到/var/run
+	. 相关重要文件的锁操作（lock）【？】
+*以上工作被编辑成“启动脚本”【针对stand_alone】
+	. 位置：/etc/init.d/*
+	. # chkconfig: 35 40 60   配置开机启动
+	. 约定支持参数：stop|status|start|restart|...
+	  完成相应操作
+
+@/etc/init.d/*		服务启动文件
+ /etc/sysconfig/*	服务初始化环境配置文件（环境方面）
+ /etc/*			服务配置文件（功能选项方面）
+ /etc/xintd.conf	super_daemon的主配置文件（默认配置）
+ /etc/xintd.d/*		super_daemon管理的服务 配置文件
+ /var/lib/*		服务产生的数据库
+ /var/run/*		服务的PID
+
+@手动启动stand_alone服务
+*/etc/init.d/SERVICE_NAME [start|status|stop|restart]
+*服务启动脚本 都会支持这些参数/功能
+*方法二：/sbin/service脚本
+	. service SERVICE_NAME [start|status|stop|restart]
+	. service --status-all 列出系统所有stand-alone服务
+
+@手动启动super_daemon管理的服务
+*STEP1:	. 修改配置文件：/etc/xinetd.d/*
+	. 设置disable属性： disable=no ，即设为开启
+ STEP2:	. 重新启动super_daemon: xinetd服务
+	. /etc/initd.d/xinetd restart
+*查看super_daemon管理下的服务是否启动
+ STEP1:	查询/etc/services，找到该服务的pid
+ STEP2:	通过pid，查找netstat命令的结果，如果有记录则说明服务已启动
+ 【注意】【important】你会发现是 xinetd服务正在监听 那个端口。
+	直到有client请求该端口，xinetd才会启动真正的daemon
+ 【猜想】/etc/service的功能之一，就是让xinetd知道去 哪个端口 监听 哪个服务
+*配置文件有诸多属性，用以配置上述super_daemon的功能
+	. log_type,log_on_failure,log_on_success 日志设置
+	. cps = 50 10	每秒最大连接数 暂停时间
+	  instance = 50 同一服务的最大同时连接数
+	  per_source = 10 同一来源的客户端最大连接数
+	. umask = 002
+	! server = /usr/bin/rsync 程序主体
+	  server_args = --daemon 与上一项合起来就是：/usr/bin/rsync --daemon
+	! user = root	daemon进程的user
+	  group = root	daemon进程的root
+	. socket_type = [stream|dgram|raw]
+	  protocol = [tcp|udp]
+	! wait = yes 	采用single-thread机制
+	       = no 	采用multi-thread机制
+	. redirect = IP port	重定向到另一个地址
+	! bind = IP	主机有多个IP的时候，绑定一个IP
+	! only_from	防火墙，白名单
+	  no_access	防火墙，黑名单
+	  【防火墙】另有/etc/hosts.{allow|deny}设置。白名单优先黑名单。
+	. access_time	每天可供连接的时段
+
+@ 开机自动启动服务 
+*chkconfig: 管理系统开机默认启动哪些服务
+*chkconfig --list SERVICE_NAME	查看某服务的开机启动设置
+ chkconfig --level [0123456] SERVICE_NAME [on|off] 修改
+*原理【针对stand-alone】：chkconfig分析“服务启动脚本”中
+	# chkconfig LEVEL START STOP 这一行，
+	来确定 各个“init level”是否默认启动该服务
+*因此，想要使用chkconfig机制管理 开机启动服务的话
+	1. 在“启动脚本中”加入 #chkconfig... 行
+	2. 用chkconfig --add SERVICE_NAME 将service纳入管理
+	     chkconfig --del SERVICE_NAME
+*chkconfig --add SERVICE_NAME
+	. 原理是：新建/etc/rc.d/rc[runlevel].d/[S80servicename|K20servicename]
+	. 两文件都是/etc/init.d/servicename（启动脚本）的连接文件
+	. /etc/rc.d/rc[runlevel].d 的含义在后面解释
+*chkconfig 同样可以管理super_daemon的服务
+	【猜测】 不需要--add|del，可以直接设置。按理说由/etc/xinetd.d/*的配置文件决定。怎么实现的？
+
+
+-------日志文件-------------------------------------
+
+@概要
+*日志：系统 或 程序 记录其活动信息的文件。
+*通常格式为：时间(when) + 来源IP/主机(where) + 服务名称(who) + 操作(what)
+*作用：监控系统/程序 运行状态。作为排错和优化的线索
+
+@syslogd 记录日志服务
+*软件开发者当然可以自定义日志。也可以使用syslogd服务。
+*优点：
+	.调用简单【how?但是应该只需要 信息类型+信息等级+信息内容】
+	.程序中的信息记录行为 与 日志配置 分离。方便修改配置。
+	.功能相关（比如：ssh,telnet都与登录行为有关）的不同服务，可以将日志记录到同一个文件，更方便管理者分析数据
+	.信息等级。同一程序的不同等级信息分别处理。
+	.【？】可能还存在一些管理功能
+*逻辑：
+	.syslog将系统中产生的信息分为了几类：
+	 auth|cron|daemon|kern|lpr|mail|news|syslog|user,uucp,local0-7
+	.软件开发商 通过 调用上述名称 来记录日志
+	.产生的信息，根据配置文件，记录到各个文件
+*信息等级：
+	. 1info, 2notice, 3warning, 4error, 5crit, 6alert, 7emerg
+	. none, debug
+*配置文件
+	. /etc/syslog.conf
+	. 格式：mail.info /var/log/maillog
+		mail类型的 info等级及以上信息，记录入/var/log/maillog
+	. 三种方法：	. | .= | .!
+
+@centos默认的syslog.conf：
+	【暂略】
+
+@日志安全
+*原因：
+	1.防止linux系统被黑客攻击后，删除日志信息
+	2.防止用户不小心修改了日志文件
+	  【注意】日志文件只要被编辑过就无法继续工作，只能重启syslogd解决
+*策略一：
+	. 添加a隐藏属性，使日志文件内容只能增加：
+	  chattr +a /var/log/messages 
+	.缺点：无法“轮替”：文件无法重命名，无法删除
+*策略二：
+	. 在策略一基础上，轮替前取消a权限，轮替后再加上
+	. 详细见下面笔记
+
+@日志文件服务器
+*目的：在一台主机上管理多台主机产生的日志
+*配置：
+	.syslogd服务 自带 日志服务器功能
+	.开启：编辑syslogd的 启动配置文件：/etc/sysconfig/syslog
+	 SYSLOGD_OPTIONS="-m 0 -r"
+	./etc/init.d/syslog restart
+*syslogd 监听udp 514端口
+*客户端配置：
+	. 编辑/etc/syslog.conf
+	. 额外加一条： *.*  @192.168.1.100
+*【？】日志文件服务器 如何分别记录不同客户端的日志？
+
+@轮替 logrotate
+*logrotate是一个程序，依赖cron定期执行
+*配置文件：
+	. /etc/logrotate.conf
+	. /etc/logrotate.d/*
+*例：
+/var/log/wtmp{
+	weekly|monthly		#周期
+	rotate 4		#保留4个日志轮替文件
+	create 0664 root root	#新建文件权限
+	compress		#压缩
+	minsize			#日志文件小于此限额 则不轮替
+	sharedscripts
+	    prerotate
+		/usr/bin/chattr -a /var/log/xxx.log	#去a权限
+	endscript
+	sharedscripts
+	    postrotate		#轮替之后的操作
+		/usr/bin/chattr -a /var/log/xxx.log	#加a权限
+		...		#重启syslogd的一段脚本，因为轮替创建了新文件所以要重启
+	endscript
+}
+
+@日志分析工具
+*cent0S 提供 logwatch命令
+*其实用户可以根据自身需要自己编写一个 定制化的日志分析工具
+
+@klogd 记录内核产生的日志
+
+
+-------启动流程 模块管理-------------------------------------
+
+@ 流程
+1.BIOS
+2.BootLoader/MBR
+3.Kernel
+4.init
+
+@BIOS(basic input output system)
+1.加载CMOS信息，获取硬件配置，
+	. 其中有“启动设备查找顺序”，与BootLoader有关
+2.POST(power-on self test)加电自检
+	. 检测硬件
+3.读MBR，启动BootLoader
+	. 【重要】BIOS没有文件系统驱动，无法识别文件系统，但是能识别磁盘。
+		通过名为“INT13H”的硬件功能读取MBR
+	. MBR是磁盘的第一个扇区，也就是512B；
+	. BootLoader装载于MBR，466B。
+	  【重要】如果是grub的话，其实是BootLoader的stage1部分。
+	. 【补充】MBR中另有：分区表，16B*4；
+
+
+@BootLoader 引导装载程序
+*功能：	1.提供菜单
+	2.转交控制权给其它Bootloader（当选择菜单相应选项时）
+	3.加载内核文件到内存，启动内核
+*BootLoader有能力识别 /boot所在分区的“文件系统”，所以才能加载内核文件
+*除了MBR（磁盘的第一个扇区），还有引导扇区（boot sector，每个分区的第一个扇区）会储存BootLoader
+*grub是当前主流的Bootloader，下面详细介绍
+
+@ grub
+1.stage1 
+	. 程序内容为/boot/grub/stage1
+	. 是grub的源代码 stage1/stage1.S 汇编出来的
+	. 这段代码 在安装grub 时，被写入MBR
+	. 【重要】唯一作用：加载磁盘的第二扇区到内存
+2.stage1.5
+	. 第二扇区的内容依然是 一段程序
+	. 是grub的源代码 stage/start.S汇编而成
+	! 功能：从第三扇区开始，加载若干个扇区内容到内存
+	. 3-n扇区的内容就是 /boot所在文件系统的 驱动
+	. 安装grub时，会将该文件系统驱动，如/boot/grub/e2fs_stage1_5文件，写入3-n扇区
+	. 此时grub就拥有 文件系统 能力了
+3.stage2 
+	. 功能：真正去实现 1.提供菜单 2.加载并启动内核 3.移交控制权
+	. /boot/grub中的文件：
+		a. device.map		#设备对应文件
+		b. grub.conf / menu.lst #配置文件
+	  	c. stage1 / stage2	#stage1|2相应的 二进制程序
+		d. xxxfs_stage1_5 *N	#stage1.5的程序，实际上就是/boot所在文件系统的驱动程序
+* grub的磁盘识别代号
+	. 首先：与linux的机制不同
+	. 不分磁盘接口为IDE或SATA，都用“hd”
+	. 不按接口顺序，IDE1、IDE2；不按master和slaver。
+	  而是根据BIOS中设定的 “启动设备查找顺序”
+	. 分区 顺序和linux一样，但是索引从0开始
+	. 例：如果(hd0)是磁盘sda，则sda1分区为(hd0,0)，sda4分区为(hd0,3)
+* /boot/grub/menu.lst 
+default=0		# 默认选项，即title
+timeout=5		# 5秒后则使用默认选项
+splashimge=(hd0,0)/grub/splash.xpm.gz	# grub的背景图示
+#hiddenmenu		# 隐藏菜单界面【这里注释了，即不隐藏】
+title MyCentOS		# 第一个菜单
+    root (hd0,0)			# 磁盘分区代号
+    kernel /vmlinuz-2.6.18-92.e15	# 内核文件路径【注意：这里的根/ 其实就是root指定的(hd0,0)
+    initrd /initrd-2.6.18-92.e15.img	# initrd路径
+title MyWindows		# 第二个菜单
+    root (hd0,1)	# 分区
+    chainloader +1	# 即(hd0,1)+1，即该分区的第一扇区，即boot sector，即移交控制权给另一个bootloader
+*其它功能：
+	. 隐藏某一分区	p616
+	. 在线编辑启动参数，即menu.lst内容	p620
+	. 为某一菜单加密码	p623
+*启动内核时的参数
+	. kernel /vmlinuz-2.6.18-92.e15 ro root=LABEL=/ rhgb quiet single vga=790
+	. root linux根目录上挂载的分区
+	. rhgb 彩色
+	. quiet 静默模式
+	! single 【重要】单用户模式启动linux，即level=1
+	. vga 终端机分辨率、色彩
+
+@initrd / initramfs
+*含义：	initialRAM Disk -> 初始化 RAM 磁盘 -> 虚拟磁盘
+*目的：	
+	. 内核启动过程中需要挂载根目录
+	. 但此时内核“有可能”缺少一些驱动程序，如SATA、RAID驱动
+	  【补充】现在的linux内核默认支持IDE接口 和 ext2/3文件系统。这个情况下不需要initrd支持。
+	. /lib/modules/KERNEL_VERSION/目录下一定有需要的驱动，但是它们同样位于文件系统中，内核无法读取
+	. initrd就是为了提供 所需的驱动文件，
+	. initrd是BootLoader加载入内存的
+*/boot/initramfs-...
+	. 是一个 cpio->gz 的压缩文件
+	. 原本内容是一个目录，结构类似linux的根目录
+	. 最重要的驱动文件位于 ./lib/目录
+
+内核完整加载后，执行的第一个程序：/sbin/init，PID=1
+@ init
+*作用：	做了很多工作，总的来说是在 准备系统环境	p601
+*执行等级：
+	0 halt
+	1 single user mode
+	2 multi-user mode, without NFS
+	3 full multi-user mode
+	4 unused
+	5 X11
+	6 reboot
+* /lib/inittab 配置文件
+* init处理流程：
+	1. 取得runlevel
+		. 默认值 或者 传入参数
+	2. /etc/rc.d/rc.sysinit 系统初始化	p603
+		. 网络，主机名，硬件，时间，字体，电池，文件系统等等
+	3. /etc/rc.d/rc[123456]
+		. 各runlevel启动/关闭时要执行的脚本
+		. 内容为 开启/关闭 服务
+	4. [ctrl]-[alt]-{del] 
+		. 开启组合键 的关机功能
+	5. pf,pr
+	6. mingetty
+		. 启动虚拟终端tt1-tty6
+		. 等待用户登录
+	7. X11
+		. 启动XWindow
+
+@ something important！
+*我使用的centos7，/etc/inittab内容：#inittab is no longer used when using systemd
+*liunx各个发行版 和 不同版本 的系统结构都可能存在差异。甚至可能相差甚远。
+*但是linux逻辑和哲学思想不会相差太多
+*所以说，学习linux不能拘泥于 某一文件
+*而是要弄清楚 一个过程，为了实现什么，做了哪些事情。而不用太在意具体哪个文件写了什么内容。
+*一项功能，一个程序，所使用的文件，
+ 根据功能分类：配置文件、数据库文件、程序代码等等，可能为一定规范放置于各个目录
+ 根据逻辑结构，又可能根据选项分支 建立文件夹；
+	       更具顺序，用户等等建立多个配置文件，后者可以覆盖前者
+*所以需要从较高的角度看待这些，才能从根本上理解，无论形式上如何变化，都不影响本质
+
+@ 内核模块 p608
+modprobe.conf
+modules.dep
+depmod lsmod  modinfo[modulename|filename] insmod rmmod modprobe
+
+@系统启动过程中遇到问题 p624
+
+
+-------软件安装：源码与tarball-------------------------------------
+
+
+
+
+
+---------------------------------------------
+* tty2死机了，怎么抢救【？】kill -s 9 PID
+*目录权限 对 目录内文件影响
+目录的执行权限：可以获得目录下文件的列表，和进入目录。要对目录下存在的文件进行读取和修改，必须要进入目录，所以必须要目录有执行权限。
+*使用dumpe2fs，报错：couldn't find valid filesystem superblock
+
+*终端与shell的关系【？】
+EOT？ mail遇到的
+xfs 什么文件系统？
+MB MiB？
+
+ps -l
+
+hang up hup 挂断
+
+idle 空闲的
+
+multi-thread 和 single-thread究竟是针对
+xinetd本身 还是
+某一子服务？
+
+.img是什么文件？ <= 压缩文件
+
+【？】服务启动后监听哪个端口，是在哪个步骤决定的？
+
+file命令可以查看文件类型
+
+/etc/sysconfig ???

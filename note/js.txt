@@ -1,0 +1,130 @@
+alert
+confirm
+prompt
+
+if else
+while
+switch
+for(var i=0;i<10;i++)
+for(var k in arr)
+
+document.write()
+* 在页面加载完调用会覆盖前面内容
+* 可输出 数字索引 数组、多维数组；不能输出 非数字索引 数组
+
+创建数组
+* var arr = new Array();arr['a']=0;
+* var arr = new Array(0,1);
+* var arr = [[0,1],[2,3]];
+
+导入js文件 <script src='xxx.js'></script>
+一旦加了src,<script>标签内的js代码会因覆盖而无效
+
+onload 详见http://blog.sina.com.cn/s/blog_48e6792c01010f29.html
+* 只能在body标签中使用<body onload='load1(),load2()'>
+* 能在js中使用 window.onload=load1;
+* 页面加载完将 调用onload的函数
+
+事件：
+onclick
+onchange
+onblur
+onfocus
+onmouseover
+onmouseout
+其它
+
+
+妙味课堂
+
+第3课-----------------------------------------------
+
+var clock = setInterval(function,time)
+setTimeout(function,time)只执行一次
+clearInterval(clock)
+
+date = new Date();
+date.getHours getMinutes getSeconds 
+getDay() 星期 注：星期天为0
+getMonth() 月份 注：迷之从0算起，getFullYear和getDate都没问题
+
+str.charAt(index)
+
+第4课-----------------延时提示框--
+
+getElementById 需要在window.onload()才能调用，不然取不到元素对象
+
+offsetLeft/Top/Width/Height
+
+js设置背景属性：
+document.body.style.backgroundColor="#FFFFFF";
+document.body.style.backgroundImage="url(path/xxx.jpg)";
+背景图片大小 background-size: 100% 100%;
+
+水平方向的ul：把li设为inline-block就行了，本来是block
+
+
+
+
+
+2-3
+
+1.空白的标签页 about:blank
+
+2.document 实际上是 window.document
+
+3.window.close 只能关闭脚本打开的标签页
+
+4.假如 window.onload.... 被以document.write的形式写入，并在标签页中显示，onload事件并不会被触发。看来document.write与一般加载文件不一样
+
+5.
+document.documentElement.clientWidth/Height 屏幕宽/高
+document.documentElement.scrollWidth/Height 屏幕的滚动宽/高
+
+
+3-3
+
+1.
+document.body.clientWidth		body的宽度，不算body的margin
+document.documentElement.clientWidth	屏幕宽度
+
+2.right bottom offsetRight offsetBottom 无效？
+
+3.阻止事件冒泡：
+e.stopPropagation() 或
+e.cancelBubble()
+
+4.position:absolute; 下
+*left的优先级比right高，一旦设置left，再设置right无效
+*只存在offsetLeft offsetTop,不存在offsetRight offsetBottom
+*scrollLeft表示滚动位置，同样不存在scrollRight
+
+5.offsetWidth表示实际显示宽度，width、padding、border
+scrollWidth表示内容的宽度，width、padding，即使没有overflow: scroll;也有效，但又padding时大小略微不同。。。
+
+4-1
+
+1.cookie使用：
+var date = new Date();
+date.setDate(date.getDate()+30);
+document.cookie="user=blue;expires="+date;//设置有效时间
+
+
+清除浮动：
+1.在父的最后添加一个空子元素，clear:both
+2.给父添加 overflow:hidden
+
+屏幕只能显示整数个像素点，
+chrome对 0.4px的解释是0px，对0.5px的解释是1px
+	 -0.4px为0px，-0.5px是-1px;
+
+
+float:left 也能使内联元素的 width、height有效，不知道此时是否已经是块元素
+
+
+
+
+
+
+
+

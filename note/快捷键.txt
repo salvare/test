@@ -1,0 +1,94 @@
+display fusion快捷键
+
+* 移动到另一个屏幕	ctrl + win + Z
+* 移动到上下左右	ctrl + win + 方位键	弃用
+
+
+windows
+
+* 最小化当前窗口	alt + space + N
+* 最大化当前窗口	alt + space + X
+* 关闭当前窗口		alt + space + C
+
+* 切换程序		alt + tab
+* 切换程序		win + tab
+* 切换程序		win + T
+* 直接选择任务栏程序	win + 数字键
+
+* 左/右半屏		win + ←/→		反方向可恢复		可以跨屏
+* 最大化		win + ↑		win↓可恢复
+* 最小化		win + ↓
+
+* 剪切文件到	shift + 拖拽
+* 复制文件到	ctrl + 拖拽
+
+* 打开程序新实例	shift + 左击
+
+* 最小化所有窗口	win + D
+
+* 打开‘这台电脑’	win + E
+
+
+chrome
+* 打开新窗口		ctrl + N
+* 隐身模式打开新窗口	ctrl + shift +Ｎ
+
+* 打开新标签页		ctrl + T
+* 后台新标签页打开链接	ctrl + 左击
+* 新标签页打开链接	ctrl + shift + 左击
+* 关闭标签页		ctrl + W	
+* 打开之前关闭的标签页	ctrl + shift + T
+
+* 切换标签页		ctrl + tab
+* 选择标签页		ctrl + 数字键
+
+* 前进/后退		alt + ←/→
+
+* 打开主页		alt + home
+
+* 查看源代码		ctrl + U
+
+* 定位到地址栏		ctrl + L
+
+* 打开/收起书签栏	ctrl + shift + B
+
+
+Zend
+
+* 与上/下一行调换	alt + ↑/↓
+* 复制当前行到上/下一行 ctrl + ↑/↓	自定义
+
+* 移动光标到行首/尾	home/end
+* 移动光标到文首/尾	ctrl + home/end
+
+* 选中			shift +  方位键
+* 选中一行		home , shift + end
+* 选中一个单词		ctrl + shift + ←/→
+
+* 定位光标跳过一个单词	ctrl + ←/→
+* 定位到最后编辑处	ctrl + Q
+* 查找下一个		ctrl + K ( +shift )
+* 定位到上/下一次编辑处	alt + ←/→
+
+* 重命名变量/方法名	alt + shift + R
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					

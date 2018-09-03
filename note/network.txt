@@ -1,0 +1,13 @@
+Connection:Keep-alive
+http://zhidao.baidu.com/link?url=5ckBcpNaANa4vf4vUgStOO777oZsKYNfqf75nqeR5v5pxFPfYvQ-BQwtXakYYqvx_WWNHwj8v0Vf9W4tzx7gSynNwvmK8xHTIuJ9CF-s_gK
+
+
+Keep-Alive:timeout=5, max=100
+
+
+长连接
+http://baike.baidu.com/link?url=w3PXpJTbfITGgZQ3tIbPPG10VF-QPkmme8mjL01-_mjgowjjEJdKGz25hVd44_7ZCAITYHy988uvl3F4K1TBN_
+长连接的应用：APNS(苹果推送通知服务),详情：
+http://baike.baidu.com/link?url=g0Rl1CVwQaG4pk-9tDqh0XNDhmttUANCJ5Gj-5iaaqa5fY3-wTLbvG8ZYEauoMJhVcjqkA936Udb8PtQv3hGy_
+
+

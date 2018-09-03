@@ -1,0 +1,17 @@
+FileZilla Client
+EditPlus	UltraEdit	Macromedia Dreamweaver 
+visualSVN server
+tortoiseSVN
+
+APACHE,MYSQL,PHP,AJAX
+HTML,JAVASCRIPT,JQUERY,DIV/CSS,XML
+memcache缓存技术
+MVC，ThinkPHP
+
+
+数据分发，Nosql，redis，linux服务器架构,MySQL索引优化,静态化设计,MonoDB,ECSHOP
+
+期权,绩效，年终双薪
+
+帝国cms，WordPress，magentto，joomlar，codeigniter，
+b/s系统，web2.0,

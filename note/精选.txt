@@ -1,0 +1,65 @@
+mysql_insert_id()函数
+说明：Get the ID generated in the last query
+获取最后一个查询中生成的ID
+
+
+模糊搜索
+like 一般与%符号配合使用，实现模糊查询功能。
+例：Like ‘%mr%’表示搜索条件为 包含mr的任意字符串
+*  百分号%匹配0个或多个字符；
+*  下划线'_'匹配一个字符；
+*  还可以用方括号只匹配指定的某几个字符，例如[a-z]，匹配小写字面；
+*  方括号中加入^表示匹配除指定字符以外的字符。
+
+
+???apache的配置文件
+
+4.mvc结构中的model对数据操作是，常常可以getItemById来获得某行信息，在利用循环调用getItemById获取所有信息。这样逻辑比较清晰，getItemById使用频率很高
+【2016-11-08 21:06:34
+现在怀疑这个做法是否合理。。原本一条sql的事 分成了 很多次查询】
+
+
+曾经研究失败的浏览器缓存问题
+
+
+函数定义时 函数名前 加& 的作用：引用返回。
+例：function &get(){static $i=0; return $i;}//这里&是必须的
+$a = &get();//此时$a与$i指向同一个存储地址
+$b = get();//这里跟普通的调用一样
+
+？？？4.static $var=0; 静态变量
+*程序运行之后，只被初始化一次，此后在执行到这行定义它的代码时，将不再执行；
+*程序执行离开其作用域时，其值不会消失,再次调用时会使用上次执行的结果；
+*static修饰的函数为 静态函数，其只能调用静态函数和静态变量
+
+4.[JS] form中的点击事件都会触发提交(很奇怪),需要return false
+
+SEO 百度统计
+
+url不区分大小写？？？？
+协议和域名部分不分大小写。路径部分是否区分大小写则不一定，要看具体网站后台是如何实现的。
+
+4.[JavaScript] js中的this：this是包含它的函数作为方法被调用时所属的对象
+
+5.[JavaScript] js中可以将构造方法等同于类：
+function Cat(name,age){this.name=name;this.age=age};//就是普通的函数
+var miao =  new Cat('miao',2);//创建对象
+var miao;miao.Cat('miao',2);//等同上
+alert(miao.name);//属性
+
+2.[PHP] include和require辨析
+* require通常放在文件最前面，其实不管放在哪里都会最先引入；
+  include语句则是 当执行到时才开始引入
+* require无视判断一定会引入，例：if(false){include("a.php");}
+* 其实一般用require_once和include_once
+
+
+*总结：
+a.单引号一定会转义 \' ,不会转义 \" ,其它都不转义，除了 \\
+b.双引号一定会转义 \" ,不会转义 \' ,其它都会转义，当然包括 \\
+
+
+
+
+
+
