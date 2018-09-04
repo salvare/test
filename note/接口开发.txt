@@ -1,0 +1,45 @@
+一、curl 实现接口
+
+server: 直接输出数据
+echo $data; 或：
+echo json_encode($data);
+
+client:
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,"http://localhost/work/test/0916/curl/server.php");  //这里填绝对路径
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  //设置不直接输出
+curl_setopt($ch, CURLOPT_HEADER, 0);  //设置不输出 报头
+$result = curl_exec($ch);  //获取结果
+curl_close($ch); 
+
+
+二、fsockopen 
+
+$fp = fsockopen("www.test.com",80);//host域名，不能有http:// ;  80 端口
+//$fp是一个文件句柄
+fwrite($fp,"POST /work/test/a.php HTTP/1.1\r\n");
+fwrite($fp,"Host: www.test.com\r\n\r\n");
+
+while (!feof($fp)){
+    $ret .= fgets($fp, 100);
+}
+
+
+
+http://zhidao.baidu.com/link?url=zJAddsDLjSmae5ZTJOHnT_xkghLv3RffADyAs1ZpvaGzHKARTTdR07VjsZH0ctc6jTlUjj_KHfXKwnQHAWt3sD6MashjIKh7prPMgpajeGq
+
+http://www.cnblogs.com/witer666/archive/2013/07/28/3221218.html
+
+http://www.cnblogs.com/lmule/archive/2010/10/27/1862725.html  *important*
+
+
+file_get_contents
+http://bbs.csdn.net/topics/390324180
+
+
+
+
+
+
+
+

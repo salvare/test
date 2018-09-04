@@ -1,0 +1,456 @@
+@ curl是利用URL语法在命令行方式下工作的开源 文件传输工具
+
+@ CommandLine Uniform Resource Locator 命令行统一资源定位器
+
+#以下都以php环境为示例
+
+@ curl_setopt($ch, CURLOPT_URL,"www.baidu.com");
+  $result = curl_exec($ch); //直接输出了页面内容；$result的值为true
+
+请求html文档：
+如果下载的是HTML文档，那么缺省的将不显示文件头部，即HTML文档的header【注意：不是<head>】
+要全部显示，请加参数 -i，要只显示头部，用参数 -I 【php curl中怎么设置？】
+
+请求表单：
+get 直接在url中加参数
+post  命令行： curl -d "birthyear=1905&press=OK" www.hotmail.com/when/junk.cgi
+
+表单中上传文件：
+curl -F upload=@localfilename -F press=OK URL
+这个命令的实质是将本地的文件用POST上传到服务器
+（HTTP协议文件上传的标准方法是使用PUT curl -T uploadfile www.uploadhttp. com/receive.cgi）
+
+curl的产生 会话 的过程？生命周期？
+
+有些网络资源访问的时候必须经过另外一个网络地址跳转过去，这用术语来说是：referer，引用？？
+
+提交cookie：
+curl -b stored_cookies_in_file www.cookiesite.com
+？stored_cookies_in_file  cookie存放在文件中？在哪？
+展开：cookie的工作原理？服务器端可以查看cookie？客户端每次请求时都会上传cookie信息？
+
+注意事项
+curl非常博大，用户要想使用好这个工具，除了详细学习参数之外，还需要深刻理解http的各种协议与URL的各个语法。
+这里推荐几个读物：
+RFC 2616 HTTP协议语法的定义。
+RFC 2396 URL语法的定义。
+RFC 2109 Cookie是怎样工作的。
+RFC 1867 HTTP如何POST，以及POST的格式。
+
+http://blog.csdn.net/zqt520/article/details/17734193
+
+form上传文件时：
+1.enctype="mutipart/form-data"
+2.<input type="file" name="my_file/>
+3.上传文件存放在服务器一临时文件目录，这个目录定义在php.ini，upload_tmp_dir="D:\Xampp\tmp"
+4.文件路径存放在$_FILES而非$_POST
+5.会话？结束后临时文件会被删除
+其它：tp的\Think\Upload类可以仔细看看
+
+
+@D:\Xampp\htdocs\test\0916\index.txt;	type=text/plain;	filename=index.txt
+@D:\Xampp\tmp\phpC91E.tmp;		type=text/plain;	filename=list.txt
+
+
+
+@ curl上传文件
+* 模拟form上传文件（或者说机制相同）
+* curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false); //字面意思是关闭安全上传，php5.6之后必须做这个设置才能这样上传
+  $file = dirname(dirname(__FILE__)).'/index.txt'; //D:\Xampp\htdocs\test\0916/index.txt; 
+  $file = realpath(mb_convert_encoding($file,'GBK','utf8')); //我用的windows系统的字符编码是GBK，如果不转码可能会导致windows识别不了文件路径；realpath可以获取绝对路径，处理./ ../ 以及 window“\”作为路径分隔符的问题
+  $filename = 'index.txt';//上传后的文件的文件名
+  $type = 'text/plain';
+  $data = array(
+	'my_file' => "@$file;type=$type;filename=$filename",//这个格式必须严格遵守，否则curl会认为上传的是普通数据而非文件
+  );
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data); //server端脚本，会在$_FILES[my_file]看到上传文件的信息
+  $response = curl_exec($ch);
+  print_r($response);exit;
+* 以上方法可以做普通的POST请求，$data在server段脚本通过$_POST获取
+*反思：试验这个方法花了半天时间。。
+ 照着最初了的示例运行：$file = dirname(dirname(__FILE__)).'/index.txt'，传到server端总是普通的post参数；
+ 再查资料，有文章说要处理$file: $file = realpath(mb_convert_encoding($file,'GBK','utf8'));还是不行，情况相同；
+ 又百度许久，期间还顺便看了下一段总结的“以文件形式上传数据”，
+ 最终才偶然看到curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false)。
+ 在此过程中，因为对代码原理不理解，发生问题后百度时只能浮于对现象的描述，查看检索结果时，也只能一篇篇从头到尾看；
+ 而如果仔细思考的话，我看的每一篇文章，作者在测试时一定是正确的，于是可以想到是我的环境与他们不同；
+ 环境的不同可以是：操作系统，web服务器（不太像），php版本/配置；
+ 如果我在 百度的关键词中，和查看资料时，带有这方面的思考和倾向，这个问题应该会更快的得到解决
+*参考：	http://blog.sina.com.cn/s/blog_709475a101013dlf.html
+	http://blog.csdn.net/clh604/article/details/38757359
+	http://www.jb51.net/article/64949.htm
+	http://blog.csdn.net/cyuyan112233/article/details/21015351
+	http://blog.csdn.net/ligaofeng/article/details/39291185
+* https://segmentfault.com/a/1190000000725185【重要】
+
+@ 另有一种情况：上传一个文件，但文件内容是动态生成的，不存在本地文件
+* $filename = ...; $type = ...;//参数处理同上，因为没有本地文件所以没有$file了
+  $key = "my_file\"; filename=\"$filename\r\nContent-Type: $type\r\n";
+  $data = array($key=>"YOUR_FILE_CONTENT");
+  curl_setopt ...;
+  curl_setopt($ch,CURLOPT_POST,true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  $content = curl_exec($ch);
+* $key的格式很迷，不能理解
+
+
+
+@ cookie
+*会话中的每一次请求都会提交cookie吗? 经测试是这样的。
+*开启一个会话后，php发送一个key为“PHPSESSID”cookie值给client，
+ 当client再次发起请求时，本地cookie会包含在request header中，
+ php处理请求时，就能根据 $_COOKIE['PHPSESSID'] 确定这次请求属于哪个会话
+ （这里有个问题：SESSION必须依赖COOKIE工作吗？不能通过IP或其它我想象不到的来确认会话对象？）
+ （解答：Session对浏览器的要求：虽然Session保存在服务器，对客户端是透明的，它的正常运行仍然需要客户端浏览器的支持。这是因为Session需要使用Cookie作为识别标志。HTTP协议是无状态的，Session不能依据HTTP连接来判断是否为同一客户，因此服务器向客户端浏览器发送一个名为JSESSIONID的Cookie，它的值为该Session的id（也就是HttpSession.getId()的返回值）。Session依据该Cookie来识别是否为同一用户。)
+*cookie存储在本地，按网站域名或服务器ip管理，不会相互干扰
+*cookie的数量和总大小受浏览器限制，数量在40个左右，大小在4k左右
+ http://blog.csdn.net/marising/article/details/4842719
+
+@ session的工作原理
+（1）当一个session第一次被启用时，一个唯一的标识被存储于本地的cookie中。
+（2）首先使用session_start()函数，PHP从session仓库中加载已经存储的session变量。
+（3）当执行PHP脚本时，通过使用session_register()函数注册session变量。
+（4）当PHP脚本执行结束时，未被销毁的session变量会被自动保存在本地一定路径下的session库中，这个路径可以通过php.ini文件中的session.save_path指定，下次浏览网页时可以加载使用。
+http://baike.baidu.com/link?url=IbnPQ48kZFXf229T6-1vWIW36V5wyZM7tZ3uCxdG-pWKVShrghH-x_uotMJySw2l9JsBoFOLkljZIG5tRV9dysJzfIyOyYXog25oPS-JBFq
+
+@ session生命周期
+*创建：用户访问第一次访问服务器时
+ 注意：只有将请求由web server转交CGI（PHP/JSP/Servlet）时，根据服务器端脚本控制，才会创建session
+*失效：	1.服务器端：服务器会把长时间没有活动的Session从服务器内存中清除，此时Session便失效
+	2.客户端：Session依据该Cookie来识别是否为同一用户。所以删除本地键为PHPSESSID的cookie值也会使session失效。
+	  cookie是由服务器发送给客户端的，通过header，同时声明了cookie的过期时间（expires）。
+	  PHPSESSID这个值expires好像是半永久的，不人为清理的话会一直存在。
+*【纯引用】该Cookie为服务器自动生成的，它的maxAge属性一般为-1，表示仅当前浏览器内有效，并且各浏览器窗口间不共享，关闭浏览器就会失效。因此同一机器的两个浏览器窗口访问服务器时，会生成两个不同的Session。但是由浏览器窗口内的链接、脚本等打开的新窗口（也就是说不是双击桌面浏览器图标等打开的窗口）除外。这类子窗口会共享父窗口的Cookie，因此会共享一个Session。
+注意：新开的浏览器窗口会生成新的Session，但子窗口除外。子窗口会共用父窗口的Session。例如，在链接上右击，在弹出的快捷菜单中选择"在新窗口中打开"时，子窗口便可以访问父窗口的Session。
+*　URL地址重写是对客户端不支持Cookie的解决方案。URL地址重写的原理是将该用户Session的id信息重写到URL地址中。服务器能够解析重写后的URL获取Session的id。这样即使客户端不支持Cookie，也可以使用Session来记录用户状态。
+* http://www.cnblogs.com/binger/archive/2013/03/19/2970171.html【全是干货】
+
+@ TCP连接的三次握手：http://blog.csdn.net/xubo_zhang/article/details/11900947
+@ Keep-Alive
+* http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html（good article）（注意#101评论）
+* http://www.cnblogs.com/skynet/archive/2010/05/18/1738301.html
+@ Keep-Alive: timeout=5, max=100
+* timeout：过期时间5秒（对应httpd.conf里的参数是：KeepAliveTimeout），
+* max是最多一百次请求，强制断掉连接
+* 就是在timeout时间内又有新的连接过来，同时max会自动减1，直到为0，强制断掉。见下面的四个图，注意看Date的值（前后时间差都是在5秒之内）！
+* http://blog.csdn.net/gaoshanliushui2009/article/details/8020240
+
+@ CGI,CLI,SAPI
+* http://zhidao.baidu.com/link?url=ZEUfgpGqXn3nr-owMOsaA1QSxklc479RkZNNesvlIoUL5R9uybQhaEsmqaPNEv40OPJ_ZPAU-V49zmPRIzzbk3aXasYX1_qjvh44t_IH1S_
+* http://www.phpernote.com/news/723.html
+
+@ http://blog.csdn.net/jallin2001/article/details/6599052/【待整理】【curl】
+@ http://www.jb51.net/article/37796.htm 【excellent】【php CLI】
+
+
+CURLOPT_CUSTOMREQUEST
+CURLOPT_UPLOAD
+CURLOPT_WRITEFUNCTION
+CURLOPT_FILE:这个文件将是你放置传送的输出文件，默认是STDOUT.
+CURLOPT_INFILE:这个文件是你传送过来的输入文件。
+CURLOPT_INFILESIZE
+CURLOPT_SSL_VERIFYPEER
+CURLOPT_SSL_VERIFYHOST
+CURLOPT_VERBOSE //在屏幕打印请求连接过程和返回http数据
+CURLOPT_TIMEOUT //接收数据时超时设置，如果10秒内数据未接收完，直接退出
+CURLOPT_FOLLOWLOCATION //返回的头部中有Location(一般直接请求的url没找到)，则继续请求Location对应的数据
+CURLOPT_MAXREDIRS //CURLOPT_FOLLOWLOCATION=true时有意义。设置查找次数，防止查找太深。
+CURLOPT_AUTOREFERER //当根据Location:重定向时，自动设置header中的Referer:信息
+CURLOPT_CONNECTTIMEOUT //用来告诉PHP脚本在成功连接服务器前等待多久（连接成功之后就会开始缓冲输出），这个参数是为了应对目标服务器的过载，下线，或者崩溃等可能状况；
+CURLOPT_TIMEOUT //用来告诉成功PHP脚本，从服务器接收缓冲完成前需要等待多长时间。如果目标是个巨大的文件，生成内容速度过慢或者链路速度过慢，这个参数就会很有用。
+CURLOPT_HTTPAUTH
+CURLAUTH_DIGEST
+CURLOPT_USERPWD
+CURLOPT_HEADERFUNCTION
+CURLOPT_VERBOSE //如果你想CURL报告每一件意外的事情，设置这个选项为一个非零值
+
+restful
+
+curl与session
+见 http://blog.csdn.net/jallin2001/article/details/6599052/ 的例四
+模拟登录，上传cookie，
+
+curl与ssl
+http://www.cnblogs.com/ainiaa/archive/2011/11/08/2241385.html
+
+HTTP
+@ HTTP_REFERER 告诉服务器我是从哪个页面链接过来的
+* http://baike.baidu.com/link?url=IalncUYfGPsZZU6uW7EqwjadLJ0DGimhvYqni38reEe_bEof8qGbF2WnRm-vYRzi1UPNjTo9-v2XQYCuoWuO_a
+  http://blog.csdn.net/21aspnet/article/details/7419672
+* 应用：防止外链
+* 伪造：1.PHP header("Referer: http://www.baidu.com"); //不行(-__-)b
+	2.curl_setopt ($ch, CURLOPT_REFERER, "http://www.baidu.com"); //可以
+
+@ http://www.oschina.net/code/snippet_2285640_44455
+抓取一些有页面访问控制的页面 
+如果用上面提到的方法抓的话，会报以下错误
+You are not authorized to view this page
+You do not have permission to view this directory or page using the credentials that you supplied because your Web browser is sending a WWW-Authenticate header field that the Web server is not configured to accept.
+这个时候，我们就要用CURLOPT_USERPWD来进行验证了
+     /*CURLOPT_USERPWD主要用来破解页面访问控制的 
+     *例如平时我们所以htpasswd产生页面控制等。*/ 
+     curl_setopt($ch, CURLOPT_USERPWD, '231144:2091XTAjmd=');
+
+@ Request For Comments（RFC），是一系列以编号排定的文件。文件收集了有关互联网相关信息，以及UNIX和互联网社区的软件文件。目前RFC文件是由Internet Society（ISOC）赞助发行。基本的互联网通信协议都有在RFC文件内详细说明。RFC文件还额外加入许多的论题在标准内，例如对于互联网新开发的协议及发展中所有的记录。因此几乎所有的互联网标准都有收录在RFC文件之中。
+
+
+----start 关于浏览器缓存 开始很乱-----------------------------------------------------
+@ 浏览器缓存
+@ Expires 
+	* 指定一个绝对的过期时间(GMT格式)  HTTP/1.0
+	* HTML <meta http-equiv="expires" content="某时间格式。。。">
+	* PHP 
+	* 不推荐使用
+*Cache-Control 指定的是从文档被访问后的存活时间，这个时间是个相对值,单位“秒”  HTTP/1.1
+	1.header('Cache-Control:no-cache,must-revalidate');  
+	2.header('Pragma:no-cache');
+@HTML缓存机制
+* <meta http-equiv="expires" content="Sunday 26 October 2008 01:00 GMT" />
+  这个值小于当前时间，则表示不缓存
+  header('Pragma:no-cache');
+@ cache-control【？】
+*在新窗口重新打开页面	
+*地址栏回车/F5刷新	
+*后退按钮		这三种情况，如果设置了max-age，则使用缓存；如果设置了no-cache则重新请求
+*刷新按钮		即使max-age，仍重新请求
+* http://blog.sina.com.cn/s/blog_9c7ba64d01012vn2.html
+@HTTP缓存机制
+* http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html【perfect】
+@
+Content-Length:178
+Date:Tue, 26 Jul 2016 02:04:31 GMT
+ETag:"b2-5388050d6668f"
+Last-Modified:Tue, 26 Jul 2016 02:04:06 GMT
+
+Cache-Control:max-age=0
+If-Modified-Since:Tue, 26 Jul 2016 02:04:06 GMT
+If-None-Match:"b2-5388050d6668f"
+
+Status Code:304 Not Modified
+Date:Tue, 26 Jul 2016 02:06:51 GMT
+ETag:"b2-5388050d6668f"
+---------------------------------------------------------------------
+@ 静态页面 与 php动态页面 缓存机制不同
+* 静态页面，试验得：
+	. 初次访问：浏览器响应ETag和Last-Modified
+	. 再次访问：请求If-Modified-Since和If-None-Match，
+		    服务器在判断200或是304（Not Modified）
+* 动态页面【？】
+
+@ Expires策略 和 Cache-control策略
+* Expires
+	. HTTP/1.0 ，HTTP/1.1仍兼容，但不推荐使用
+* Cache-control
+	. 常用：no-cache，max-age（单位：秒），
+
+@ Last-Modified策略 与 Etag策略
+* 当判断已有缓存并且未过期（expires或max-age规定），会使用缓存；
+  当缓存已过期，会走Etag和Last-Modified策略
+* Last-Modified
+	. 服务器主机会记录文件的修改时间，例如linux会记录文件的mtime；
+	  客户端第二次请求web服务器，会发送本地已缓存的“最后修改时间”If-Modified-Since；
+	  服务器判断If-Modified-Since与最新的“修改时间”，
+	  如果相同，返回状态码304，使用缓存，
+	  如果又有新的修改，则请求服务器，重新获取数据，状态码200
+	. Last-Modified策略 分析 文件修改时间，来判断内容是否更新
+	. 问题：动态页面，PHP/ASP...怎么判断【？】
+* Etag
+	. 过程同上
+	. Etag策略 分析 文件的修改时间和“文件内容”
+	  iNode+Size+MTime->Hash 获取特征值
+*同时设置Etag和Last-Modified的话，优先使用Etag
+
+@ 用户行为 影响缓存
+* 地址栏回车/链接跳转/新窗口打开/
+  前进、后退/
+  F5/
+  刷新按钮/
+
+@ HTML<head> 和 PHP设置响应头
+* HTML<head>
+	. <meta http-equiv="Expires" content="0">
+	  <meta http-equiv="Pragma" content="no-cache">
+	  <meta http-equiv="Cache-control" content="no-cache">
+* PHP
+	. header ("Last-Modified: " . gmdate ('r', $max));
+	  header ("Expires: " . gmdate ("r", ($max + $interval)));
+	  header ("Cache-Control: max-age=$interval");
+	  header ("Pragma: cache");
+* 郁闷的是，实际测试时使用两种方法都没有效果，基本上只有后退会使用缓存。
+  这个问题因素较多：浏览器、用户操作、缓存策略。
+  因该是还忽略了什么东西。。暂时不花时间研究了
+----end--------------------------------------------------------------
+
+@ 用 PHP 进行 HTTP 认证
+* https://secure.php.net/manual/zh/features.http-auth.php
+* 用cURL抓取有访问控制的页面 http://www.oschina.net/code/snippet_2285640_44455 例四
+
+@ 
+http://liyixing1.iteye.com/blog/1115029
+http://www.cnblogs.com/zudn/archive/2011/09/13/2174413.html
+https://segmentfault.com/a/1190000000635183【perfect cURL上传文件】
+http://tool.oschina.net/commons
+http://www.tutorialspoint.com/http/http_requests.htm【HTTP request】
+https://curl.haxx.se/libcurl/c/CURLOPT_CUSTOMREQUEST.html
+http://blog.csdn.net/andrewpj/article/details/45460017【HTTP request 中文，层次清晰 perfect，就是最后几个例子试了不行】
+http://kb.cnblogs.com/page/130970/【HTTP 还没看】
+http://blog.csdn.net/b_dogs881221/article/details/7753847【HTTP认证机制】
+
+@HTTP请求
+*请求命令 GET/sample/hello.jsp HTTP/1.1
+*请求头 发送了一空白行来通知服务器，它已经结束了该头信息的发送
+*http://www.cnblogs.com/yin-jingyu/archive/2011/08/01/2123548.html【perfect】
+
+------------------------------------------------------------------------------
+@ cURL上传文件【续】
+* 前面已记录过：
+	1.cURL模拟表单上传文件
+	2.同1，可以不上传真正的本地文件，而是直接传入字符串内容
+@ 第三种方法：
+*	curl_setopt($ch, CURLOPT_UPLOAD, true);
+	curl_setopt($ch, CURLOPT_INFILE, $fh);
+	curl_setopt($ch, CURLOPT_INFILESIZE, strlen($string));
+* $fh是文件流（r），可以是内存中的临时文件$fh = fopen('php://temp', 'rw+');
+  也可以是实际文件$fh = fopen(realpath(./hhh.txt),'r+')
+* CURLOPT_INFILESIZE可以不设置，但如果设置，大小必须正确，否则会上传失败
+* md5【？】
+------------------------------------------------------------------------------
+@ 获取RequestHeader和ResponseHeader
+
+@ php服务器端 获取RequsetHeader
+* $headers = getallheaders();
+	. 局限：一些任何环境下不存在，比如fastcgi
+* $_SERVER中包含header信息
+	. 字段名略有改变
+	. $_SERVER内容丰富，还有很多服务器环境变量
+@ php服务器端 获取ResponseHeader
+*想要直接在 php服务器端 打印 即将要作出的响应，是做不到的【大概。。】
+*只有在 访问或抓取 的时候，获得实际的ResponseHeader。见下。
+
+@ cURL模拟客户端 获取ResponseHeader
+* CURLOPT_HEADER=true 可以返回相应头信息
+* CURLOPT_HEADERFUNCTION='headerCallback' 可以设置一个回调函数，形如：
+function headerCallback($ch, $string) 
+{
+	//$string即header的一行，每返回一行header都会调用一次该函数
+	global $headerContents;
+	$bytesWritten = fwrite($headerContents, $string);
+	return $bytesWritten;//若返回sizeof($string)则继续下载后续内容；返回0则不会；分析header内容以判断是否继续抓取
+}
+
+@ 如何验证传输内容是否一致
+* 请求方 使用 base64_encode(md5($data))获取数据的特征码
+* 放在请求头中发送 
+	$header[] = "Content-MD5 $md5";
+	curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+* 响应方获取$data和$header后，重新计算MD5，
+	$new_md5 = base64_encode(md5($data));
+	$result = $new_md5===$md5 ? 'success' : 'error';
+
+
+*http://blog.csdn.net/phphot/article/details/3491295
+ http://blog.sina.com.cn/s/blog_5f54f0be0102uvxu.html
+ http://blog.csdn.net/pud_zha/article/details/18084611
+ http://php.net/manual/en/reserved.variables.httpresponseheader.php
+ http://blog.sina.com.cn/s/blog_5f54f0be0102uvxu.html
+------------------------------------------------------------------------------
+
+@ 使用cURL时，响应报文出现 HTTP/1.1 100 Continue
+* http://baike.baidu.com/link?url=5gUk-2RNqTrQOGqZQSsz0yIvshYmJQtLsXZX2bZL2vgC-r7HCeG2u0dIM1aG-DGZhECeEvRqZn6S5m8x5eQDAq#1_1
+* http://zhidao.baidu.com/link?url=17s8WUyAFboAhA6bDbIt2wWSWtvSrg24g-cWKNBJmmckTe_NLX2Fv_TikOg8KLoBZLPyfbpWwgXXjHi8mGRnCVIbZzqqkh36IBR59kQfDFe
+
+
+
+？代理与session？
+？为什么有时候抓取到的页面 没有样式
+？缓存代理服务器
+？php.ini中打开output_buffer=On  ob_start()
+？http_request()
+？soap WSDL Web Services
+？fsockopen
+？课题：怎么获取原生的http请求报文？ 响应报文可以用cURL轻易获取。
+？RDF RSS ？
+
+Array
+(
+    [CURLOPT_POST] => 1
+    [CURLOPT_USERAGENT] => lilysilk erp/v1.0 (Language=PHP/5.6.21; Platform=Windows NT/i586/6.2; MWSClientVersion=2015-06-18)
+    [CURLOPT_VERBOSE] => 1
+    [CURLOPT_HEADERFUNCTION] => Array
+        (
+            [0] => MarketplaceWebService_Client Object
+                (
+                    [awsAccessKeyId:MarketplaceWebService_Client:private] => AKIAJVM5QEBH4FTLA2IQ
+                    [awsSecretAccessKey:MarketplaceWebService_Client:private] => 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
+                    [config:MarketplaceWebService_Client:private] => Array
+                        (
+                            [ServiceURL] => https://mws.amazonservices.com
+                            [UserAgent] => lilysilk erp/v1.0 (Language=PHP/5.6.21; Platform=Windows NT/i586/6.2; MWSClientVersion=2015-06-18)
+                            [SignatureVersion] => 2
+                            [SignatureMethod] => HmacSHA256
+                            [ProxyHost] => 
+                            [ProxyPort] => -1
+                            [MaxErrorRetry] => 3
+                        )
+
+                    [defaultHeaders:MarketplaceWebService_Client:private] => Array
+                        (
+                        )
+
+                    [responseBodyContents:MarketplaceWebService_Client:private] => 
+                    [errorResponseBody:MarketplaceWebService_Client:private] => 
+                    [headerContents:MarketplaceWebService_Client:private] => 
+                    [curlClient:MarketplaceWebService_Client:private] => 
+                )
+
+            [1] => headerCallback
+        )
+
+    [CURLOPT_RETURNTRANSFER] => 1
+    [CURLOPT_SSL_VERIFYPEER] => 1
+    [CURLOPT_SSL_VERIFYHOST] => 2
+    [CURLOPT_URL] => https://mws.amazonservices.com/?Action=SubmitFeed&Merchant=A2QS8SK7DINS59&MarketplaceIdList.Id.1=A2EUQ1WTGCTBG2&FeedType=_POST_ORDER_FULFILLMENT_DATA_&PurgeAndReplace=false&MWSAuthToken=amzn.mws.70a65093-6921-14ee-4dec-7f2bd067d01f&AWSAccessKeyId=AKIAJVM5QEBH4FTLA2IQ&Timestamp=2016-07-28T02%3A07%3A07%2B0000&Version=2009-01-01&SignatureVersion=2&SignatureMethod=HmacSHA256&Signature=PUlTxp1XZJ8WVglz5ZfxVF1IDYFEiHL6PzFEmO3U0FQ%3D
+    [CURLOPT_HTTPHEADER] => Array
+        (
+            [0] => Expect: 
+            [1] => Accept: 
+            [2] => Transfer-Encoding: chunked
+            [3] => Content-MD5: +IwUfUPYqGIuGLwwxtUQ6w==
+            [4] => Content-Type: application/octet-stream
+        )
+
+    [CURLOPT_INFILE] => Resource id #7
+    [CURLOPT_UPLOAD] => 1
+    [CURLOPT_CUSTOMREQUEST] => POST
+)
+
+
+stream_get_meta_data
+
+
+
+
+
+
+
+
+
+
+
+https://mws.amazonservices.com/?Action=SubmitFeed&
+Merchant=A2QS8SK7DINS59&
+MarketplaceIdList.Id.1=A2EUQ1WTGCTBG2&
+FeedType=_POST_ORDER_FULFILLMENT_DATA_&
+PurgeAndReplace=false&
+MWSAuthToken=amzn.mws.70a65093-6921-14ee-4dec-7f2bd067d01f&
+AWSAccessKeyId=AKIAJVM5QEBH4FTLA2IQ&
+Timestamp=2016-07-28T01%3A57%3A26%2B0000&
+Version=2009-01-01&
+SignatureVersion=2&
+SignatureMethod=HmacSHA256&
+Signature=bNcn9c2MlxG9wnKPP%2FaC8MlSIduKwYfwPAzk%2Bq%2Bkk4s%3D
+
+
+
+【模拟会话】http://www.cnblogs.com/txw1958/p/php-cookie-login.html

@@ -1,0 +1,993 @@
+cpu架构:
+PowerPC,ARM --RISC 精简指令集
+x86,x86_64 --CISC
+
+
+[word]
+implementation 实现
+instruction 指令
+architecture 组织结构
+processor 处理器
+pseudo 伪
+serial 串行
+parallel 并行，平行
+proxy 代理
+verbose 冗余的
+
+cpu:
+* 北桥、南桥
+* 频率、外频、倍频
+* cpu等级：i386、i586、i686
+
+
+内存 
+* 双通道
+* 接口：PCI、AGP、PIC-Express
+
+
+硬盘：
+* 盘片、盘面、磁道、扇区、柱面
+* 接口：IDE、SATA
+* 扇区（sector）有固定大小为：512bytes
+
+
+
+[deep] 不同编程语言特性的 记录
+* 汇编语言具有专一性，与硬件有密切配合，安装到不同架构的机器上时需要重新编写程序
+* B语言编译出来的Unics内核性能不好，以C语言重新改写后成为Unix
+	[自己的理解] B语言与C语言的编译机制不同，最终编译出来的机器码，C语言的更具执行效率
+* 高级语言与硬件的相关性不大，方便移植
+	[自己的理解] 比如C语言在x86和arm上会有不同的编译机制，以编译出适应硬件的机器码
+
+
+鸟哥的linux心得：
+* 使用文字界面 可以帮助使用者更好的学习 各种基础理论，如架设网站
+
+
+linux学习历程：
+* 计算机概论、计算机硬件
+* linux基础概念、linux命令
+* vi编辑器
+* shell脚本
+* 软件包管理工具（RPM、Tarball、DPKG）
+
+
+可以查阅的资料：
+* 百度
+* linux自身文件数据/usr/share/doc
+* CLDP中文文件计划 http://www.linux.org.cn/CLDP
+
+
+/dev
+* IDE硬盘		/dev/hd[a-d]	根据IDE[1-2],Master/Slave位置对应的文件名是确定的
+* SCSI/SATA/USB硬盘	/dev/sd[a-p]	由内核检测到的顺序决定设备文件名，与物理插槽无关
+* CD/DVD		/dev/cdrom
+
+
+[磁盘] MBR (Master  Boot Record)主引导分区
+*大小：	466bytes
+*位置：	磁盘的第一个扇区
+*功能：	开机时引导 ？ 加载操作系统？ 到内存
+* 同样位于第一扇区的，还有“分区表”partition table， 64bytes
+* 磁盘的第一扇区如果 物理坏掉，磁盘也就坏了
+
+
+[磁盘] 分区（partition）
+*分区表：	大小：64bytes
+		功能：记录磁盘的各分区的类型和起始/结束柱面
+		最多4条记录，因此 P分区和E分区 加起来最多4个：hda[1-4]
+*分区类型：	主分区（primary），扩展分区（extended）
+*分区的最小单位是：柱面（cylinder）
+		每个分区都拥有一段“连续”的柱面（扩展分区除外）
+*扩展分区：使用额外的扇区来记录分区信息，毕竟第一扇区中的分区表只能记录4条
+		扩展分区本身不能格式化
+		扩展分区所记录的分区称为“逻辑分区（logical）”
+		扩展分区最多有一个
+		一般分区方式有 P+P+P+E 和 P+E
+		扩展分区一般作为最后一个分区（hda4）【据说为了磁盘连续性，可是哪里照顾了连续性啊。。】
+*逻辑分区：	hda[5-?] 文件名从5开始
+		linux IDE硬盘	hda[5-63]	最多59个 L分区
+		linux SATA硬盘	sda[5-15]	最多11个 L分区
+* 相邻的两个L分区可以合并
+  相邻的P分区和L分区不能合并
+  相邻的两个P分区可以合并【不确定】
+** 分区的目的
+	1.数据的安全性，分区之间不会相互影响
+	2.数据会限定在一定柱面内，数据集中，提高数据读取速度
+*建议分区：
+	1. / & swap
+	2. / & /usr & /home & /var & swap
+
+
+X Window
+* X Windows图形用户接口，它并不是一个软件，而是一个协议（protocal）。这个协议定义一个系统成品所必需具备的功能
+* GNOME和KDE 都是实现X Window的软件！
+
+
+[词条] Unix-like系统
+*指各种传统的Unix系统，比如FreeBSD、OpenBSD、SUN公司的Solaris，以及各种与传统Unix类似的系统，例如Minix、Linux、QNX等。
+*都相当程度地继承了原始UNIX的特性，有许多相似处，并且遵守POSIX规范。
+
+
+[命令] 
+* exit	注销当前登录的账号
+* date
+* cal
+* bc
+
+
+手册（manual）
+*命令： man
+*代号：
+	1 -> shell命令
+	4 -> 设备文件说明
+	5 -> 配置文件
+	7 -> 协议
+	8 -> 管理员命令
+	9 -> 内核相关文件
+*操作：
+	. /string 搜索下一个
+	. ?string 搜索上一个
+	. n 下一个
+	. N 上一个
+	. q 退出
+*选项
+	. -f 所有信息		<=>	whatis
+	. -k 模糊查询关键词	<=>	apropos
+
+
+info page
+*命令： info
+*功能： 也是帮助/说明文档，只不过格式与manual不同
+*操作：	
+	. TAB 切换节点
+	. B 第一节点
+	  E 最后节点
+	. N 下一节点
+	  P 前一节点
+	  U 上一层
+	. S 检索
+	. Q 退出
+
+
+tty
+* 是teletype的缩写，中文意为“电传”，
+* 在linux中，含义为“终端(terminal)”，其实是终端的一种，电传打字机
+* eg.The teletype machines and printers that the company has in its own offices are called terminals
+* 串行端口终端（Serial Port Terminal）： 
+	. 计算机有串行端口，连接串行端口的设备就被成为终端，计算机把每个串行端口抽象为一个字符设备
+	. /dev/ttyS[0-3] 是串行端口终端设备文件
+	. 【自理解】总之，是通过串行端口通讯的。这里的串行端口应该是主机上的物理接口【？】
+* 伪终端（Pseudo Terminal）：
+	. 是成对的逻辑终端设备，例如 /dev/ptyp3 和 /dev/ttyp3
+	. 是逻辑上的概念，与实际物理设备并不直接相关
+	. dev/ptyp# 和 dev/ttyp# 是成对的，对其中一个的操作会反映在另一个上
+	. 【重要】以此来实现 程序之间的通讯。程序会认为自己与一个串行端口通信。
+	. ttyp#，任何设计成使用一个串行端口设备的程序都可以使用该逻辑设备
+	  ptyp#，则需要专门设计的程序来使用
+	. 【实例】使用telnet远程登陆，telnet程序 与 getty程序就是通过伪终端连接的
+	. 通过使用适当的软件，就可以把两个甚至多个伪终端设备连接到同一个物理串行端口上【是否一定依赖物理端口？】
+	. 【自理解】通过这种方法，不直接在物理端口之上通信
+* 控制终端（Controlling Terminal）：
+	. 设备文件：tty[1-7]
+	. tty命令可以查看当前控制终端
+	. 特殊地，/dev/tty永远指向你所使用的终端，像是个别名，设备号是（5,0）【？】
+	. alt+F[1-7]切换控制终端
+	. 亦被称作 虚拟终端
+	. 【自理解】进程可以有控制终端，在控制终端可以创建进程。
+	. 可以登录到不同的虚拟终端上去，因而可以让系统同时有几个不同的会话存在【？】
+	. 只有系统或root可以向/dev/tty0进行写操作【？】
+* 控制台（Console）
+	. 亦通常被称为控制台终端，通常是计算机的显示器 
+	. 有一些设备特殊文件与之相关联：tty0、tty1、tty2等，即控制终端
+*参考：http://blog.sina.com.cn/s/blog_4c4fcd6601016jmf.html
+*存疑： 
+	linux到底有哪些登录方式？
+	登录的含义又是什么？
+	我打开了虚拟机，登录时的tty1又是什么？
+	linux是多用户的，可是只有我一个人坐在电脑前呀？我是特殊地吗？
+	其它用户应该是远程连接，远程一定是通过网络？与我直接在主机面前有何不同？
+	所有登录都是登录到一个tty上吗？
+	同一个用户可以同时登录多个tty。那一个tty可以同时被多个用户登录吗？
+
+
+nano编辑器
+*http://www.cnblogs.com/haichuan3000/articles/2125943.html
+
+
+[命令] 
+*who	系统当前登录情况
+*px -aux	系统当前进程
+
+
+关机
+*关机时，如果缓存在内存中的数据尚未同步到硬盘，会造成文件系统损坏
+*所以关机前，使用sync命令，并等待一段时间
+*root使用sync命令，同步系统所有数据
+ 一般用户只能同步自己的数据
+*shutdown	
+	. -t	#秒后关机
+	. -k	仅警告，不真实关机
+	. -r	停掉系统服务后，重启
+	. -h	停掉系统服务后，关机
+	. -n	直接关机
+	. -f	重启，并跳过fsck
+	  -F	重启，并fsck
+	. -c	取消关机	【？】
+*reboot 重启
+*halt 硬件关机
+*poweroff 【？】
+*init 0 关机
+ init 6 重启
+
+
+用户，用户组
+* 用户信息，记录在：etc/passwd
+  分组信息，记录在：etc/group
+  用户密码，记录在：etc/shadow
+*chgrp -R 
+*chown -R 
+ chown user1:user1 filename 可以同时改owner和group
+*chmod 777 filename
+ chmod u+w,g+x filename
+ chmod ug-x filename
+ chmod a=rw filename
+*以上命令root用户才能使用，在/bin目录下
+
+文件权限
+*r 读取文件内容		nano; cat等需要
+*w 写入			nano; echo hhh > filename 需要
+*x 执行
+目录（directory）权限
+*r 查看内容		ls 需要
+*w 凡改动目录下文件名	rm; mv; touch;等需要
+*x			cd; ls -l 需要
+*【注意important】没有目录的x权限的话，没有办法执行目录下的命令/脚本，甚至没办法用很多命令操作目录下文件
+  实例：salvare用户有/test/hello文件的rwx权限，但是因为没有/test的x权限，导致cat,nano和执行 都无效
+
+
+@ which;whereis 命令可以查看 命令所在路径
+
+@ cp sourcefile targetfile 复制文件时，会复制执行者的属性和权限	
+这里所说的属性是什么？？？
+
+@ root用户是不受文件/目录权限 限制的
+
+
+文件种类：
+*普通文件（ - ）
+	. 纯文本文件（ASCII）
+	. 二进制文件（binary）
+		系统中的命令一般是二进制文件，而脚本（script）不是，脚本依赖bash解释
+	. 数据格式文件（data）
+		例如：/var/log/wtmp，用于记录登录信息，用last命令才能查看
+*目录文件（ d ）
+*连接文件（ l ）这里指软连接
+*块设备文件（ b ）
+*字符设备文件（ c ）
+*套接字文件（s socket）
+	又作数据接口文件，服务器端启动一个程序来监听客户端的请求，与客户端通过socket通讯
+*管道文件（ p pipe，FIFO，First In First Out）
+	【理解不能】主要目的在于解决多个程序同时访问一个文件所造成的问题
+
+
+文件扩展名
+*linux没有扩展名
+*但我们任然为不同类型、功能的文件取不同的后缀，用以识别区分
+*一些程序被设定为需要识别扩展名，如php解释器需要文件为.php后缀
+*文件名 长度限制 255字符	basename
+ 完整路径名 限制 4096字符
+
+
+FHS( Filesystem Hierarchy Standard )【重要】
+* 文件系统层次标准
+* 这是一个标准，希望系统发行商、软件开发商、用户以统一的规范布置软件程序，以方便使用和维护
+*/bin 放置一些可执行文件
+	. 特性：单用户模式下依然可以被使用
+	. 如：cat; chmod; chown; date; mv; cp; bash;
+	. root和一般账号都可能可以使用
+*/boot 开机要用到的文件
+	. /boot/grub
+*/dev 放置设备文件
+	. null; zero; tty; lp*; hd*; sd*;
+*/etc 放置配置文件
+	. FHS建议不在/etc下放置任何二进制文件
+	. /etc/init.d/ 系统默认启动脚本
+	. /etc/X11 X Window配置文件
+	. inittab; modprobe.conf; fstab; sysconfig;
+*/home 放置用户家目录
+*/lib 函数库
+	. 开机时依赖的函数库
+	. /bin; /sbin;下命令依赖的函数库
+	. /lib/modules/ 放置了内核相关模块的驱动程序
+*/media 用以挂载“可删除设备”
+	. 挂载软盘、光盘、dvd
+	. /media/floppy; /media/cdrom
+*/mnt 用以暂时挂载，其实与/media差不多
+*/opt 第三方软件
+	. /usr/local 目录也用于放置第三方软件
+*/root root用户的家目录
+	. 【注意】/root最好与/根目录 放置于同一个分区
+	. 因为单用户模式下，仅挂载根目录分区，此时希望能访问到/root
+*/sbin 放置一些 设置系统环境的 命令
+	. 普通用户可能也能调用其中一些命令“查看”系统环境，而不能“设置”
+	. 放置例如开机、修复、重启相关命令
+	. 【类比】/usr/sbin 放置一些 服务器软件程序
+		  /usr/loacl/sbin 自己安装的第三方程序的可执行二进制文件，如fdisk; fsck; ifconfig; init; mkfs;
+*/srv service
+	. 一些网络服务启动之后 所需取用的数据的目录
+	. WWW FTP...
+*/tmp 用户或程序 暂时存放文件的目录
+	.任何人都可以访问
+	.数据会有一定机制定期清理
+*/lost+found
+	.ext2/ext3文件系统产生的一个目录
+	.当文件系统错误时，将一些丢失的片段放入其中
+*/proc 记录内核、进程、外部设备、网络的状态
+	.是一个“虚拟文件系统”，数据其实是在内存中的，而非磁盘
+	./proc/cupinfo; dma; interrupts; ioports; net/*;
+*/sys 类似/proc。记录 内核模块、硬件设备信息
+*/usr UNIX Software Resource 软件安装目录
+	. 放置 可分享的(shareable)、不可变动的(static)软件
+	. 可以通过网络挂载以实现 文件分享，NFS(Net File System)
+	. 系统默认应用都会放置在/usr下，类似windows的C:/progarm files/ 【？与/opt有什么区别】
+	. /usr在系统新安装时就会占用很大硬盘空间，毕竟是发行商(distribute)默认软件目录
+*/var 存放数据
+ /var/cache/ 程序运行过程中产生的暂存文件
+ /var/lib/ 程序运行过程中，所需要的数据。如：/var/lib/mysql;
+ /var/lock/ 文件锁、资源锁、设备锁。确保资源同时只被一个进程使用。【？可是具体什么机制】
+ /var/log/ 记录登录信息
+ /var/mail/ 邮件
+ /var/rspool 【概念】存放队列数据，详见书P156
+ /var/run 存放进程PID
+
+
+开机过程仅有 根目录 被挂载，因此/etc; /sbin; /bin; /root; /dev;必须与根目录在同一个分区
+
+
+@ cd ( change directory )
+
+@ pwd ( print working directory )
+
+@ mkdir 新建目录
+* -m 设置目录权限 例：-m 755 
+* -p 创建多层目录 例：mkdir -p /test/lv1/lv2/lv3
+
+@ rmdir 删除空目录
+* rm -rf DIRECTORY 可以强制删除整个目录
+
+@ ls 查看目录/文件
+* -a 显示隐藏文件
+* -A 同上除了. ..
+* -l 详细信息，包括文件类型（type）、权限（permission）、属主（user）、数组（group）、修改时间（mtime）
+* -h 用KB、MB等单位显示文件大小
+* -d 查看目录
+* -R 递归查看所有子目录
+* -i inode
+* -S 按文件大小排序
+* -t 按时间排序
+
+@ cp 复制
+* -p 保留文件属性
+	. 包括 属主、数组、权限..记录在inode中的东西
+	. 不加-p的话，权限和u、g等属性都不会保留（但是具体是什么规律没找到。。。）
+	. 即使加了-p，user和group也不一定能保留（我用salvare复制root的文件，加了-p，依然u=salvare g=salvare）
+	. 但是-p一定能完整复制权限的^-^（就目前测试而言）
+* -d 如果复制的是“连接文件”，复制连接文件本身，而非指向的文件
+* -s 创建一个“连接文件（软）”，而非真正复制
+* -l 创建源文件的一个“硬链接”
+* -r 递归复制
+	.如果复制非空目录，需要
+	.如果没有-r，会提示omit...
+* -i 如果目标文件已存在，会询问是否覆盖
+	. 默认是直接覆盖的
+* -f 强制【？？？】
+* -u 更新。如果目标文件已存在，只有源文件mtime较新时才会覆盖	
+* -a 同 -pdr
+
+@ rm 删除 -r -f -i
+@ mv 剪切 -u(update) -f -i
+
+@ dirname 获取目录名
+  basename 获取文件基名
+
+@ cat(concatenate 连续)
+* -n 行号
+  -b 行号，除空白行
+* -A -ETv 显示特殊字符
+* tac 
+
+@ more 
+* space 向下一页
+* enter 向下一行
+* b 向上一行
+	. 说是对“管道”没有用【？？？】
+* q 离开
+
+@ less
+* space|PgUp 向上一页
+* PgDn 向下一页
+* ?|/ 查询
+* n|N 查询下/上一个
+* q 退出
+
+@ head -n 20
+  head -n -100  
+@ tail -n 20
+  tail -n +100
+
+@ touch
+* 可以创建一个空文件
+* -a -m 修改access time，modification time
+	.atime，ctime，mtime的概念 http://blog.sina.com.cn/s/blog_5980699f0100zkgz.html
+	.【？？？】这两个参数怎么试都没用。网上所有文章都避开了-a-m的示例
+* -t 指定时间 [[CC]YY]MMDDhhmm[.ss]
+* -d 指定日期
+	. 只知道可以这么写：-d '2 days ago'
+* 书上说 -t -d 只会改变atime，mtime。但是我是的时候全变了。。。
+* 也就是说我还是只会用touch创建个空文件，其它功能反而更弄不清了。。。。
+  是我的问题还是手册的问题？？？？？
+
+@ umask
+* umask 查看“权限掩码”
+* -R 
+* umask 002 修改掩码
+
+@ 文件隐藏属性
+* A 不更细atime
+* S 文件修改时会同步写入磁盘
+* a 文件数据只能增加【improtant】
+	. 只有root可以设置
+* c 文件自动会压缩【important】
+* d 文件不会被dump命令备份
+* i 文件不能被修改删除连接改名
+	. 只有root可以设置
+* u 文件被删除时，从硬盘完全删除【？】
+* s 文件被删除时，数据仍存在磁盘中【怎么修复？】
+*文件的属性与文件系统类型有关，这里的权限与命令都是针对ext2/3文件系统
+*隐藏权限列表： suS-iadAc----
+		
+@ 特殊权限
+* SUID(Set UID)
+	. 仅对“可执行二进制文件”有效
+	. 前提，用户拥有该文件x权限
+	. 效果：用户执行程序，创建了一个进程，一般情况进程的owner是该用户，
+		可是有SUID权限后，该进程的属主为文件属主
+* SGID(Set GID)
+  ^ 可用于“可执行二进制文件”
+	. 几乎同SUID，进程数组为文件数组
+  ^ 可用于 目录
+	. 用户在该目录下新建文件，文件数组为文件夹的数组
+* SBIT(Sticky Bit)
+  ^ 
+@ file命令 查看文件类型
+
+@ which 命令，查看 可执行文件的路径
+* 其原理是在$PATH指定的目录下查找，因此结果受$PATH不同所影响
+* 因此，bash的内置命令which是搜索不到的，判断命令的种类用type命令
+* -a 查看所有$PATH下所有结果
+
+@ whereis 查找文件
+* -b 二进制
+* -m 查找说明文件：/usr/share/man目录下
+* -s source源文件【？】
+* -u 其它特殊文件
+* 原理：linux将系统内所有文件记录在一个数据库中，whereis会查询数据库
+* 优点：迅速。比查询硬盘（inode？）快
+* 缺点：信息不同步。【更新机制？】
+
+@ locate 查找文件
+* 原理同whereis，详述：
+	. /var/lib/mloacte/数据库
+	. 大约每天更新一次
+	. updatedb 命令可以手动更新
+	  updatedb -> /etc/updatedb.conf -> 按其中定义的规则查找硬盘 -> /var/lib/mloacte/
+	  【我试了怎么不行，没更新？】
+* 【特殊】可以只输入 部分文件名
+* -i 忽略大小写
+* -r 正则
+
+
+----------------磁盘与文件系统-------------------------------------------------------------------------
+
+@ 分区（partition） 与 文件系统（file system）
+* 曾经 一个分区 对应 一个文件系统
+* 随着LVM RAID出现，partition与fs也可能为一对多和多对一关系【LVM，RAID？】
+* 我们挂载一个 fs，而不是分区
+
+@ MBR (Master Boot Record)
+* 主引导记录，位于磁盘的第一扇区，每个磁盘只有唯一一个
+* 主引导程序，
+	. 446byte
+	. 从活动分区中装载操作系统，运行系统引导程序
+* 分区表（DPT,Disk Partition Table）
+	. 64byte
+	. 最多可以记录4个分区，每个分区16bytes
+* 功能：
+	1．扫描分区表查找活动分区；
+	2．寻找活动分区的引导扇区；
+	3．将活动分区的引导扇区读到内存；
+	4．执行引导扇区的运行代码。
+* grub就是一种主引导程序
+
+@ boot sector 启动扇区/引导扇区
+* 是分区的第一个扇区
+* 用于加载并运行系统引导程序，转让处理器控制权给操作系统
+* 【一种说法/理解】MBR所在也是引导扇区，被称为称为主引导扇区
+* http://baike.baidu.com/link?url=OnVnU-xfDPqSsN62odGau8NQZI6nBpLaYAZNl8-B6OMR990MByj2hcP2JPlDpdGdY-95JSEheeKNOHBZATHyMWmx4g9tFdu-RN9qtjZudvkE8YqdpdP1JcblNnUgHc1330bSRdumfrgc7j28ZvVm-K
+  https://www.zhihu.com/question/20705848
+  http://bbs.chinaunix.net/thread-4165920-1-1.html
+  
+@ 文件系统结构
+* 引导扇区*1 + 块组（block group）*n
+* 块组：
+	. 超级块 *1 
+	  描述整个分区的文件系统信息，例如块大小、文件系统版本号、上次mount的时间等等。超级块在每个块组的开头都有一份拷贝
+	. 组描述符 *n
+	. block bitmap *1
+	. inode bitmap *1
+	. inode table *n
+		`size: 128byte
+		`记录属性：permission、owner、group、file size、[c|m|a]time、flag（特殊权限）
+		`记录文件存储的数据块data block，直接指向、间接、双间接、三间接
+			
+	. data block *n
+* http://www.cnblogs.com/peon/archive/2011/06/22/2086470.html
+  http://www.cnblogs.com/biyeymyhjob/archive/2012/07/26/2609649.html
+
+@ 文件系统 分为 索引式 和 链表式【？】
+* 都会有文件数据离散/文件碎片化 的问题
+* 影响：磁头可能需要寻找较大范围的磁道，影响存取速度
+* 对链表式fs的影响更大，最好定期整理碎片
+
+@ 日志文件系统（Journaling file system）
+*问题：突发情况导致系统中断时，导致inode中的记录与磁盘中实际情形不一致的情况
+*superblock中有 valid bit数据位，用以标记磁盘是否挂载
+	     有 state，state=clean表示数据一致（consistent）
+*日志文件系统会会在写数据时记录 过程，用以判断数据一致
+
+@ 由于内存速度远快于磁盘，系统在处理文件时，会将数据载入内存，在系统/用户修改数据时，不立刻同步到磁盘中，而是将文件状态从clean标记为dirty。系统会不定时同步dirty数据到磁盘。
+* 有S隐藏权限的文件会保持同步
+* sync命令 可以同步
+
+@一些文件系统
+*传统：ext2 / minix / MS-DOS / FAT / iso9660 ...
+*日志：ext3 / ReiserFS / Windows'NTFS ...
+*网路文件系统：NFS / SMBFS
+*/lib/modules/$(uname -r)/kernel/fs 文件记录了linux系统支持的文件系统
+
+@虚拟文件系统（Virtual Filesystem Switch)
+* 是一个内核功能
+
+@ df命令	
+* 查看当前挂载的设备
+* -k -m -h(使用合适的单位） -H(1000进制） -i（显示inode数量）
+* 可以有参数：
+	df /	根目录挂载的设备
+
+@ du命令
+* 查看目录/文件大小
+* 默认查看目录及所有子目录大小，默认单位B
+* -a 查看所有目录 和 文件
+* -s 只查看目录本身大小
+* -S 目录大小 不包含子目录内容
+
+@ ln命令 创建硬连接文件
+* 硬连接不能跨文件系统
+* 硬连接不能指向目录
+
+@ ln -s 创建符号连接文件
+* 符号连接文件中其实只记录了 指向的文件路径
+* 可指向目录
+* 可跨文件系统
+
+@ fdisk 创建分区
+* fdisk /dev/sda
+* fdisk -l
+
+@ mkfs 格式化分区，创建fs
+  mke2fs
+
+@ fsck 检查fs
+
+@ 挂载 
+* 将目录与存储设备绑定，一对一
+* 挂载点必须是目录
+* 挂载点 最好是空目录，如果挂载时不为空，挂载后本来的文件会被隐藏
+@ mount 命令
+* mount DEVICE DIRECTORY
+* 相关文件：
+  /etc/filesystems
+  /proc/filesystems
+  /lib/modules/$(uname -r)/kernel/fs/
+* mount -l 查看所有已挂载的设备，-l显示卷标
+* 参数 
+	. -a -l -t 
+	. -n 不将挂载情况写入/etc/mtab
+	. -L 利用Label挂载
+	. -o ro,rw,sync,async,auto,noauto,user,nouser,defaults,
+		iocharset=cp950(cp950指中文语系),
+		remount（重新挂载）
+
+@ 挂载“目录”/额外挂载
+* mount --bind /home /mnt/homt
+* 效果： /home目录与/mnt/home目录 为同一个inode，类似硬连接
+
+@ 卸载
+* umount DEVICE
+* -f -n
+
+@ 设备文件
+* 主设备号（major） 次设备号（minor） 可以精确表示一个设备
+* linux kernel v2.6以上的的版本，系统会自动实时生成 设备文件
+  也就是说，曾经设备文件是一定要手动创建的
+* mknod FILENAME [bcp] [major] [minor]
+
+@ e2label
+* e2label /dev/sda5 显示Label
+* e2label /dev/sda5 bigfish 	修改Label
+
+@ tune2fs
+* tune2fs -j /dev/sda5 将ext2升级为ext3
+* -l -L
+
+@ /etc/fstab
+* 记录了开机时挂载的设备
+* 字段： Device  MountPoint  filesystem  parameters  dump  fsck
+* dump  0:不备份 1:每天dump 2:不定期dump
+* fsck  0:不检查 1:检查（较早，根目录分区） 2:检查，较晚
+@ 单用户模式进入系统，根文件系统默认以ro(readonly)参数挂载，
+  所以需要以wr权限重新挂载，方法如下：
+  mount -n -o remount,rw /
+  主意：1. -n表示挂载行为不记录如/etc/mtab，因为ro模式根本无法写入
+	2. 参数 是根目录，而不是设备文件【估计设备文件也行？】
+
+@ 特殊设备loop挂载
+* 比如说DVD【其实不清楚这里说的设备文件是什么？】
+* mount -o loop /root/bigfish.iso /mnt/begonia
+* umount /mnt/begonia
+@ 可以自己创建一个大文件，格式化后当作磁盘设备使用
+* dd -if /dev/zero -of /root/bigfish bs=1M count=512  //建大文件
+* mkfs -t ext3 /root/bigfish //格式化一个普通文件
+* mount -o loop /root/bigfish /mnt/begonia
+
+@ 交换空间swap
+*作用：内存不够用时，将一部分内存信息存储在磁盘上
+* fdisk /dev/sda; n//新建分区; t//修改系统ID; w//保存;【Id,System字段？<=表示分区内的fs种类，仅作提示用】
+  partprobe;【让内核更新分区表？分区表是什么？】
+  mkswap /dev/sda6;//格式化
+  swapon /dev/sda6;//启用交换分区
+  swapoff /dev/sda6;//停用交换分区
+
+--------------------文件与文件系统的压缩打包------------------------------------------------------------
+
+@ compress -> gzip -> bzip2
+
+@ gzip 压缩
+* gzip -v6 man.config 
+	. 会删除原文件
+	. 默认压缩文件名: 原名.gz
+	. 压缩等级1-9；9压缩比最高，耗时最长；推荐6
+* gzip -c man.config > man.config.gz
+	. 输出到屏幕
+	. 不会删除原文件
+* gzip -d man.config.gz  解压
+
+@ zcat 压缩
+* -z -d -v -# -c -k保留原文件
+* 性能优于gzip
+
+@ tar 打包
+* -c打包 -x解包
+* -z gzip压缩  -j bzip2压缩
+* -f 目标文件
+* -C 解压目标目录
+* -t 查看打包文件的内容
+* -v 显示过程
+* -p 保留权限【important】
+* -P 保留根目录
+	. 默认是去掉根目录的，不然解压时绝对路径会替换掉原本的目录
+* 压缩：-jcvp -zcvp 
+* 查看：-jtv -ztv
+* 解压：-jxv -zxv
+* 解压单一文件：-jxv -f xxx.tar.bz2 xxx/hhh 
+	. 不兼容 -C
+* --exclude xxx/hhh 排除不备份
+	. 该选项可以多次使用
+* --newer 
+  --newer-mtime
+*特殊应用：利用输出重定向 和 管道，一边打包一边解开
+	. tar -cvf - /etc | tar -xvf -
+	. 前一个 - 表示standard output；后一个 - 表示 standard input；
+
+@ dump 完整备份工具
+* -S计算所需大小 -u记录入/etc/dumpdates -v显示过程 -j加入bzip2压缩 -W列出/etc/fstab记录的fs的备份情况
+* -level备份等级
+	. 原理见书P261
+@ restore
+* -t 查看dump文件内容
+* -C 将备份与当前fs比较
+* -i 互动模式，可以还原部分数据
+* -r 还原整个文件系统
+	. 需要新建一个fs
+
+@【跳过】
+* 光盘写入工具 mkisofs
+* 光盘刻录工具 cdrecord
+* cpio
+
+@ dd 用于备份
+* 备份文件 
+	. dd if=/etc/passwd of=/tmp/passwd.bak 
+	. 不指定bs 和 count
+* 备份MBR
+	. dd if=/dev/sda1 of=/tmp/mbr.bak bs=512 count=1
+* 备份整个分区
+	. dd if=/dev/sda1 of=/tmp/sda1.bak
+	. 还原：dd if=/tmp/sda1.bak of=/dev/sda1
+	  甚至还原后不需要格式化
+* 【自己理解】
+	. if会从文件/设备头开始读；of会从文件/设备头开始写
+	. 还有见P270
+
+--------------- vim --------------------------------------------------------------------------
+
+@ 一般模式
+* 上下左右 hjkl space enter
+* ^f ^b ^u ^d
+* 0 $ Home END H M L
+* G nG gg
+* /word ?word n N
+* :n1,n2/s/word1/word2/g  :1,$/s/word1/word2/gc
+* x,X
+* dd ndd d1G dG d$ d0 c
+* yy p P
+* u ^R
+@编辑模式
+* i I o O a A r R
+@命令行模式
+* w q wq 
+* w filename 另存为
+  n1,n2 w filenam 部分另存为
+* r filename 引入其它文件
+* ! COMMAND 
+
+@ vim 暂存文件
+* 当用户使用vim编辑文件，vim会将用户的编辑过程、内容记录到一个暂存文件。
+* 当vim进程意外崩溃时，会留下暂存文件。
+* 故当使用vim打开文件时，例如fstab，发现已存在.fstab.swp文件，会询问用户编辑文件的方式
+* [O]pen Read-Only 以只读方式打开
+* [E]dit anyway 以正常方式打开。如果是与另一用户同时编辑文件的情形，容易造成相互覆盖。不会删除暂存文件。
+* [R]ecover 加载暂存文件中的内容。会删除暂存文件
+* [D]elete 删除暂存文件并正常打开
+* [Q]uit 退出
+* ^Z 暂时退出vim
+
+@ vim 块选择
+* V行选择 ^V块选择
+* y复制 d删除
+
+@ 多文件编辑
+* vim file1 file2
+* 命令行 n N 编辑上/下一个文件
+* 可是切换文件时，前一个文件必须先保存（w），或者放弃（n!)
+* :files 查看所有文件名
+
+@ 多窗口功能
+* ^w+方位键 切换窗口
+* :sp filename 新窗口打开文件
+
+@ 编码
+* 【先声明这块没弄清楚，只是根据书上所言的猜测/理解】
+* 涉及编码问题的环节：linux系统 -> 终端 -> 打开终端机的软件（GNOME/bash）-> 文件
+* 【？】如何查看以上编码？修改编码？以上编码是什么意思，有什么影响？相互之间有什么关系或依赖？
+* iconv命令可以转文件编码： iconv -f big5 -t utf8 vi.big5 -o vi.utf8
+
+------------认识学习bash-----------------------------------------------------------------------------------
+
+@ 系统上合法的shell要写入/etc/shells
+@ 用户登录时 会有一个默认shell，写在/etc/passwd内
+
+@ 一些shell
+sh -> bash
+ksh -> zsh
+tcsh -> csh
+nologin
+
+@ type 查找命令或可执行文件
+* -t 分辨 外部命令(file)/内置命令(built-in)/别名(alias)
+* -p 只查找外部命令
+* -a 所有
+
+@特殊字符通过 \ 转义可以变成一般字符
+@uname命令
+[root@loaclhost ~]# uname
+Linux
+[root@loaclhost ~]# uname -r
+3.10.0-229.e17.x86_64
+
+@环境变量
+*查看：	env
+*HOME： 主目录，~
+*SHELL：当前shell。
+*MAIL：	邮箱目录。/var/spoll/mail/...
+*PATH：	可执行文件的查找路径
+*LANG：	语言
+*RANDOM：产生一个随机数。0-32767
+@export命令
+*export VARNAME 将自定义变量转为环境变量/全局变量
+*export 打印所有环境变量，含变量类型
+
+@set 查看所有变量
+*HISTFILE=/root/.bash_history	记录历史命令的文件
+*MAILCHECK=60	每60s查看是否有新信件
+*PS1='[\u@\h \W]\$ '	命令提示符格式
+*$	当前shell的PID
+*?	上一个命令的回传码【程序的返回值，程序通常用这个表示执行结果】
+
+@ 言语
+*locale -a 查看所有支持的语言
+*locale 查看所有语言相关变量
+*/etc/sysconfig/i18n 系统默认语言
+
+@ read 从标准输入（键盘）读取变量
+* read -p 提示文字 -t 等待时间（秒） 变量名
+
+@ declare/typeset
+*声明变量类型
+*默认类型：字符串
+*-a 数组	+a
+*-i integer整形	+i
+*-x 环境变量	+x
+*-r readonly	+r
+*-p 列出变量 当前属性
+
+@ulimit 限制用户能使用的系统资源，如文件大小、内存、cpu等
+
+@ my_var=a:b:c:da
+* ${my_var#*:}	//b:c:da
+* ${my_var##*:}	//da
+* ${my_var%:*}	//a:b:c
+* ${my_var%%:*}	//a
+* ${my_var/a/e}	//e:b:c:da
+* ${my_var//a/e}//e:b:c:de
+@ var1='hello';var2='';unset var3;
+* var=${var1-world}	//var=hello;	var=var1
+  var=${var2-world}	//var='';	var=var2
+  var=${var3-world}	//var=world;	var=default
+* var=${var1:-world}	//var=hello;	var=var1
+  var=${var2:-world}	//var=world;	var=default
+  var=${var3:-world}	//var=world;	var=default
+* var=${var1+world}	//var=world;	var=default	
+  var=${var2+world}	//var=world;	var=default
+  var=${var3+world}	//var='';	var=var3
+* var=${var1:+world}	//var=world;	var=default
+  var=${var2:+world}	//var='';	var=var2
+  var=${var3:+world}	//var='';	var.=var3
+。。。。书P316
+
+@别名
+* alias 查看当前所有别名
+* alias ll='ls -l' 设置别名
+* unalias ll 取消别名
+
+@history
+*环境变量 HITSIZE
+*!!
+*!NUMBER
+*!COMMAND
+
+@ 命令查找顺序 
+完整路径（相对/绝对） -> 别名（alias） -> 内置命令（built-in） -> $PATH
+
+
+---------正则表达式与文件格式化处理------------------------------------------------------------------
+
+@ insensitive 不敏感的
+
+@ dmesg 打印内核信息
+
+@ grep
+* -n 显示行号 
+* -A# after,附带显示匹配行的后#行
+  -B# before,附带显示匹配行的前#行
+* -v 反选
+* -i 忽略大小写
+* 
+
+@ 正则
+*[:alnum:] 0-9,a-z,A-Z
+ [:alpha:] a-z,A-Z
+ [:digit:] 0-9
+ [:upper:] A-Z
+ [:lower:] a-z
+ [:space:] 所有会产生空白的字符，如[Tab],[CR]等【CR？】
+ [:blank:] [Tab],[Space]
+ [:graph:] 除[Tab],[Space]以外所有
+ [:print:] 任何可以被打印的字符【[:space:]算不算？】
+ [:punct:] 标点符号，["]['][?][;][:][#][$]
+ [:xdigit:] 0-9,a-f,A-F
+* [adc] 中括号[] 查找字符合集
+* [a-z] 横杠- 表示连续编码【这里要注意字符的不同编码】
+* [^abc] 取反
+* ^A victory hide in a simple soul$  ^匹配行首 $匹配行末【断行符 被写作什么？】
+* \ 转义特殊字符
+* ^匹配行首  $匹配行末
+* .匹配任意一个字符
+* *匹配“数量”0-∞ ； \? 0或1次； \+ 1-∞次；\{2,5\}自定义次数
+
+
+
+
+？linux可以多重登录
+
+？作业控制、前台/后台控制？17章会讲？
+
+？登录 意味着什么？
+
+？x86_64系统最大寻址空间为64GB，怎么算的？
+
+？partprobe更新的是什么？
+
+？该怎么传文件到linux系统？ftp？U盘？U盘可用在虚拟机不？
+
+虚拟机如何模拟光盘U盘？
+
+
+
+怎么查看 /dev/sda1 是否被挂载？被挂载在哪个目录？mount -l
+怎么查看卷标Label？
+
+
+dumpe2fs 查看fs 的 superblock 和其他区段
+dumpe2fs /dev/hdc2 参数是分区而不是磁盘文件
+
+e2fsck检查数据一致性
+
+toggle 切换
+
+http://linux.vbird.org/linux_basic/1010appendix_B.php
+
+fs：索引式 ext2 
+	链表式？FAT 碎片问题严重->碎片整理
+
+BIOS UEFI 
+
+
+
+活动分区是什么：系统默认的操作系统启动文件所在的分区
+
+
+LVM RAID
+
+
+每个磁道上的扇区数目是一样的么？
+早期的磁盘每个磁道上的扇区数目是一样，限制了磁盘的容量；后来为了增大磁盘容量采用了新技术，也就是说越往外每磁道扇区数目越多
+http://bbs.csdn.net/topics/350199437
+
+磁盘中存取信息的最小单位是?
+http://www.cnblogs.com/PBDragon/archive/2013/09/22/3333579.html
+
+红底白字 的文件？
+绿底黑字 的文件？
+绿字？				绿色表示777权限？
+看出文件颜色与底色 与文件权限 和 自身权限有关
+弄不清楚了，直接查吧。。。
+
+problem & list
+*运行等级
+*注销（exit） 与 登出（log out）？？
+
+
+系统，终端，bash，终端机模式，远程连接，脱机，终端后台，系统后台，
+
+
+
+
+
+
+
+
+
+
+

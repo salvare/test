@@ -1,0 +1,139 @@
+8.1
+
+1.facl  (file access control list)
+*getfacl
+*setfacl
+	eg.	setfacl -m u:user1:rw file1
+	-m 添加
+	-x 取消
+	eg.	setfacl -m d:u:user1:rw dir1	给某个目录下的文件设置默认facl
+
+文件的安全上下文 owner->group->other
+现在追加为：	owner->facl.user->group->facl.group->other
+
+2.who 显是当前登录系统的所有用户
+-r 显示运行级别（run-level)
+*w命令，类似who，更详细
+
+3.终端类型：
+control：控制台：物理连接服务器的显示器和键盘等，不会用来登录，没有用户概念，
+pty:物理终端（VGA）
+tty:虚拟终端，虚拟控制台，一般在服务器本地，附加在物理控制台上（VGA）
+ttyS:串行终端
+pts：伪终端，模拟而成
+
+*******************以后笔记中#表示数字****************
+
+4.last 显示/var/log/wtmp文件，显示用户登录历史和系统重启历史
+-n #	显示最近#条	
+
+5.lastb 显示/var/log/btmp文件，显示错误的登录尝试
+
+6.lastlog 所有用户上次登录时间
+-u username 
+
+7.basename 取的目录或者文件的 基名（不含路径的名称）
+
+8.[变量] $0 位置变量，表示 脚本文件本身，其路径及名称
+
+$HOSTNAME 环境变量，主机名
+
+9.随机数生成器 /dev/random	/dev/urandom
+$RANDOM
+
+
+10.case 语句
+
+case SWITCH in
+value1)
+	...
+	;;
+value2)
+	...
+	;;
+*)
+	...
+	;;
+esac
+
+
+
+
+9.3
+
+1.虚拟地址，线性地址->物理地址
+换进，换出	硬盘中设置交换空间，允许内存过载使用
+但是影响性能，只作应急用
+
+2.
+buffer	元数据	高速区->低速区
+cache	数据	高速区<-低速区
+
+3.swap 交换空间，交换分区（windows叫虚拟内存）
+swapon	启用交换空间，性质类似挂载mount
+swapoff
+
+4.回环设备	loopback
+*使用软件模拟实现硬件
+
+5.dd	复制文件
+*eg.	dd if=/etc/inittab of=/my/inittab		inputfile	outputfile
+*cmp.	cp /etc/inittab /my/inittab
+
+6./dev/zero 泡泡设备，功能：输出0，一直00000000000000000000
+
+
+9.4
+
+1.tar 归档
+-c 创建
+-x 展开
+-tf 不展开，但是查看内容
+-f 操作的归档文件
+--xattrs 归档时保留扩展属性信息
+-zcf 归档并压缩（gzip）
+-zxf 解压并展开
+-jcf ...（bzip2）
+-jxf ...
+
+2.cpio 		copy files to and form archives		也是归档工具
+
+3.read
+-p propmt提示
+-t timeout时限
+
+4.while
+while CONDITION;do
+...
+done
+
+
+tr用来从标准输入中通过替换或删除操作进行字符转换
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
