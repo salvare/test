@@ -790,6 +790,7 @@ bashrc文件的作用：
 				tr 'a-z' 'A-Z' < /test/abc  相当于输入abc文件的内容
 	<<	这个跟输入重定向没什么关系。。。
 		是 here document 功能？语法？
+		  Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序
 		cat << END	END是结束符
 		> balabala
 		> niconico

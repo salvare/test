@@ -2,8 +2,6 @@
 require 'public.php';
 require 'head.php';
 
-$rt = str_pad('2m40tbnabwgx2zarmhecdcd08tx8dsg0', 64, 'D');
-dump($rt);
 
 ?>
 

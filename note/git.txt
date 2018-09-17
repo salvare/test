@@ -16,15 +16,16 @@
 . git br -D <branch> // 删除 
 . git co -B <newBranch> // 新建并切换分支
 . git push origin :<branch> // 删除远程分支
+. git br --set-upstream-to=<remote>/<remoteBranch> <localBranch> // 设置上游分支
 
 
 @ diff
-. git diff [--stat] [--] <filename> // 暂存区..工作区 
-. git diff <branch> <filename> // some分支..工作区
-. git diff <commit> <filename> // any版本..工作区
-. git diff --cached <filename> // HEAD..暂存区 
-. git diff --cached <commit> <filename> // any版本..暂存区
-. git diff <commit1> <commit2> <filename> // any版本..anyOther版本
+. git diff [--stat] [--] <filename> // 暂存区 vs 工作区 
+. git diff <branch> <filename> // some分支 vs 工作区
+. git diff <commit> <filename> // any版本 vs 工作区
+. git diff --cached <filename> // HEAD vs 暂存区 
+. git diff --cached <commit> <filename> // any版本 vs 暂存区
+. git diff <commit1> <commit2> <filename> // any版本 vs anyOther版本
 * `diff`将前一个对象作为基准，将后一个对象与之比较
 # 参考：https://www.jianshu.com/p/80542dc3164e
 
@@ -73,6 +74,9 @@
   . git rebase --abort // 取消
   . git rebase --continue // 解决冲突后，继续rebase
 . 如果在`master`分支`git rebase dev`，那么实质上合并了`dev`的内容
+. 还可以用于修改某次提交的`message`
+  . `-i`选项，进入后对目标版本使用`e[dit]`选项
+  # https://blog.csdn.net/u010752082/article/details/77527158【修改commit的message】
 # 参考
   . http://gitbook.liuhui998.com/4_2.html【git rebase】【good】
   . https://www.jianshu.com/p/4abb2f92a967【到底什么是 rebase（变基）？】
@@ -265,10 +269,10 @@
 
 @ Re:如何查看暂存区的文件内容
 1 git diff <file>
-  . 对比`暂存区..工作区`（前者为基础，后者较前者的变化）
+  . 对比`暂存区 vs 工作区`（前者为基础，后者较前者的变化）
   . 工作区是可见的，从而得到暂存区内容
 2 git diff --cached <file>
-  . 对比`工作区..HEAD`
+  . 对比`工作区 vs HEAD`
   . `git show <commit>:<file>`可以获得版本库内容
 3 git ls-files -s [<file>]
   . 可以获得Blob对象的索引号，形如`100644 e6456a... 0 README.md`
@@ -391,6 +395,12 @@
 # https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/Git_log高级用法.md#按提交信息【excellent】
 
 
+@ blame
+. git blame [filename]
+. 得到整个文件的每一行的详细修改信息：包括SHA串，日期和作者
+# https://www.jianshu.com/p/ae54397b4d5b【git blame】
+
+
 @ Re: 回退
 1 假设当前状态 `v1 -> v2 -> v3(HEAD)`，想要回退到`v1`
 a 回退版本
@@ -420,6 +430,12 @@ b git revert [--mainline|-m] <N>
 
 
 @ pull
+. git pull [<remote>] [<remoteBranch>:<localBranch>]
+. 设置追踪远程分支后，可以直接使用 `git pull <remote>`
+  . git branch [-u|--set-upstream] origin/dev // 将`origin/dev`设为当前本地分支的远程分支
+  . 如果不行的话，添加配置
+    . branch.dev.remote=origin
+    . branch.dev.merge=refs/heads/dev
 . git pull = git fetch + git merge 
 . git pull --rebase = git fetch + git rebase.
 
@@ -492,3 +508,4 @@ https://www.jianshu.com/p/5e3f9dfd2cb4【SSH、SSL与HTTPS】
 
 
 https://git-scm.com/docs/【官方文档】
+
