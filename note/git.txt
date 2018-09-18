@@ -17,7 +17,9 @@
 . git co -B <newBranch> // 新建并切换分支
 . git push origin :<branch> // 删除远程分支
 . git br --set-upstream-to=<remote>/<remoteBranch> <localBranch> // 设置上游分支
-
+  . `<localBranch>`可以缺省，默认值是当前分支
+  * git br -u <remote>/<remoteBranch> <loaclBranch> // 推荐。还有很多其它用法，记住一个就可以了
+  . git br --unset-upstream <localBranch>
 
 @ diff
 . git diff [--stat] [--] <filename> // 暂存区 vs 工作区 
@@ -432,7 +434,7 @@ b git revert [--mainline|-m] <N>
 @ pull
 . git pull [<remote>] [<remoteBranch>:<localBranch>]
 . 设置追踪远程分支后，可以直接使用 `git pull <remote>`
-  . git branch [-u|--set-upstream] origin/dev // 将`origin/dev`设为当前本地分支的远程分支
+  . git branch -u origin/dev dev // 设置远程分支，详见`@ branch`
   . 如果不行的话，添加配置
     . branch.dev.remote=origin
     . branch.dev.merge=refs/heads/dev
