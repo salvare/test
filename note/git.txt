@@ -1,56 +1,56 @@
-@ ¼òµ¥ÃüÁî
+@ ç®€å•å‘½ä»¤
 . git init
 . git clone <url>
-. git fetch // Ô¶³Ì²Ö¿â -> ±¾µØ²Ö¿â
-. git add <file> // ¹¤×÷Çø -> Ôİ´æÇø
-. git commit -m <message> // Ôİ´æÇø -> ²Ö¿â
+. git fetch // è¿œç¨‹ä»“åº“ -> æœ¬åœ°ä»“åº“
+. git add <file> // å·¥ä½œåŒº -> æš‚å­˜åŒº
+. git commit -m <message> // æš‚å­˜åŒº -> ä»“åº“
 . git status
-. git reflog // ²é¿´ÀúÊ·ÃüÁî
-. git rm [--cached] <file> // É¾³ı 
+. git reflog // æŸ¥çœ‹å†å²å‘½ä»¤
+. git rm [--cached] <file> // åˆ é™¤ 
 
 
 @ branch
-. git br [-a] // ÁĞ³ö·ÖÖ§
-. git br <newBranch> // ĞÂ½¨
-. git br -M <oldName> <newName> // ¸ÄÃû
-. git br -D <branch> // É¾³ı 
-. git co -B <newBranch> // ĞÂ½¨²¢ÇĞ»»·ÖÖ§
-. git push origin :<branch> // É¾³ıÔ¶³Ì·ÖÖ§
-. git br --set-upstream-to=<remote>/<remoteBranch> <localBranch> // ÉèÖÃÉÏÓÎ·ÖÖ§
-  . `<localBranch>`¿ÉÒÔÈ±Ê¡£¬Ä¬ÈÏÖµÊÇµ±Ç°·ÖÖ§
-  * git br -u <remote>/<remoteBranch> <loaclBranch> // ÍÆ¼ö¡£»¹ÓĞºÜ¶àÆäËüÓÃ·¨£¬¼Ç×¡Ò»¸ö¾Í¿ÉÒÔÁË
+. git br [-a] // åˆ—å‡ºåˆ†æ”¯
+. git br <newBranch> // æ–°å»º
+. git br -M <oldName> <newName> // æ”¹å
+. git br -D <branch> // åˆ é™¤ 
+. git co -B <newBranch> // æ–°å»ºå¹¶åˆ‡æ¢åˆ†æ”¯
+. git push origin :<branch> // åˆ é™¤è¿œç¨‹åˆ†æ”¯
+. git br --set-upstream-to=<remote>/<remoteBranch> <localBranch> // è®¾ç½®ä¸Šæ¸¸åˆ†æ”¯
+  . `<localBranch>`å¯ä»¥ç¼ºçœï¼Œé»˜è®¤å€¼æ˜¯å½“å‰åˆ†æ”¯
+  * git br -u <remote>/<remoteBranch> <loaclBranch> // æ¨èã€‚è¿˜æœ‰å¾ˆå¤šå…¶å®ƒç”¨æ³•ï¼Œè®°ä½ä¸€ä¸ªå°±å¯ä»¥äº†
   . git br --unset-upstream <localBranch>
 
 @ diff
-. git diff [--stat] [--] <filename> // Ôİ´æÇø vs ¹¤×÷Çø 
-. git diff <branch> <filename> // some·ÖÖ§ vs ¹¤×÷Çø
-. git diff <commit> <filename> // any°æ±¾ vs ¹¤×÷Çø
-. git diff --cached <filename> // HEAD vs Ôİ´æÇø 
-. git diff --cached <commit> <filename> // any°æ±¾ vs Ôİ´æÇø
-. git diff <commit1> <commit2> <filename> // any°æ±¾ vs anyOther°æ±¾
-* `diff`½«Ç°Ò»¸ö¶ÔÏó×÷Îª»ù×¼£¬½«ºóÒ»¸ö¶ÔÏóÓëÖ®±È½Ï
-# ²Î¿¼£ºhttps://www.jianshu.com/p/80542dc3164e
+. git diff [--stat] [--] <filename> // æš‚å­˜åŒº vs å·¥ä½œåŒº 
+. git diff <branch> <filename> // someåˆ†æ”¯ vs å·¥ä½œåŒº
+. git diff <commit> <filename> // anyç‰ˆæœ¬ vs å·¥ä½œåŒº
+. git diff --cached <filename> // HEAD vs æš‚å­˜åŒº 
+. git diff --cached <commit> <filename> // anyç‰ˆæœ¬ vs æš‚å­˜åŒº
+. git diff <commit1> <commit2> <filename> // anyç‰ˆæœ¬ vs anyOtherç‰ˆæœ¬
+* `diff`å°†å‰ä¸€ä¸ªå¯¹è±¡ä½œä¸ºåŸºå‡†ï¼Œå°†åä¸€ä¸ªå¯¹è±¡ä¸ä¹‹æ¯”è¾ƒ
+# å‚è€ƒï¼šhttps://www.jianshu.com/p/80542dc3164e
 
 
 @ merge
 . git merge [option] [-m <msg>] <branch>  
-. --no-commit // ²Ù×÷ºó´¦ÓÚ`master|MERGING`×´Ì¬£¬¿ÉÒÔ±à¼­ºóÔÙÌá½»£¬Ìá½»ºóºÏ²¢Íê³É
-. --no-ff // Ç¿ÖÆ·ÇfastforwardÄ£Ê½
+. --no-commit // æ“ä½œåå¤„äº`master|MERGING`çŠ¶æ€ï¼Œå¯ä»¥ç¼–è¾‘åå†æäº¤ï¼Œæäº¤ååˆå¹¶å®Œæˆ
+. --no-ff // å¼ºåˆ¶éfastforwardæ¨¡å¼
 . --squash 
-  . ½«°æ±¾¼äµÄ²îÒì£¬ºÏ²¢µ½Ôİ´æÇøÖĞ£»Ìá½»ºó£¬ÄÚÈİÊµÖÊÉÏºÏ²¢ÁË£¬µ«ÊÇ°æ±¾Ã»ÓĞºÏ²¢¹ıÀ´
-  # ²Î¿¼£ºhttps://www.cnblogs.com/wangiqngpei557/p/6026007.html¡¾ÁÄÏÂgit merge --squash¡¿
-. git merge --abort // `master|MERGING`×´Ì¬Ê±£¬¿ÉÒÔÈ¡ÏûºÏ²¢
-# ²Î¿¼£ºhttps://www.jianshu.com/p/58a166f24c81¡¾git-mergeÍêÈ«½âÎö¡¿
-! ÊÇ¿ÉÒÔÍ¬Ê±ºÏ²¢¶à¸ö·ÖÖ§µÄ
+  . å°†ç‰ˆæœ¬é—´çš„å·®å¼‚ï¼Œåˆå¹¶åˆ°æš‚å­˜åŒºä¸­ï¼›æäº¤åï¼Œå†…å®¹å®è´¨ä¸Šåˆå¹¶äº†ï¼Œä½†æ˜¯ç‰ˆæœ¬æ²¡æœ‰åˆå¹¶è¿‡æ¥
+  # å‚è€ƒï¼šhttps://www.cnblogs.com/wangiqngpei557/p/6026007.htmlã€èŠä¸‹git merge --squashã€‘
+. git merge --abort // `master|MERGING`çŠ¶æ€æ—¶ï¼Œå¯ä»¥å–æ¶ˆåˆå¹¶
+# å‚è€ƒï¼šhttps://www.jianshu.com/p/58a166f24c81ã€git-mergeå®Œå…¨è§£æã€‘
+! æ˜¯å¯ä»¥åŒæ—¶åˆå¹¶å¤šä¸ªåˆ†æ”¯çš„
   . git merge <branch1> <branch2> ...
-  . µ«ÊÇ·¢Éú³åÍ»Ê±»áºÏ²¢Ê§°Ü£¨²»¶à½éÉÜ£©
-  * ½áÂÛ£º²»ÒªÊ¹ÓÃÕâ¸öÌØĞÔ
+  . ä½†æ˜¯å‘ç”Ÿå†²çªæ—¶ä¼šåˆå¹¶å¤±è´¥ï¼ˆä¸å¤šä»‹ç»ï¼‰
+  * ç»“è®ºï¼šä¸è¦ä½¿ç”¨è¿™ä¸ªç‰¹æ€§
 
 
 @ rebase
 . git rebase [-i] <branch>
 . `rebase` VS `merge`
-  . ³õÊ¼
+  . åˆå§‹
     C1---C2---C4---C6(master)
          \
           --C3---C5(dev)
@@ -60,36 +60,36 @@
           --C3---C5---
   . git rebase dev
     C1---C2---C3---C5---C4'---C6'(master)
-. ÈçÍ¬×ÖÃæº¬Òå£¬`rebase`¹¦ÄÜ½«µ±Ç°`master`·ÖÖ§£¬ÒÔ`dev`·ÖÖ§Îª»ù´¡£¬½øĞĞÖØĞ´
-  . `C4`ºÍ`C4'`ÄÚÈİÒ»Ñù£¬µ«ÊÇ°æ±¾ºÅ²»Í¬
+. å¦‚åŒå­—é¢å«ä¹‰ï¼Œ`rebase`åŠŸèƒ½å°†å½“å‰`master`åˆ†æ”¯ï¼Œä»¥`dev`åˆ†æ”¯ä¸ºåŸºç¡€ï¼Œè¿›è¡Œé‡å†™
+  . `C4`å’Œ`C4'`å†…å®¹ä¸€æ ·ï¼Œä½†æ˜¯ç‰ˆæœ¬å·ä¸åŒ
 . --interactive
-  . ¿ÉÒÔÑ¡ÔñºÏ²¢´ıÖØĞ´µÄ°æ±¾
-  . Èç`C1---C2---C4---C6---C7---C8`
-  . »áÔö¼ÓÈçÏÂ½»»¥
+  . å¯ä»¥é€‰æ‹©åˆå¹¶å¾…é‡å†™çš„ç‰ˆæœ¬
+  . å¦‚`C1---C2---C4---C6---C7---C8`
+  . ä¼šå¢åŠ å¦‚ä¸‹äº¤äº’
     . pick C4 bugfix-a
     . squash C6 bugfix-a-2
     . pick C7 bugfix-b
     . squash C8 bugfix-b-2
-  . C4½«ºÍC6ºÏ²¢³ÉÒ»¸ö°æ±¾£¬C7ºÍC8Í¬
-  . ×îÖÕ`C1---C2---C3---C5---C4&6---C7&8`
-. Èç¹û·¢Éú³åÍ»
-  . git rebase --abort // È¡Ïû
-  . git rebase --continue // ½â¾ö³åÍ»ºó£¬¼ÌĞørebase
-. Èç¹ûÔÚ`master`·ÖÖ§`git rebase dev`£¬ÄÇÃ´ÊµÖÊÉÏºÏ²¢ÁË`dev`µÄÄÚÈİ
-. »¹¿ÉÒÔÓÃÓÚĞŞ¸ÄÄ³´ÎÌá½»µÄ`message`
-  . `-i`Ñ¡Ïî£¬½øÈëºó¶ÔÄ¿±ê°æ±¾Ê¹ÓÃ`e[dit]`Ñ¡Ïî
-  # https://blog.csdn.net/u010752082/article/details/77527158¡¾ĞŞ¸ÄcommitµÄmessage¡¿
-# ²Î¿¼
-  . http://gitbook.liuhui998.com/4_2.html¡¾git rebase¡¿¡¾good¡¿
-  . https://www.jianshu.com/p/4abb2f92a967¡¾µ½µ×Ê²Ã´ÊÇ rebase£¨±ä»ù£©£¿¡¿
-  . https://www.cnblogs.com/tocy/p/git-rebase-merge-commit.html¡¾¡¿
+  . C4å°†å’ŒC6åˆå¹¶æˆä¸€ä¸ªç‰ˆæœ¬ï¼ŒC7å’ŒC8åŒ
+  . æœ€ç»ˆ`C1---C2---C3---C5---C4&6---C7&8`
+. å¦‚æœå‘ç”Ÿå†²çª
+  . git rebase --abort // å–æ¶ˆ
+  . git rebase --continue // è§£å†³å†²çªåï¼Œç»§ç»­rebase
+. å¦‚æœåœ¨`master`åˆ†æ”¯`git rebase dev`ï¼Œé‚£ä¹ˆå®è´¨ä¸Šåˆå¹¶äº†`dev`çš„å†…å®¹
+. è¿˜å¯ä»¥ç”¨äºä¿®æ”¹æŸæ¬¡æäº¤çš„`message`
+  . `-i`é€‰é¡¹ï¼Œè¿›å…¥åå¯¹ç›®æ ‡ç‰ˆæœ¬ä½¿ç”¨`e[dit]`é€‰é¡¹
+  # https://blog.csdn.net/u010752082/article/details/77527158ã€ä¿®æ”¹commitçš„messageã€‘
+# å‚è€ƒ
+  . http://gitbook.liuhui998.com/4_2.htmlã€git rebaseã€‘ã€goodã€‘
+  . https://www.jianshu.com/p/4abb2f92a967ã€åˆ°åº•ä»€ä¹ˆæ˜¯ rebaseï¼ˆå˜åŸºï¼‰ï¼Ÿã€‘
+  . https://www.cnblogs.com/tocy/p/git-rebase-merge-commit.htmlã€ã€‘
   
-@ Re:ÄÇĞ©¿ÉÒÔÑ¹Ëõ°æ±¾µÄ²Ù×÷
-. ¹¤×÷Ê±¾­³£Ìá½»Èô¸É´ÎÍê³ÉÒ»¸ö¹¦ÄÜ
-  . ÀúÊ·°æ±¾Èç£º
+@ Re:é‚£äº›å¯ä»¥å‹ç¼©ç‰ˆæœ¬çš„æ“ä½œ
+. å·¥ä½œæ—¶ç»å¸¸æäº¤è‹¥å¹²æ¬¡å®Œæˆä¸€ä¸ªåŠŸèƒ½
+  . å†å²ç‰ˆæœ¬å¦‚ï¼š
     . feature-a-2(HEAD)
     . feature-a-1
-  . µ«ÊÇ¹¦ÄÜÍê³Éºó£¬³ÊÏÖÎªÒ»¸ö°æ±¾`feature-a`¸ü¼ÓÇåÎú
+  . ä½†æ˜¯åŠŸèƒ½å®Œæˆåï¼Œå‘ˆç°ä¸ºä¸€ä¸ªç‰ˆæœ¬`feature-a`æ›´åŠ æ¸…æ™°
 1 git reset --soft <feature-a-1>
   git commit -a -m 'feature-a'
 2 git rebase -i <before-feature-a-1>
@@ -97,345 +97,345 @@
 3 git co master
   git merge --squash feature-a
   git commit -a -m 'feature-a'
-4 // Ê×´ÎÕı³£Ìá½»`feature-a`£¬Ö®ºó£º
+4 // é¦–æ¬¡æ­£å¸¸æäº¤`feature-a`ï¼Œä¹‹åï¼š
   git commit --amend
 
 
 @ show
-. git show <commit> <filename> // ²é¿´ÎÄ¼şÔÚÌá½»Ê±£¨Ïà¶ÔÓÚÇ°Ò»°æ±¾£©µÄ±ä¶¯
-. git show <commit>:<filename> // ²é¿´Ä³°æ±¾µÄÎÄ¼şÄÚÈİ
-. git show <commit> // ²é¿´±¾´ÎÌá½»ËùÓĞ±ä¶¯
+. git show <commit> <filename> // æŸ¥çœ‹æ–‡ä»¶åœ¨æäº¤æ—¶ï¼ˆç›¸å¯¹äºå‰ä¸€ç‰ˆæœ¬ï¼‰çš„å˜åŠ¨
+. git show <commit>:<filename> // æŸ¥çœ‹æŸç‰ˆæœ¬çš„æ–‡ä»¶å†…å®¹
+. git show <commit> // æŸ¥çœ‹æœ¬æ¬¡æäº¤æ‰€æœ‰å˜åŠ¨
 
 
 @ cherry-pick
 . git cherry-pick <commits>
-. Ñ¡¶¨Ä³Ğ©Ìá½»£¬½«ÆäÄÚÈİºÏ²¢µ½Ôİ´æÇø£¬Ìá½»ºóÉú³ÉÒ»¸öĞÂ°æ±¾
-. git cherry-pick --continue // ½â¾ö³åÍ»ºó£¬¼ÌĞø`cherry-pick`²Ù×÷
-. git cherry-pick --[quit|abort] // È¡Ïû£¨Á½ÕßÇø±ğ²»Ã÷£©
+. é€‰å®šæŸäº›æäº¤ï¼Œå°†å…¶å†…å®¹åˆå¹¶åˆ°æš‚å­˜åŒºï¼Œæäº¤åç”Ÿæˆä¸€ä¸ªæ–°ç‰ˆæœ¬
+. git cherry-pick --continue // è§£å†³å†²çªåï¼Œç»§ç»­`cherry-pick`æ“ä½œ
+. git cherry-pick --[quit|abort] // å–æ¶ˆï¼ˆä¸¤è€…åŒºåˆ«ä¸æ˜ï¼‰
 
 
 @ stash
-. git stash // ½«¹¤×÷Çø ºÍ Ôİ´æÇø µÄËùÓĞĞŞ¸ÄÑ¹ÈëÒ»¸ö¶ÑÕ»
-. git stash pop // ¶ÑÕ»ÄÚÈİµ¯³öµ½ ¹¤×÷Çø
-. git stash list // µ±Ç°stashÕ»
-* Ò»°ã²»»áÓÃµ½¶à²ã¶ÑÕ»£¬²»¶àÁË½âÁË
-# ²Î¿¼£ºhttps://www.cnblogs.com/tocy/p/git-stash-reference.html¡¾git-stashÓÃ·¨Ğ¡½á¡¿
+. git stash // å°†å·¥ä½œåŒº å’Œ æš‚å­˜åŒº çš„æ‰€æœ‰ä¿®æ”¹å‹å…¥ä¸€ä¸ªå †æ ˆ
+. git stash pop // å †æ ˆå†…å®¹å¼¹å‡ºåˆ° å·¥ä½œåŒº
+. git stash list // å½“å‰stashæ ˆ
+* ä¸€èˆ¬ä¸ä¼šç”¨åˆ°å¤šå±‚å †æ ˆï¼Œä¸å¤šäº†è§£äº†
+# å‚è€ƒï¼šhttps://www.cnblogs.com/tocy/p/git-stash-reference.htmlã€git-stashç”¨æ³•å°ç»“ã€‘
 
 
-@ ÓÀ¾ÃÉ¾³ıÄ³ÎÄ¼şµÄËùÓĞ¼ÇÂ¼
-. Çé¾°£ºÎó´«ÁË°üº¬Ãô¸ĞĞÅÏ¢µÄ`password.txt`µ½`github`
-  . ¼´Ê¹ÔÚĞÂ°æ±¾ÖĞÉ¾³ıÁË`password.txt`£¬±ğÈËÒ²¿ÉÒÔÔÚÀúÊ·¼ÇÂ¼ÖĞÕÒµ½
-. ·½·¨
+@ æ°¸ä¹…åˆ é™¤æŸæ–‡ä»¶çš„æ‰€æœ‰è®°å½•
+. æƒ…æ™¯ï¼šè¯¯ä¼ äº†åŒ…å«æ•æ„Ÿä¿¡æ¯çš„`password.txt`åˆ°`github`
+  . å³ä½¿åœ¨æ–°ç‰ˆæœ¬ä¸­åˆ é™¤äº†`password.txt`ï¼Œåˆ«äººä¹Ÿå¯ä»¥åœ¨å†å²è®°å½•ä¸­æ‰¾åˆ°
+. æ–¹æ³•
   1 git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch password.txt' --prune-empty --tag-name-filter cat -- --all
   2 git push --all --force
-. ½á¹û
+. ç»“æœ
     0c6dbef pwd2 & readme
-    1d504e1 pwd1 // ¸Ã°æ±¾Ö»±ä¶¯ÁË`pwd`Ò»¸öÎÄ¼ş£¬²Ù×÷ºó¸Ã°æ±¾Ö±½ÓÏûÊ§
+    1d504e1 pwd1 // è¯¥ç‰ˆæœ¬åªå˜åŠ¨äº†`pwd`ä¸€ä¸ªæ–‡ä»¶ï¼Œæ“ä½œåè¯¥ç‰ˆæœ¬ç›´æ¥æ¶ˆå¤±
     6d4de56 readme
   => 
-    9bf870b pwd2 & readme // ¸ÄĞ´ÁË¸Ã°æ±¾£¬É¾³ıÁË`pwd`µÄ±ä¶¯£¬°æ±¾ºÅ¸Ä±ä
-    6d4de56 readme // ºÍ`pwd`ÎŞ¹ØµÄ°æ±¾£¬²»ÊÜÓ°Ïì
-. ¸ÃÃüÁî»á¸ÄĞ´ËùÓĞ·ÖÖ§
-# ²Î¿¼£ºhttps://blog.csdn.net/lwfcgz/article/details/49453375¡¾Git ÓÀ¾ÃÉ¾³ıÎÄ¼ş¡¿¡¾excellent¡¿
-  . °üº¬Ô­ÀíÏê½â
+    9bf870b pwd2 & readme // æ”¹å†™äº†è¯¥ç‰ˆæœ¬ï¼Œåˆ é™¤äº†`pwd`çš„å˜åŠ¨ï¼Œç‰ˆæœ¬å·æ”¹å˜
+    6d4de56 readme // å’Œ`pwd`æ— å…³çš„ç‰ˆæœ¬ï¼Œä¸å—å½±å“
+. è¯¥å‘½ä»¤ä¼šæ”¹å†™æ‰€æœ‰åˆ†æ”¯
+# å‚è€ƒï¼šhttps://blog.csdn.net/lwfcgz/article/details/49453375ã€Git æ°¸ä¹…åˆ é™¤æ–‡ä»¶ã€‘ã€excellentã€‘
+  . åŒ…å«åŸç†è¯¦è§£
 
 
-@ `git push --force` ºó»Ö¸´Ô¶³Ì¿â
-. ·½·¨
+@ `git push --force` åæ¢å¤è¿œç¨‹åº“
+. æ–¹æ³•
   1 git fetch
-  2 git reset origin/master@{1} // ±»pushµÄÇ°Ò»¸ö°æ±¾
+  2 git reset origin/master@{1} // è¢«pushçš„å‰ä¸€ä¸ªç‰ˆæœ¬
   3 git push --force
-  4 git reset HEAD@{1} // »Ö¸´±¾µØmaster
-. ²Î¿¼
+  4 git reset HEAD@{1} // æ¢å¤æœ¬åœ°master
+. å‚è€ƒ
   # https://stackoverflow.com/questions/12568628/how-to-recover-from-a-git-push-force
   # title: How to recover from a git push -force?
-  . ÎÄÖĞËùËµ`git push --force`×÷ÓÃÁËËùÓĞ·ÖÖ§£¬ÎÒÊÔÑéÊ±Ã»ÓĞ·¢Éú
-. Ë¼Â·
-  . `git fetch`¿ÉÒÔ½«Ô¶³Ì¿âÍ¬²½µ½±¾µØ£¨¿ÉÄÜÊÇËùÓĞĞÅÏ¢£©
-  . ¿ÉÒÔÏñ±¾µØÒ»Ñù£¬¶Ô`origin`²Ù×÷
-    . git log origin/master // ²é¿´Ô¶³Ì¿âÈÕÖ¾
-    . git reflog show origin/master // ²é¿´Ô¶³Ì¿âreflog
+  . æ–‡ä¸­æ‰€è¯´`git push --force`ä½œç”¨äº†æ‰€æœ‰åˆ†æ”¯ï¼Œæˆ‘è¯•éªŒæ—¶æ²¡æœ‰å‘ç”Ÿ
+. æ€è·¯
+  . `git fetch`å¯ä»¥å°†è¿œç¨‹åº“åŒæ­¥åˆ°æœ¬åœ°ï¼ˆå¯èƒ½æ˜¯æ‰€æœ‰ä¿¡æ¯ï¼‰
+  . å¯ä»¥åƒæœ¬åœ°ä¸€æ ·ï¼Œå¯¹`origin`æ“ä½œ
+    . git log origin/master // æŸ¥çœ‹è¿œç¨‹åº“æ—¥å¿—
+    . git reflog show origin/master // æŸ¥çœ‹è¿œç¨‹åº“reflog
 
 
-@ Re:±¾µØ·ÖÖ§ ºÍ Ô¶³Ì·ÖÖ§ ÊÇ·ñÍêÈ«ÏàÍ¬
-. ¼ÙÉèÄ³°æ±¾Á½ÕßÍêÈ«ÏàÍ¬£¬¼ÇÎª³õÊ¼°æ±¾`v1`
+@ Re:æœ¬åœ°åˆ†æ”¯ å’Œ è¿œç¨‹åˆ†æ”¯ æ˜¯å¦å®Œå…¨ç›¸åŒ
+. å‡è®¾æŸç‰ˆæœ¬ä¸¤è€…å®Œå…¨ç›¸åŒï¼Œè®°ä¸ºåˆå§‹ç‰ˆæœ¬`v1`
 1 fast-forward
   . local:  v1 -> v2
     remote: v1
-  . `git push` Ê¹ÓÃ `fast-forward` Ä£Ê½ºÏ²¢
-  * È»ºó `local` ºÍ `origin` Ò»ÖÂ
-2 ·Ç`fast-forward`
+  . `git push` ä½¿ç”¨ `fast-forward` æ¨¡å¼åˆå¹¶
+  * ç„¶å `local` å’Œ `origin` ä¸€è‡´
+2 é`fast-forward`
   . local:  v1 -> v2
     origin: v1 -------> v3
   . git pull
-    . Èç¹û·¢Éú³åÍ»£¬ĞèÒªÏÈ½â¾ö
-    . ĞÎ³ÉÒ»¸öĞÂ°æ±¾`merge commit`
+    . å¦‚æœå‘ç”Ÿå†²çªï¼Œéœ€è¦å…ˆè§£å†³
+    . å½¢æˆä¸€ä¸ªæ–°ç‰ˆæœ¬`merge commit`
     .   v1 -------> v3--> vm
-      .    ¨K-v2-------¨J
-    * ´ËÊ±`local`ÁìÏÈÓÚ`origin`£¬`git push`»á³É¹¦£¬¶øºóÁ½ÕßÍêÈ«ÏàÍ¬
+      .    â†˜-v2-------â†—
+    * æ­¤æ—¶`local`é¢†å…ˆäº`origin`ï¼Œ`git push`ä¼šæˆåŠŸï¼Œè€Œåä¸¤è€…å®Œå…¨ç›¸åŒ
   . git push
-    . »áÍÆËÍÊ§°Ü `[rejected] master -> master (non-fast-forward)`
-    . ²»¹ÜÊÇ·ñ³åÍ»¶¼²»ÄÜÍÆ£¬±Ï¾¹²»Ïñpull£¬pullºó»¹¿ÉÒÔ½øĞĞ ½â¾ö³åÍ»/Ìá½»ºÏ²¢ ²Ù×÷
+    . ä¼šæ¨é€å¤±è´¥ `[rejected] master -> master (non-fast-forward)`
+    . ä¸ç®¡æ˜¯å¦å†²çªéƒ½ä¸èƒ½æ¨ï¼Œæ¯•ç«Ÿä¸åƒpullï¼Œpullåè¿˜å¯ä»¥è¿›è¡Œ è§£å†³å†²çª/æäº¤åˆå¹¶ æ“ä½œ
     . git push --force
-      . Ç¿ÖÆÍÆËÍ±¾µØµ½Ô¶³Ì£¬¶øºóÁ½ÕßÍêÈ«ÏàÍ¬
-      ! »áµ¼ÖÂÔ¶³Ì¿âÎ´Í¬²½µ½±¾µØµÄ°æ±¾ÏûÊ§
-* ½áÂÛ£º`git push`ºó ±¾µØ·ÖÖ§ ºÍ Ô¶³Ì·ÖÖ§ ÊÇ·ñÍêÈ«ÏàÍ¬
+      . å¼ºåˆ¶æ¨é€æœ¬åœ°åˆ°è¿œç¨‹ï¼Œè€Œåä¸¤è€…å®Œå…¨ç›¸åŒ
+      ! ä¼šå¯¼è‡´è¿œç¨‹åº“æœªåŒæ­¥åˆ°æœ¬åœ°çš„ç‰ˆæœ¬æ¶ˆå¤±
+* ç»“è®ºï¼š`git push`å æœ¬åœ°åˆ†æ”¯ å’Œ è¿œç¨‹åˆ†æ”¯ æ˜¯å¦å®Œå…¨ç›¸åŒ
     
 
 @ checkout
-1 ¼ì³öÀúÊ·°æ±¾µÄÎÄ¼ş
-  . Óï·¨£º`git checkout [<commit>] [--] <files>`
-  . ¹¦ÄÜ
-    . ¼ì³öÄ³°æ±¾µÄÎÄ¼şµ½ Ôİ´æÇø ºÍ ¹¤×÷Çø (history -> index & workspace)
-    . Ö±½Ó¸²¸Ç ¹¤×÷Çø ºÍ Ôİ´æÇø µÄ¸ÃÎÄ¼ş
-      . ÆäËüÎÄ¼ş²»ÂÛÊÇ`unchanged`¡¢`unstaged`¡¢`uncommitted`¶¼²»ÊÜÓ°Ïì
-    . ÎÄ¼şÂ·¾¶ºÍ·ÖÖ§Ãû²»»áÓĞÆçÒåÊ±£¬¿ÉÒÔÊ¡ÂÔ`--`
-  ! `<commit>`µÄº¬Òå
-    . Ä³°æ±¾µÄ`commit hash`Öµ
-    . ·ÖÖ§Ãû³Æ
-    . `tag`Ãû³Æ
-    * ËüÃÇ±¾ÖÊÉÏ¶ÔÓ¦µÄ¶¼ÊÇÒ»¸ö`commit hash`Öµ
-2 ¼ì³öÔİ´æÇøÎÄ¼ş
-  . Óï·¨£º`git checkout <files>`
-  . ¹¦ÄÜ
-    . ¼ì³ö Ôİ´æÇø µÄÎÄ¼şµ½ ¹¤×÷Çø (index -> history)
-    . Ö±½Ó¸²¸Ç Ô­¹¤×÷ÇøµÄ¸ÃÎÄ¼ş
-  * ×Ü½á
-    . ÓÃ·¨2ºÍÓÃ·¨1 ²»»á¸Ä±äHEADÍ·Ö¸Õë
-    . ¶¼ÊÇÓÃÓÚ¼ì³öÖ¸¶¨ÎÄ¼ş
-3 ÇĞ»»·ÖÖ§
-  . Óï·¨£º`git checkout <branch>`
-  . ¹¦ÄÜ
-    . ÇĞ»»·ÖÖ§
-      ! ±¾ÖÊÊÇĞŞ¸ÄÁË`.git/HEAD`
-    . `unmodified`×´Ì¬µÄÎÄ¼şµÄÎÄ¼ş Ö±½Ó±»°æ±¾¿â¸²¸Ç
-      ¡ü ´ÓÕâÒ»µã¿´£¬ºÍ ÓÃ·¨1¡¢ÓÃ·¨2 ÊÇÏàÍ¬µÄ
-    . `unstaged`ºÍ`uncommitted`×´Ì¬µÄÎÄ¼ş
-      . Èç¹û`oldBranch`ºÍ`newBranch`µÄ¸ÃÎÄ¼şÏàÍ¬£¬ÔòÔÚ`oldBranch`Ê±µÄ±ä¶¯±£Áô£¬ÎÄ¼ş±£³ÖÔ­×´Ì¬
-      . Èç¹û²»Í¬£¬ÇĞ»»·ÖÖ§»áÊ§°Ü
+1 æ£€å‡ºå†å²ç‰ˆæœ¬çš„æ–‡ä»¶
+  . è¯­æ³•ï¼š`git checkout [<commit>] [--] <files>`
+  . åŠŸèƒ½
+    . æ£€å‡ºæŸç‰ˆæœ¬çš„æ–‡ä»¶åˆ° æš‚å­˜åŒº å’Œ å·¥ä½œåŒº (history -> index & workspace)
+    . ç›´æ¥è¦†ç›– å·¥ä½œåŒº å’Œ æš‚å­˜åŒº çš„è¯¥æ–‡ä»¶
+      . å…¶å®ƒæ–‡ä»¶ä¸è®ºæ˜¯`unchanged`ã€`unstaged`ã€`uncommitted`éƒ½ä¸å—å½±å“
+    . æ–‡ä»¶è·¯å¾„å’Œåˆ†æ”¯åä¸ä¼šæœ‰æ­§ä¹‰æ—¶ï¼Œå¯ä»¥çœç•¥`--`
+  ! `<commit>`çš„å«ä¹‰
+    . æŸç‰ˆæœ¬çš„`commit hash`å€¼
+    . åˆ†æ”¯åç§°
+    . `tag`åç§°
+    * å®ƒä»¬æœ¬è´¨ä¸Šå¯¹åº”çš„éƒ½æ˜¯ä¸€ä¸ª`commit hash`å€¼
+2 æ£€å‡ºæš‚å­˜åŒºæ–‡ä»¶
+  . è¯­æ³•ï¼š`git checkout <files>`
+  . åŠŸèƒ½
+    . æ£€å‡º æš‚å­˜åŒº çš„æ–‡ä»¶åˆ° å·¥ä½œåŒº (index -> history)
+    . ç›´æ¥è¦†ç›– åŸå·¥ä½œåŒºçš„è¯¥æ–‡ä»¶
+  * æ€»ç»“
+    . ç”¨æ³•2å’Œç”¨æ³•1 ä¸ä¼šæ”¹å˜HEADå¤´æŒ‡é’ˆ
+    . éƒ½æ˜¯ç”¨äºæ£€å‡ºæŒ‡å®šæ–‡ä»¶
+3 åˆ‡æ¢åˆ†æ”¯
+  . è¯­æ³•ï¼š`git checkout <branch>`
+  . åŠŸèƒ½
+    . åˆ‡æ¢åˆ†æ”¯
+      ! æœ¬è´¨æ˜¯ä¿®æ”¹äº†`.git/HEAD`
+    . `unmodified`çŠ¶æ€çš„æ–‡ä»¶çš„æ–‡ä»¶ ç›´æ¥è¢«ç‰ˆæœ¬åº“è¦†ç›–
+      â†‘ ä»è¿™ä¸€ç‚¹çœ‹ï¼Œå’Œ ç”¨æ³•1ã€ç”¨æ³•2 æ˜¯ç›¸åŒçš„
+    . `unstaged`å’Œ`uncommitted`çŠ¶æ€çš„æ–‡ä»¶
+      . å¦‚æœ`oldBranch`å’Œ`newBranch`çš„è¯¥æ–‡ä»¶ç›¸åŒï¼Œåˆ™åœ¨`oldBranch`æ—¶çš„å˜åŠ¨ä¿ç•™ï¼Œæ–‡ä»¶ä¿æŒåŸçŠ¶æ€
+      . å¦‚æœä¸åŒï¼Œåˆ‡æ¢åˆ†æ”¯ä¼šå¤±è´¥
         . error: Your local changes to the following files would be overwritten by checkout
-        . ½â¾ö
+        . è§£å†³
           1 `git stash` -> `git co master` -> `git stash pop`
-          2 `git co -f master` // Ç¿ÖÆÇĞ»»£¬»á¶ªÊ§ÎÄ¼şµ±Ç°Î»ÓÚÔİ´æÇø»ò¹¤×÷ÇøµÄĞŞ¸Ä
-      * ²¢²»½¨ÒéÔÚ·Ç`clean`×´Ì¬ÏÂÇĞ»»·ÖÖ§
-4 ·ÖÀëÍ·(detached HEAD)
-  . Óï·¨£º`git checkout <commit>`
-  . Àí½â
-    . ÓëÆäËµ¹¦ÄÜ£¬²»ÈçËµÊÇ×ÔÈ»´æÔÚµÄÒ»¸ö×´Ì¬
-    . Óï·¨ÆäÊµÓëÇĞ»»·ÖÖ§ÏàÍ¬£¬¹¦ÄÜÆäÊµÒ²ÊÇ
-    . `git checkout HEAD^`½øÈë·ÖÀëÍ·×´Ì¬
-    . ²é¿´`.git/HEAD`£¬ÄÚÈİÊÇ`604a68...`ÊÇÔ­`HEAD^`µÄ°æ±¾ºÅ
-    . Õı³£Çé¿öÏÂ`.git/HEAD`µÄÄÚÈİĞÎÈç`ref: refs/heads/master`
-    ! ÇĞ»»·ÖÖ§ = ĞŞ¸Ä`.git/HEAD` + ¸²¸Ç¹¤×÷ÇøºÍÔİ´æÇø
-    . Òò´Ë·ÖÀëÍ·µÄ±¾ÖÊÊÇÇĞ»»·ÖÖ§£¬µ«ÊÇÕâ¸ö·ÖÖ§Ã»ÓĞÍ¨¹ı`git branch`´´½¨£¬Ò²Ã»ÓĞÃû×Ö
-    . ÊÂÊµÉÏÔÚ·ÖÀëÍ·¿ÉÒÔ×öºÍ·ÖÖ§Ò»ÑùµÄÈÎºÎ²Ù×÷
-    . ±ÈÈç×öÒ»´ÎĞŞ¸Ä£¬È»ºóÌá½»
+          2 `git co -f master` // å¼ºåˆ¶åˆ‡æ¢ï¼Œä¼šä¸¢å¤±æ–‡ä»¶å½“å‰ä½äºæš‚å­˜åŒºæˆ–å·¥ä½œåŒºçš„ä¿®æ”¹
+      * å¹¶ä¸å»ºè®®åœ¨é`clean`çŠ¶æ€ä¸‹åˆ‡æ¢åˆ†æ”¯
+4 åˆ†ç¦»å¤´(detached HEAD)
+  . è¯­æ³•ï¼š`git checkout <commit>`
+  . ç†è§£
+    . ä¸å…¶è¯´åŠŸèƒ½ï¼Œä¸å¦‚è¯´æ˜¯è‡ªç„¶å­˜åœ¨çš„ä¸€ä¸ªçŠ¶æ€
+    . è¯­æ³•å…¶å®ä¸åˆ‡æ¢åˆ†æ”¯ç›¸åŒï¼ŒåŠŸèƒ½å…¶å®ä¹Ÿæ˜¯
+    . `git checkout HEAD^`è¿›å…¥åˆ†ç¦»å¤´çŠ¶æ€
+    . æŸ¥çœ‹`.git/HEAD`ï¼Œå†…å®¹æ˜¯`604a68...`æ˜¯åŸ`HEAD^`çš„ç‰ˆæœ¬å·
+    . æ­£å¸¸æƒ…å†µä¸‹`.git/HEAD`çš„å†…å®¹å½¢å¦‚`ref: refs/heads/master`
+    ! åˆ‡æ¢åˆ†æ”¯ = ä¿®æ”¹`.git/HEAD` + è¦†ç›–å·¥ä½œåŒºå’Œæš‚å­˜åŒº
+    . å› æ­¤åˆ†ç¦»å¤´çš„æœ¬è´¨æ˜¯åˆ‡æ¢åˆ†æ”¯ï¼Œä½†æ˜¯è¿™ä¸ªåˆ†æ”¯æ²¡æœ‰é€šè¿‡`git branch`åˆ›å»ºï¼Œä¹Ÿæ²¡æœ‰åå­—
+    . äº‹å®ä¸Šåœ¨åˆ†ç¦»å¤´å¯ä»¥åšå’Œåˆ†æ”¯ä¸€æ ·çš„ä»»ä½•æ“ä½œ
+    . æ¯”å¦‚åšä¸€æ¬¡ä¿®æ”¹ï¼Œç„¶åæäº¤
       . v1 -> v2 -> v3(master)
-      .       ¡ı
+      .       â†“
       .       d(detached HEAD)
-    . ·ÖÀëÍ·´ÓÖ¸Ïò`v2`
-    . Î¨Ò»²»Í¬µÄÊÇ£¬µ±Àë¿ª·ÖÀëÍ·ºó£¬Ëü´¦ÓÚÎŞ·¨±»Ë÷Òıµ½µÄ×´Ì¬
-      . ÄÜ±»Ë÷ÒıµÄ×´Ì¬ÊÇ:¸÷·ÖÖ§µÄÀúÊ·°æ±¾(HEAD - HEAD~N)¡¢±êÇ©(tag)
-      . ×îÖÕ±»`git`µÄÄ¬ÈÏ»ØÊÕ»úÖÆËù»ØÊÕ
-  . Ó¦ÓÃ
-    . ¿ÉÒÔÔÚ·ÖÀëÍ·µÄ»ù´¡ÉÏĞÂ½¨Ò»¸ö·ÖÖ§
-    . ÔÚ·ÖÀëÍ·×´Ì¬ÏÂ `git co -B <newBranch>`
-5 ¼ì²éµ±Ç°·ÖÖ§
-  . Óï·¨£º`git checkout`
-  . ¹¦ÄÜ
-    . ÏÔÊ¾`modified`ºÍ`staged`ÎÄ¼ş
-  . ½áÂÛ£ºÃ»Ê²Ã´ÓÃ
-. ²Î¿¼
-  # http://www.cnblogs.com/hutaoer/archive/2013/05/07/git_checkout.html¡¾git checkout ÃüÁîÏê½â¡¿
-  # https://blog.csdn.net/working_harder/article/details/52219743¡¾·ÖÀëÍ·Ö¸Õë¡¿¡¾good¡¿
+    . åˆ†ç¦»å¤´ä»æŒ‡å‘`v2`
+    . å”¯ä¸€ä¸åŒçš„æ˜¯ï¼Œå½“ç¦»å¼€åˆ†ç¦»å¤´åï¼Œå®ƒå¤„äºæ— æ³•è¢«ç´¢å¼•åˆ°çš„çŠ¶æ€
+      . èƒ½è¢«ç´¢å¼•çš„çŠ¶æ€æ˜¯:å„åˆ†æ”¯çš„å†å²ç‰ˆæœ¬(HEAD - HEAD~N)ã€æ ‡ç­¾(tag)
+      . æœ€ç»ˆè¢«`git`çš„é»˜è®¤å›æ”¶æœºåˆ¶æ‰€å›æ”¶
+  . åº”ç”¨
+    . å¯ä»¥åœ¨åˆ†ç¦»å¤´çš„åŸºç¡€ä¸Šæ–°å»ºä¸€ä¸ªåˆ†æ”¯
+    . åœ¨åˆ†ç¦»å¤´çŠ¶æ€ä¸‹ `git co -B <newBranch>`
+5 æ£€æŸ¥å½“å‰åˆ†æ”¯
+  . è¯­æ³•ï¼š`git checkout`
+  . åŠŸèƒ½
+    . æ˜¾ç¤º`modified`å’Œ`staged`æ–‡ä»¶
+  . ç»“è®ºï¼šæ²¡ä»€ä¹ˆç”¨
+. å‚è€ƒ
+  # http://www.cnblogs.com/hutaoer/archive/2013/05/07/git_checkout.htmlã€git checkout å‘½ä»¤è¯¦è§£ã€‘
+  # https://blog.csdn.net/working_harder/article/details/52219743ã€åˆ†ç¦»å¤´æŒ‡é’ˆã€‘ã€goodã€‘
   # https://git-scm.com/docs/git-checkout
 
 
-@ `git`ÖĞÎÄ¼şµÄ×´Ì¬
-. ×´Ì¬
-  . untracked // Î´×·×Ù£¬ÎÄ¼ş²»ÊÜ`git`¹ÜÀí
-  . unmodified/committed // ¹¤×÷Çø = Ôİ´æÇø = °æ±¾¿â
-  . unstaged/modified // ¹¤×÷Çø ¡Ù Ôİ´æÇø = °æ±¾¿â
-  . uncommitted/staged // ¹¤×÷Çø = Ôİ´æÇø ¡Ù °æ±¾¿â
-. ×ª»»¹ØÏµ
+@ `git`ä¸­æ–‡ä»¶çš„çŠ¶æ€
+. çŠ¶æ€
+  . untracked // æœªè¿½è¸ªï¼Œæ–‡ä»¶ä¸å—`git`ç®¡ç†
+  . unmodified/committed // å·¥ä½œåŒº = æš‚å­˜åŒº = ç‰ˆæœ¬åº“
+  . unstaged/modified // å·¥ä½œåŒº â‰  æš‚å­˜åŒº = ç‰ˆæœ¬åº“
+  . uncommitted/staged // å·¥ä½œåŒº = æš‚å­˜åŒº â‰  ç‰ˆæœ¬åº“
+. è½¬æ¢å…³ç³»
     .  untracked    unmodified 
-    .      |		¨J		|
+    .      |		â†—		|
     .     add   commit     edit
-    .      ¡ı	 ¨u			¡ı
+    .      â†“	 â•±			â†“
     .  uncommitted <-add- unstaged 
-. clean×´Ì¬
-  . ²Ö¿âµÄËùÓĞÎÄ¼ş´¦ÓÚ`unmodified`Ê±µÄ×´Ì¬
-# ²Î¿¼£ºhttps://www.cnblogs.com/shangdawei/p/3348694.html¡¾Git ÖĞÎÄ¼şµÄ×´Ì¬¡¿¡¾good¡¿
-  . ÎÄÖĞÓĞ¸üÏêÏ¸µÄ×ª»»¹ØÏµÍ¼
+. cleançŠ¶æ€
+  . ä»“åº“çš„æ‰€æœ‰æ–‡ä»¶å¤„äº`unmodified`æ—¶çš„çŠ¶æ€
+# å‚è€ƒï¼šhttps://www.cnblogs.com/shangdawei/p/3348694.htmlã€Git ä¸­æ–‡ä»¶çš„çŠ¶æ€ã€‘ã€goodã€‘
+  . æ–‡ä¸­æœ‰æ›´è¯¦ç»†çš„è½¬æ¢å…³ç³»å›¾
 
 
-@ Re:ÈçºÎ²é¿´Ôİ´æÇøµÄÎÄ¼şÄÚÈİ
+@ Re:å¦‚ä½•æŸ¥çœ‹æš‚å­˜åŒºçš„æ–‡ä»¶å†…å®¹
 1 git diff <file>
-  . ¶Ô±È`Ôİ´æÇø vs ¹¤×÷Çø`£¨Ç°ÕßÎª»ù´¡£¬ºóÕß½ÏÇ°ÕßµÄ±ä»¯£©
-  . ¹¤×÷ÇøÊÇ¿É¼ûµÄ£¬´Ó¶øµÃµ½Ôİ´æÇøÄÚÈİ
+  . å¯¹æ¯”`æš‚å­˜åŒº vs å·¥ä½œåŒº`ï¼ˆå‰è€…ä¸ºåŸºç¡€ï¼Œåè€…è¾ƒå‰è€…çš„å˜åŒ–ï¼‰
+  . å·¥ä½œåŒºæ˜¯å¯è§çš„ï¼Œä»è€Œå¾—åˆ°æš‚å­˜åŒºå†…å®¹
 2 git diff --cached <file>
-  . ¶Ô±È`¹¤×÷Çø vs HEAD`
-  . `git show <commit>:<file>`¿ÉÒÔ»ñµÃ°æ±¾¿âÄÚÈİ
+  . å¯¹æ¯”`å·¥ä½œåŒº vs HEAD`
+  . `git show <commit>:<file>`å¯ä»¥è·å¾—ç‰ˆæœ¬åº“å†…å®¹
 3 git ls-files -s [<file>]
-  . ¿ÉÒÔ»ñµÃBlob¶ÔÏóµÄË÷ÒıºÅ£¬ĞÎÈç`100644 e6456a... 0 README.md`
-  . `git cat-file -p e6456a` Ö±½Ó»ñµÃÔİ´æÇøÎÄ¼şÄÚÈİ
-  ! ×¢Òâ£º²»ÓÃÑĞ¾¿`ls-files`ºÍ`cat-file`ÃüÁî£¬Ã»Ê²Ã´ÓÃ
-. ²Î¿¼
-  # https://blog.csdn.net/leedaning/article/details/44976105¡¾²é¿´ÒÑÔİ´æÎÄ¼ş¡¿
-  # http://www.findme.wang/share/detail/id/331.html¡¾²é¿´Ôİ´æÇøÎÄ¼ş¡¿
+  . å¯ä»¥è·å¾—Blobå¯¹è±¡çš„ç´¢å¼•å·ï¼Œå½¢å¦‚`100644 e6456a... 0 README.md`
+  . `git cat-file -p e6456a` ç›´æ¥è·å¾—æš‚å­˜åŒºæ–‡ä»¶å†…å®¹
+  ! æ³¨æ„ï¼šä¸ç”¨ç ”ç©¶`ls-files`å’Œ`cat-file`å‘½ä»¤ï¼Œæ²¡ä»€ä¹ˆç”¨
+. å‚è€ƒ
+  # https://blog.csdn.net/leedaning/article/details/44976105ã€æŸ¥çœ‹å·²æš‚å­˜æ–‡ä»¶ã€‘
+  # http://www.findme.wang/share/detail/id/331.htmlã€æŸ¥çœ‹æš‚å­˜åŒºæ–‡ä»¶ã€‘
 
 
-@ ºöÂÔÌá½»
+@ å¿½ç•¥æäº¤
 1 `.gitignore`
-  . Ã¿¸öÄ¿Â¼ÏÂ¶¼¿ÉÒÔÉèÖÃ`.gitignore`ÎÄ¼ş£¨·Ö²¼Ê½£©
-  ! `.gitignore`ÎÄ¼ş¼´Ê¹`untracked`Ò²ÊÇÓĞĞ§µÄ
-  * ÌØµã£º`.gitignore`±¾Éí¿ÉÒÔ¼ÓÈë²Ö¿â£¬ÍÆ¸ø±ğµÄ²Ö¿â£¬ÔÚ±ğµÄ¹¤×÷ÇøÉúĞ§
+  . æ¯ä¸ªç›®å½•ä¸‹éƒ½å¯ä»¥è®¾ç½®`.gitignore`æ–‡ä»¶ï¼ˆåˆ†å¸ƒå¼ï¼‰
+  ! `.gitignore`æ–‡ä»¶å³ä½¿`untracked`ä¹Ÿæ˜¯æœ‰æ•ˆçš„
+  * ç‰¹ç‚¹ï¼š`.gitignore`æœ¬èº«å¯ä»¥åŠ å…¥ä»“åº“ï¼Œæ¨ç»™åˆ«çš„ä»“åº“ï¼Œåœ¨åˆ«çš„å·¥ä½œåŒºç”Ÿæ•ˆ
 2 `.git/info/exclude`
-  . ÌØµã£º×÷ÓÃÓÚµ±Ç°²Ö¿â£¬Ò²ÎŞ·¨ÍÆËÍµ½Ô¶³Ì¿â
-3 ÅäÖÃºöÂÔÎÄ¼ş
-  . Óï·¨£º`git config --global core.excludesfile <myFile>`
-  . ÌØµã£ºÊÇ`git`Ó¦ÓÃ¼¶ÅäÖÃ£¬×÷ÓÃÓÚµ±Ç°Ö÷»ú
-. ºöÂÔÎÄ¼ş¶ÁÈ¡Ë³Ğò
-  ¡ı <core.excludesfile>
-  ¡ı .git/info/exclude
-  ¡ı ÒÀ´ÎÉÏ²ãÄ¿Â¼ÖĞ`.gitignore`
-  ¡ı ±¾Ä¿Â¼.gitignore 
-. ºöÂÔ¹æÔòÓï·¨
-  . # ×¢ÊÍ
-  . ! ÖØĞÂ°üº¬Ò»¸ö Ç°ÃæÅäÖÃÖĞºöÂÔµÄÎÄ¼ş
-  . ** Æ¥ÅäÁã»ò¶à¼¶Ä¿Â¼
-  . ? Æ¥Åäµ¥¸öÈÎÒâ×Ö·û
-  . * Æ¥ÅäÁã»ò¶à¸öÈÎÒâ×Ö·û
-  . [] Æ¥Åäµ¥¸ö×Ö·ûÁĞ±í
-. ÖØĞÂ°üº¬`!`
-  . ĞèÒªÏÈºöÂÔ£¬ÔÙÖØĞÂ°üº¬¡£×¢ÒâºöÂÔÎÄ¼ş¶ÁÈ¡Ë³Ğò¡£
-  . Èç¹ûºöÂÔÁËÒ»¸öÄ¿Â¼£¬ÔòÄ¿Â¼ÏÂËùÓĞÎÄ¼şºÍÄ¿Â¼ºÍ×ÓÄ¿Â¼¶¼½«³¹µ×ºöÂÔ
+  . ç‰¹ç‚¹ï¼šä½œç”¨äºå½“å‰ä»“åº“ï¼Œä¹Ÿæ— æ³•æ¨é€åˆ°è¿œç¨‹åº“
+3 é…ç½®å¿½ç•¥æ–‡ä»¶
+  . è¯­æ³•ï¼š`git config --global core.excludesfile <myFile>`
+  . ç‰¹ç‚¹ï¼šæ˜¯`git`åº”ç”¨çº§é…ç½®ï¼Œä½œç”¨äºå½“å‰ä¸»æœº
+. å¿½ç•¥æ–‡ä»¶è¯»å–é¡ºåº
+  â†“ <core.excludesfile>
+  â†“ .git/info/exclude
+  â†“ ä¾æ¬¡ä¸Šå±‚ç›®å½•ä¸­`.gitignore`
+  â†“ æœ¬ç›®å½•.gitignore 
+. å¿½ç•¥è§„åˆ™è¯­æ³•
+  . # æ³¨é‡Š
+  . ! é‡æ–°åŒ…å«ä¸€ä¸ª å‰é¢é…ç½®ä¸­å¿½ç•¥çš„æ–‡ä»¶
+  . ** åŒ¹é…é›¶æˆ–å¤šçº§ç›®å½•
+  . ? åŒ¹é…å•ä¸ªä»»æ„å­—ç¬¦
+  . * åŒ¹é…é›¶æˆ–å¤šä¸ªä»»æ„å­—ç¬¦
+  . [] åŒ¹é…å•ä¸ªå­—ç¬¦åˆ—è¡¨
+. é‡æ–°åŒ…å«`!`
+  . éœ€è¦å…ˆå¿½ç•¥ï¼Œå†é‡æ–°åŒ…å«ã€‚æ³¨æ„å¿½ç•¥æ–‡ä»¶è¯»å–é¡ºåºã€‚
+  . å¦‚æœå¿½ç•¥äº†ä¸€ä¸ªç›®å½•ï¼Œåˆ™ç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶å’Œç›®å½•å’Œå­ç›®å½•éƒ½å°†å½»åº•å¿½ç•¥
     . `someDir` -> `!someDir/foo` fail
     . `someDir` -> `!someDir` success
     ! `someDir/*` -> `!someDir/foo` success
-* `git`Ö»¹Ø×¢ÎÄ¼ş£¬²»¹Ø×¢Ä¿Â¼
-  . ĞÂ½¨Ò»¸ö¿ÕÄ¿Â¼£¬ÊÇÎŞ·¨¼ÓÈë²Ö¿âµÄ
-  . ºöÂÔ¹æÔòÖĞ`foo`ºÍ`foo/`ÒâÒåÏàÍ¬£¬`foo/*`ÒâÒå²»Í¬
-* ºöÂÔÌá½»ÎÄ¼şµÄ ¾ßÌå¹¦ÄÜ
-  . `git add .` Ê±ºöÂÔµôÏàÓ¦µÄ `untracked file`
-  . `git st` µÄ´òÓ¡ĞÅÏ¢ÖĞ`Untracked files`ÏîºöÂÔµôÏàÓ¦ÎÄ¼ş
-  ! µ«ÊÇ `git add foo` ¾ßÌåÖ¸¶¨`foo`ÎÄ¼ş£¬ÊÇÒ»¶¨¿ÉÒÔ¼ÓÈë²Ö¿âµÄ£¬ºöÂÔÎÄ¼şÎŞ·¨Ó°Ïì
-    . Í¬Ñù£¬ÒÑ±»×·×ÙµÄÎÄ¼ş£¬ºó¼ÓÈë.gitignoreÊÇÎŞĞ§µÄ£¬±ä¶¯ÒÀÈ»»á±»Ìá½»
-    . Í¬Ñù£¬Ê¹ÓÃ `git pull`Ê±Ô¶³Ì¿âĞÂ¼ÓÁË`foo`ÎÄ¼ş£¬±¾µØµÄºöÂÔÎÄ¼şÒ²Ó°Ïì
-# ²Î¿¼
-  . https://www.cnblogs.com/youyoui/p/8337147.html¡¾Git ºöÂÔÌá½»¡¿¡¾excellent¡¿
-  . https://blog.csdn.net/twx843571091/article/details/52045379¡¾gitºöÂÔ¸ú×ÙÒÑÔÚÔ¶³Ì²Ö¿âÀïµÄÎÄ¼ş¡¿
+* `git`åªå…³æ³¨æ–‡ä»¶ï¼Œä¸å…³æ³¨ç›®å½•
+  . æ–°å»ºä¸€ä¸ªç©ºç›®å½•ï¼Œæ˜¯æ— æ³•åŠ å…¥ä»“åº“çš„
+  . å¿½ç•¥è§„åˆ™ä¸­`foo`å’Œ`foo/`æ„ä¹‰ç›¸åŒï¼Œ`foo/*`æ„ä¹‰ä¸åŒ
+* å¿½ç•¥æäº¤æ–‡ä»¶çš„ å…·ä½“åŠŸèƒ½
+  . `git add .` æ—¶å¿½ç•¥æ‰ç›¸åº”çš„ `untracked file`
+  . `git st` çš„æ‰“å°ä¿¡æ¯ä¸­`Untracked files`é¡¹å¿½ç•¥æ‰ç›¸åº”æ–‡ä»¶
+  ! ä½†æ˜¯ `git add foo` å…·ä½“æŒ‡å®š`foo`æ–‡ä»¶ï¼Œæ˜¯ä¸€å®šå¯ä»¥åŠ å…¥ä»“åº“çš„ï¼Œå¿½ç•¥æ–‡ä»¶æ— æ³•å½±å“
+    . åŒæ ·ï¼Œå·²è¢«è¿½è¸ªçš„æ–‡ä»¶ï¼ŒååŠ å…¥.gitignoreæ˜¯æ— æ•ˆçš„ï¼Œå˜åŠ¨ä¾ç„¶ä¼šè¢«æäº¤
+    . åŒæ ·ï¼Œä½¿ç”¨ `git pull`æ—¶è¿œç¨‹åº“æ–°åŠ äº†`foo`æ–‡ä»¶ï¼Œæœ¬åœ°çš„å¿½ç•¥æ–‡ä»¶ä¹Ÿå½±å“
+# å‚è€ƒ
+  . https://www.cnblogs.com/youyoui/p/8337147.htmlã€Git å¿½ç•¥æäº¤ã€‘ã€excellentã€‘
+  . https://blog.csdn.net/twx843571091/article/details/52045379ã€gitå¿½ç•¥è·Ÿè¸ªå·²åœ¨è¿œç¨‹ä»“åº“é‡Œçš„æ–‡ä»¶ã€‘
 
 
 @ remote
-. git remote add <name> <url> // Ìí¼Ó
-. git remote remove <name> // É¾³ı
-. git remote [-v] // ÁĞ³öËùÓĞÔ¶³Ì²Ö¿â
-. git remote show <name> // ²é¿´Ô¶³Ì²Ö¿âÏêÇé
-. git remote set-url [--push] <name> <url> // ĞŞ¸ÄÔ¶³Ì¿â`fetch/push`Á´½Ó
-# ²Î¿¼£ºhttps://git-scm.com/docs/git-remote
+. git remote add <name> <url> // æ·»åŠ 
+. git remote remove <name> // åˆ é™¤
+. git remote [-v] // åˆ—å‡ºæ‰€æœ‰è¿œç¨‹ä»“åº“
+. git remote show <name> // æŸ¥çœ‹è¿œç¨‹ä»“åº“è¯¦æƒ…
+. git remote set-url [--push] <name> <url> // ä¿®æ”¹è¿œç¨‹åº“`fetch/push`é“¾æ¥
+# å‚è€ƒï¼šhttps://git-scm.com/docs/git-remote
 
 
 @ config
-. git config [<option>] --list // ²é¿´ËùÓĞ£»»ñµÃµÄÊÇ×îÖÕÉúĞ§µÄ½á¹û
-. git config <key> // ²é¿´£»»ñµÃµÄÊÇ×îÖÕÉúĞ§µÄ½á¹û
-. git config --get-all <key> // ²é¿´£»»ñµÃËùÓĞÅäÖÃÎÄ¼şÖĞµÄÖµ
-. git config <key> <val> // Ìí¼Ó/ĞŞ¸Ä
-. git config --unset <key> // É¾³ı
-. Èı¼¶ÅäÖÃ
-  . --local // ±¾µØ£»µ±Ç°²Ö¿â
-  . --global // ÓÃ»§
-  . --system // ÏµÍ³£»±¾»ú
-  * ÓÅÏÈ¼¶£º `local > global > system`
-. ³£ÓÃÅäÖÃ
+. git config [<option>] --list // æŸ¥çœ‹æ‰€æœ‰ï¼›è·å¾—çš„æ˜¯æœ€ç»ˆç”Ÿæ•ˆçš„ç»“æœ
+. git config <key> // æŸ¥çœ‹ï¼›è·å¾—çš„æ˜¯æœ€ç»ˆç”Ÿæ•ˆçš„ç»“æœ
+. git config --get-all <key> // æŸ¥çœ‹ï¼›è·å¾—æ‰€æœ‰é…ç½®æ–‡ä»¶ä¸­çš„å€¼
+. git config <key> <val> // æ·»åŠ /ä¿®æ”¹
+. git config --unset <key> // åˆ é™¤
+. ä¸‰çº§é…ç½®
+  . --local // æœ¬åœ°ï¼›å½“å‰ä»“åº“
+  . --global // ç”¨æˆ·
+  . --system // ç³»ç»Ÿï¼›æœ¬æœº
+  * ä¼˜å…ˆçº§ï¼š `local > global > system`
+. å¸¸ç”¨é…ç½®
   . user.name
   . user.email
-  . alias.* // ÃüÁî±ğÃû
-  . core.editor // ÎÄ±¾±à¼­Æ÷
-  . merge.tool // ²îÒì·ÖÎö¹¤¾ß
-  . credential.helper // ÃÜÂë´æ´¢
-! Ìí¼Ó/ĞŞ¸Ä/É¾³ı ²Ù×÷Ä¬ÈÏ¶¼ÊÇ `--local`£¬ÓÃ»§¼¶ÅäÖÃ ºÍ ÏµÍ³¼¶ÅäÖÃ ĞèÒªÊÖ¶¯¼ÓÏàÓ¦Ñ¡Ïî   
-. ²Î¿¼
-  # https://www.yiibai.com/git/git_config.html¡¾git config¡¿
-  # https://www.jianshu.com/p/0ad3d88c51f4¡¾ÇĞ»»GitÕËºÅ¡¿
-  # https://blog.csdn.net/peterxiaoq/article/details/79020801¡¾git config ³£ÓÃÅäÖÃ¡¿
+  . alias.* // å‘½ä»¤åˆ«å
+  . core.editor // æ–‡æœ¬ç¼–è¾‘å™¨
+  . merge.tool // å·®å¼‚åˆ†æå·¥å…·
+  . credential.helper // å¯†ç å­˜å‚¨
+! æ·»åŠ /ä¿®æ”¹/åˆ é™¤ æ“ä½œé»˜è®¤éƒ½æ˜¯ `--local`ï¼Œç”¨æˆ·çº§é…ç½® å’Œ ç³»ç»Ÿçº§é…ç½® éœ€è¦æ‰‹åŠ¨åŠ ç›¸åº”é€‰é¡¹   
+. å‚è€ƒ
+  # https://www.yiibai.com/git/git_config.htmlã€git configã€‘
+  # https://www.jianshu.com/p/0ad3d88c51f4ã€åˆ‡æ¢Gitè´¦å·ã€‘
+  # https://blog.csdn.net/peterxiaoq/article/details/79020801ã€git config å¸¸ç”¨é…ç½®ã€‘
 
 
 @ tag
-. git tag // ÁĞ³öËùÓĞ±êÇ©
-. git tag -l <reg> // ÁĞ³ö·ûºÏÄ£Ê½µÄ±êÇ©
-. git tag <name> // Ìí¼ÓÇáÁ¿±êÇ©
-. git tag -m <message> <name> // Ìí¼Ó¸½×¢±êÇ©
-. git tag -a <name> -m <message> <commit> // ºóÆÚÌí¼Ó¸½×¢±êÇ©
-. git tag -d <name> // É¾³ı
-. git show <name> // Õ¹Ê¾±êÇ©ĞÅÏ¢
-. git push origin <tagName> // ½«±êÇ©Ìá½»µ½Ô¶³Ì²Ö¿â
-. git push origin ¨Ctags // ½«È«²¿±êÇ©Ìá½»µ½Ô¶³Ì²Ö¿â
-  . Í¨³£µÄgit push²»»á½«±êÇ©¶ÔÏóÌá½»µ½git·şÎñÆ÷£¬ÎÒÃÇĞèÒª½øĞĞÏÔÊ½µÄ²Ù×÷
-. ²Î¿¼
-  # https://git-scm.com/book/zh/v1/Git-»ù´¡-´ò±êÇ©#ÑéÖ¤±êÇ©
-  # https://blog.csdn.net/albertsh/article/details/63253614¡¾git tag³£ÓÃ²Ù×÷¡¿
+. git tag // åˆ—å‡ºæ‰€æœ‰æ ‡ç­¾
+. git tag -l <reg> // åˆ—å‡ºç¬¦åˆæ¨¡å¼çš„æ ‡ç­¾
+. git tag <name> // æ·»åŠ è½»é‡æ ‡ç­¾
+. git tag -m <message> <name> // æ·»åŠ é™„æ³¨æ ‡ç­¾
+. git tag -a <name> -m <message> <commit> // åæœŸæ·»åŠ é™„æ³¨æ ‡ç­¾
+. git tag -d <name> // åˆ é™¤
+. git show <name> // å±•ç¤ºæ ‡ç­¾ä¿¡æ¯
+. git push origin <tagName> // å°†æ ‡ç­¾æäº¤åˆ°è¿œç¨‹ä»“åº“
+. git push origin â€“tags // å°†å…¨éƒ¨æ ‡ç­¾æäº¤åˆ°è¿œç¨‹ä»“åº“
+  . é€šå¸¸çš„git pushä¸ä¼šå°†æ ‡ç­¾å¯¹è±¡æäº¤åˆ°gitæœåŠ¡å™¨ï¼Œæˆ‘ä»¬éœ€è¦è¿›è¡Œæ˜¾å¼çš„æ“ä½œ
+. å‚è€ƒ
+  # https://git-scm.com/book/zh/v1/Git-åŸºç¡€-æ‰“æ ‡ç­¾#éªŒè¯æ ‡ç­¾
+  # https://blog.csdn.net/albertsh/article/details/63253614ã€git tagå¸¸ç”¨æ“ä½œã€‘
 
 
 @ log
 . git log [<option>] [-- <file>]
-. Ñ¡Ïî
-  . -p // ÏÔÊ¾½ÏÇ°°æ±¾µÄÄÚÈİ²îÒì
-  . --oneline // µ¥ĞĞ£º°æ±¾ºÅ + ±¸×¢
-  . --decorate // ÏÔÊ¾ HEADÖ¸Õë¡¢±êÇ©¡¢¼ì³öĞÂ·ÖÖ§
+. é€‰é¡¹
+  . -p // æ˜¾ç¤ºè¾ƒå‰ç‰ˆæœ¬çš„å†…å®¹å·®å¼‚
+  . --oneline // å•è¡Œï¼šç‰ˆæœ¬å· + å¤‡æ³¨
+  . --decorate // æ˜¾ç¤º HEADæŒ‡é’ˆã€æ ‡ç­¾ã€æ£€å‡ºæ–°åˆ†æ”¯
   . --graph
-  . --after="2014-7-1" // ¼ìË÷Ê±¼ä
-  . --before="yesterday" // ¼ìË÷Ê±¼ä
-  . --author="John" // ¼ìË÷Ìá½»Õß
-  . --grep="hotfix-*" // ¼ìË÷±¸×¢
-  . -S // ¼ìË÷ĞŞ¸ÄÄÚÈİ
-  . -<N> // Ö¸¶¨ÊıÁ¿
-. Ö¸¶¨·¶Î§
+  . --after="2014-7-1" // æ£€ç´¢æ—¶é—´
+  . --before="yesterday" // æ£€ç´¢æ—¶é—´
+  . --author="John" // æ£€ç´¢æäº¤è€…
+  . --grep="hotfix-*" // æ£€ç´¢å¤‡æ³¨
+  . -S // æ£€ç´¢ä¿®æ”¹å†…å®¹
+  . -<N> // æŒ‡å®šæ•°é‡
+. æŒ‡å®šèŒƒå›´
   . git log <since>..<until>
-  . git log <branch1>..<branch2> // Á½·ÖÖ§¼äµÄ°æ±¾²îÒì
-  . git log <commit> // Ä³°æ±¾Ö®Ç°µÄ¼ÇÂ¼
-# https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/Git_log¸ß¼¶ÓÃ·¨.md#°´Ìá½»ĞÅÏ¢¡¾excellent¡¿
+  . git log <branch1>..<branch2> // ä¸¤åˆ†æ”¯é—´çš„ç‰ˆæœ¬å·®å¼‚
+  . git log <commit> // æŸç‰ˆæœ¬ä¹‹å‰çš„è®°å½•
+# https://github.com/geeeeeeeeek/git-recipes/blob/master/sources/Git_logé«˜çº§ç”¨æ³•.md#æŒ‰æäº¤ä¿¡æ¯ã€excellentã€‘
 
 
 @ blame
 . git blame [filename]
-. µÃµ½Õû¸öÎÄ¼şµÄÃ¿Ò»ĞĞµÄÏêÏ¸ĞŞ¸ÄĞÅÏ¢£º°üÀ¨SHA´®£¬ÈÕÆÚºÍ×÷Õß
-# https://www.jianshu.com/p/ae54397b4d5b¡¾git blame¡¿
+. å¾—åˆ°æ•´ä¸ªæ–‡ä»¶çš„æ¯ä¸€è¡Œçš„è¯¦ç»†ä¿®æ”¹ä¿¡æ¯ï¼šåŒ…æ‹¬SHAä¸²ï¼Œæ—¥æœŸå’Œä½œè€…
+# https://www.jianshu.com/p/ae54397b4d5bã€git blameã€‘
 
 
-@ Re: »ØÍË
-1 ¼ÙÉèµ±Ç°×´Ì¬ `v1 -> v2 -> v3(HEAD)`£¬ÏëÒª»ØÍËµ½`v1`
-a »ØÍË°æ±¾
+@ Re: å›é€€
+1 å‡è®¾å½“å‰çŠ¶æ€ `v1 -> v2 -> v3(HEAD)`ï¼Œæƒ³è¦å›é€€åˆ°`v1`
+a å›é€€ç‰ˆæœ¬
   . git reset --hard <commit>
-  . »ØÍËºó `v1(HEAD)`
-b »ØÍËµ½Ä³°æ±¾µÄÄÚÈİ£¬Ìá½»Ò»¸öĞÂ°æ±¾
-  . git revert <commit> // ×¢Òâ£º`revert`Ö»ÊÇ»ØÍËÄ³¸ö°æ±¾µÄ±ä¶¯£¬²¢²»ÊÇ»ØÍËµ½°ë¸ö°æ±¾Ç°µÄ×´Ì¬
-  . git revert v1..v3 // »ØÍË¶à¸ö°æ±¾
-  . »ØÍËºó `v1 -> v2 -> v3 -> v4(HEAD)`
-. ¶Ô±È£ºÈç¹ûÒâÍ¼±£Áô»ØÍËĞĞÎªµÄ¼ÇÂ¼µÄ»°£¬Ê¹ÓÃ`revert`£¬·ñÔòÊ¹ÓÃ`reset`
-2 ¼ÙÉèĞèÒª»ØÍËºÏ²¢²Ù×÷
+  . å›é€€å `v1(HEAD)`
+b å›é€€åˆ°æŸç‰ˆæœ¬çš„å†…å®¹ï¼Œæäº¤ä¸€ä¸ªæ–°ç‰ˆæœ¬
+  . git revert <commit> // æ³¨æ„ï¼š`revert`åªæ˜¯å›é€€æŸä¸ªç‰ˆæœ¬çš„å˜åŠ¨ï¼Œå¹¶ä¸æ˜¯å›é€€åˆ°åŠä¸ªç‰ˆæœ¬å‰çš„çŠ¶æ€
+  . git revert v1..v3 // å›é€€å¤šä¸ªç‰ˆæœ¬
+  . å›é€€å `v1 -> v2 -> v3 -> v4(HEAD)`
+. å¯¹æ¯”ï¼šå¦‚æœæ„å›¾ä¿ç•™å›é€€è¡Œä¸ºçš„è®°å½•çš„è¯ï¼Œä½¿ç”¨`revert`ï¼Œå¦åˆ™ä½¿ç”¨`reset`
+2 å‡è®¾éœ€è¦å›é€€åˆå¹¶æ“ä½œ
   . v1 -> v3 --> v5(master)
-  . v2 -> v4 ¨u (dev)
+  . v2 -> v4 â•± (dev)
 a git reset --hard HEAD^
 b git revert [--mainline|-m] <N>
-  . `revert`×÷ÓÃ`merge commit`Ê±£¬±ØĞëÓĞ`--mainline`²ÎÊı
-  . `--mainline`Ö¸Ê¾¸Ã±£ÁôºÏ²¢µÄÁ½¸ö·ÖÖ§µÄÄÄÒ»±ß ×÷ÎªÖ÷Ïß ´Ó¶ø±»±£Áô
-  . Ö÷ÏßÓÃÊı×Ö1±íÊ¾£¬ÁíÒ»¸öÓÃÊı×Ö2
-  . ·Ö±æÖ÷Ïß£ºÊ¹ÓÃ `git log --graph`£¬×î×ó±ßµÄ·ÖÖ§¾ÍÊÇÖ÷Ïß
-  . ÆäÊµ¿ÉÄÜÍ¬Ê±ÓĞ¶à¸ö·ÖÖ§ºÏ²¢µÄ£¬´Ó×óµ½ÓÒ1,2,3,4...
-  ! Ò»µ©`revert`ºó£¬±»³·ÏúµÄ`v2``v4`°æ±¾ÔÙÒ²²»»á±»ºÏ²¢µ½`master`
-   . ÒòÎª`revert`±»³·ÏúµÄ°æ±¾²»ÔÙĞèÒªºÏ²¢
-   . ÏëÒªÖØĞÂÈ¡»ØËüÃÇµÄ»°±ØĞë`revert`Õâ¸ö`revert`
-  . ²Î¿¼
-    # https://segmentfault.com/q/1010000000140446¡¾GitÔõÑù³·ÏúÒ»´Î·ÖÖ§µÄºÏ²¢Merge¡¿¡¾good¡¿
-    # https://www.cnblogs.com/ShaYeBlog/p/5368064.html¡¾revert¡¿
+  . `revert`ä½œç”¨`merge commit`æ—¶ï¼Œå¿…é¡»æœ‰`--mainline`å‚æ•°
+  . `--mainline`æŒ‡ç¤ºè¯¥ä¿ç•™åˆå¹¶çš„ä¸¤ä¸ªåˆ†æ”¯çš„å“ªä¸€è¾¹ ä½œä¸ºä¸»çº¿ ä»è€Œè¢«ä¿ç•™
+  . ä¸»çº¿ç”¨æ•°å­—1è¡¨ç¤ºï¼Œå¦ä¸€ä¸ªç”¨æ•°å­—2
+  . åˆ†è¾¨ä¸»çº¿ï¼šä½¿ç”¨ `git log --graph`ï¼Œæœ€å·¦è¾¹çš„åˆ†æ”¯å°±æ˜¯ä¸»çº¿
+  . å…¶å®å¯èƒ½åŒæ—¶æœ‰å¤šä¸ªåˆ†æ”¯åˆå¹¶çš„ï¼Œä»å·¦åˆ°å³1,2,3,4...
+  ! ä¸€æ—¦`revert`åï¼Œè¢«æ’¤é”€çš„`v2``v4`ç‰ˆæœ¬å†ä¹Ÿä¸ä¼šè¢«åˆå¹¶åˆ°`master`
+   . å› ä¸º`revert`è¢«æ’¤é”€çš„ç‰ˆæœ¬ä¸å†éœ€è¦åˆå¹¶
+   . æƒ³è¦é‡æ–°å–å›å®ƒä»¬çš„è¯å¿…é¡»`revert`è¿™ä¸ª`revert`
+  . å‚è€ƒ
+    # https://segmentfault.com/q/1010000000140446ã€Gitæ€æ ·æ’¤é”€ä¸€æ¬¡åˆ†æ”¯çš„åˆå¹¶Mergeã€‘ã€goodã€‘
+    # https://www.cnblogs.com/ShaYeBlog/p/5368064.htmlã€revertã€‘
 
 
 @ pull
 . git pull [<remote>] [<remoteBranch>:<localBranch>]
-. ÉèÖÃ×·×ÙÔ¶³Ì·ÖÖ§ºó£¬¿ÉÒÔÖ±½ÓÊ¹ÓÃ `git pull <remote>`
-  . git branch -u origin/dev dev // ÉèÖÃÔ¶³Ì·ÖÖ§£¬Ïê¼û`@ branch`
-  . Èç¹û²»ĞĞµÄ»°£¬Ìí¼ÓÅäÖÃ
+. è®¾ç½®è¿½è¸ªè¿œç¨‹åˆ†æ”¯åï¼Œå¯ä»¥ç›´æ¥ä½¿ç”¨ `git pull <remote>`
+  . git branch -u origin/dev dev // è®¾ç½®è¿œç¨‹åˆ†æ”¯ï¼Œè¯¦è§`@ branch`
+  . å¦‚æœä¸è¡Œçš„è¯ï¼Œæ·»åŠ é…ç½®
     . branch.dev.remote=origin
     . branch.dev.merge=refs/heads/dev
 . git pull = git fetch + git merge 
@@ -444,70 +444,70 @@ b git revert [--mainline|-m] <N>
 
 @ push
 . git push <remote> <localBranch>:<remoteBranch>
-. git push origin master <=> git push origin master:master // Í¬ÃûµÄ»°¿ÉÒÔ¼òĞ´
-. git push -u origin master // µ±Ç°·ÖÖ§ÓëÔ¶³Ì·ÖÖ§Ö®¼ä½¨Á¢×·×Ù¹ØÏµ£¬ÒÔºó¿ÉÒÔÖ±½Ó`git push`¼òĞ´
-. git push --force // Ç¿ÖÆÍÆËÍ£¬ÍêÈ«ÓÃ±¾µØ·ÖÖ§¸²¸ÇÔ¶³Ì·ÖÖ§
-. git push --tags // ÍÆËÍ±êÇ© 
-. git push origin :master // É¾³ıÔ¶³Ì·ÖÖ§
+. git push origin master <=> git push origin master:master // åŒåçš„è¯å¯ä»¥ç®€å†™
+. git push -u origin master // å½“å‰åˆ†æ”¯ä¸è¿œç¨‹åˆ†æ”¯ä¹‹é—´å»ºç«‹è¿½è¸ªå…³ç³»ï¼Œä»¥åå¯ä»¥ç›´æ¥`git push`ç®€å†™
+. git push --force // å¼ºåˆ¶æ¨é€ï¼Œå®Œå…¨ç”¨æœ¬åœ°åˆ†æ”¯è¦†ç›–è¿œç¨‹åˆ†æ”¯
+. git push --tags // æ¨é€æ ‡ç­¾ 
+. git push origin :master // åˆ é™¤è¿œç¨‹åˆ†æ”¯
 
 
-@ ÆäËü
-. workspace(¹¤×÷Çø) VS index/stage(Ôİ´æÇø) VS repository(²Ö¿â)
-  # https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000¡¾¹¤×÷ÇøºÍÔİ´æÇø¡¿
-. °æ±¾Ë÷Òı
-  . <commit>^ // Ç°Ò»¸ö°æ±¾
-  . <commit>~<N> // Ç°N¸ö°æ±¾
-  . HEAD@{<N>} // `reflog`ÖĞµÄ¼ÇÂ¼
+@ å…¶å®ƒ
+. workspace(å·¥ä½œåŒº) VS index/stage(æš‚å­˜åŒº) VS repository(ä»“åº“)
+  # https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000ã€å·¥ä½œåŒºå’Œæš‚å­˜åŒºã€‘
+. ç‰ˆæœ¬ç´¢å¼•
+  . <commit>^ // å‰ä¸€ä¸ªç‰ˆæœ¬
+  . <commit>~<N> // å‰Nä¸ªç‰ˆæœ¬
+  . HEAD@{<N>} // `reflog`ä¸­çš„è®°å½•
 . pull request
-  # https://www.zhihu.com/question/21682976¡¾GitHubµÄPull RequestÊÇÊ²Ã´¡¿¡¾good¡¿
-  # https://www.zhihu.com/question/263901073¡¾ÎªÊ²Ã´pull request²»½Ğ push request?¡¿
-. ¹¤×÷Á÷
-  # http://www.ruanyifeng.com/blog/2012/07/git.html#comment-text¡¾git-flow¡¿
-  # http://www.ruanyifeng.com/blog/2015/12/git-workflow.html¡¾Git ¹¤×÷Á÷³Ì¡¿
-  # http://blog.jobbole.com/76843/¡¾Git¹¤×÷Á÷Ö¸ÄÏ¡¿
+  # https://www.zhihu.com/question/21682976ã€GitHubçš„Pull Requestæ˜¯ä»€ä¹ˆã€‘ã€goodã€‘
+  # https://www.zhihu.com/question/263901073ã€ä¸ºä»€ä¹ˆpull requestä¸å« push request?ã€‘
+. å·¥ä½œæµ
+  # http://www.ruanyifeng.com/blog/2012/07/git.html#comment-textã€git-flowã€‘
+  # http://www.ruanyifeng.com/blog/2015/12/git-workflow.htmlã€Git å·¥ä½œæµç¨‹ã€‘
+  # http://blog.jobbole.com/76843/ã€Gitå·¥ä½œæµæŒ‡å—ã€‘
 . gitlab
-  # https://segmentfault.com/q/1010000005817314¡¾git vs github vs gitlab¡¿
-  # https://www.jianshu.com/p/8d497989f704¡¾Git£¬GithubºÍGitlab¼ò½éºÍ»ù±¾Ê¹ÓÃ¡¿
-. http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html¡¾³£ÓÃ Git ÃüÁîÇåµ¥¡¿
-. http://gitbook.liuhui998.com/5_4.html¡¾Git Bisect¡¿
+  # https://segmentfault.com/q/1010000005817314ã€git vs github vs gitlabã€‘
+  # https://www.jianshu.com/p/8d497989f704ã€Gitï¼ŒGithubå’ŒGitlabç®€ä»‹å’ŒåŸºæœ¬ä½¿ç”¨ã€‘
+. http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.htmlã€å¸¸ç”¨ Git å‘½ä»¤æ¸…å•ã€‘
+. http://gitbook.liuhui998.com/5_4.htmlã€Git Bisectã€‘
 
 
-@ Ò»¸ö²Ö¿â¿ÉÒÔÍ¬Ê± ÓµÓĞÔ¶³Ì¿â ºÍ ×÷ÎªÔ¶³Ì¿âÂğ
-³¢ÊÔ½«Ò»¸ö±¾µØ²Ö¿â×÷ÎªÔ¶³Ì¿â
+@ ä¸€ä¸ªä»“åº“å¯ä»¥åŒæ—¶ æ‹¥æœ‰è¿œç¨‹åº“ å’Œ ä½œä¸ºè¿œç¨‹åº“å—
+å°è¯•å°†ä¸€ä¸ªæœ¬åœ°ä»“åº“ä½œä¸ºè¿œç¨‹åº“
 git clone ssh://127.0.0.1/e/foo 
-Ê§°Ü `Please make sure you have the correct access rights and the repository exists`
-ĞèÒª°²×°`openssh`
-»áÈÃÓÃ»§È·ÈÏÔ¶³ÌÖ÷»úµÄÖ¸ÎÆ£¬½«Ô¶³ÌÖ÷»úºÍÖ¸ÎÆ¼ÓÈë`known_hosts`
-  . Ö¸ÎÆ(fingerprint)ÊÇ¸ù¾İ¹«Ô¿Éú³ÉµÄÊı¾İ´®£¬¿ÉÒÔÀí½âÎª¹«Ô¿µÄ¼ò»¯°æ
-    . ÒÅº¶µÄÊÇËã·¨ÎÒÒ²Ã»Ã÷°×
-    . ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub // µ«ÊÇÎÒµÃµ½µÄºÍÓÃsshÈÃÎÒÈ·ÈÏµÄ²»Ò»ÖÂ
-  . ÕâÀïÊÇÈÃÓÃ»§È·ÈÏÖ¸ÎÆÊÇ·ñÕıÈ·£¬ÒÔ±£Ö¤Á¬½ÓÕıÈ·µÄÔ¶³ÌÖ÷»ú£¬¶ø²»ÊÇÖĞ¼äÈË¹¥»÷
-  . ÓĞÁ½ÖÖ¸ñÊ½
+å¤±è´¥ `Please make sure you have the correct access rights and the repository exists`
+éœ€è¦å®‰è£…`openssh`
+ä¼šè®©ç”¨æˆ·ç¡®è®¤è¿œç¨‹ä¸»æœºçš„æŒ‡çº¹ï¼Œå°†è¿œç¨‹ä¸»æœºå’ŒæŒ‡çº¹åŠ å…¥`known_hosts`
+  . æŒ‡çº¹(fingerprint)æ˜¯æ ¹æ®å…¬é’¥ç”Ÿæˆçš„æ•°æ®ä¸²ï¼Œå¯ä»¥ç†è§£ä¸ºå…¬é’¥çš„ç®€åŒ–ç‰ˆ
+    . é—æ†¾çš„æ˜¯ç®—æ³•æˆ‘ä¹Ÿæ²¡æ˜ç™½
+    . ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub // ä½†æ˜¯æˆ‘å¾—åˆ°çš„å’Œç”¨sshè®©æˆ‘ç¡®è®¤çš„ä¸ä¸€è‡´
+  . è¿™é‡Œæ˜¯è®©ç”¨æˆ·ç¡®è®¤æŒ‡çº¹æ˜¯å¦æ­£ç¡®ï¼Œä»¥ä¿è¯è¿æ¥æ­£ç¡®çš„è¿œç¨‹ä¸»æœºï¼Œè€Œä¸æ˜¯ä¸­é—´äººæ”»å‡»
+  . æœ‰ä¸¤ç§æ ¼å¼
     . 0d:df:2b:e4:ee:79:f2:98:ab:38:93:f3:44:1d:c5:4d
     . lj3DuJyvOMl8WdHfRyv5RqQ9P6c3cWzg0+8LF5nmOUk
-  . Ê¹ÓÃgithubÊ±£¬ĞèÒª½«¿Í»§¶ËµÄ¹«Ô¿´«¸øgithub¡£
-    . ×Ô¼º¶ÔÓ¦²Ù×÷´ó¸ÅÊÇ½«¹«Ô¿¼ÓÈë`authorized_keys`ÎÄ¼ş
-    https://git-scm.com/book/zh/v1/·şÎñÆ÷ÉÏµÄ-Git-Éú³É-SSH-¹«Ô¿
-    https://www.jianshu.com/p/a3b4f61d4747¡¾Git°²×°¼°SSH Key¹ÜÀí¡¿
-    https://segmentfault.com/q/1010000009057659¡¾ssh µÇÂ¼·şÎñÆ÷µÄÖ¸ÎÆÈçºÎ»ñÈ¡¡¢ÑéÖ¤¡¿¡¾good¡¿
-    https://blog.csdn.net/u012789986/article/details/76092083¡¾CentOS´î½¨git·şÎñÆ÷¡¿
-    https://www.cnblogs.com/whthomas/p/3643974.html¡¾Git Ô¶³Ì²Ö¿â´î½¨¡¿
-    https://help.github.com/articles/github-s-ssh-key-fingerprints/¡¾githubÕ¾µÄÖ¸ÎÆ¡¿
-×îºó»¹ÊÇÊ§°ÜÁË
+  . ä½¿ç”¨githubæ—¶ï¼Œéœ€è¦å°†å®¢æˆ·ç«¯çš„å…¬é’¥ä¼ ç»™githubã€‚
+    . è‡ªå·±å¯¹åº”æ“ä½œå¤§æ¦‚æ˜¯å°†å…¬é’¥åŠ å…¥`authorized_keys`æ–‡ä»¶
+    https://git-scm.com/book/zh/v1/æœåŠ¡å™¨ä¸Šçš„-Git-ç”Ÿæˆ-SSH-å…¬é’¥
+    https://www.jianshu.com/p/a3b4f61d4747ã€Gitå®‰è£…åŠSSH Keyç®¡ç†ã€‘
+    https://segmentfault.com/q/1010000009057659ã€ssh ç™»å½•æœåŠ¡å™¨çš„æŒ‡çº¹å¦‚ä½•è·å–ã€éªŒè¯ã€‘ã€goodã€‘
+    https://blog.csdn.net/u012789986/article/details/76092083ã€CentOSæ­å»ºgitæœåŠ¡å™¨ã€‘
+    https://www.cnblogs.com/whthomas/p/3643974.htmlã€Git è¿œç¨‹ä»“åº“æ­å»ºã€‘
+    https://help.github.com/articles/github-s-ssh-key-fingerprints/ã€githubç«™çš„æŒ‡çº¹ã€‘
+æœ€åè¿˜æ˜¯å¤±è´¥äº†
   Please make sure you have the correct access rights and the repository exists.
-  . ²»Çå³şÊÇ »¹ÓĞÊ²Ã´È¨ÏŞÎÊÌâ »¹ÊÇÂ·¾¶ÎÊÌâ
+  . ä¸æ¸…æ¥šæ˜¯ è¿˜æœ‰ä»€ä¹ˆæƒé™é—®é¢˜ è¿˜æ˜¯è·¯å¾„é—®é¢˜
 --
 git clone git@127.0.0.1:/e/foo 
-Ò²Ê§°ÜÁË
-gitĞ­Òé´ó¸ÅÊÇ±ØĞëÒªÓÃgitlab
-https://segmentfault.com/q/1010000005743028¡¾gitlab git clone ÌáÊ¾ÎÒÊäÈëÃÜÂë¡¿
+ä¹Ÿå¤±è´¥äº†
+gitåè®®å¤§æ¦‚æ˜¯å¿…é¡»è¦ç”¨gitlab
+https://segmentfault.com/q/1010000005743028ã€gitlab git clone æç¤ºæˆ‘è¾“å…¥å¯†ç ã€‘
 --
 git clone file://127.0.0.1/e/foo 
-³É¹¦£¡
-¿ËÂ¡³É¹¦ÁË£¬`git remote add file://127.0.0.1/e/foo`Ê§°ÜÁË
+æˆåŠŸï¼
+å…‹éš†æˆåŠŸäº†ï¼Œ`git remote add file://127.0.0.1/e/foo`å¤±è´¥äº†
 ---
-https://www.jianshu.com/p/5e3f9dfd2cb4¡¾SSH¡¢SSLÓëHTTPS¡¿
+https://www.jianshu.com/p/5e3f9dfd2cb4ã€SSHã€SSLä¸HTTPSã€‘
 
 
-https://git-scm.com/docs/¡¾¹Ù·½ÎÄµµ¡¿
+https://git-scm.com/docs/ã€å®˜æ–¹æ–‡æ¡£ã€‘
 

@@ -1,133 +1,133 @@
-sql�ܹ��ܷ����ɸѡ����php������ô����������
-��
-1.����`array_column`��`array_multisort`��������
-  http://www.cnblogs.com/zdz8207/p/php-array_multisort.html��php array_multisort�����ݿ�������ֶν�������
-  http://www.cnblogs.com/Steven-shi/p/5897745.html��PHP֮��ȡ��ά����ָ���еķ�����
-2.ɸѡ�����ֶ����� �� �������ֶαȽ�
-  array_walk()ʹ���û��Զ��庯���������е�ÿ��Ԫ�����ص�����
-3.���/�������飿
-  ����ԭ�� ����array_walk() �� ��ͨ��������ɵѿ��������飬��ɸѡ������������������Դ��Ҳ�ܸ��ӡ�����
+sql能够很方便的筛选排序，php数组怎么做到？？？
+↑
+1.排序：`array_column`和`array_multisort`可以做到
+  http://www.cnblogs.com/zdz8207/p/php-array_multisort.html【php array_multisort对数据库结果多个字段进行排序】
+  http://www.cnblogs.com/Steven-shi/p/5897745.html【PHP之提取多维数组指定列的方法】
+2.筛选：单字段条件 或 单表多字段比较
+  array_walk()使用用户自定义函数对数组中的每个元素做回调处理
+3.多表/数组联查？
+  按照原理 利用array_walk() 或 普通遍历，组成笛卡尔积数组，再筛选。。看起来很消耗资源，也很复杂。。。
 
 
 ThinkPHP Rbac
-* C('USER_AUTH_ON')				�Ƿ���Ȩ�޿���
-* C('REQUIRE_AUTH_MODULE')		��Ҫ�����Ȩ�� ģ��
-  C('NOT_AUTH_MODULE')			����Ҫ�����Ȩ�� ģ��
-* C('REQUIRE_AUTH_ACTION')		��Ҫ�����Ȩ�� ����
-  C('NOT_AUTH_ACTION')			����Ҫ�����Ȩ�� ����
+* C('USER_AUTH_ON')				是否开启权限控制
+* C('REQUIRE_AUTH_MODULE')		需要检查授权的 模块
+  C('NOT_AUTH_MODULE')			不需要检查授权的 模块
+* C('REQUIRE_AUTH_ACTION')		需要检查授权的 操作
+  C('NOT_AUTH_ACTION')			不需要检查授权的 操作
 
-���̣�
+流程：
 
-if ����Ȩ�޿���(USER_AUTH_ON)
-	if (MODULE IN "REQUIRE_AUTH����") || (MODULE NOT IN "NOT_AUTH����") 				//�Ӵ��뿴 �������ͺ����� ֻ�ܿ���һ��ʹ�� ���ȼ������������������ָ������Ҫ���Ȩ�ޣ�
-		if (ACTION IN "REQUIRE_AUTH����") || (ACTION NOT IN "NOT_AUTH����")				�������ͺ�������Ϊ��ʱ�������Ȩ�ޡ����Ծ�����index��Ϊ������
-			if ����֤ʶ��� $_SESSION[C('ADMIN_AUTH_KEY')]
-				���롰��֤ʶ��Ż��ơ������ﲻ��һ���о�
-			else 										//����Rbac����
+if 开启权限控制(USER_AUTH_ON)
+	if (MODULE IN "REQUIRE_AUTH名单") || (MODULE NOT IN "NOT_AUTH名单") 				//从代码看 白名单和黑名单 只能开启一种使用 优先检查黑名单（这里黑名单指的是需要检查权限）
+		if (ACTION IN "REQUIRE_AUTH名单") || (ACTION NOT IN "NOT_AUTH名单")				白名单和黑名单都为空时，不检查权限。所以经常将index设为白名单
+			if 有认证识别号 $_SESSION[C('ADMIN_AUTH_KEY')]
+				进入“认证识别号机制”，这里不进一步研究
+			else 										//进入Rbac机制
 				
-		else ��������
-	else ��������	
-else �ſ�Ȩ��
+		else 允许访问
+	else 允许访问	
+else 放开权限
 
-@��֤ʶ��Ż��ƣ�
-*�ο��� Rbac.class.php L158
-*���ܣ� �����һ�ֹ���Ա�ֶ���Ȩ ĳ�û� ĳȨ��
-*���������� ��Role Based Access Controlƽ�е�һ�� ��Ȩ�޻���
-�� ��2017-7-20���� http://blog.csdn.net/happy_csdn/article/details/47679047��RBAC�Ľ�������ʶ��
+@认证识别号机制：
+*参考： Rbac.class.php L158
+*功能： 大概是一种管理员手动授权 某用户 某权限
+*这是流程中 与Role Based Access Control平行的一种 子权限机制
+↑ 【2017-7-20】误。 http://blog.csdn.net/happy_csdn/article/details/47679047【RBAC的介绍与认识】
 
-��Ŀ������Rbac��������ã�
-����			���ݱ�
+项目中引入Rbac所需的配置：
+常量			数据表
 USER_AUTH_MODEL 	user
 RBAC_ROLE_TABLE		role
 RBAC_USER_TABLE		user
 RBAC_ACCESS_TABLE	access
 RBAC_NODE_TABLE		node
 
-*���ӡ�Ȩ�޿��ơ��������һ�������Ǹ�����action���ӽڵ� ���� ���롰�����б���not auth list����
-*��ʹ��Ĺ��̣���Ŀ���˼������Ѿ����е�action��һ�������֡�
-*���ȫ�����ӳɽڵ㣺
-	. ���ӹ��̽Ϸ�
-	. �ھ�����Ȩʱ����Ҫѡ��Ȩ�޹���
-*��˽�һЩaction���롰NOT_AUTH_ACTION���б������������
-	. ����action����Ҫ���������
-	. ����Ҫ������������������磺user_list��Ϊ�����ʾ�ڲ˵��У���user_listҳ�棬������user_add,user_edit,user_del,export_user...��action����Щaction��Ψһ��ھ���user_listҳ���У�����һ��ֻҪ��Ȩ�޷���user_list,����������ҳ���µ����в�������ʱ��user_add�������롰�����б���Ϊ���������������Ϊ�ڵ㣬��ô�ڸ����û�Ȩ��ʱҲ������
-	. ���ϡ����ִ�����ʽ��Σ���ԣ���Ϥϵͳ�Ķ����û�����ֱ��ͨ���ڵ�ַ������url����һЩ�����Լ�Ȩ�޵Ĳ�����
-*��֮��������Ȩ�޻��ƺܱ�Ť
-	. ԭ�� ��֧�� �������˵������޸ģ������Էϳ���Controler��Moudule�㼶���¼���ϵ��Ȩ�޵Ŀ���
-	. ��֮ǰ��˵�������user_list��user_add��ͬΪaction�ڵ㣬����ҳ���߼����ԣ�user_list�Ǹ�ҳ���������ڵ����ڣ�����֮ǰ�������¼���ϵ��
-*������
-	. ��tp�ļܹ��Ƕȣ�Ȩ��Ӧ�ð� Module��Controller��Action����
-	. ��ǰ̨�߼��Ƕȣ�Ȩ��Ӧ�ð� ���������˵����������˵������item���������˵���item��***itemҳ���еĲ���*** �����Ľṹ������
-		ע�⣺����˵���ǵ�ǰerp�еĲ˵���ƣ�����ṹ���Ǿ��Եģ�Ӧ�ð�����Ŀ������ȷ����
-	. ��ˣ���������ȷ����Ŀ¼�ṹ���ſ������ֶ��� Ȩ�޻��ơ�
-	  ����ʹ���ֳɵġ�Ȩ�޿�����⡱�����밴����涨�ķ�ʽ�����˵���
-	  ����������޸�����һ�����Ʊط���һЩ���ε����顣����
-*Ŀ�꣺�Լ����һ�� ��⣬ʵ�ֶ�Ȩ�޿��Ƶ�֧�֣����� Rbac for ThinkPHP
-	. ���������������ǰ̨�˵��㼶��ϵ��ҳ���߼�����
-	. ���ݱ�
-	. ֧���û���user������ɫ��role�����ɷֱ��user��role����Ȩ�ޡ�����ʱ�����û���group����ֲ�Խ�࣬��Ȩ��ʽԽ�������߼�Խ���ӡ�����ϵͳ�ĸ��ӳ̶Ⱦ�������
-		�� ��2017-7-20�� @njswtz ����ERP�У�������Ҫ���ĳ�����ŵ�ȫ��Ա������ĳȨ�ޣ��������ҵ����ŵ����н�ɫ���ֱ���Ȩ�ޡ�
-		      ������Ϊ�ȽϺõ������ǣ���ÿ����������һ����ɫ����������Ҫ���롰�û��顱�������»��ƣ�Ҳ������������Ȩ��
-	. Ȩ���߼� Ӧ�� ��Ӧǰ̨�߼���Ҳ����˵ ��ȨӦ�ð� 	�����˵� -> item -> ҳ���ڲ��� -> ҳ���ڲ���...				�������߼����
-								   	 -> �������˵� -> item ->ҳ���ڲ��� -> ...
-											 -> �����˵� -> item -> ҳ���ڲ��� -> ...
-	  ��Ϊ�����ŷ����û���ֱ�ӹ۸У��û����ں�controller��action��
-	. �����˵�+��������Ƽ����Ӳ˵� Ӧ�ÿ���������󲿷����� ^-^���������޼��˵���
-	. ����һ ĳһ��㸳Ȩʱ��Ĭ�ϸ��������ӽڵ�Ȩ�ޡ���������ɲ���ѽ��
-	. Rbac for ThinkPHP���С�controller/action�����/�����б���,����Ϊʹ�������߼��������ң����Ҳ�������ܶࡣ//��Ȼ�־���Ӱ�첻��Ҳ������....
-	. ����ģ�������⣬��item -> ҳ���ڲ����������ƻ����鷳��
-		`����user_add���������������һ��action��ͬʱ��user_list��role_list����ҳ��ӵ��
-		`user_add����ҳ������user_del���������������̫�࣬
-		`����user_del����user_add������������ѭ����ɥʧ�����¼���ϵ������
-			�� ��2017-7-20�� ������������⣬user_del-->user_add��user_add�еĲ�����user_del���޹���
-	. ���ϣ��ı����ԭ��
-		1.�����벻������ʵ�ʣ�����tp M/C/A�����ԣ�Ȩ�����ֻ���Ƶ�module��controller��action
-			��ȻҲ�а취�����Ƶ�action���һЩ���������ӽڵ��磺order_web/status/[all|audit...]�����Ȩ��ʱ�����������еĲ������������ر���Ȩ�����ȶԡ�
-			����������Ϊ public function order_web_audit(){ $this->order_web('audit'); } �����ķ������á�Ȩ�޻��Ʊ�ü򵥴�⣬����Ӧtp���
-		2.û�а취��ȫ�����û��Ĳ����㼶��������Ȩ��
-			` ���� ��֤Ȩ�� �ķ�ʽΪ��ModuleȨ�� -> ControllerȨ�� -> ActionȨ��
-			  �����ء���Ŀ¼��ͬλ�õ�Controller��Action����Ӧ�÷ֱ�����Ȩ��
-			` ��Ȩ��ʽ ��Ȼ��Ŀ¼�㼶Ϊ������Top Menu -> Item -> sub Item
+*添加“权限控制”到了最后一步，就是给所有action添加节点 或者 加入“忽略列表（not auth list）”
+*很痛苦的过程，项目做了几个月已经已有的action是一个大数字。
+*如果全部添加成节点：
+	. 添加过程较烦
+	. 在具体授权时，需要选择权限过多
+*因此将一些action加入“NOT_AUTH_ACTION”列表，如下情况：
+	. 这条action不重要，随意访问
+	. 【重要】还有这种情况，例如：user_list作为结点显示在菜单中，打开user_list页面，里面有user_add,user_edit,user_del,export_user...等action，这些action的唯一入口就在user_list页面中，而且一般只要有权限访问user_list,就允许访问页面下的所有操作。此时将user_add等添加入“忽略列表较为合理”。如果添加为节点，那么在赋予用户权限时也很无奈
+	. 接上。这种处理方式有危险性，熟悉系统的恶意用户可以直接通过在地址栏输入url来做一些超出自己权限的操作。
+*总之，用这种权限机制很别扭
+	. 原生 不支持 左侧二级菜单。经修改，不得以废除了Controler与Moudule层级上下级关系对权限的控制
+	. 如之前所说的情况，user_list与user_add等同为action节点，但就页面逻辑而言，user_list是该页面中其它节点的入口，它们之前存在上下级关系，
+*分析：
+	. 从tp的架构角度，权限应该按 Module、Controller、Action定制
+	. 从前台逻辑角度，权限应该按 顶部顶级菜单，左侧二级菜单，左侧item，左侧二级菜单下item，***item页面中的操作*** 这样的结构来定制
+		注意：这里说的是当前erp中的菜单设计，这个结构不是绝对的，应该按照项目的需求确定。
+	. 因此，必须事先确定好目录结构，才可以着手定制 权限机制。
+	  或者使用现成的“权限控制类库”，必须按照其规定的方式制作菜单。
+	  如果随随便便修改其中一个，势必发生一些尴尬的事情。。。
+*目标：自己设计一个 类库，实现对权限控制的支持，类似 Rbac for ThinkPHP
+	. 从需求出发，即从前台菜单层级关系、页面逻辑出发
+	. 数据表
+	. 支持用户（user）、角色（role），可分别对user和role添加权限。（有时还有用户组group概念，分层越多，授权方式越灵活，但是逻辑越复杂。根据系统的复杂程度决定。）
+		↑ 【2017-7-20】 @njswtz 这里ERP中，经常会要求对某个部门的全体员工赋予某权限；做法是找到部门的所有角色，分别赋予权限。
+		      现在认为比较好的做法是：给每个部门添加一个角色，这样不需要引入“用户组”这样的新机制，也方便批量赋予权限
+	. 权限逻辑 应当 对应前台逻辑。也就是说 授权应该按 	顶级菜单 -> item -> 页面内操作 -> 页面内操作...				这样的逻辑设计
+								   	 -> 左侧二级菜单 -> item ->页面内操作 -> ...
+											 -> 三级菜单 -> item -> 页面内操作 -> ...
+	  因为这样才符合用户的直接观感，用户不在乎controller和action！
+	. 顶部菜单+左侧无限制级别子菜单 应该可以满足绝大部分需求 ^-^【就是无限级菜单】
+	. 当对一 某一结点赋权时，默认赋予所有子节点权限。【？！这可不行呀】
+	. Rbac for ThinkPHP还有“controller/action的审核/忽略列表”,我认为使用两套逻辑反而混乱，而且并不方便很多。//忽然又觉得影响不大，也可以有....
+	. 上面模型有问题，“item -> 页面内操作”这层控制会有麻烦：
+		`例如user_add这个操作，本身是一个action，同时被user_list和role_list两个页面拥有
+		`user_add操作页面又有user_del操作。。。。层次太多，
+		`甚至user_del又有user_add操作，构成了循环，丧失了上下级关系。。。
+			↑ 【2017-7-20】 不存在这个问题，user_del-->user_add后，user_add中的操作与user_del就无关了
+	. 接上，改变基本原则，
+		1.（理想不能脱离实际）由于tp M/C/A的特性，权限最好只控制到module、controller、action
+			虽然也有办法，控制到action后的一些参数，添加节点如：order_web/status/[all|audit...]，检查权限时，分析请求中的参数，与坐过特别处理权限树比对。
+			不过，我认为 public function order_web_audit(){ $this->order_web('audit'); } 这样的方法更好。权限机制变得简单存粹，更适应tp框架
+		2.没有办法完全按照用户的操作层级，来设置权限
+			` 最终 验证权限 的方式为：Module权限 -> Controller权限 -> Action权限
+			  “挂载”在目录不同位置的Controller与Action，不应该分别设置权限
+			` 授权方式 依然以目录层级为基础，Top Menu -> Item -> sub Item
 								  -> Left Menu -> Item -> sub Item
 									       -> Menu -> Item
-			  ����menu����Ӧcontroller��item����Ӧaction
-			  Ҳ����˵��Ϊ����Ȩ�������� ǰ̨�˵�/ҳ��㼶�߼���controller��action���Ա��ظ���Ȩ������ʵֻҪ��һ����Ȩ�������ڸ�����ڷ��ʸ�controller��action
-			  ���ǶԽڵ����Ȩ ���� Ŀ¼�� �ýڵ�Ŀɼ��ԣ����Ǿ����Ե�
-			  �� ��2017-7-20��������������շ����ˡ�����action��Ȩ��һ������˰ɡ���
-	. ���ϡ�����Ĳ���ˣ�ʵ��codingʱһ���������������⡣
-	  ������������ϸ˼����ȷ��һЩ�ؼ���Ҫ�أ���һЩ����Թ滮���ڴ���Ŀ��С��ģ���ʵ�ֹ����У��Ƿǳ��б�Ҫ�ġ�
-	  ��ΪäĿ��ȥд���룬ֱ��ĳһ������������ٴ����Ķ�����������ʱ������¿������鷳�����ʱ��������ڡ����е�������롱�롰��ȷ���߼����ж��߼�����һ����������������Ļ�˵�����ǡ���Ŀ��û�����߾ͱ����˲�������erp��Ŀ����ʵҲ��ֹһ�����������������
-	. ���ϡ���������˾���Ŀɹ�Ҳ���ҽ��컨�˽���Сʱ˼���ͼ�¼��Щ�ļ�ֵ���ڡ������������޸�erpȨ�޻��Ƶ��ܽᡣ�ڼ���һЩ�����˼����Ҳ�кܶ�һ����������ͷ����ʱϣ���������¼��𣬲�Ȼ�һ�������ʱ������޸���erp���ѣ�����һ�ι��ƻ�����һ����������ƵĶ���������Щ�����ܰ����Ҹ�����������õĶ�����
+			  其中menu都对应controller，item都对应action
+			  也就是说，为了授权操作符合 前台菜单/页面层级逻辑，controller和action可以被重复授权，但其实只要有一处授权，就能在各个入口访问该controller或action
+			  但是对节点的授权 对与 目录中 该节点的可见性，还是决定性的
+			  ↑ 【2017-7-20】读不懂这个最终方案了。。对action授权这一大方向错了吧。。
+	. 以上。空想的差不多了，实际coding时一定会遇到更多问题。
+	  但是像这样仔细思考，确定一些关键性要素，做一些框架性规划，在大到项目、小到模块的实现过程中，是非常有必要的。
+	  因为盲目的去写代码，直到某一刻遇到问题后，再大量改动代码甚至有时候比重新开发更麻烦，这个时候就容易在“现有的问题代码”与“正确的逻辑”中对逻辑做出一定的牺牲，按春哥的话说，就是“项目还没有上线就被打了补丁”。erp项目中其实也不止一次遇到这样的情况。
+	. 接上。这就体现了经验的可贵，也是我今天花了近三小时思考和记录这些的价值所在。这是两天来修改erp权限机制的总结。期间有一些深入的思考，也有很多一闪而过的念头，此时希望都能重新捡起，不然我花了两天时间仅仅修改了erp而已，再来一次估计还是用一天多做出类似的东西。而这些经验能帮助我更快的做出更好的东西。
 
-@ �·�����2017-7-20��
-* ���ȣ�һ����Ҫ��Ŀ¼�ڵ� ������controller/action ��Ȩ�ģ�
-	. һ��action�кܿ��ܰ����������
-	. ����Ҫ���ǣ��������У�ֻ���ĳ��ҳ�桢ĳ����ťҪ������Ȩ�ޣ���Ӧ�ľ��� operation����Ŀ¼�ڵ㡢Ҷ�ӽڵ� �� ����Ҷ�ӽڵ㣨Ҷ�ӽڵ� ���һ��application���ڵ㣬����һ��action��
-* ��Ȩ���ǽ� �û�/��ɫ �� operation ���������Ҷ�ӽڵ�����ǿ϶��ģ������費��Ҫ�� Ŀ¼�ڵ� ������
-	. Ŀ¼�ڵ��ǲ���application��
-	. ������ư�����Ŀ¼��Ȩ������Ϊ�˿��Ƹ�Ŀ¼ �Ƿ�Կͻ��ɼ�
-	. ������Ʋ�������Ŀ¼��Ȩ����ô�û�ֻ�ܼ��� ӵ������һ���ӽڵ�Ȩ�� ��Ŀ¼
-	. ���� Ŀ¼�ڵ���Ȩ�������߼� �� ����ʵ�֣�������Ϊ�����ȽϺ�
-	�� ���������ǰ���£�����Խ��Խ��
-* ����ҳ���е�Ȩ�� ��û�н��
-	1�� ��ͬurl�ģ���������POST�����絼������ `curl -d 'action=export' 'www.xxx.com?app=order&act=index'` 
-	2�� ��ͬurl�ģ���������GET������ `www.xxx.com?app=order&act=index&verbose=1` ���Կ�������ϸ����Ϣ������Ӧ���κ��˶��ܲ鿴
-	3�� ����2��ϣ���е��˺Ź̶��鿴��ϸ��Ϣ��sw erp�������� ����һ��α����operation��action������У�鵱ǰ�û��Ƿ���α������Ȩ�ޣ��Ӷ�ʹα���� ��ͬ��ͨ����һ���������ã�
-		�� ��α���������ص��ǣ�������һ����������ʽ��app,act,METHOD,PARAMS����ȫ��ͬ������Ҫ���ܹ���Ȩ��ֻ����Ȩ�û��ɼ�
-* ��important] ��� 1��2�㣬�����ø�ϸ����application����������app,act��������METHOD(GET,POST,PUT...) �� ����
-	. ʵ������� ��`GET id=?` `POST action=export` `POST action=export&verbose=true`����Щ�����ǿɱ�ģ���Щ�����ǹ̶��ģ���Щ������ƥ�����operation
-	�� �����ƥ�������Ҫ�ϸ����ƣ�Ȼ��Ҫ���ܴ����������ƣ����ù��ܼ��໥��� <= ����ʵ�ܼ򵥵������������
-* ����3�㣬��ֱ�۵Ŀ����ǣ���ʵ����������ͬ��ҳ�档��Ϊ�󲿷�������ͬ���������ֹ���һ��action��������Ϊͬһ��ҳ�档
-	. ���ý��1��2��Ļ��ƣ������������Ϊ��ͬ������operation: `GET ?app=order&act=index` ��  `GET ?app=order&act=index&verbose=true`����Ҫ���û��������op��Ȩ�޾Ϳ�����
-		�� ȱ���ǣ������׽�����op����Ȩ��һ�ˣ������ʧ���⣬ֻ���߼�����Ϊ������ͬҳ�棬������ʵֻϣ����������֮һ���������У����⣩��ϵ�ģ������޷�����
-		�� ������������� �»��ƣ�����Ϊ���������Ȼ��ơ�������Ϊ�˽��С���� ���ѹ���临�ӣ�����ֵ�á������õ�ʱ��С�ĵ��
-	�� ��fatal�� ����ȱ���ǣ���������������أ�
-		. Ҫ��Ϊ `verbose=true` `statistic=true` `verbose=true&statistic=true` �� `` �ĸ�ҳ�棿���� ��������������أ� �ο������ͼ���������Ȩ�ޱ仯ʱ ��� 4ѡ1 ������ 2ѡһ*2
-	. Ϊʲô�������� sw erp�ġ�α���������ƣ� ��Ϊ��α�������롰һ��������ǲ�һ���Ķ�����һ�����ָ��һ��ҳ���һ�����ܣ�α����ָ��ҳ���е�ĳ�����ݡ�
-		�� ����ǡ�α�������������ʵ��ò����Ϊ��ͬҳ��Ҳ�ǲ����ʵġ�����һ��ҳ����¼�����������ҳ��ƽ��
-	�� ����»��ƣ�
-		. ������������Ҷ�ӽڵ� �������ӽڵ㣬����ҳ���е����ݿ��ƣ�ע�⣺������ ָ����ҳ������ӣ������� ��������Ĺ��ܣ�ֻ�ǿ���ҳ���е�һ�����ݣ�
-		. ֻ�и��������ڵ㡱��Ȩ�����ܸ��䡰���ݽڵ㡱��Ȩ
-		. ������ͬ��ֻ���ֶ��ж�Ȩ�ޡ����ǽ�����Щ�����ݽڵ㡱��ͳһ����������д�������ļ�����ͬһǰ׺�ĳ���
+@ 新方案【2017-7-20】
+* 首先，一定是要对目录节点 而不是controller/action 授权的，
+	. 一个action中很可能包含多个操作
+	. 最重要的是，在需求中，只会对某个页面、某个按钮要求设置权限，对应的就是 operation表：目录节点、叶子节点 和 隐藏叶子节点（叶子节点 会绑定一个application表节点，比如一个action）
+* 授权就是将 用户/角色 与 operation 相关联。与叶子节点关联是肯定的，但是需不需要与 目录节点 关联？
+	. 目录节点是不绑定application的
+	. 如果机制包含对目录授权，就是为了控制该目录 是否对客户可见
+	. 如果机制不包含对目录授权，那么用户只能见到 拥有至少一项子节点权限 的目录
+	. 不对 目录节点授权，符合逻辑 且 可以实现，所以认为这样比较好
+	↑ 满足需求的前提下，规则越简单越好
+* 但是页面中的权限 还没有解决
+	1° 对同url的，带参数的POST请求，如导出功能 `curl -d 'action=export' 'www.xxx.com?app=order&act=index'` 
+	2° 对同url的，带参数的GET请求，如 `www.xxx.com?app=order&act=index&verbose=1` 可以看到更详细的信息，但不应该任何人都能查看
+	3° 类似2，希望有的账号固定查看详细信息（sw erp的做法是 设置一个伪操作operation，action代码中校验当前用户是否有伪操作的权限，从而使伪操作 如同普通操作一样可以配置）
+		↑ “伪操作”的特点是，它与另一个操作请求方式（app,act,METHOD,PARAMS）完全相同，但是要求能够授权，只对授权用户可见
+* 【important] 解决 1°2°，可以用更细化的application，不仅配置app,act，还添加METHOD(GET,POST,PUT...) 和 参数
+	. 实际情况如 ：`GET id=?` `POST action=export` `POST action=export&verbose=true`；有些参数是可变的，有些参数是固定的，有些参数能匹配多条operation
+	↑ 这里的匹配机制需要严格的设计，然后要求功能代码符合其设计，设置功能间相互配合 <= 但其实能简单的满足大多数情况
+* 对于3°，更直观的看法是，其实这是两个不同的页面。因为大部分内容相同，技术上又共用一个action，所以视为同一个页面。
+	. 利用解决1°2°的机制，将这种情况视为不同的两个operation: `GET ?app=order&act=index` 和  `GET ?app=order&act=index&verbose=true`，需要的用户赋予后者op的权限就可以了
+		↑ 缺点是，很容易将两个op都赋权给一人，这个有失本意，只是逻辑上视为两个不同页面，但是其实只希望看到两者之一，这两是有（互斥）关系的，这里无法体现
+		↑ 这里可以再引入 新机制，命名为“互斥优先机制”，但是为了解决小问题 而把规则变复杂，并不值得。还是用的时候小心点吧
+	↑ 【fatal】 致命缺点是：如果有两个变量呢？
+		. 要分为 `verbose=true` `statistic=true` `verbose=true&statistic=true` 和 `` 四个页面？？！ 如果有三个变量呢？ 何况本身就极不合理，权限变化时 变成 4选1 而不是 2选一*2
+	. 为什么不不想用 sw erp的“伪操作”机制？ 因为“伪操作”与“一般操作”是不一样的东西，一般操作指向一个页面或一个功能，伪操作指向页面中的某块内容。
+		↑ 这才是“伪操作”需求的真实面貌，视为不同页面也是不合适的。它是一个页面的下级，而不是与页面平级
+	↑ 设计新机制，
+		. 给代表操作的叶子节点 再设置子节点，代表页面中的内容控制（注意：不控制 指向新页面的链接，不控制 发送请求的功能，只是控制页面中的一块内容）
+		. 只有给“操作节点”授权，才能给其“内容节点”授权
+		. 代码中同样只能手动判断权限。但是建议这些“内容节点”能统一管理，比如写入配置文件，或同一前缀的常量
 
 

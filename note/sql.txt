@@ -1,93 +1,93 @@
 distinct
-*SELECT DISTINCT a, DISTINCT b FROM Orders Ч��:
-�﷨����DISTINCT���÷�Χ�Ǻ��������ֶ�
-*a,b�����ֶ����岻�ظ���ôд��
+*SELECT DISTINCT a, DISTINCT b FROM Orders 效果:
+语法错误，DISTINCT作用范围是后面所有字段
+*a,b两个字段整体不重复怎么写：
 DISTINCT a,b
-*GROUP BY ��DISTINCT �����ã�����ʹ�úϼƺ���
+*GROUP BY 比DISTINCT 更好用，可以使用合计函数
 
 
 SELECT * FROM Persons WHERE Year>'1965'
 INSERT INTO Persons SET Year='1995'
 INSERT INTO Persons SET Year=1995
-*������ȷ�ģ��������ݵ��ַ��� �� ���������� û����ʲô�����ԣ�
-*ORDER BY���������ַ�����BETWEENҲ��
+*都是正确的，数字内容的字符串 和 真正的数字 没发现什么区别（自）
+*ORDER BY可以排序字符串，BETWEEN也是
 
 
-insert��β���������� 
+insert如何插入多条数据 
 INSERT INTO mythird (name,age) VALUES ('6','6'),('7','7')
 INSERT INTO mythird (name,age) SELECT '6','6' UNION SELECT '7','7'
-//ע�⣺������Կ���SELECT�ĵĽ������һ���µ���ʱ��
-INSERT INTO mythird (name,age) SELECT name,age FROM mythird  //�Ա���һ���ͺ���������
+//注意：这里可以看出SELECT的的结果类似一个新的临时表
+INSERT INTO mythird (name,age) SELECT name,age FROM mythird  //对比上一条就很容易理解
 $sql = "INSERT INTO mythird (name,age) SELECT name*3,age-1 FROM mythird WHERE id<3";
-//��ѡ����ֶβ���
+//对选择的字段操作
 $sql = "INSERT INTO mythird (name,age) SELECT a.name,b.id FROM myleft as a JOIN myright as b";
-//���ڵ�^^
+//花哨的^^
 
 
-����ʱ����id
-*php��mysql_query(insert ...)�ͻ᷵�ز����id��
-��֪��Ϊʲô�����϶�û˵����һ�㣻
-���������еĻ�ֻ�᷵�ص�һ��id
-*������PHP ���� mysql_insert_id()
-ʹ��������1.auto_increment 2.insert֮��ʹ�ã�
-ÿ��INSERT����ʵautoincrementֵ���Ѿ����ظ�PHP��
-�˺������Ե�ǰ�������ã������Ƕ��û���ȫ�͵ģ�
-*SELECT last_insert_id()��
+插入时返回id
+*php的mysql_query(insert ...)就会返回插入的id；
+不知道为什么查资料都没说到这一点；
+如果插入多行的话只会返回第一行id
+*（最优PHP 函数 mysql_insert_id()
+使用条件：1.auto_increment 2.insert之后使用；
+每次INSERT后，其实autoincrement值就已经返回给PHP；
+此函数仅对当前链接有用，即它是多用户安全型的；
+*SELECT last_insert_id()或
 SELECT @@IDENTITY
-*�ο���http://www.jb51.net/article/51473.htm
+*参考：http://www.jb51.net/article/51473.htm
 
 
-LIKEʹ��sql��ʽƥ�䣺%_
-RLIKEʹ������ʽƥ��
-������Ҫ��ͨ�����
+LIKE使用sql方式匹配：%_
+RLIKE使用正则方式匹配
+如果真的要查通配符呢
 
 
-INNER JOIN	����û��ON,��ʱ����count(a.*)=7,count(b.*)=3,�ͻ�鵽21��
-LEFT JOIN	������ON
-LEFT JOIN	������ON
-��֧��FULL JOIN
-ע�⣺����������ֶ�����ͬ�Ļ������ñ����ǲ�������ұ���
-*��ͬ�����£�LEFT JOIN/LEFT JOIN�Ľ��һ��>=INNER JOIN
-*��������£�left_table��ÿһ�ж���ƥ�䣬LEFT JOIN=INNER JOIN
+INNER JOIN	可以没有ON,此时例如count(a.*)=7,count(b.*)=3,就会查到21条
+LEFT JOIN	必须有ON
+LEFT JOIN	必须有ON
+不支持FULL JOIN
+注意：如果两个表字段明相同的话，不用别名是不能输出右表的
+*相同条件下，LEFT JOIN/LEFT JOIN的结果一定>=INNER JOIN
+*如果条件下，left_table的每一行都有匹配，LEFT JOIN=INNER JOIN
 
 
-UNION�ϲ�SELECT�Ľ������ע�⣺
-*����ѡ����ֶ���ͬ���Ҷ�Ӧ�ֶ��������͡����ơ�
-*�����ֶ�����ǰ������
-*��ѡ����ֶγ�����ȫ�ظ�ʱ��ֻ��ȡһ��������
-*UNION ALL�����ز��ظ������������
+UNION合并SELECT的结果集，注意：
+*两表选择的字段数同，且对应字段数据类型“相似”
+*最终字段名按前表的算
+*当选择的字段出现完全重复时，只会取一个！！！
+*UNION ALL不管重不重复都会插入结果集
 
 
 SELECT count(*),id FROM myleft GROUP BY name
-��ȻGROUP BY name������������ȡcount������ͳ��ֵ��
-������ȡ�����ֶΣ��Ǹ÷���ĵ�һ��
+虽然GROUP BY name，但不仅可以取count这样的统计值；
+还可以取其它字段，是该分组的第一个
 
 
-�ϼƺ���
+合计函数
 avg
-count	//count(*) count(id)�ԣ� count(id,name)����
+count	//count(*) count(id)对； count(id,name)错；
 max	
 min
 sum
 
 
-Scalar ����
+Scalar 函数
 now	//2015-12-26 16:38:05
 last_insert_id???
 
 
-SELECT COUNT(DISTINCT name) FROM myleft		��
-SELECT COUNT(name) FROM myleft GROUP BY name	��
+SELECT COUNT(DISTINCT name) FROM myleft		错
+SELECT COUNT(name) FROM myleft GROUP BY name	对
 
 
-*�� SQL ������ HAVING �Ӿ�ԭ���ǣ�WHERE �ؼ����޷���ϼƺ���һ��ʹ��:
+*在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用:
 SELECT Customer,SUM(OrderPrice) FROM Orders
 GROUP BY Customer
 HAVING SUM(OrderPrice)<2000
 
 
 INSERT INTO SELECT 
-SELECT INTO FROM  //mysql��֧��
+SELECT INTO FROM  //mysql不支持
 
 
 

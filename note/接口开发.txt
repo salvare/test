@@ -1,22 +1,22 @@
-Ò»¡¢curl ÊµÏÖ½Ó¿Ú
+ä¸€ã€curl å®ç°æ¥å£
 
-server: Ö±½ÓÊä³öÊı¾İ
-echo $data; »ò£º
+server: ç›´æ¥è¾“å‡ºæ•°æ®
+echo $data; æˆ–ï¼š
 echo json_encode($data);
 
 client:
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL,"http://localhost/work/test/0916/curl/server.php");  //ÕâÀïÌî¾ø¶ÔÂ·¾¶
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  //ÉèÖÃ²»Ö±½ÓÊä³ö
-curl_setopt($ch, CURLOPT_HEADER, 0);  //ÉèÖÃ²»Êä³ö ±¨Í·
-$result = curl_exec($ch);  //»ñÈ¡½á¹û
+curl_setopt($ch, CURLOPT_URL,"http://localhost/work/test/0916/curl/server.php");  //è¿™é‡Œå¡«ç»å¯¹è·¯å¾„
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);  //è®¾ç½®ä¸ç›´æ¥è¾“å‡º
+curl_setopt($ch, CURLOPT_HEADER, 0);  //è®¾ç½®ä¸è¾“å‡º æŠ¥å¤´
+$result = curl_exec($ch);  //è·å–ç»“æœ
 curl_close($ch); 
 
 
-¶ş¡¢fsockopen 
+äºŒã€fsockopen 
 
-$fp = fsockopen("www.test.com",80);//hostÓòÃû£¬²»ÄÜÓĞhttp:// ;  80 ¶Ë¿Ú
-//$fpÊÇÒ»¸öÎÄ¼ş¾ä±ú
+$fp = fsockopen("www.test.com",80);//hoståŸŸåï¼Œä¸èƒ½æœ‰http:// ;  80 ç«¯å£
+//$fpæ˜¯ä¸€ä¸ªæ–‡ä»¶å¥æŸ„
 fwrite($fp,"POST /work/test/a.php HTTP/1.1\r\n");
 fwrite($fp,"Host: www.test.com\r\n\r\n");
 

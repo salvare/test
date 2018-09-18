@@ -1,10 +1,10 @@
-http://jingyan.baidu.com/article/3c48dd34491d47e10be358b8.html¡¾win²é¿´¶Ë¿ÚÕ¼ÓÃ¡¿
+http://jingyan.baidu.com/article/3c48dd34491d47e10be358b8.htmlã€winæŸ¥çœ‹ç«¯å£å ç”¨ã€‘
 
-http://zhidao.baidu.com/link?url=3iFjv2m0E-hAsBhsn8VSxAtahopkNicS3Ap8Xgqz9qEdeOduZhl1yoekvXZxSz3j4i0nsT8Y98XpewkbQg10la¡¾Ê¹ÓÃÂ·ÓÉÆ÷¹¹³É¾ÖÓòÍøµÄÔ­Àí£¿¡¿
+http://zhidao.baidu.com/link?url=3iFjv2m0E-hAsBhsn8VSxAtahopkNicS3Ap8Xgqz9qEdeOduZhl1yoekvXZxSz3j4i0nsT8Y98XpewkbQg10laã€ä½¿ç”¨è·¯ç”±å™¨æ„æˆå±€åŸŸç½‘çš„åŸç†ï¼Ÿã€‘
 
-http://blog.csdn.net/code_style/article/details/38764203¡¾git for windows¡¿
+http://blog.csdn.net/code_style/article/details/38764203ã€git for windowsã€‘
 
-http://www.kancloud.cn/kancloud/a-programmer-prepares¡¾³ÌĞòÔ±µÄ×ÔÎÒĞŞÑø¡¿¡¾excellent¡¿
+http://www.kancloud.cn/kancloud/a-programmer-preparesã€ç¨‹åºå‘˜çš„è‡ªæˆ‘ä¿®å…»ã€‘ã€excellentã€‘
 
 PEAR
 https://www.ibm.com/developerworks/cn/linux/sdk/php/pear1/
@@ -17,49 +17,49 @@ http://www.php.net/manual/zh/language.oop5.magic.php
 
 
 [js] iframe
-* iframe»ñÈ¡¸¸dom£º var parent = window.parent;
-* µ÷ÓÃ¸¸Ò³ÃæµÄjsº¯Êı£º window.parent.hello()
-* ¸¸Ò³Ãæ»ñÈ¡iframeµÄdom£º var _iframe = document.getElementById('iframeId').contentWindow;
-* jsÖĞDOM¶ÔÏóÖ¸µÄÊÇdocument,window°üº¬document,windowÊÇËùÓĞ¶ÔÏóµÄÈİÆ÷
-Window ¶ÔÏóÊÇÈ«¾Ö¶ÔÏó£¬ËùÓĞµÄ±í´ïÊ½¶¼ÔÚµ±Ç°µÄ»·¾³ÖĞ¼ÆËã.
+* iframeè·å–çˆ¶domï¼š var parent = window.parent;
+* è°ƒç”¨çˆ¶é¡µé¢çš„jså‡½æ•°ï¼š window.parent.hello()
+* çˆ¶é¡µé¢è·å–iframeçš„domï¼š var _iframe = document.getElementById('iframeId').contentWindow;
+* jsä¸­DOMå¯¹è±¡æŒ‡çš„æ˜¯document,windowåŒ…å«document,windowæ˜¯æ‰€æœ‰å¯¹è±¡çš„å®¹å™¨
+Window å¯¹è±¡æ˜¯å…¨å±€å¯¹è±¡ï¼Œæ‰€æœ‰çš„è¡¨è¾¾å¼éƒ½åœ¨å½“å‰çš„ç¯å¢ƒä¸­è®¡ç®—.
 http://bbs.csdn.net/topics/390674050
-* Ö±½Óµ÷ÓÃµÄº¯ÊıÆäÊµ¶¼ÊÇwindowµ÷ÓÃµÄ
+* ç›´æ¥è°ƒç”¨çš„å‡½æ•°å…¶å®éƒ½æ˜¯windowè°ƒç”¨çš„
 
 
-[js] ·¸ÁË¸öºÜ´ÀµÄ´íÎó£¬Ğ´ÁËÒ»¸öÃûÎªrefreshµÄjsº¯Êı£¬µ÷ÊÔÖĞÒ»Ö±´í£¬»¹ÒÔÎªÊÇ»º´æÎÊÌâ£¬ÆäÊµÊÇº¯ÊıÃûÓëwindowÖĞµÄ¹ÌÓĞº¯ÊıÖØ¸´ÁË¡£¡£¡£¡£¡£
+[js] çŠ¯äº†ä¸ªå¾ˆè ¢çš„é”™è¯¯ï¼Œå†™äº†ä¸€ä¸ªåä¸ºrefreshçš„jså‡½æ•°ï¼Œè°ƒè¯•ä¸­ä¸€ç›´é”™ï¼Œè¿˜ä»¥ä¸ºæ˜¯ç¼“å­˜é—®é¢˜ï¼Œå…¶å®æ˜¯å‡½æ•°åä¸windowä¸­çš„å›ºæœ‰å‡½æ•°é‡å¤äº†ã€‚ã€‚ã€‚ã€‚ã€‚
 
 
-ÌØÊâ·ûºÅ£º
+ç‰¹æ®Šç¬¦å·ï¼š
 https://zhidao.baidu.com/question/1434118652361513379.html
 http://www.360doc.com/content/15/0801/05/805501_488664977.shtml 
-alt+41420 = ¡Ì
-alt+215   = ¡Á
-alt+41466 = ¡ú
-alt=41467 = ¡û
-alt=41468 = ¡ü
-alt=41469 = ¡ı
+alt+41420 = âˆš
+alt+215   = Ã—
+alt+41466 = â†’
+alt=41467 = â†
+alt=41468 = â†‘
+alt=41469 = â†“
 
 
 <meta>
-name		keywords|description|title		¹æ¶¨ÁËÒ»Ğ©¹©ËÑË÷ÒıÇæ»òÓÃ»§²é¿´µÄĞÅÏ¢
-http-equiv	content-type|expires|refresh...		¹æ¶¨ÁËä¯ÀÀÆ÷Õ¹Ê¾Ò³Ãæ·½Ê½µÄÒ»Ğ©ÉèÖÃ
-schme		UNKNOWN					¹æ¶¨ÁËcontentµÄÀàĞÍ/¸ñÊ½/½âÎö·½Ê½
+name		keywords|description|title		è§„å®šäº†ä¸€äº›ä¾›æœç´¢å¼•æ“æˆ–ç”¨æˆ·æŸ¥çœ‹çš„ä¿¡æ¯
+http-equiv	content-type|expires|refresh...		è§„å®šäº†æµè§ˆå™¨å±•ç¤ºé¡µé¢æ–¹å¼çš„ä¸€äº›è®¾ç½®
+schme		UNKNOWN					è§„å®šäº†contentçš„ç±»å‹/æ ¼å¼/è§£ææ–¹å¼
 
 
-Ïß³Ì£º
-ÊÇ³ÌĞòÖ´ĞĞÁ÷µÄ×îĞ¡µ¥Ôª
-ÊÇ±»ÏµÍ³¶ÀÁ¢µ÷¶ÈºÍ·ÖÅÉµÄ»ù±¾µ¥Î»
-Ïß³Ì×Ô¼º²»ÓµÓĞÏµÍ³×ÊÔ´£¬Ö»ÓµÓĞÒ»µã¶ùÔÚÔËĞĞÖĞ±Ø²»¿ÉÉÙµÄ×ÊÔ´¡£µ«Ëü¿ÉÓëÍ¬ÊôÒ»¸ö½ø³ÌµÄÆäËüÏß³Ì¹²Ïí½ø³ÌËùÓµÓĞµÄÈ«²¿×ÊÔ´
-Í¬Ò»½ø³ÌÖĞµÄ¶à¸öÏß³ÌÖ®¼ä¿ÉÒÔ²¢·¢Ö´ĞĞ
-Ïß³ÌÒ²ÓĞ¾ÍĞ÷¡¢×èÈûºÍÔËĞĞÈıÖÖ»ù±¾×´Ì¬
-Ïß³ÌÊÇ³ÌĞòÖĞÒ»¸öµ¥Ò»µÄË³Ğò¿ØÖÆÁ÷³Ì¡¾Ë³Ğò£¡¡¿
+çº¿ç¨‹ï¼š
+æ˜¯ç¨‹åºæ‰§è¡Œæµçš„æœ€å°å•å…ƒ
+æ˜¯è¢«ç³»ç»Ÿç‹¬ç«‹è°ƒåº¦å’Œåˆ†æ´¾çš„åŸºæœ¬å•ä½
+çº¿ç¨‹è‡ªå·±ä¸æ‹¥æœ‰ç³»ç»Ÿèµ„æºï¼Œåªæ‹¥æœ‰ä¸€ç‚¹å„¿åœ¨è¿è¡Œä¸­å¿…ä¸å¯å°‘çš„èµ„æºã€‚ä½†å®ƒå¯ä¸åŒå±ä¸€ä¸ªè¿›ç¨‹çš„å…¶å®ƒçº¿ç¨‹å…±äº«è¿›ç¨‹æ‰€æ‹¥æœ‰çš„å…¨éƒ¨èµ„æº
+åŒä¸€è¿›ç¨‹ä¸­çš„å¤šä¸ªçº¿ç¨‹ä¹‹é—´å¯ä»¥å¹¶å‘æ‰§è¡Œ
+çº¿ç¨‹ä¹Ÿæœ‰å°±ç»ªã€é˜»å¡å’Œè¿è¡Œä¸‰ç§åŸºæœ¬çŠ¶æ€
+çº¿ç¨‹æ˜¯ç¨‹åºä¸­ä¸€ä¸ªå•ä¸€çš„é¡ºåºæ§åˆ¶æµç¨‹ã€é¡ºåºï¼ã€‘
 
-¶àÏß³ÌÖ´ĞĞ¡¾²¢·¢¡¿ÓĞÏÈºóË³ĞòÂğ£¿ 
-Òì²½Ö´ĞĞ£¬Ã»ÓĞ¹æÂÉ
-CPU Ëæ»úÑ¡µÄ£¬Ã»ÓĞ¹Ì¶¨Ë³Ğò
-¶àÏß³ÌÀíÂÛÉÏÃ¿´ÎÅÜµÄ½á¹û¶¼ÊÇ²»Ò»Ñù
+å¤šçº¿ç¨‹æ‰§è¡Œã€å¹¶å‘ã€‘æœ‰å…ˆåé¡ºåºå—ï¼Ÿ 
+å¼‚æ­¥æ‰§è¡Œï¼Œæ²¡æœ‰è§„å¾‹
+CPU éšæœºé€‰çš„ï¼Œæ²¡æœ‰å›ºå®šé¡ºåº
+å¤šçº¿ç¨‹ç†è®ºä¸Šæ¯æ¬¡è·‘çš„ç»“æœéƒ½æ˜¯ä¸ä¸€æ ·
 
-ÏµÍ³µ÷ÓÃ¡¢POSIX¡¢C¿â¡¢ÏµÍ³ÃüÁîºÍÄÚºËº¯Êı
-http://www.th7.cn/system/lin/201601/149576.shtml ¡¾excellent¡¿
+ç³»ç»Ÿè°ƒç”¨ã€POSIXã€Cåº“ã€ç³»ç»Ÿå‘½ä»¤å’Œå†…æ ¸å‡½æ•°
+http://www.th7.cn/system/lin/201601/149576.shtml ã€excellentã€‘
 
 

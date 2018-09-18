@@ -1,292 +1,292 @@
-@ ºËĞÄÁ÷³Ì
+@ æ ¸å¿ƒæµç¨‹
 * public/index.php
   * bootstrap/autoload.php
-    . Ö±½ÓÊ¹ÓÃµÄcomposerÌá¹©µÄautoloadÀàĞÍºÍÅäÖÃ
+    . ç›´æ¥ä½¿ç”¨çš„composeræä¾›çš„autoloadç±»å‹å’Œé…ç½®
   * bootstrap/app.php
     & Illuminate\Foundation\Application@__construct
   * $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-    # Êµ¼ÊÊµÀı»¯µÄkernelÀàÊÇ `Illuminate\Contracts\Http\Kernel extends Illuminate\Foundation\Http\Kernel implements App\Http\Kernel`
-      # `bootstrap/app.php`ÖĞ¾Í°ó¶¨ÁË`$app->singleton(Illuminate\Contracts\Http\Kernel::class, SmartWiki\Http\Kernel::class);`
-      # ¶ø`index.php`ÖĞ£¬Ö¸¶¨ÁË`Illuminate\Contracts\¡°Http¡±\Kernel`
-      £¿ ÄÇÃ´`Illuminate\Contracts\¡°Console¡±\Kernel`ÔõÃ´ÓÃ£¿
+    # å®é™…å®ä¾‹åŒ–çš„kernelç±»æ˜¯ `Illuminate\Contracts\Http\Kernel extends Illuminate\Foundation\Http\Kernel implements App\Http\Kernel`
+      # `bootstrap/app.php`ä¸­å°±ç»‘å®šäº†`$app->singleton(Illuminate\Contracts\Http\Kernel::class, SmartWiki\Http\Kernel::class);`
+      # è€Œ`index.php`ä¸­ï¼ŒæŒ‡å®šäº†`Illuminate\Contracts\â€œHttpâ€\Kernel`
+      ï¼Ÿ é‚£ä¹ˆ`Illuminate\Contracts\â€œConsoleâ€\Kernel`æ€ä¹ˆç”¨ï¼Ÿ
     & Illuminate\Contracts\Http\Kernel@__construct
   & $response = $kernel->handle($request);
   . $response->send();
   . $kernel->terminate($request, $response);
 * Illuminate\Foundation\Application@__construct
-  . $this->registerBaseServiceProviders(); // ×¢²á·şÎñÌá¹©Õß
+  . $this->registerBaseServiceProviders(); // æ³¨å†ŒæœåŠ¡æä¾›è€…
     . $this->register(new EventServiceProvider($this)); // Illuminate\Events\Dispatcher
-      . $app['events'] °ó¶¨ÁË `Illuminate\Events\Dispatcher`Àà
-      £¿$app['events']Ìá¹©ÁËÔõÑùµÄ»úÖÆ£¿
+      . $app['events'] ç»‘å®šäº† `Illuminate\Events\Dispatcher`ç±»
+      ï¼Ÿ$app['events']æä¾›äº†æ€æ ·çš„æœºåˆ¶ï¼Ÿ
     . $this->register(new RoutingServiceProvider($this));
-      # ×öÁËÒ»Ğ©°ó¶¨£¬ÆäÖĞÖØÒªµÄÓĞ£º
+      # åšäº†ä¸€äº›ç»‘å®šï¼Œå…¶ä¸­é‡è¦çš„æœ‰ï¼š
       . $app['router'] => Illuminate\Routing\Router
       . $app['url'] => Illuminate\Routing\UrlGenerator
       . $app['redirect'] => Illuminate\Routing\Redirector
-    # ´ËÊ±`$app->booted==false`£¬Ó¦ÓÃÉĞÎ´Æô¶¯
-      # Ó¦ÓÃºÎÊ±Æô¶¯£º `Kernel@bootstrap` => `Illuminate\Foundation\Bootstrap\BootProviders` => `App@boot`
-      # Ïê¼ûÏÂ`Illuminate\Foundation\Bootstrap\BootProviders`
-    # ·şÎñÌá¹©ÕßµÄÖ÷Òª×÷ÓÃÒ²¾ÍÊÇ×ö¸÷ÖÖ°ó¶¨°É
-  . $this->registerCoreContinerAliases(); // ×¢²á±ğÃû
-  . $this->setBasePath($basePath); // °ó¶¨¸÷ÖÖÂ·¾¶
+    # æ­¤æ—¶`$app->booted==false`ï¼Œåº”ç”¨å°šæœªå¯åŠ¨
+      # åº”ç”¨ä½•æ—¶å¯åŠ¨ï¼š `Kernel@bootstrap` => `Illuminate\Foundation\Bootstrap\BootProviders` => `App@boot`
+      # è¯¦è§ä¸‹`Illuminate\Foundation\Bootstrap\BootProviders`
+    # æœåŠ¡æä¾›è€…çš„ä¸»è¦ä½œç”¨ä¹Ÿå°±æ˜¯åšå„ç§ç»‘å®šå§
+  . $this->registerCoreContinerAliases(); // æ³¨å†Œåˆ«å
+  . $this->setBasePath($basePath); // ç»‘å®šå„ç§è·¯å¾„
 * Illuminate\Contracts\Http\Kernel@__construct
-  # `SmartWiki\Http\Kernel`ÖĞ×Ô¶¨ÒåÁË`$middleware` `$middlewareGroups` `$routeMiddleware`ÊôĞÔ
-    # ÓÃ»§¾ÍÊÇÔÚÕâÀï¶¨Òå×Ô¼ºÓ¦ÓÃËùĞèµÄÖĞ¼ä¼şµÄ
-  * ½«`$middlewareGroups` `$routeMiddleware`ÊôĞÔ´«µİ¸øÁË `Illuminate\Routing\Router`
+  # `SmartWiki\Http\Kernel`ä¸­è‡ªå®šä¹‰äº†`$middleware` `$middlewareGroups` `$routeMiddleware`å±æ€§
+    # ç”¨æˆ·å°±æ˜¯åœ¨è¿™é‡Œå®šä¹‰è‡ªå·±åº”ç”¨æ‰€éœ€çš„ä¸­é—´ä»¶çš„
+  * å°†`$middlewareGroups` `$routeMiddleware`å±æ€§ä¼ é€’ç»™äº† `Illuminate\Routing\Router`
 * $response = $kernel->handle($request);
   . $request->enableHttpMethodParameterOverride();
     # Enables support for the _method request parameter to determine the intended HTTP method.
-    # laravelÔÊĞíÔÚ±íµ¥ÖĞ`_method`±íµ¥ÏîµÄÖµ×÷ÎªÇëÇó·½·¨¡£
-    # ËäÈ»HTTP²ãÃæÒÀÈ»ÊÇpost/get·½·¨£¬µ«laravel½«Ö®ÊÓÎª`_method`ÒâÍ¼(intend)µÄ·½·¨
-    £¿ ²é¿´Ò»ÏÂ¾ßÌåÊµÏÖ
+    # laravelå…è®¸åœ¨è¡¨å•ä¸­`_method`è¡¨å•é¡¹çš„å€¼ä½œä¸ºè¯·æ±‚æ–¹æ³•ã€‚
+    # è™½ç„¶HTTPå±‚é¢ä¾ç„¶æ˜¯post/getæ–¹æ³•ï¼Œä½†laravelå°†ä¹‹è§†ä¸º`_method`æ„å›¾(intend)çš„æ–¹æ³•
+    ï¼Ÿ æŸ¥çœ‹ä¸€ä¸‹å…·ä½“å®ç°
   ! kernel@bootstrap
-    # `Illuminate\Foundation\Http\Kernel`ÖĞ¶¨ÒåÁË `$bootstrappers`ÊôĞÔ
-      # ¶ø`SmartWiki\Http\Kernel`ÖĞÒ²Ã»ÓĞ¸²¸Ç`$bootstrappers`ÊôĞÔ
-        ! Æô¶¯ÏîÊÇ²»½¨ÒéÈÃÓÃ»§×Ô¶¨ÒåµÄ
-          # Æô¶¯Ïî¶¨ÒåÁËÄÚºË(Kernel)µÄºËĞÄÁ÷³Ì
-          # ²»Í¬ÄÚºË(Http|Console)¿ÉÒÔÓĞ²»Í¬µÄÆô¶¯Ïî
-            £¿ÓĞ¼¸ÖÖ²»Í¬µÄÄÚºË£¿ÔõÃ´Ê¹ÓÃ£¿
-          # ÓÃ»§ÏëÒªÌí¼Ó×Ô¼ºµÄÂß¼­£¬Ó¦¸ÃÌí¼ÓÔÚÖĞ¼ä¼ş£º`$kernel->middleware(È«¾Ö) | middlewareGroups(Â·ÓÉ·Ö×é) | routeMiddleware(Â·ÓÉ) | $controller->middleware(¾Ö²¿)`
-            # Ïê¼ûÏÂ
-    . if (! $this->app->hasBeenBootstrapped()) { ... } // ÅĞ¶Ï$App->hasBeenBootstrapped
-    . $this->bootstrappers() // $kernel->bootstrappers Æô¶¯Ïî
+    # `Illuminate\Foundation\Http\Kernel`ä¸­å®šä¹‰äº† `$bootstrappers`å±æ€§
+      # è€Œ`SmartWiki\Http\Kernel`ä¸­ä¹Ÿæ²¡æœ‰è¦†ç›–`$bootstrappers`å±æ€§
+        ! å¯åŠ¨é¡¹æ˜¯ä¸å»ºè®®è®©ç”¨æˆ·è‡ªå®šä¹‰çš„
+          # å¯åŠ¨é¡¹å®šä¹‰äº†å†…æ ¸(Kernel)çš„æ ¸å¿ƒæµç¨‹
+          # ä¸åŒå†…æ ¸(Http|Console)å¯ä»¥æœ‰ä¸åŒçš„å¯åŠ¨é¡¹
+            ï¼Ÿæœ‰å‡ ç§ä¸åŒçš„å†…æ ¸ï¼Ÿæ€ä¹ˆä½¿ç”¨ï¼Ÿ
+          # ç”¨æˆ·æƒ³è¦æ·»åŠ è‡ªå·±çš„é€»è¾‘ï¼Œåº”è¯¥æ·»åŠ åœ¨ä¸­é—´ä»¶ï¼š`$kernel->middleware(å…¨å±€) | middlewareGroups(è·¯ç”±åˆ†ç»„) | routeMiddleware(è·¯ç”±) | $controller->middleware(å±€éƒ¨)`
+            # è¯¦è§ä¸‹
+    . if (! $this->app->hasBeenBootstrapped()) { ... } // åˆ¤æ–­$App->hasBeenBootstrapped
+    . $this->bootstrappers() // $kernel->bootstrappers å¯åŠ¨é¡¹
     * $this->app->bootstrapWith($this->bootstrappers());
-      . $this->hasBeenBootstrapped = true; // ÉèÖÃ$App->hasBeenBootstrapped×´Ì¬
+      . $this->hasBeenBootstrapped = true; // è®¾ç½®$App->hasBeenBootstrappedçŠ¶æ€
       . foreach ($bootstrappers as $bootstrapper) { $this->make($bootstrapper)->bootstrap($this); }
-        # ÒÀ´Îµ÷ÓÃ¸÷Æô¶¯ÏîµÄ`bootstrap`·½·¨
+        # ä¾æ¬¡è°ƒç”¨å„å¯åŠ¨é¡¹çš„`bootstrap`æ–¹æ³•
         . Illuminate\Foundation\Bootstrap\DetectEnvironment
-          # ¼ÓÔØ`/.env`ÎÄ¼ş£¬½«ÆäÄÚÈİĞ´Èë`$_ENV` `$_SERVER` `putenv`
-          # Ê¹ÓÃÁË`vlucas/phpdotenv`²å¼şÓÃÀ´¼ÓÔØÅäÖÃÎÄ¼ş
+          # åŠ è½½`/.env`æ–‡ä»¶ï¼Œå°†å…¶å†…å®¹å†™å…¥`$_ENV` `$_SERVER` `putenv`
+          # ä½¿ç”¨äº†`vlucas/phpdotenv`æ’ä»¶ç”¨æ¥åŠ è½½é…ç½®æ–‡ä»¶
         . Illuminate\Foundation\Bootstrap\LoadConfiguration
-          # °ó¶¨ÁË`Illuminate\Config\Repository`µ½$app->instances['config']
-          # Â¼ÈëÁË`/config`ÏÂµÄËùÓĞÅäÖÃÎÄ¼ş
+          # ç»‘å®šäº†`Illuminate\Config\Repository`åˆ°$app->instances['config']
+          # å½•å…¥äº†`/config`ä¸‹çš„æ‰€æœ‰é…ç½®æ–‡ä»¶
         . Illuminate\Foundation\Bootstrap\ConfigureLogging
-          # °ó¶¨ÁË`Illuminate\Log\Repository`µ½$app->instances['log']
-          # Ê¹ÓÃÁË`monolog/monolog`²å¼şÀ´¼ÇÂ¼ÈÕÖ¾
-          # Ê¹ÓÃ`/storage/logs/laravel.log`×÷ÎªÈÕÖ¾ÎÄ¼ş
-            £¿log_level ²ÎÊıÊÇÓÃ×÷Ê²Ã´µÄ£¿
+          # ç»‘å®šäº†`Illuminate\Log\Repository`åˆ°$app->instances['log']
+          # ä½¿ç”¨äº†`monolog/monolog`æ’ä»¶æ¥è®°å½•æ—¥å¿—
+          # ä½¿ç”¨`/storage/logs/laravel.log`ä½œä¸ºæ—¥å¿—æ–‡ä»¶
+            ï¼Ÿlog_level å‚æ•°æ˜¯ç”¨ä½œä»€ä¹ˆçš„ï¼Ÿ
         . Illuminate\Foundation\Bootstrap\HandleExceptions
-          # ¶¨ÒåÁËÒì³£/´íÎó´¦Àí·½·¨
+          # å®šä¹‰äº†å¼‚å¸¸/é”™è¯¯å¤„ç†æ–¹æ³•
           . set_error_handler
           . set_exception_handler
           . register_shutdown_function
         . Illuminate\Foundation\Bootstrap\RegisterFacades
-          # ¸øFacadeÀà×¢²á±ğÃû
+          # ç»™Facadeç±»æ³¨å†Œåˆ«å
         ! Illuminate\Foundation\Bootstrap\RegisterProviders
-          # /config/app.php µÄ `providers`Ïî ¶¨ÒåÁË ServiceProviderÁĞ±í
-          # ÓÃ»§Èç¹û×Ô¼ºĞèÒªÌí¼ÓServiceProviderµÄ»°£¬Ò²Í¦¸ÃÌí¼ÓÔÚÕâÀï
-          # ÒòÎªÒ»¸öÓ¦ÓÃĞèÒªµÄ·şÎñÒ»°ã²»»á±ä¶¯£¬Òò´Ë»á½« ·şÎñÇåµ¥(manifest) »á»º´æÔÚ`/bootstrap/cache/services.php`ÖĞ
-          * »úÖÆ
-            . ³õÊ¼»¯manifest£º [providers=>[...], eager=>[], when=>[], deferred=>[]]
-              . providersÖĞÊÇÅäÖÃÖĞµÄ·şÎñÌá¹©ÕßÎÄ¼şÁĞ±í
-              . eagerÊÇÁ¢¿Ì×¢²áµÄ·şÎñ(defer==false)
-              . deferredÊÇÍÆ³Ù×¢²áµÄ·şÎñ(efer==true)
-              . whenÊÇÍÆ³Ù×¢²áµÄ·şÎñµÄ´¥·¢×¢²áÊÂ¼ş
-            . ServiceProvider°´ÕÕÔ¼¶¨¶¼ÓĞ: 
-              . `provides`·½·¨£º·µ»Ø¸Ã·şÎñÌá¹©ÕßÖĞ×¢²áÁËÄÄĞ©·şÎñ£¨¼´°ó¶¨ÁËÄÄĞ©Àà£©
-              . `defer`ÊôĞÔ£º±ê¼ÇÊÇ·ñÍÆ³Ù×¢²á
-              . `when`·½·¨£ºÈç¹û$provider->defer==trueµÄ»°£¬when·½·¨·µ»ØÁËÄÄĞ©¡°ÊÂ¼ş¡±»á´¥·¢×¢²á
-                £¿ ¡°ÊÂ¼ş¡±ÊÇ $app[event]->fireÖÆÔìµÄ
-            # ¼´Ê¹Ã»ÓĞ`when`£¬»òÊÇÉèÖÃÁË`when`µ«ÊÂ¼şÉĞÎ´´¥·¢
-              . `App@make(abstract)`Ê±Ò²»á×¢²á: if (isset($this->deferredServices[$abstract])) { $this->loadDeferredProvider($abstract); }
-              . ÁíÍâÔÚÃüÁîĞĞÄ£Ê½ÏÂ£¬`Kernel@bootstrap`ÖĞËæ¼´¾Í¼ÓÔØÁËËùÓĞÑÓ³Ù·şÎñÌá¹©Õß
-            . ÎªÊ²Ã´ÒªÓĞ¡°ÑÓ³Ù×¢²á(deferredServices)¡±ÕâÑùµÄ»úÖÆ
-              # ÒÀÀµ¹ØÏµ? <= ²»´æÔÚµÄ£¬ÓĞÒÀÀµ¹ØÏµµÄÒ»°ã¶¼ÔÚÍ¬Ò»¸öServiceProviderÄÚ
-                ! ServiceProviderÖĞÈç¹ûÒªÊ¹ÓÃÆäËü·şÎñ£¬ÒªĞ´ÔÚ`boot`·½·¨ÖĞ¡£ÒòÎª²»È·¶¨ÆäËü·şÎñµ±Ç°ÊÇ·ñÒÑ°ó¶¨¡£`boot`²ÅÊÇÒÀÀµµÄ½â¾ö·½°¸¡£
-              # ¶èĞÔ¼ÓÔØ 
+          # /config/app.php çš„ `providers`é¡¹ å®šä¹‰äº† ServiceProvideråˆ—è¡¨
+          # ç”¨æˆ·å¦‚æœè‡ªå·±éœ€è¦æ·»åŠ ServiceProviderçš„è¯ï¼Œä¹ŸæŒºè¯¥æ·»åŠ åœ¨è¿™é‡Œ
+          # å› ä¸ºä¸€ä¸ªåº”ç”¨éœ€è¦çš„æœåŠ¡ä¸€èˆ¬ä¸ä¼šå˜åŠ¨ï¼Œå› æ­¤ä¼šå°† æœåŠ¡æ¸…å•(manifest) ä¼šç¼“å­˜åœ¨`/bootstrap/cache/services.php`ä¸­
+          * æœºåˆ¶
+            . åˆå§‹åŒ–manifestï¼š [providers=>[...], eager=>[], when=>[], deferred=>[]]
+              . providersä¸­æ˜¯é…ç½®ä¸­çš„æœåŠ¡æä¾›è€…æ–‡ä»¶åˆ—è¡¨
+              . eageræ˜¯ç«‹åˆ»æ³¨å†Œçš„æœåŠ¡(defer==false)
+              . deferredæ˜¯æ¨è¿Ÿæ³¨å†Œçš„æœåŠ¡(efer==true)
+              . whenæ˜¯æ¨è¿Ÿæ³¨å†Œçš„æœåŠ¡çš„è§¦å‘æ³¨å†Œäº‹ä»¶
+            . ServiceProvideræŒ‰ç…§çº¦å®šéƒ½æœ‰: 
+              . `provides`æ–¹æ³•ï¼šè¿”å›è¯¥æœåŠ¡æä¾›è€…ä¸­æ³¨å†Œäº†å“ªäº›æœåŠ¡ï¼ˆå³ç»‘å®šäº†å“ªäº›ç±»ï¼‰
+              . `defer`å±æ€§ï¼šæ ‡è®°æ˜¯å¦æ¨è¿Ÿæ³¨å†Œ
+              . `when`æ–¹æ³•ï¼šå¦‚æœ$provider->defer==trueçš„è¯ï¼Œwhenæ–¹æ³•è¿”å›äº†å“ªäº›â€œäº‹ä»¶â€ä¼šè§¦å‘æ³¨å†Œ
+                ï¼Ÿ â€œäº‹ä»¶â€æ˜¯ $app[event]->fireåˆ¶é€ çš„
+            # å³ä½¿æ²¡æœ‰`when`ï¼Œæˆ–æ˜¯è®¾ç½®äº†`when`ä½†äº‹ä»¶å°šæœªè§¦å‘
+              . `App@make(abstract)`æ—¶ä¹Ÿä¼šæ³¨å†Œ: if (isset($this->deferredServices[$abstract])) { $this->loadDeferredProvider($abstract); }
+              . å¦å¤–åœ¨å‘½ä»¤è¡Œæ¨¡å¼ä¸‹ï¼Œ`Kernel@bootstrap`ä¸­éšå³å°±åŠ è½½äº†æ‰€æœ‰å»¶è¿ŸæœåŠ¡æä¾›è€…
+            . ä¸ºä»€ä¹ˆè¦æœ‰â€œå»¶è¿Ÿæ³¨å†Œ(deferredServices)â€è¿™æ ·çš„æœºåˆ¶
+              # ä¾èµ–å…³ç³»? <= ä¸å­˜åœ¨çš„ï¼Œæœ‰ä¾èµ–å…³ç³»çš„ä¸€èˆ¬éƒ½åœ¨åŒä¸€ä¸ªServiceProviderå†…
+                ! ServiceProviderä¸­å¦‚æœè¦ä½¿ç”¨å…¶å®ƒæœåŠ¡ï¼Œè¦å†™åœ¨`boot`æ–¹æ³•ä¸­ã€‚å› ä¸ºä¸ç¡®å®šå…¶å®ƒæœåŠ¡å½“å‰æ˜¯å¦å·²ç»‘å®šã€‚`boot`æ‰æ˜¯ä¾èµ–çš„è§£å†³æ–¹æ¡ˆã€‚
+              # æƒ°æ€§åŠ è½½ 
                 # If the service providers are not deferred, we will simply add it to an 
                   array of eagerly loaded providers that will get registered on every
                   request to this application instead of "lazy" loading every time.
-                # À´×Ô×¢ÊÍ `Illuminate\Foundation\ProviderRepository@compileManifest`
-                . ¶èĞÔ¼ÓÔØÓÅµãÊÇĞèÒªÊ±²Å½øĞĞ°ó¶¨£¬ÄÜ½ÚÊ¡×ÊÔ´¡£
-                  £¿ÄÇÃ´ÎªÊ²Ã´²»È«²¿²ÉÓÃ¶èĞÔ¼ÓÔØÄØ£¿
+                # æ¥è‡ªæ³¨é‡Š `Illuminate\Foundation\ProviderRepository@compileManifest`
+                . æƒ°æ€§åŠ è½½ä¼˜ç‚¹æ˜¯éœ€è¦æ—¶æ‰è¿›è¡Œç»‘å®šï¼Œèƒ½èŠ‚çœèµ„æºã€‚
+                  ï¼Ÿé‚£ä¹ˆä¸ºä»€ä¹ˆä¸å…¨éƒ¨é‡‡ç”¨æƒ°æ€§åŠ è½½å‘¢ï¼Ÿ
                 # https://blog.csdn.net/qw_xingzhe/article/details/54907215
                 # http://www.jb51.net/article/61623.htm
                 # https://www.cnblogs.com/kidsitcn/p/4578921.html
-            # ·şÎñÌá¹©Õß¶¼¿ÉÒÔÊµÏÖ`boot()`·½·¨
-              . Ó¦ÓÃÓĞÒ»¸öÊÇ·ñÒÑÆô¶¯`App@booted`×´Ì¬£¨¼ûÏÂ£©
-              . `App@loadDeferredProvider`Ê±Èç¹û`App@booted==false`£¬ÔòÊ¹ÓÃ`App@booting()`·½·¨½«`Provider@boot()`·½·¨¼ÓÈë`App@bootingCallbacks`£¬¸ÃÊı×éÖĞµÄ·½·¨»áÔÚ Ó¦ÓÃÆô¶¯ Ê±µ÷ÓÃ
-              . ÒÑ×¢²áµÄ·şÎñÌá¹©ÕßµÄ`boot`·½·¨£¬Ò²»áÔÚÓ¦ÓÃÆô¶¯Ê±µ÷ÓÃ£¨¼ûÏÂ£©
+            # æœåŠ¡æä¾›è€…éƒ½å¯ä»¥å®ç°`boot()`æ–¹æ³•
+              . åº”ç”¨æœ‰ä¸€ä¸ªæ˜¯å¦å·²å¯åŠ¨`App@booted`çŠ¶æ€ï¼ˆè§ä¸‹ï¼‰
+              . `App@loadDeferredProvider`æ—¶å¦‚æœ`App@booted==false`ï¼Œåˆ™ä½¿ç”¨`App@booting()`æ–¹æ³•å°†`Provider@boot()`æ–¹æ³•åŠ å…¥`App@bootingCallbacks`ï¼Œè¯¥æ•°ç»„ä¸­çš„æ–¹æ³•ä¼šåœ¨ åº”ç”¨å¯åŠ¨ æ—¶è°ƒç”¨
+              . å·²æ³¨å†Œçš„æœåŠ¡æä¾›è€…çš„`boot`æ–¹æ³•ï¼Œä¹Ÿä¼šåœ¨åº”ç”¨å¯åŠ¨æ—¶è°ƒç”¨ï¼ˆè§ä¸‹ï¼‰
         ! Illuminate\Foundation\Bootstrap\BootProviders
           . $app->boot();
           . $this->fireAppCallbacks($this->bootingCallbacks);
-          . array_walk($this->serviceProviders, function ($p) { $this->bootProvider($p); }); // µ÷ÓÃ¸÷providerµÄboot·½·¨
-          . $this->booted = true; // ´Ó´Ë Ó¦ÓÃÒÑÆô¶¯£¡
-          . $this->fireAppCallbacks($this->bootedCallbacks); // Æô¶¯ºó»Øµ÷
-            # ¿ÉÒÔÍ¨¹ı`App@booted($callback)`·½·¨Ìí¼Ó`bootedCallbacks`»Øµ÷
-      # bootstrap½áÊø
+          . array_walk($this->serviceProviders, function ($p) { $this->bootProvider($p); }); // è°ƒç”¨å„providerçš„bootæ–¹æ³•
+          . $this->booted = true; // ä»æ­¤ åº”ç”¨å·²å¯åŠ¨ï¼
+          . $this->fireAppCallbacks($this->bootedCallbacks); // å¯åŠ¨åå›è°ƒ
+            # å¯ä»¥é€šè¿‡`App@booted($callback)`æ–¹æ³•æ·»åŠ `bootedCallbacks`å›è°ƒ
+      # bootstrapç»“æŸ
   ! (new Pipeline($this->app)->send($request)->through($this->middleware)->then( & $this->dispatchToRouter())
-    # ÒÀ´Îµ÷ÓÃÖĞ¼ä¼ş£¬½«$request×÷Îª²ÎÊı
-    # ×îºóµ÷ÓÃ`$this->dispatchToRouter()`
-    # ÔÚ´Ë¹ı³ÌÖĞ`$request`±»¶àÖØ´¦Àí
+    # ä¾æ¬¡è°ƒç”¨ä¸­é—´ä»¶ï¼Œå°†$requestä½œä¸ºå‚æ•°
+    # æœ€åè°ƒç”¨`$this->dispatchToRouter()`
+    # åœ¨æ­¤è¿‡ç¨‹ä¸­`$request`è¢«å¤šé‡å¤„ç†
     ! Illuminate\Routing\Pipeline extends Illuminate\Pipeline\Pipeline 
-      . ×ÓÀà¸²¸ÇÁË¸¸ÀàµÄ`getSlice` `getInitialSlice`·½·¨£¬Ö»ÊÇÌí¼ÓÁËÒì³£´¦Àí
-        # ¸²¸Ç`getSlice`µÄĞ´·¨ºÜÓĞÒâË¼
-      # https://www.jianshu.com/p/3c2791a525d0¡¾Àí½âLaravelÖĞµÄpipeline¡¿
-      # `Illuminate\Pipeline\Hub`(´ó¸Å)ÊÇÓÃÓÚÑ¡ÔñÄ³Ò»×é¹ÜµÀ(Send an object through one of the available pipelines.)
+      . å­ç±»è¦†ç›–äº†çˆ¶ç±»çš„`getSlice` `getInitialSlice`æ–¹æ³•ï¼Œåªæ˜¯æ·»åŠ äº†å¼‚å¸¸å¤„ç†
+        # è¦†ç›–`getSlice`çš„å†™æ³•å¾ˆæœ‰æ„æ€
+      # https://www.jianshu.com/p/3c2791a525d0ã€ç†è§£Laravelä¸­çš„pipelineã€‘
+      # `Illuminate\Pipeline\Hub`(å¤§æ¦‚)æ˜¯ç”¨äºé€‰æ‹©æŸä¸€ç»„ç®¡é“(Send an object through one of the available pipelines.)
     . Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode
-      # ÅĞ¶ÏÏµÍ³ÊÇ·ñ´¦ÓÚÎ¬»¤×´Ì¬¡£Éè¼ÆÎª`/storage/framework/down`ÎÄ¼ş´æÔÚÊ±ÎªÎ¬»¤×´Ì¬
-        . Ê¹ÓÃÃüÁî `php artisan down`
+      # åˆ¤æ–­ç³»ç»Ÿæ˜¯å¦å¤„äºç»´æŠ¤çŠ¶æ€ã€‚è®¾è®¡ä¸º`/storage/framework/down`æ–‡ä»¶å­˜åœ¨æ—¶ä¸ºç»´æŠ¤çŠ¶æ€
+        . ä½¿ç”¨å‘½ä»¤ `php artisan down`
     . SmartWiki\Http\Middleware\InstallMiddleware
-      # ¼ì²é`smartwiki`ÊÇ·ñ°²×°£¬Èç¹ûÎ´°²×°£¬Ôò»áÒıµ¼Ïò°²×°Ò³Ãæ
+      # æ£€æŸ¥`smartwiki`æ˜¯å¦å®‰è£…ï¼Œå¦‚æœæœªå®‰è£…ï¼Œåˆ™ä¼šå¼•å¯¼å‘å®‰è£…é¡µé¢
 * Illuminate\Routing\Router
-  # `$request`¾­Àú`$kernel->middleware`¹ıÂËºó£¬×îÖÕ´«µİ¸ø`Router@dispatch`
+  # `$request`ç»å†`$kernel->middleware`è¿‡æ»¤åï¼Œæœ€ç»ˆä¼ é€’ç»™`Router@dispatch`
   * SmartWiki\Providers\RouteServiceProvider 
-    # Ô¤ÏÈ¹¤×÷£¬¼ÓÔØÂ·ÓÉÅäÖÃ
+    # é¢„å…ˆå·¥ä½œï¼ŒåŠ è½½è·¯ç”±é…ç½®
     . app/Http/routes.php &
       app/Http/Routes/*.php
-    . $router->group(['namespace' => $this->namespace, 'middleware' => 'web',], function ($router) { // ÉÏÊöÎÄ¼ş });
-    # ÕâÊÇÓÃ»§×Ô¼º×¢²áµÄprovider
-  . Â·ÓÉÏà¹ØÀà¼°Æä¹¦ÄÜ
+    . $router->group(['namespace' => $this->namespace, 'middleware' => 'web',], function ($router) { // ä¸Šè¿°æ–‡ä»¶ });
+    # è¿™æ˜¯ç”¨æˆ·è‡ªå·±æ³¨å†Œçš„provider
+  . è·¯ç”±ç›¸å…³ç±»åŠå…¶åŠŸèƒ½
     . Illuminate\Routing\Router
-      # Â·ÓÉºËĞÄÀà£¬ÓÃ»§½Ó¿Ú
-      . `group | get|post|match ` µÈ·½·¨ ÉèÖÃÂ·ÓÉ
-      . `$router->routes`ÊôĞÔÊÇ`Illuminate\Routing\RouteCollection`ÀàĞÍ
-      . `$router->current`ÊôĞÔÊÇ`Illuminate\Routing\Route`ÀàĞÍ
+      # è·¯ç”±æ ¸å¿ƒç±»ï¼Œç”¨æˆ·æ¥å£
+      . `group | get|post|match ` ç­‰æ–¹æ³• è®¾ç½®è·¯ç”±
+      . `$router->routes`å±æ€§æ˜¯`Illuminate\Routing\RouteCollection`ç±»å‹
+      . `$router->current`å±æ€§æ˜¯`Illuminate\Routing\Route`ç±»å‹
     . Illuminate\Routing\RouteCollection
-      # ´æ´¢Â·ÓÉÅäÖÃ£¬¼ÓÔØµÄÂ·ÓÉÎÄ¼ş×îÖÕ´æ´¢ÔÚÕâÀï
+      # å­˜å‚¨è·¯ç”±é…ç½®ï¼ŒåŠ è½½çš„è·¯ç”±æ–‡ä»¶æœ€ç»ˆå­˜å‚¨åœ¨è¿™é‡Œ
     . Illuminate\Routing\Route
-      # µ¥¸öÂ·ÓÉĞÅÏ¢
+      # å•ä¸ªè·¯ç”±ä¿¡æ¯
     ? Illuminate\Routing\UrlGenerator
     ? Illuminate\Routing\ControllerDispatcher
   . Router@dispatch($request)
     . $route = $this->findRoute($request);
-      . $this->current = $route = $this->routes->match($request); // ¸ù¾İrequestÆ¥Åä·ûºÏµÄÂ·ÓÉ
-      . $this->substituteBindings($route); // °ó¶¨²ÎÊı¡£ÊµÀı»¯Ä£ĞÍÀà¡£
+      . $this->current = $route = $this->routes->match($request); // æ ¹æ®requeståŒ¹é…ç¬¦åˆçš„è·¯ç”±
+      . $this->substituteBindings($route); // ç»‘å®šå‚æ•°ã€‚å®ä¾‹åŒ–æ¨¡å‹ç±»ã€‚
     . $response = $this->runRouteWithinStack($route, $request);
-      . $middleware = $shouldSkipMiddleware ? [] : $this->gatherRouteMiddlewares($route); // ¸ù¾İ·Ö×é(group)»ñµÃÖĞ¼ä¼ş
-        # `$kernel->middlewareGroups`´«µİ¸øÁË`$router->middlewareGroups`
-        # `$kernel->routeMiddleware`´«µİ¸øÁË`$router->middleware`
-          # Õâ¸öÖ»ÊÇÒ»¸ö±ğÃû¶ÔÕÕ±í£¬Èç¹û`$kernel->middlewareGroups`ÖĞÓÃÁËÖĞ¼ä¼ş±ğÃûµÄ»°£¬»áÓÃËüÕÒµ½ÕæÕıµÄÖĞ¼ä¼şÀà
-    . SmartWikiµÄWebÖĞ¼ä¼ş×é
+      . $middleware = $shouldSkipMiddleware ? [] : $this->gatherRouteMiddlewares($route); // æ ¹æ®åˆ†ç»„(group)è·å¾—ä¸­é—´ä»¶
+        # `$kernel->middlewareGroups`ä¼ é€’ç»™äº†`$router->middlewareGroups`
+        # `$kernel->routeMiddleware`ä¼ é€’ç»™äº†`$router->middleware`
+          # è¿™ä¸ªåªæ˜¯ä¸€ä¸ªåˆ«åå¯¹ç…§è¡¨ï¼Œå¦‚æœ`$kernel->middlewareGroups`ä¸­ç”¨äº†ä¸­é—´ä»¶åˆ«åçš„è¯ï¼Œä¼šç”¨å®ƒæ‰¾åˆ°çœŸæ­£çš„ä¸­é—´ä»¶ç±»
+    . SmartWikiçš„Webä¸­é—´ä»¶ç»„
       . SmartWiki\Http\Middleware\EncryptCookies
         . $request = $this->decrypt($request)
         . $response = $next($decrypted);
         . $response = $this->encrypt($decrypted);
         . return $response;
-        # ½âÃÜ½ÓÊÕµ½µÄ`cookie`£¬²¢´«µİ¸øÏÂ²ãÖĞ¼ä¼ş£¬È»ºó¶ÔµÃµ½µÄ`response`ÔÙ½øĞĞ`cookie`¼ÓÃÜ
-        ! ÖĞ¼ä¼şÖĞ²»½ö¿ÉÒÔ´¦Àí`request`£¬»¹¿ÉÒÔ´¦Àí`response`
+        # è§£å¯†æ¥æ”¶åˆ°çš„`cookie`ï¼Œå¹¶ä¼ é€’ç»™ä¸‹å±‚ä¸­é—´ä»¶ï¼Œç„¶åå¯¹å¾—åˆ°çš„`response`å†è¿›è¡Œ`cookie`åŠ å¯†
+        ! ä¸­é—´ä»¶ä¸­ä¸ä»…å¯ä»¥å¤„ç†`request`ï¼Œè¿˜å¯ä»¥å¤„ç†`response`
       . Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse
-        £¿Ğ´`cookie`
+        ï¼Ÿå†™`cookie`
       . Illuminate\Session\Middleware\StartSession
-        # ¿ªÆô`session`
-        # µ«²»ÊÇ(²»Ò»¶¨ÊÇ)WEB·şÎñÆ÷×Ô´øµÄ»á»°¹¦ÄÜ(ÌåÏÖÔÚPHPÀï¾ÍÊÇsession_startºÍ$_SESSION)
-        # Í¬ÑùÀûÓÃcookie£¬µ«ÊÇÓÃ ÎÄ¼ş/Êı¾İ¿â/Êı×é(²»³Ö¾Ã) µÈ´æ´¢»á»°Êı¾İ£¬¶¼ËãÊÇÊµÏÖÁË`session`
-        £¿ `manager`ÊÇÊ²Ã´ `Illuminate\Session\SessionManager extends Illuminate\Support\Manager`
+        # å¼€å¯`session`
+        # ä½†ä¸æ˜¯(ä¸ä¸€å®šæ˜¯)WEBæœåŠ¡å™¨è‡ªå¸¦çš„ä¼šè¯åŠŸèƒ½(ä½“ç°åœ¨PHPé‡Œå°±æ˜¯session_startå’Œ$_SESSION)
+        # åŒæ ·åˆ©ç”¨cookieï¼Œä½†æ˜¯ç”¨ æ–‡ä»¶/æ•°æ®åº“/æ•°ç»„(ä¸æŒä¹…) ç­‰å­˜å‚¨ä¼šè¯æ•°æ®ï¼Œéƒ½ç®—æ˜¯å®ç°äº†`session`
+        ï¼Ÿ `manager`æ˜¯ä»€ä¹ˆ `Illuminate\Session\SessionManager extends Illuminate\Support\Manager`
       . Illuminate\View\Middleware\ShareErrorsFromSession
       . SmartWiki\Http\Middleware\VerifyCsrfToken
-        # ÓĞºÃ¼¸ÖÖÊµÏÖ·½Ê½£ºform | header | cookie
+        # æœ‰å¥½å‡ ç§å®ç°æ–¹å¼ï¼šform | header | cookie
   . $route->run($request)
-    # Ö´ĞĞÄ¿±ê¿ØÖÆÆ÷/±Õ°ü
+    # æ‰§è¡Œç›®æ ‡æ§åˆ¶å™¨/é—­åŒ…
     ! ControllerDispatcher@callWithinStack
-      # ´Ë¹ı³ÌÖĞ»¹¿ÉÒÔ¾­¹ı¿ØÖÆÆ÷ÖĞ¶¨ÒåµÄÖĞ¼ä¼ş
-      # ¿ØÖÆÆ÷Àà¶¼ÓĞÊµÏÖ`Illuminate\Routing\Controller`£¬ÓµÓĞ·½·¨`getMiddleware(){ return $this->middleware; }`
-      # `$controller->middleware`ĞÎÈç£º
+      # æ­¤è¿‡ç¨‹ä¸­è¿˜å¯ä»¥ç»è¿‡æ§åˆ¶å™¨ä¸­å®šä¹‰çš„ä¸­é—´ä»¶
+      # æ§åˆ¶å™¨ç±»éƒ½æœ‰å®ç°`Illuminate\Routing\Controller`ï¼Œæ‹¥æœ‰æ–¹æ³•`getMiddleware(){ return $this->middleware; }`
+      # `$controller->middleware`å½¢å¦‚ï¼š
         [
-          '\SmartWiki\Http\Middleware\Authenticate' => ['only'=>['index', 'detail']], // ÖĞ¼ä¼şÀàÃû => ½ö`index|detail`·½·¨
-          'auth.basic' => ['except'=>['drop']], // ÖĞ¼ä¼ş±ğÃû($kernel->middlewareGroups) => ³ıÁË`drop`·½·¨
-          'web' => ['only'=>['edit']], // ÖĞ¼ä¼ş×éÃû($kernel->routeMiddleware) => ½ö`edit`·½·¨
+          '\SmartWiki\Http\Middleware\Authenticate' => ['only'=>['index', 'detail']], // ä¸­é—´ä»¶ç±»å => ä»…`index|detail`æ–¹æ³•
+          'auth.basic' => ['except'=>['drop']], // ä¸­é—´ä»¶åˆ«å($kernel->middlewareGroups) => é™¤äº†`drop`æ–¹æ³•
+          'web' => ['only'=>['edit']], // ä¸­é—´ä»¶ç»„å($kernel->routeMiddleware) => ä»…`edit`æ–¹æ³•
         ]
-  # `Kernel@handle`½áÊø
+  # `Kernel@handle`ç»“æŸ
 * `Response@send`
 * `Kernel@terminate`
-  # Ö´ĞĞËùÓĞ¾­¹ıµÄÖĞ¼ä¼şµÄ`terminate`·½·¨
-  # Ö´ĞĞËùÓĞ`$app->terminatingCallbacks`»Øµ÷
+  # æ‰§è¡Œæ‰€æœ‰ç»è¿‡çš„ä¸­é—´ä»¶çš„`terminate`æ–¹æ³•
+  # æ‰§è¡Œæ‰€æœ‰`$app->terminatingCallbacks`å›è°ƒ
 
 
-@ ÈİÆ÷ÖØÒª·½·¨½âÎö
+@ å®¹å™¨é‡è¦æ–¹æ³•è§£æ
 * App@instance
-  . `unset($this->aliases[$abstract]);`  // Ò»µ©×¢²áÎªÒ»¸ö¹²ÏíÊµÀı(instance as shared in the container)£¬¾Í²»ÄÜÔÙ×÷Îª±ğÃû
+  . `unset($this->aliases[$abstract]);`  // ä¸€æ—¦æ³¨å†Œä¸ºä¸€ä¸ªå…±äº«å®ä¾‹(instance as shared in the container)ï¼Œå°±ä¸èƒ½å†ä½œä¸ºåˆ«å
   * `$this->instances[$abstract] = $instance;` // core
   . `if ($bound) { $this->rebound($abstract);}`
-    . `rebound`ĞĞÎªÊ±£¬¿ÉÒÔÖ´ĞĞ`reboundCallbacks`»Øµ÷
-    . Í¨¹ı`App@rebinding`·½·¨×¢²á`reboundCallbacks`»Øµ÷
-      ! ÒâÒå£ºÀıÈç`Illuminate/Routing/RoutingServiceProvider`ÖĞ
+    . `rebound`è¡Œä¸ºæ—¶ï¼Œå¯ä»¥æ‰§è¡Œ`reboundCallbacks`å›è°ƒ
+    . é€šè¿‡`App@rebinding`æ–¹æ³•æ³¨å†Œ`reboundCallbacks`å›è°ƒ
+      ! æ„ä¹‰ï¼šä¾‹å¦‚`Illuminate/Routing/RoutingServiceProvider`ä¸­
         . $url = new UrlGenerator($routes, $app->rebinding('request', function ($app, $request) {
             $app['url']->setRequest($request);
           } ) );
-        # `UrlGenerator`ÔÚ´´½¨Ê±ĞèÒª×¢Èë`Request`
-          # ¶øµ±`Request`Àà¸üĞÂ(Èç£º$app->instance('request', $new) »ò $app->extend() »ò $app->bind() )Ê±
-          # `UrlGenerator`Ò²ĞèÒª¸üĞÂ×¢ÈëµÄ`Request`Îª×îĞÂµÄ
-        £¿µ«ÊÇÕâ¸ö²Ù×÷ºÜÈİÒ×ºöÂÔ°É£¿¶øÖØĞÂ°ó¶¨²Ù×÷Ó¦¸ÃÊÇÄ¬ÈÏµÄ£¬¿ò¼ÜÈ´Ã»ÓĞÈ¥ÊµÏÖËü£¿ 
+        # `UrlGenerator`åœ¨åˆ›å»ºæ—¶éœ€è¦æ³¨å…¥`Request`
+          # è€Œå½“`Request`ç±»æ›´æ–°(å¦‚ï¼š$app->instance('request', $new) æˆ– $app->extend() æˆ– $app->bind() )æ—¶
+          # `UrlGenerator`ä¹Ÿéœ€è¦æ›´æ–°æ³¨å…¥çš„`Request`ä¸ºæœ€æ–°çš„
+        ï¼Ÿä½†æ˜¯è¿™ä¸ªæ“ä½œå¾ˆå®¹æ˜“å¿½ç•¥å§ï¼Ÿè€Œé‡æ–°ç»‘å®šæ“ä½œåº”è¯¥æ˜¯é»˜è®¤çš„ï¼Œæ¡†æ¶å´æ²¡æœ‰å»å®ç°å®ƒï¼Ÿ 
 * App@bind($abstract, $concrete = null, $shared = false)
-  . µ¥´Ê`concrete`Òë×÷'¾ßÌåÎï'¡£²ÎÊıÀàĞÍÎª`\Closure|string|null`£¬µ«ÔÚ·½·¨ÖĞ¶¼»á×ª»¯Îª`\Closure`
+  . å•è¯`concrete`è¯‘ä½œ'å…·ä½“ç‰©'ã€‚å‚æ•°ç±»å‹ä¸º`\Closure|string|null`ï¼Œä½†åœ¨æ–¹æ³•ä¸­éƒ½ä¼šè½¬åŒ–ä¸º`\Closure`
   . `unset($this->instances[$abstract], $this->aliases[$abstract]);`
-  . `$this->bindings[$abstract] = compact('concrete', 'shared');` // ÊÇÒ»¸ö¼üÎªconcreteºÍsharedµÄÊı×é
-  . `if ($this->resolved($abstract)) { $this->rebound($abstract);}` // Èç¹ûÒÑ½âÎö£¬Ôò`rebound`
-  * ¡¾important¡¿$shared²ÎÊı±íÊ¾ÊÇ·ñ¹²Ïí£¬Èç¹û$shared=trueµÄ»°£¬¶à´Î$app[abstract]½«»ñµÃÍ¬Ò»¸öÊµÀı£¬·ñÔò½«»ñµÃ¶à¸ö²»Í¬µÄÊµÀı
-    . ÊÔÑé:$app->bind('salvare', 'Illuminate\Routing\Pipeline', FALSE);
+  . `$this->bindings[$abstract] = compact('concrete', 'shared');` // æ˜¯ä¸€ä¸ªé”®ä¸ºconcreteå’Œsharedçš„æ•°ç»„
+  . `if ($this->resolved($abstract)) { $this->rebound($abstract);}` // å¦‚æœå·²è§£æï¼Œåˆ™`rebound`
+  * ã€importantã€‘$sharedå‚æ•°è¡¨ç¤ºæ˜¯å¦å…±äº«ï¼Œå¦‚æœ$shared=trueçš„è¯ï¼Œå¤šæ¬¡$app[abstract]å°†è·å¾—åŒä¸€ä¸ªå®ä¾‹ï¼Œå¦åˆ™å°†è·å¾—å¤šä¸ªä¸åŒçš„å®ä¾‹
+    . è¯•éªŒ:$app->bind('salvare', 'Illuminate\Routing\Pipeline', FALSE);
            dump($app['salvare']); // #199
            dump($app['salvare']); // #1024
 * App@singleton($abstract, $concrete = null)
-  . ¼´ `$this->bind($abstract, $concrete, true);`
+  . å³ `$this->bind($abstract, $concrete, true);`
 * App@register($provider, $options = [], $force = false)
-  . if (($registered = $this->getProvider($provider)) && ! $force) { return $registered;} // ÏÈ¼ì²é$app->serviceProvidersÊÇ·ñÒÑ´æÔÚ
-  * $provider->register(); // µ÷ÓÃ·şÎñÌá¹©ÕßµÄregister·½·¨¡£ ËµÊÇ¡®×¢²á¡¯£¬ÆäÊµ¾ÍÊÇÌá¹©µÄ·şÎñÄÚÈİ£¿
+  . if (($registered = $this->getProvider($provider)) && ! $force) { return $registered;} // å…ˆæ£€æŸ¥$app->serviceProvidersæ˜¯å¦å·²å­˜åœ¨
+  * $provider->register(); // è°ƒç”¨æœåŠ¡æä¾›è€…çš„registeræ–¹æ³•ã€‚ è¯´æ˜¯â€˜æ³¨å†Œâ€™ï¼Œå…¶å®å°±æ˜¯æä¾›çš„æœåŠ¡å†…å®¹ï¼Ÿ
   . foreach ($options as $key => $value) { $this[$key] = $value; }
     . App implements ArrayAccess
     . public function offsetGet($key){ return $this->make($key); }
-    . public function offsetSet($key, $value){ // $value´ò°üÎªclosure;  $this->bind($key, $value); } 
-    * ×¢²á·şÎñÊ±£¬¿ÉÒÔÌí¼ÓÑ¡Ïî²ÎÊı£¬¿ÉÒÔÖ±½ÓÒÔ`$app[key]`ĞÎÊ½·ÃÎÊ
+    . public function offsetSet($key, $value){ // $valueæ‰“åŒ…ä¸ºclosure;  $this->bind($key, $value); } 
+    * æ³¨å†ŒæœåŠ¡æ—¶ï¼Œå¯ä»¥æ·»åŠ é€‰é¡¹å‚æ•°ï¼Œå¯ä»¥ç›´æ¥ä»¥`$app[key]`å½¢å¼è®¿é—®
   * markAsRegistered
-    £¿ $this['events']->fire($class = get_class($provider), [$provider]);
-    . $this->serviceProviders[] = $provider; // Ìí¼ÓÈë$app->serviceProviders£¬µ«Ææ¹ÖµÄÊÇÃ»ÓĞÓÃÀàÃûÖ®Àà×÷Îª¼üÃû
-    . $this->loadedProviders[$class] = true; // Ìí¼ÓÈë$app->loadedProviders£¬ÒÑ¼ÓÔØ·şÎñ
-  * if ($this->booted) { $this->bootProvider($provider); } // Èç¹û´ËÊ±`application has already booted`£¬Ôò»á³¢ÊÔµ÷ÓÃ·şÎñÌá¹©ÕßµÄ`boot`·½·¨
-    £¿ ÊÇÊ²Ã´Ê±ºò²ÅÊÇÓ¦ÓÃÒÑÆô¶¯($this->booted==true)?
+    ï¼Ÿ $this['events']->fire($class = get_class($provider), [$provider]);
+    . $this->serviceProviders[] = $provider; // æ·»åŠ å…¥$app->serviceProvidersï¼Œä½†å¥‡æ€ªçš„æ˜¯æ²¡æœ‰ç”¨ç±»åä¹‹ç±»ä½œä¸ºé”®å
+    . $this->loadedProviders[$class] = true; // æ·»åŠ å…¥$app->loadedProvidersï¼Œå·²åŠ è½½æœåŠ¡
+  * if ($this->booted) { $this->bootProvider($provider); } // å¦‚æœæ­¤æ—¶`application has already booted`ï¼Œåˆ™ä¼šå°è¯•è°ƒç”¨æœåŠ¡æä¾›è€…çš„`boot`æ–¹æ³•
+    ï¼Ÿ æ˜¯ä»€ä¹ˆæ—¶å€™æ‰æ˜¯åº”ç”¨å·²å¯åŠ¨($this->booted==true)?
 * App@make($abstract, array $parameters = [])
-  . if (isset($this->instances[$abstract])) // ¼ì²é¹²ÏíÊµÀı
+  . if (isset($this->instances[$abstract])) // æ£€æŸ¥å…±äº«å®ä¾‹
   . $concrete = $this->getConcrete($abstract); 
     . $this->contextual -> $this->bindings -> $abstract
-  * $object = $this->build($concrete, $parameters); // ÊµÀı»¯
+  * $object = $this->build($concrete, $parameters); // å®ä¾‹åŒ–
   . foreach ($this->getExtenders($abstract) as $extender) { $object = $extender($object, $this); }
-    . ¿ÉÒÔÍ¨¹ı`App@extend($abstract, Closure $closure)`·½·¨ÉèÖÃ¶îÍâµÄ»Øµ÷
-  . if ($this->isShared($abstract)) { $this->instances[$abstract] = $object; } // Èç¹û¹²Ïí
-  ? $this->fireResolvingCallbacks($abstract, $object); // ÓÖÊÇ¸÷ÖÖ»Øµ÷
-  . $this->resolved[$abstract] = true; // ¸ÃÊµÀı½âÎöÍê³É
+    . å¯ä»¥é€šè¿‡`App@extend($abstract, Closure $closure)`æ–¹æ³•è®¾ç½®é¢å¤–çš„å›è°ƒ
+  . if ($this->isShared($abstract)) { $this->instances[$abstract] = $object; } // å¦‚æœå…±äº«
+  ? $this->fireResolvingCallbacks($abstract, $object); // åˆæ˜¯å„ç§å›è°ƒ
+  . $this->resolved[$abstract] = true; // è¯¥å®ä¾‹è§£æå®Œæˆ
 * App@build($concrete, array $parameters = [])
-  . if ($concrete instanceof Closure) { return $concrete($this, $parameters); } // Èç¹ûÊÇ±Õ°ü£¬Ö±½ÓÖ´ĞĞµÃ·µ»ØÖµ
-  . $reflector = new ReflectionClass($concrete); // Èç¹ûÊÇÀà£¬Í¨¹ı·´Éä(reflect)»úÖÆ·ÖÎöËü
+  . if ($concrete instanceof Closure) { return $concrete($this, $parameters); } // å¦‚æœæ˜¯é—­åŒ…ï¼Œç›´æ¥æ‰§è¡Œå¾—è¿”å›å€¼
+  . $reflector = new ReflectionClass($concrete); // å¦‚æœæ˜¯ç±»ï¼Œé€šè¿‡åå°„(reflect)æœºåˆ¶åˆ†æå®ƒ
   ! $this->buildStack[] = $concrete; // 
-    . ¡¾important¡¿ÔÚÊµÀı»¯¹ı³ÌÖĞ£¬¿ÉÄÜ²ÎÊıÓÖ°üº¬ÆäËüÀà£¬Òò´Ë»áµİ¹éµ÷ÓÃ`App@make``App@build`
-    . Òò´ËÉèÖÃÕâ¸öÕ»´æ´¢ÊµÀı»¯¹ı³ÌÖĞµÄ×´Ì¬
+    . ã€importantã€‘åœ¨å®ä¾‹åŒ–è¿‡ç¨‹ä¸­ï¼Œå¯èƒ½å‚æ•°åˆåŒ…å«å…¶å®ƒç±»ï¼Œå› æ­¤ä¼šé€’å½’è°ƒç”¨`App@make``App@build`
+    . å› æ­¤è®¾ç½®è¿™ä¸ªæ ˆå­˜å‚¨å®ä¾‹åŒ–è¿‡ç¨‹ä¸­çš„çŠ¶æ€
   . $instances = $this->getDependencies($dependencies, $parameters);
-    . App@make -> App@build -> App@getDependencies -> App@resolveClass -> App@make // ´Ó¶ø¿ÉÄÜÔì³É
+    . App@make -> App@build -> App@getDependencies -> App@resolveClass -> App@make // ä»è€Œå¯èƒ½é€ æˆ
 * App@share(Closure $closure)
-  . Ä¿Ç°Ö»¿´µ½ÓÃÀ´¹¹Ôì `concrete`
-  . ÊÔÑé£º$concrete = $app->share(function($app) {
+  . ç›®å‰åªçœ‹åˆ°ç”¨æ¥æ„é€  `concrete`
+  . è¯•éªŒï¼š$concrete = $app->share(function($app) {
              return new \Illuminate\Routing\Pipeline($app['app']);
           });
           $app->bind('salvare', $concrete, FALSE);
           dump($app['salvare']); // # 197
           dump($app['salvare']); // # 197
-     # ¾ÍËã $shared²ÎÊıÎªfalse£¬Ò²»á»ñµÃÍ¬Ò»¸öÊµÀı
+     # å°±ç®— $sharedå‚æ•°ä¸ºfalseï¼Œä¹Ÿä¼šè·å¾—åŒä¸€ä¸ªå®ä¾‹
 
 
-@ ÈİÆ÷ÊôĞÔÈ«½âÎö
+@ å®¹å™¨å±æ€§å…¨è§£æ
 $app->bindings
-  . ¸ø`abstract`ÉèÖÃ`concrete`ºÍ`shared`ÊôĞÔ
-  . `concrete`ÊÇÒ»¸ö±Õ°ü£¬»áÖ±½Ó·µ»ØÒ»¸öÖµ »ò make/buildÒ»¸öÊµÀı
-  . `shared==true`Ôò½«`abstract`ºÍ¶ÔÓ¦ ÊµÀı/Öµ ¼ÓÈë`$app->instances`¡£ÏÂ´ÎÔÚmakeÊ±£¬½«Ö±½Ó´Ó`$app->instances`È¡ÓÃ
+  . ç»™`abstract`è®¾ç½®`concrete`å’Œ`shared`å±æ€§
+  . `concrete`æ˜¯ä¸€ä¸ªé—­åŒ…ï¼Œä¼šç›´æ¥è¿”å›ä¸€ä¸ªå€¼ æˆ– make/buildä¸€ä¸ªå®ä¾‹
+  . `shared==true`åˆ™å°†`abstract`å’Œå¯¹åº” å®ä¾‹/å€¼ åŠ å…¥`$app->instances`ã€‚ä¸‹æ¬¡åœ¨makeæ—¶ï¼Œå°†ç›´æ¥ä»`$app->instances`å–ç”¨
 $app->instances 
-  . ¹é¸ùµ½µ×£¬`$app->instances`Ö»ÓĞÔÚ±»`App@make`·½·¨Ê¹ÓÃ
+  . å½’æ ¹åˆ°åº•ï¼Œ`$app->instances`åªæœ‰åœ¨è¢«`App@make`æ–¹æ³•ä½¿ç”¨
 $app->aliases
-  . ±ğÃû£¬ÈÎºÎÊäÈëµÄ`abstract`¶¼ÒªÏÈ¾­¹ı`App@getAlias`¹ıÂË
+  . åˆ«åï¼Œä»»ä½•è¾“å…¥çš„`abstract`éƒ½è¦å…ˆç»è¿‡`App@getAlias`è¿‡æ»¤
 $app->resolved
-  . µ±`make`ºó,`$app->resolved[abstract]`»á±»ÖÃÎªtrue
-  . Î¨Ò»ÓÃ´¦ÊÇ£ºÔÚ`App@bind`ÖĞ£¬Èç¹û·¢ÏÖ¸ÃabstractÒÑ½âÎö¹ı£¬Ôò»á´¥·¢`rebound`
+  . å½“`make`å,`$app->resolved[abstract]`ä¼šè¢«ç½®ä¸ºtrue
+  . å”¯ä¸€ç”¨å¤„æ˜¯ï¼šåœ¨`App@bind`ä¸­ï¼Œå¦‚æœå‘ç°è¯¥abstractå·²è§£æè¿‡ï¼Œåˆ™ä¼šè§¦å‘`rebound`
 $app->contextual &
 $app->buildStack
-  . `App@make`ÖĞµİ¹é½âÎö¹¹Ôì·½·¨²ÎÊıÊ±ÒªÓÃµÄ
-  . ¶ÔÍâ½ç¹¦ÄÜ²»´ó
+  . `App@make`ä¸­é€’å½’è§£ææ„é€ æ–¹æ³•å‚æ•°æ—¶è¦ç”¨çš„
+  . å¯¹å¤–ç•ŒåŠŸèƒ½ä¸å¤§
 $app->extenders
-  . `App@make`·½·¨ÖĞ£¬¸øµÃµ½µÄ ÊµÀı/Öµ Ìí¼ÓÀ©Õ¹µÄ¹ıÂËº¯Êı
+  . `App@make`æ–¹æ³•ä¸­ï¼Œç»™å¾—åˆ°çš„ å®ä¾‹/å€¼ æ·»åŠ æ‰©å±•çš„è¿‡æ»¤å‡½æ•°
 $app->tags
-  . ¿ÉÒÔ¸ø¶à¸ö`abstract`ÉèÖÃ¶à¸ö`tag`
-  . ²»ÖªµÀÔõÃ´ÓÃ£¨Ã»Ê²Ã´´óÓÃ£©
+  . å¯ä»¥ç»™å¤šä¸ª`abstract`è®¾ç½®å¤šä¸ª`tag`
+  . ä¸çŸ¥é“æ€ä¹ˆç”¨ï¼ˆæ²¡ä»€ä¹ˆå¤§ç”¨ï¼‰
 $app->reboundCallbacks
-  . ´¥·¢`rebound`Ê±µÄ»Øµ÷
-  . µ±Ò»¸ö ÒÑ°ó¶¨(bindings) »ò ÒÑ¹²Ïí(instances) µÄ`abstract`·¢Éú±ä»¯Ê±£¬¾Í»á´¥·¢`rebound`
+  . è§¦å‘`rebound`æ—¶çš„å›è°ƒ
+  . å½“ä¸€ä¸ª å·²ç»‘å®š(bindings) æˆ– å·²å…±äº«(instances) çš„`abstract`å‘ç”Ÿå˜åŒ–æ—¶ï¼Œå°±ä¼šè§¦å‘`rebound`
     . App@bind
     . App@extend
     . App@instance
@@ -294,83 +294,83 @@ $app->globalResolvingCallbacks
 $app->resolvingCallbacks
 $app->globalAfterResolvingCallbacks
 $app->afterResolvingCallbacks
-  . `App@make`ÔÚµÃµ½Ä¿±ê ÊµÀı/Öµ ºó£¬»á½«$app->resolved[abstract]ÖÃÎªtrue£¬²¢´¥·¢`fireResolvingCallbacks`
-  . ÒÔÉÏÊÇÖ´ĞĞË³Ğò
-  . global ÊÇËùÓĞabstract¶¼ÒªÖ´ĞĞ£¬
-    Ã»ÓĞglobal Ôò»áÅĞ¶Ï $objectµÄÀàĞÍ ºÍ $abstractÖµ Ö´ĞĞ¶ÔÓ¦µÄ»Øµ÷
+  . `App@make`åœ¨å¾—åˆ°ç›®æ ‡ å®ä¾‹/å€¼ åï¼Œä¼šå°†$app->resolved[abstract]ç½®ä¸ºtrueï¼Œå¹¶è§¦å‘`fireResolvingCallbacks`
+  . ä»¥ä¸Šæ˜¯æ‰§è¡Œé¡ºåº
+  . global æ˜¯æ‰€æœ‰abstractéƒ½è¦æ‰§è¡Œï¼Œ
+    æ²¡æœ‰global åˆ™ä¼šåˆ¤æ–­ $objectçš„ç±»å‹ å’Œ $abstractå€¼ æ‰§è¡Œå¯¹åº”çš„å›è°ƒ
 
 
-@ ÊÂ¼ş»úÖÆ
-* ºËĞÄÀà `Illuminate\Events\Dispatcher`
-  # Ó¦ÓÃÈİÆ÷ÖĞÓÃ`$app['event']`»ñÈ¡`Dispatch`ÊµÀı
-. ÖØÒª·½·¨
+@ äº‹ä»¶æœºåˆ¶
+* æ ¸å¿ƒç±» `Illuminate\Events\Dispatcher`
+  # åº”ç”¨å®¹å™¨ä¸­ç”¨`$app['event']`è·å–`Dispatch`å®ä¾‹
+. é‡è¦æ–¹æ³•
   . `Dispatcher@listen($events, $listener, $priority = 0)`
-    # ×¢²á¼àÌı
-    . ²ÎÊı
-      . $events : µ¥¸öÊÂ¼şÃû »ò ÊÂ¼şÃûÊı×é¡£Èç¹û´«µİÊı×éµÄ»°¿ÉÒÔÍ¬Ê±¸ø¶à¸öÊÂ¼ş×¢²áÍ¬Ò»¸öListener
-      . $listener : ¼àÌıÕß¡£¸ñÊ½¿ÉÒÔÊÇ Closure | Class@func | Class(Ä¬ÈÏ·½·¨handle) 
-      . $priority : È¨ÖØ¡£ÊıÖµÔ½¸ßÔ½ÓÅÏÈÖ´ĞĞ
-    . if (Str::contains($event, '*')) { $this->setupWildcardListen($event, $listener); } // Èç¹ûÊÂ¼şÃû´øÓĞÍ¨Åä·û¡®*¡¯£¬ÔòÌí¼ÓÈë`wildcards`
-    & else { $this->listeners[$event][$priority][] = $this->makeListener($listener); } // ·ñÔò¼ÓÈë`listeners`
+    # æ³¨å†Œç›‘å¬
+    . å‚æ•°
+      . $events : å•ä¸ªäº‹ä»¶å æˆ– äº‹ä»¶åæ•°ç»„ã€‚å¦‚æœä¼ é€’æ•°ç»„çš„è¯å¯ä»¥åŒæ—¶ç»™å¤šä¸ªäº‹ä»¶æ³¨å†ŒåŒä¸€ä¸ªListener
+      . $listener : ç›‘å¬è€…ã€‚æ ¼å¼å¯ä»¥æ˜¯ Closure | Class@func | Class(é»˜è®¤æ–¹æ³•handle) 
+      . $priority : æƒé‡ã€‚æ•°å€¼è¶Šé«˜è¶Šä¼˜å…ˆæ‰§è¡Œ
+    . if (Str::contains($event, '*')) { $this->setupWildcardListen($event, $listener); } // å¦‚æœäº‹ä»¶åå¸¦æœ‰é€šé…ç¬¦â€˜*â€™ï¼Œåˆ™æ·»åŠ å…¥`wildcards`
+    & else { $this->listeners[$event][$priority][] = $this->makeListener($listener); } // å¦åˆ™åŠ å…¥`listeners`
   * `Dispatcher@makeListener`
     . Dispatcher@createClassCallable($listener, $container)
       . if ($this->handlerShouldBeQueued($class)) { ... }
-        # Èç¹û`$listener`ÊµÏÖÁË`ShouldQueue`£¬Ôò½«ÔÚÊÂ¼ş´¥·¢Ê±¼ÓÈë¶ÓÁĞ
+        # å¦‚æœ`$listener`å®ç°äº†`ShouldQueue`ï¼Œåˆ™å°†åœ¨äº‹ä»¶è§¦å‘æ—¶åŠ å…¥é˜Ÿåˆ—
         . Dispatcher@createQueuedHandlerCallable($class, $method)
         . $this->resolveQueue()->push('Illuminate\Events\CallQueuedHandler@call', [...]);
-          # `$this->resolveQueue()`µÃµ½µÄÊÇ`QueueManager`Àà
-            # Æä¶¨ÒåÁË`__call`·½·¨£¬¿ÉÒÔµ÷ÓÃÄ¬ÈÏµÄ($config['queue.default'])Á¬½ÓµÄ`push`·½·¨
+          # `$this->resolveQueue()`å¾—åˆ°çš„æ˜¯`QueueManager`ç±»
+            # å…¶å®šä¹‰äº†`__call`æ–¹æ³•ï¼Œå¯ä»¥è°ƒç”¨é»˜è®¤çš„($config['queue.default'])è¿æ¥çš„`push`æ–¹æ³•
       . else { return [$container->make($class), $method]; }
-        # ½«ÔÚ´¥·¢Ê±Ö±½ÓÖ´ĞĞ
+        # å°†åœ¨è§¦å‘æ—¶ç›´æ¥æ‰§è¡Œ
   . `Dispatcher@fire($event, $payload = [], $halt = false)`
-    . foreach ($this->getListeners($event) as $listener) // ÒÀ´Î´¦Àílistener
+    . foreach ($this->getListeners($event) as $listener) // ä¾æ¬¡å¤„ç†listener
     & if ( ... instanceof ShouldBroadcast) { $this->broadcastEvent(...); }
-    . $response = call_user_func_array($listener, $payload); // µ÷ÓÃlistenerÖĞµÄ·½·¨
-      . Èç¹û`$event`ÊÇÒ»¸öEventÊµÀıµÄ»°£¬¸ÃÊµÀı½«×÷ÎªÎ¨Ò»²ÎÊı
-      . ·ñÔò`$payload`½«×÷Îª´«¸ø`$listener`µÄ²ÎÊı
-    . if (! is_null($response) && $halt) { return $response; } // Èç¹û`$halt==true`£¬ÔòÈÎÒâÒ»´ÎÊÕµ½responseÊ±£¬·µ»Ø¸Ãresponse£¬¶øÇÒ½«ÖÕÖ¹ºóÃæµÄlisteners
-    . if ($response === false) { break; } // Èç¹û`$response===false`Ê±£¬Ôò·µ»ØÄ¿Ç°ÒÑÖ´ĞĞµÄËùÓĞlistenerµÄ·µ»ØµÄ¼¯ºÏresponses£¬¶øÇÒ½«ÖÕÖ¹ºóÃæµÄlisteners
+    . $response = call_user_func_array($listener, $payload); // è°ƒç”¨listenerä¸­çš„æ–¹æ³•
+      . å¦‚æœ`$event`æ˜¯ä¸€ä¸ªEventå®ä¾‹çš„è¯ï¼Œè¯¥å®ä¾‹å°†ä½œä¸ºå”¯ä¸€å‚æ•°
+      . å¦åˆ™`$payload`å°†ä½œä¸ºä¼ ç»™`$listener`çš„å‚æ•°
+    . if (! is_null($response) && $halt) { return $response; } // å¦‚æœ`$halt==true`ï¼Œåˆ™ä»»æ„ä¸€æ¬¡æ”¶åˆ°responseæ—¶ï¼Œè¿”å›è¯¥responseï¼Œè€Œä¸”å°†ç»ˆæ­¢åé¢çš„listeners
+    . if ($response === false) { break; } // å¦‚æœ`$response===false`æ—¶ï¼Œåˆ™è¿”å›ç›®å‰å·²æ‰§è¡Œçš„æ‰€æœ‰listenerçš„è¿”å›çš„é›†åˆresponsesï¼Œè€Œä¸”å°†ç»ˆæ­¢åé¢çš„listeners
   . Dispatcher@broadcastEvent($event)
     . $connection = $event instanceof ShouldBroadcastNow ? 'sync' : null;
-      # $event instanceof ShouldBroadcastNow ? Í¬²½ : Ä¬ÈÏ¶ÓÁĞÇı¶¯
+      # $event instanceof ShouldBroadcastNow ? åŒæ­¥ : é»˜è®¤é˜Ÿåˆ—é©±åŠ¨
     . $this->resolveQueue()->connection($connection)->pushOn($queue, 'Illuminate\Broadcasting\BroadcastEvent', [...]);
-      # ¼ÓÈë¶ÓÁĞ£¬ÓÉ`Illuminate\Broadcasting\BroadcastEvent@fire`´¦Àí
-. ÊôĞÔ
-  . `listener`ÊôĞÔ£¬ĞÎÈç£º
+      # åŠ å…¥é˜Ÿåˆ—ï¼Œç”±`Illuminate\Broadcasting\BroadcastEvent@fire`å¤„ç†
+. å±æ€§
+  . `listener`å±æ€§ï¼Œå½¢å¦‚ï¼š
     [
-    SmartWiki\Events\SomeEvent => [ // ÊÂ¼şÃû
-      100 => [ // È¨ÖØ
-        listener1 // ¼àÌıÕß
+    SmartWiki\Events\SomeEvent => [ // äº‹ä»¶å
+      100 => [ // æƒé‡
+        listener1 // ç›‘å¬è€…
       ],
       50 => [
         listener2
         listener3
-        listener1 // ÖØ¸´¼àÌıµÄ»°£¬´¥·¢Ê±Ò²»á±»¶à´Îµ÷ÓÃ
+        listener1 // é‡å¤ç›‘å¬çš„è¯ï¼Œè§¦å‘æ—¶ä¹Ÿä¼šè¢«å¤šæ¬¡è°ƒç”¨
       ],
       10 => [
         listener4
       ],
-      0 => [ // Ä¬ÈÏÈ¨ÖØÊÇ0
+      0 => [ // é»˜è®¤æƒé‡æ˜¯0
         listener5
       ],
     ]
-  . `sorted`ÊôĞÔ
-    # °´ÕÕÈ¨ÖØ£¬½«`$listener[someevent]`×ªÎªÒ»Î¬Êı×é
-    # µ±`$listener`·¢Éú±ä»¯Ê±£¬¼´¸ÃÊÂ¼şÓĞĞÂµÄ×¢²á¼àÌı(Dispatcher@listen)Ê±£¬»áÉ¾³ı`$listener[someevent]`£¬ÏÂ´Î´¥·¢ÊÂ¼şÊ±»áÖØĞÂ¼ÆËã´æ´¢`$sorted`
-  . `wildcards`ÊôĞÔ
-    # `$wildcards[key]`ÊÇÒ»Î¬Êı×é£¬²»ÄÜÉèÖÃÈ¨ÖØ
-    # ÊµÖÊÉÏÆäÕûÌåÓµÓĞ×îµÍÈ¨ÖØ¡£´¥·¢ÊÂ¼şÊ±£¬`$listener`ÔÚÏÈ£¬`$wildcards`ºÏ²¢µ½ºóÃæ£¬È»ºóÒÀ´Îµ÷ÓÃ
-  . `firing`ÊôĞÔ
-    # ´¥·¢ÖĞµÄÊÂ¼ş£¬ÊÇÒ»¸öÕ»(stack)
-    # `fire('someevent')`Ê±£¬½«`someevent`Ñ¹Èë`$firing`£»´¦ÀíÍê`listeners`ºó£¬`$firing`µ¯³ö`someevent`
-    £¿ÒòÎªÊÇÕ»£¬ËùÒÔ`firing`ÊôĞÔÊÇÎªÇ¶Ì×µ÷ÓÃ`Dispatcher@fire`Ê±×¼±¸µÄ¡£
-      µ«ÊÇ`laravel`±¾ÉíÃ»ÓĞÓÃµ½£¬ÎÒÒ²Ïë²»µ½±ØĞëÒªÓÃËüµÄÇé¾°¡£
-    # ½áÂÛ£ºÎŞÊÓÕâ¸ö
-. artisanÃüÁî Éú³É ÊÂ¼şÀàºÍ¼àÌıÆ÷Àà
-  . `EventServiceProvider`µÄ`listen`ÊôĞÔÖĞÌí¼Ó ÊÂ¼şÀàºÍ¼àÌıÆ÷Àà È«Ãû
+  . `sorted`å±æ€§
+    # æŒ‰ç…§æƒé‡ï¼Œå°†`$listener[someevent]`è½¬ä¸ºä¸€ç»´æ•°ç»„
+    # å½“`$listener`å‘ç”Ÿå˜åŒ–æ—¶ï¼Œå³è¯¥äº‹ä»¶æœ‰æ–°çš„æ³¨å†Œç›‘å¬(Dispatcher@listen)æ—¶ï¼Œä¼šåˆ é™¤`$listener[someevent]`ï¼Œä¸‹æ¬¡è§¦å‘äº‹ä»¶æ—¶ä¼šé‡æ–°è®¡ç®—å­˜å‚¨`$sorted`
+  . `wildcards`å±æ€§
+    # `$wildcards[key]`æ˜¯ä¸€ç»´æ•°ç»„ï¼Œä¸èƒ½è®¾ç½®æƒé‡
+    # å®è´¨ä¸Šå…¶æ•´ä½“æ‹¥æœ‰æœ€ä½æƒé‡ã€‚è§¦å‘äº‹ä»¶æ—¶ï¼Œ`$listener`åœ¨å…ˆï¼Œ`$wildcards`åˆå¹¶åˆ°åé¢ï¼Œç„¶åä¾æ¬¡è°ƒç”¨
+  . `firing`å±æ€§
+    # è§¦å‘ä¸­çš„äº‹ä»¶ï¼Œæ˜¯ä¸€ä¸ªæ ˆ(stack)
+    # `fire('someevent')`æ—¶ï¼Œå°†`someevent`å‹å…¥`$firing`ï¼›å¤„ç†å®Œ`listeners`åï¼Œ`$firing`å¼¹å‡º`someevent`
+    ï¼Ÿå› ä¸ºæ˜¯æ ˆï¼Œæ‰€ä»¥`firing`å±æ€§æ˜¯ä¸ºåµŒå¥—è°ƒç”¨`Dispatcher@fire`æ—¶å‡†å¤‡çš„ã€‚
+      ä½†æ˜¯`laravel`æœ¬èº«æ²¡æœ‰ç”¨åˆ°ï¼Œæˆ‘ä¹Ÿæƒ³ä¸åˆ°å¿…é¡»è¦ç”¨å®ƒçš„æƒ…æ™¯ã€‚
+    # ç»“è®ºï¼šæ— è§†è¿™ä¸ª
+. artisanå‘½ä»¤ ç”Ÿæˆ äº‹ä»¶ç±»å’Œç›‘å¬å™¨ç±»
+  . `EventServiceProvider`çš„`listen`å±æ€§ä¸­æ·»åŠ  äº‹ä»¶ç±»å’Œç›‘å¬å™¨ç±» å…¨å
   . php artisan event:generate
 
-createQueuedHandlerCallable £¿£¿£¿
+createQueuedHandlerCallable ï¼Ÿï¼Ÿï¼Ÿ
 
 (new ReflectionClass($class))->implementsInterface(
                 'Illuminate\Contracts\Queue\ShouldQueue'
@@ -379,202 +379,202 @@ createQueuedHandlerCallable £¿£¿£¿
     	dump(debug_backtrace(~DEBUG_BACKTRACE_PROVIDE_OBJECT & DEBUG_BACKTRACE_IGNORE_ARGS));exit;
 
 
-@ ¶ÓÁĞ
-. Ä¿µÄ£º1.Òì²½£»(Èç¹ûÓĞ2µÄ»°)2.ÖØÊÔ
-. ÊµÏÖ·½Ê½
-  . Éú²úÕß-Ïû·ÑÕßÄ£Ê½(producer-customer) :
-    # Éú²úÕß½ø³Ì½«ÏûÏ¢(message) ¼ÓÈë¶ÓÁĞ(´æ´¢£¬¿ÉÒÔÓĞ¶àÖÖÇı¶¯)£»Ïû·ÑÕßÊÇÁí¿ªµÄÒ»¸ö½ø³Ì£¬¶ÁÈ¡²¢´¦ÀíÏûÏ¢
-  . ·¢²¼Õß-¶©ÔÄÕßÄ£Ê½(publisher-subscriber)
-  # https://blog.csdn.net/qq_37610423/article/details/72659306¡¾redis¶ÓÁĞµÄÊµÏÖ¡¿¡¾good¡¿
-    # https://www.cnblogs.com/George1994/p/6702084.html¡¾×èÈûºÍ·Ç×èÈû£¬Í¬²½ºÍÒì²½¡¿
-. ¹£¸Å
-  . ÈÎÎñ(Job)
+@ é˜Ÿåˆ—
+. ç›®çš„ï¼š1.å¼‚æ­¥ï¼›(å¦‚æœæœ‰2çš„è¯)2.é‡è¯•
+. å®ç°æ–¹å¼
+  . ç”Ÿäº§è€…-æ¶ˆè´¹è€…æ¨¡å¼(producer-customer) :
+    # ç”Ÿäº§è€…è¿›ç¨‹å°†æ¶ˆæ¯(message) åŠ å…¥é˜Ÿåˆ—(å­˜å‚¨ï¼Œå¯ä»¥æœ‰å¤šç§é©±åŠ¨)ï¼›æ¶ˆè´¹è€…æ˜¯å¦å¼€çš„ä¸€ä¸ªè¿›ç¨‹ï¼Œè¯»å–å¹¶å¤„ç†æ¶ˆæ¯
+  . å‘å¸ƒè€…-è®¢é˜…è€…æ¨¡å¼(publisher-subscriber)
+  # https://blog.csdn.net/qq_37610423/article/details/72659306ã€redisé˜Ÿåˆ—çš„å®ç°ã€‘ã€goodã€‘
+    # https://www.cnblogs.com/George1994/p/6702084.htmlã€é˜»å¡å’Œéé˜»å¡ï¼ŒåŒæ­¥å’Œå¼‚æ­¥ã€‘
+. æ¢—æ¦‚
+  . ä»»åŠ¡(Job)
     . `use Queueable;`
-      . `$connection` ¶ÓÁĞÇı¶¯
-      . `$queue` Ñ¡ÔñÄÄ¸ö¶ÓÁĞ
-      . `$delay` ÉèÖÃÑÓ³Ù
+      . `$connection` é˜Ÿåˆ—é©±åŠ¨
+      . `$queue` é€‰æ‹©å“ªä¸ªé˜Ÿåˆ—
+      . `$delay` è®¾ç½®å»¶è¿Ÿ
     . use InteractsWithQueue
-      . Èç¹û`use InteractsWithQueue`£¬½«»áÊ¹ÓÃ`setJob`·½·¨×¢Èë`DatabaseJob`ÊµÀı£¬¿ÉÒÔ¶Ô¶ÓÁĞ½øĞĞ²Ù×÷
-      . ÊµÏÖÓÚ`CallQueuedHandler@setJobInstanceIfNecessary`
+      . å¦‚æœ`use InteractsWithQueue`ï¼Œå°†ä¼šä½¿ç”¨`setJob`æ–¹æ³•æ³¨å…¥`DatabaseJob`å®ä¾‹ï¼Œå¯ä»¥å¯¹é˜Ÿåˆ—è¿›è¡Œæ“ä½œ
+      . å®ç°äº`CallQueuedHandler@setJobInstanceIfNecessary`
     . `public $tries` 
     . `public $timeout` 
-    . `funcion handle` ÈÎÎñÄÚÈİ
-    . Ê¹ÓÃ
+    . `funcion handle` ä»»åŠ¡å†…å®¹
+    . ä½¿ç”¨
       . `$job = (new XxxJob())->delay(Carbon::now()->addMinutes(10))->onConnection('sqs')->onQueue('processing');`
       & `dispatch($job);`
-    # ´´½¨JobÀàµÄÃüÁî£º`php artisan make:job SomeJob`
-  & ÔËĞĞ¶ÓÁĞ½ø³Ì
+    # åˆ›å»ºJobç±»çš„å‘½ä»¤ï¼š`php artisan make:job SomeJob`
+  & è¿è¡Œé˜Ÿåˆ—è¿›ç¨‹
     . `php artisan queue:work --tries=3 --timeout=30 redis --queue=high,low --daemon`
     . --tries
-      # ²ÎÊıÏîÀ´ÉèÖÃ¶ÓÁĞÈÎÎñÔÊĞíµÄ×î´ó³¢ÊÔ´ÎÊı£¨µ±±¨´í»ò³¬Ê±£©£¬Èç¹ûÃ»ÓĞÖ¸¶¨ --tries Ñ¡ÏîµÄÖµ£¬ÈÎÎñ»á±»ÎŞÏŞÆÚÖØÊÔ
+      # å‚æ•°é¡¹æ¥è®¾ç½®é˜Ÿåˆ—ä»»åŠ¡å…è®¸çš„æœ€å¤§å°è¯•æ¬¡æ•°ï¼ˆå½“æŠ¥é”™æˆ–è¶…æ—¶ï¼‰ï¼Œå¦‚æœæ²¡æœ‰æŒ‡å®š --tries é€‰é¡¹çš„å€¼ï¼Œä»»åŠ¡ä¼šè¢«æ— é™æœŸé‡è¯•
     . --timeout
-      # Ã¿¸öÈÎÎñµÄ×î³¤Ê±¼ä¡£Èç¹û³¬Ê±£¬»áÍ£Ö¹ÈÎÎñ£¬ÈÏÎªÊ§°Ü£¨Ö®ºó»áÖØÊÔ£©
-      . ÅäÖÃÏî `$config['queue.someconn.retry_after']`
-        # ¶¨ÒåÈÎÎñÔÚÖ´ĞĞÒÔºó¶àÉÙÃëºóÊÍ·Å»Ø¶ÓÁĞ¡£
-          Èç¹ûretry_after Éè¶¨µÄÖµÎª 90, ÈÎÎñÔÚÔËĞĞ 90 Ãëºó»¹Î´Íê³É£¬ÄÇÃ´½«±»ÊÍ·Å»Ø¶ÓÁĞ¶ø²»ÊÇÉ¾³ıµô¡£
-        # ×¢Òâ£º²ÎÊıÏî --timeout µÄÖµÓ¦¸ÃÊÇÖĞĞ¡ÓÚÅäÖÃÏî retry_after µÄÖµ£¬ÕâÊÇÎªÁËÈ·±£¶ÓÁĞ½ø³Ì×ÜÔÚÈÎÎñÖØÊÔÒÔÇ°¹Ø±Õ¡£
-          Èç¹û --timeout ±Èretry_after ´ó£¬ÔòÄãµÄÈÎÎñ¿ÉÄÜ±»Ö´ĞĞÁ½´Î¡£
-      ! Êµ²âÊ±£¬·¢ÏÖÎÒµÄv5.4Ã»ÓĞ`--timeout`Ñ¡Ïî
-        ! ÎÄµµÏ¸½ÚÊÇ²»¿É¿¿µÄ£¬Ò»ÇĞÒÔ´úÂëÎª×¼£¬µ«ÊÇÎÄµµÃèÊöµÄ¸ÅÄîÊÇÏàËÆµÄ
+      # æ¯ä¸ªä»»åŠ¡çš„æœ€é•¿æ—¶é—´ã€‚å¦‚æœè¶…æ—¶ï¼Œä¼šåœæ­¢ä»»åŠ¡ï¼Œè®¤ä¸ºå¤±è´¥ï¼ˆä¹‹åä¼šé‡è¯•ï¼‰
+      . é…ç½®é¡¹ `$config['queue.someconn.retry_after']`
+        # å®šä¹‰ä»»åŠ¡åœ¨æ‰§è¡Œä»¥åå¤šå°‘ç§’åé‡Šæ”¾å›é˜Ÿåˆ—ã€‚
+          å¦‚æœretry_after è®¾å®šçš„å€¼ä¸º 90, ä»»åŠ¡åœ¨è¿è¡Œ 90 ç§’åè¿˜æœªå®Œæˆï¼Œé‚£ä¹ˆå°†è¢«é‡Šæ”¾å›é˜Ÿåˆ—è€Œä¸æ˜¯åˆ é™¤æ‰ã€‚
+        # æ³¨æ„ï¼šå‚æ•°é¡¹ --timeout çš„å€¼åº”è¯¥æ˜¯ä¸­å°äºé…ç½®é¡¹ retry_after çš„å€¼ï¼Œè¿™æ˜¯ä¸ºäº†ç¡®ä¿é˜Ÿåˆ—è¿›ç¨‹æ€»åœ¨ä»»åŠ¡é‡è¯•ä»¥å‰å…³é—­ã€‚
+          å¦‚æœ --timeout æ¯”retry_after å¤§ï¼Œåˆ™ä½ çš„ä»»åŠ¡å¯èƒ½è¢«æ‰§è¡Œä¸¤æ¬¡ã€‚
+      ! å®æµ‹æ—¶ï¼Œå‘ç°æˆ‘çš„v5.4æ²¡æœ‰`--timeout`é€‰é¡¹
+        ! æ–‡æ¡£ç»†èŠ‚æ˜¯ä¸å¯é çš„ï¼Œä¸€åˆ‡ä»¥ä»£ç ä¸ºå‡†ï¼Œä½†æ˜¯æ–‡æ¡£æè¿°çš„æ¦‚å¿µæ˜¯ç›¸ä¼¼çš„
     . redis 
-      # Á¬½ÓÃû(connection)
+      # è¿æ¥å(connection)
     . --queue=high,low
-      # ¶ÓÁĞÃû
-      # Ç°ºóË³Ğò±íÊ¾ÁË¶ÓÁĞÓÅÏÈ¼¶
+      # é˜Ÿåˆ—å
+      # å‰åé¡ºåºè¡¨ç¤ºäº†é˜Ÿåˆ—ä¼˜å…ˆçº§
     . --daemon
-      # ¼ÓÁË`--deamon`ºó½«³ÖĞøµÈ´ı²¢´¦Àí¹¤×÷£¬²»¼ÓµÄ»°Ö»»á´¦ÀíÒ»Ìõ¹¤×÷¡£
-  . ÅäÖÃÎÄ¼ş `config/queue.php`
-  . ÈÎÎñÊ§°Ü
-    # ÈÎÎñ ³¬Ê±»ò±¨´í Ê±£¬»á±»ÈÏÎªÈÎÎñÊ§°Ü
-    # ÔÚ`$config['queue.someconn.retry_after']`Ê±¼äºó»áÖØÊÔ£¬×î¶àÖØÊÔ`--tries`»ò`public $tries`´Î
-    # ÒÀÈ»Ê§°Ü£¬ÈÎÎñ»á±»²åÈëµ½ failed_jobs ±í
-      . ¼´Ê¹²»ÊÇdbÇı¶¯£¬Ò²ÊÇÍ¨¹ıÊı¾İ¿â`failed_jobs`±íÊµÏÖµÄ
-    . ÃüÁî
-      . ²é¿´Ê§°ÜÈÎÎñ `php artisan queue:failed`
-      . ÖØÊÔÊ§°ÜÈÎÎñ `php artisan queue:retry JobID|all`
-      . É¾³ı `php artisan queue:forget JobID | php artisan queue:flush`
-    . `SomeJob@failed(Exception $e)`·½·¨»áÔÚÈÎÎñ³ö´íÊÇµ÷ÓÃ
-  . ÈÎÎñÊÂ¼ş
+      # åŠ äº†`--deamon`åå°†æŒç»­ç­‰å¾…å¹¶å¤„ç†å·¥ä½œï¼Œä¸åŠ çš„è¯åªä¼šå¤„ç†ä¸€æ¡å·¥ä½œã€‚
+  . é…ç½®æ–‡ä»¶ `config/queue.php`
+  . ä»»åŠ¡å¤±è´¥
+    # ä»»åŠ¡ è¶…æ—¶æˆ–æŠ¥é”™ æ—¶ï¼Œä¼šè¢«è®¤ä¸ºä»»åŠ¡å¤±è´¥
+    # åœ¨`$config['queue.someconn.retry_after']`æ—¶é—´åä¼šé‡è¯•ï¼Œæœ€å¤šé‡è¯•`--tries`æˆ–`public $tries`æ¬¡
+    # ä¾ç„¶å¤±è´¥ï¼Œä»»åŠ¡ä¼šè¢«æ’å…¥åˆ° failed_jobs è¡¨
+      . å³ä½¿ä¸æ˜¯dbé©±åŠ¨ï¼Œä¹Ÿæ˜¯é€šè¿‡æ•°æ®åº“`failed_jobs`è¡¨å®ç°çš„
+    . å‘½ä»¤
+      . æŸ¥çœ‹å¤±è´¥ä»»åŠ¡ `php artisan queue:failed`
+      . é‡è¯•å¤±è´¥ä»»åŠ¡ `php artisan queue:retry JobID|all`
+      . åˆ é™¤ `php artisan queue:forget JobID | php artisan queue:flush`
+    . `SomeJob@failed(Exception $e)`æ–¹æ³•ä¼šåœ¨ä»»åŠ¡å‡ºé”™æ˜¯è°ƒç”¨
+  . ä»»åŠ¡äº‹ä»¶
     . Queue::failing
     . Queue::before
     . Queue::after
     . Queue::looping
-. ¹Ø¼üÀà
+. å…³é”®ç±»
   . Illuminate\Queue\QueueServiceProvider
-    # ×¢²áËùÓĞ¶ÓÁĞ·şÎñºÍÃüÁî
+    # æ³¨å†Œæ‰€æœ‰é˜Ÿåˆ—æœåŠ¡å’Œå‘½ä»¤
   . Illuminate\Queue\Console\WorkCommand
-    # artisan queue:work ÃüÁî
+    # artisan queue:work å‘½ä»¤
   . Illuminate\Queue\Worker
-    # ÊÇÖ´ĞĞ¶ÓÁĞ¹¤×÷µÄºËĞÄÀà
-    # Æä`manager`ÊôĞÔÊÇ`Illuminate\Queue\QueueManager`ÊµÀı
+    # æ˜¯æ‰§è¡Œé˜Ÿåˆ—å·¥ä½œçš„æ ¸å¿ƒç±»
+    # å…¶`manager`å±æ€§æ˜¯`Illuminate\Queue\QueueManager`å®ä¾‹
   . Illuminate\Queue\QueueManager
-    # ¹ÜÀí¸÷ÀàĞÍÁ¬½Ó(connection)£¬²¢ÇÒ¿ÉÒÔÉèÖÃ¶ÓÁĞ¸÷ÖÖÔËĞĞ×´Ì¬(JobProcessing|JobProcessed|looping...)µÄ»Øµ÷
+    # ç®¡ç†å„ç±»å‹è¿æ¥(connection)ï¼Œå¹¶ä¸”å¯ä»¥è®¾ç½®é˜Ÿåˆ—å„ç§è¿è¡ŒçŠ¶æ€(JobProcessing|JobProcessed|looping...)çš„å›è°ƒ
   . Illuminate\Queue\Connectors\DatabaseConnector
-    # ¸÷¶ÓÁĞÇı¶¯µÄÁ¬½ÓÀà£¬ÕâÀïÒÔ`database`ÎªÀı
-    # ÊµÏÖ`connect`·½·¨£¬·µ»Ø¶ÓÁĞÇı¶¯
+    # å„é˜Ÿåˆ—é©±åŠ¨çš„è¿æ¥ç±»ï¼Œè¿™é‡Œä»¥`database`ä¸ºä¾‹
+    # å®ç°`connect`æ–¹æ³•ï¼Œè¿”å›é˜Ÿåˆ—é©±åŠ¨
   . Illuminate\Queue\DatabaseQueue
-    # ¸÷¶ÓÁĞÇı¶¯ºËĞÄÀà
-    # `Worker`ÀàÍ¨¹ı`XxxConnector`»ñµÃ`XxxQueue`£¬¸³¸ø±äÁ¿`$connection`
-      # È»ºóÓÃ`$connection`Í³Ò»´¦Àí¶ÓÁĞÂß¼­
-      # ËùÒÔ±ØĞëÊµÏÖÍ¬ÑùµÄÒ»Ğ©½Ó¿Ú
+    # å„é˜Ÿåˆ—é©±åŠ¨æ ¸å¿ƒç±»
+    # `Worker`ç±»é€šè¿‡`XxxConnector`è·å¾—`XxxQueue`ï¼Œèµ‹ç»™å˜é‡`$connection`
+      # ç„¶åç”¨`$connection`ç»Ÿä¸€å¤„ç†é˜Ÿåˆ—é€»è¾‘
+      # æ‰€ä»¥å¿…é¡»å®ç°åŒæ ·çš„ä¸€äº›æ¥å£
         . extends Illuminate\Queue\Queue implements Illuminate\Contracts\Queue\Queue
   . Illuminate\Queue\Jobs\DatabaseJob
-    # ¸÷¶ÓÁĞÇı¶¯µÄ¡®¹¤×÷¡¯Àà£¬·â×°´ÓÇı¶¯ÖĞÈ¡³öµÄ`job`µÄÄÚÈİºÍÖ´ĞĞ×´Ì¬
+    # å„é˜Ÿåˆ—é©±åŠ¨çš„â€˜å·¥ä½œâ€™ç±»ï¼Œå°è£…ä»é©±åŠ¨ä¸­å–å‡ºçš„`job`çš„å†…å®¹å’Œæ‰§è¡ŒçŠ¶æ€
     . extends Illuminate\Queue\Jobs\Job implements Illuminate\Contracts\Queue\Job\JobContract
-    . Æä`database`ÊôĞÔÊÇ`DatabaseQueue`ÊµÀı
+    . å…¶`database`å±æ€§æ˜¯`DatabaseQueue`å®ä¾‹
   . Illuminate\Queue\Failed\DatabaseFailedJobProvider
-    # Ê§°ÜÈÎÎñ´¦ÀíÀà
-    # ÊµÖÊÉÏ¾ÍÊÇ¹ÜÀí`failed_jobs`±íµÄÀà
-      . ÃüÁî `php artisan queue:failed-table` `php artisan migrate`
-    # ×¢Òâ£º¸÷¶ÓÁĞÇı¶¯¶¼Ê¹ÓÃ`DatabaseFailedJobProvider`´¦ÀíÊ§°ÜÈÎÎñ
+    # å¤±è´¥ä»»åŠ¡å¤„ç†ç±»
+    # å®è´¨ä¸Šå°±æ˜¯ç®¡ç†`failed_jobs`è¡¨çš„ç±»
+      . å‘½ä»¤ `php artisan queue:failed-table` `php artisan migrate`
+    # æ³¨æ„ï¼šå„é˜Ÿåˆ—é©±åŠ¨éƒ½ä½¿ç”¨`DatabaseFailedJobProvider`å¤„ç†å¤±è´¥ä»»åŠ¡
       . QueueServiceProvider@registerFailedJobServices
-        # Èç¹ûÃ»ÓĞÅäÖÃ`$config['queue.failed']`£¬ÔòÊ¹ÓÃ`NullFailedJobProvider`£¬ÊµÖÊÉÏÉ¥Ê§¡®Ê§°ÜÈÎÎñ¡¯»úÖÆ
+        # å¦‚æœæ²¡æœ‰é…ç½®`$config['queue.failed']`ï¼Œåˆ™ä½¿ç”¨`NullFailedJobProvider`ï¼Œå®è´¨ä¸Šä¸§å¤±â€˜å¤±è´¥ä»»åŠ¡â€™æœºåˆ¶
   . Illuminate\Queue\CallQueuedHandler
-    # ÓÃ»§ÔÚ`dispatch($someJob)`Ê±£¬Êµ¼ÊÉÏ´æ´¢µÄ¹¤×÷ÊÇ`CallQueuedHandler@call`£¬Í¬¹ıÕâ¸öÀàÖ´ĞĞ`SomeJob@handle`
-    # Êı¾İĞÎÈç£º "payload": "{"job":"Illuminate\\Queue\\CallQueuedHandler@call","data":{"commandName":"SmartWiki\\Jobs\\SomeJob" ...}}
-    # ÏêÇé¼ûÏÂ
-. ÔËĞĞ¶ÓÁĞ½ø³Ì `artisan queue:work | Illuminate\Queue\Console\WorkCommand@fire`
-  # Î¬»¤Ä£Ê½ÏÂ£¬²»ÔËĞĞ¶ÓÁĞ¡£´ø`--deamon`»ò`--force`Ñ¡ÏîÊ±³ıÍâ¡£
+    # ç”¨æˆ·åœ¨`dispatch($someJob)`æ—¶ï¼Œå®é™…ä¸Šå­˜å‚¨çš„å·¥ä½œæ˜¯`CallQueuedHandler@call`ï¼ŒåŒè¿‡è¿™ä¸ªç±»æ‰§è¡Œ`SomeJob@handle`
+    # æ•°æ®å½¢å¦‚ï¼š "payload": "{"job":"Illuminate\\Queue\\CallQueuedHandler@call","data":{"commandName":"SmartWiki\\Jobs\\SomeJob" ...}}
+    # è¯¦æƒ…è§ä¸‹
+. è¿è¡Œé˜Ÿåˆ—è¿›ç¨‹ `artisan queue:work | Illuminate\Queue\Console\WorkCommand@fire`
+  # ç»´æŠ¤æ¨¡å¼ä¸‹ï¼Œä¸è¿è¡Œé˜Ÿåˆ—ã€‚å¸¦`--deamon`æˆ–`--force`é€‰é¡¹æ—¶é™¤å¤–ã€‚
   . WorkCommand@listenForEvents
-    . ¼àÌı`JobProcessed | JobFailed`£¬½«ÔËĞĞÍê³É/Ê§°ÜµÄĞÅÏ¢Êä³öµ½¿ØÖÆÌ¨¡£
+    . ç›‘å¬`JobProcessed | JobFailed`ï¼Œå°†è¿è¡Œå®Œæˆ/å¤±è´¥çš„ä¿¡æ¯è¾“å‡ºåˆ°æ§åˆ¶å°ã€‚
   . Worker@pop($connectionName, $queue = null, $delay = 0, $sleep = 3, $maxTries = 0)
-    # »ñÈ¡ºÍÖ´ĞĞ¶ÓÁĞÖĞÏÂÒ»¸öÈÎÎñ
+    # è·å–å’Œæ‰§è¡Œé˜Ÿåˆ—ä¸­ä¸‹ä¸€ä¸ªä»»åŠ¡
     . $job = $this->getNextJob($connection, $queue);
       . foreach (explode(',', $queue) as $queue) { ... }
-        # ÌåÏÖÁË¶ÓÁĞµÄÓÅÏÈ¼¶
+        # ä½“ç°äº†é˜Ÿåˆ—çš„ä¼˜å…ˆçº§
       ! $job = $connection->pop($queue)
-        # `$connection`ÊÇ`DatabaseConnector`Àà
-        # `$job`ÊÇ`DatabaseJob`Àà
+        # `$connection`æ˜¯`DatabaseConnector`ç±»
+        # `$job`æ˜¯`DatabaseJob`ç±»
         . DatabaseQueue@pop
           . $job = $this->getNextAvailableJob($queue)
-            # ´Ó`jobs`±í»ñÈ¡¶ÓÁĞµÄÏÂÒ»¸öJob
-            # `$job`ÊÇÒ»¸ö±ê×¼¶ÔÏó(stdClass)
-            . Ìõ¼ş
+            # ä»`jobs`è¡¨è·å–é˜Ÿåˆ—çš„ä¸‹ä¸€ä¸ªJob
+            # `$job`æ˜¯ä¸€ä¸ªæ ‡å‡†å¯¹è±¡(stdClass)
+            . æ¡ä»¶
               . ( reserved=0 AND available_at<$now ) OR (reserved=1 AND reserved_at<$now-$expire ) ORDER BY id ASC
-                £¿ ÄÑµÀ»¹ÓĞ±£´æÖ®ºó²»Á¢¿ÌÖ´ĞĞµÄÂğ
-                £¿ reserved ºÍ expire ÆğÁËÊ²Ã´×÷ÓÃ£¿
+                ï¼Ÿ éš¾é“è¿˜æœ‰ä¿å­˜ä¹‹åä¸ç«‹åˆ»æ‰§è¡Œçš„å—
+                ï¼Ÿ reserved å’Œ expire èµ·äº†ä»€ä¹ˆä½œç”¨ï¼Ÿ
           . $job = $this->markJobAsReserved($job);
-            . $job->reserved = 1; // ×¢Òâ
+            . $job->reserved = 1; // æ³¨æ„
             . $job->attempts = $job->attempts + 1;
             . $job->reserved_at = $this->getTime();
           . return new DatabaseJob($this->container, $this, $job, $queue);
     . Worker@process($connection, Job $job, $maxTries = 0, $delay = 0)
-      # Ö´ĞĞÈÎÎñ
-      . if ($maxTries>0 && $job->attempts()>$maxTries) { // ÈÎÎñÊ§°Ü´¦Àí }
-        # Èç¹ûÉèÖÃÁËÑ¡Ïî`--tries=3`£¬µ±Ç°È´ÊÇµÚ4´Î($job->attempts)³¢ÊÔÖ´ĞĞ£¬Ôò½«ÊÓÎª¸ÃÈÎÎñÊ§°Ü
+      # æ‰§è¡Œä»»åŠ¡
+      . if ($maxTries>0 && $job->attempts()>$maxTries) { // ä»»åŠ¡å¤±è´¥å¤„ç† }
+        # å¦‚æœè®¾ç½®äº†é€‰é¡¹`--tries=3`ï¼Œå½“å‰å´æ˜¯ç¬¬4æ¬¡($job->attempts)å°è¯•æ‰§è¡Œï¼Œåˆ™å°†è§†ä¸ºè¯¥ä»»åŠ¡å¤±è´¥
         . Worker@logFailedJob($connection, Job $job)
           . $failedId = $this->failer->log($connection, $job->getQueue(), $job->getRawBody());
-            # ½«ĞÂ¼ÇÂ¼²åÈë`failed_job`±í
+            # å°†æ–°è®°å½•æ’å…¥`failed_job`è¡¨
           . $job->delete()
             . $job->deleted = true;
             . $this->database->deleteReserved($this->queue, $this->job->id);
-              # É¾³ıÔ­¶ÓÁĞ£¨¾ÍdatabaseÇı¶¯¶øÑÔ¾ÍÊÇjobs±í£©ÖĞµÄ¼ÇÂ¼
+              # åˆ é™¤åŸé˜Ÿåˆ—ï¼ˆå°±databaseé©±åŠ¨è€Œè¨€å°±æ˜¯jobsè¡¨ï¼‰ä¸­çš„è®°å½•
           . $job->failed();
-            # Ö´ĞĞÔ­¹¤×÷ÀàµÄ`failed`·½·¨
+            # æ‰§è¡ŒåŸå·¥ä½œç±»çš„`failed`æ–¹æ³•
           . $this->events->fire(new Events\JobFailed($connection, $job, $data, $failedId));
-            # ´¥·¢ ¶ÓÁĞ¹¤×÷Ê§°Ü ÊÂ¼ş
-      . try { //Ö´ĞĞ¹¤×÷ } catch { //Òì³£ }
-        # Ö´ĞĞ¹¤×÷
-          . $this->events->fire(new Events\JobProcessing($connection, $job, $data)); // ´¥·¢ JobProcessing ÊÂ¼ş
+            # è§¦å‘ é˜Ÿåˆ—å·¥ä½œå¤±è´¥ äº‹ä»¶
+      . try { //æ‰§è¡Œå·¥ä½œ } catch { //å¼‚å¸¸ }
+        # æ‰§è¡Œå·¥ä½œ
+          . $this->events->fire(new Events\JobProcessing($connection, $job, $data)); // è§¦å‘ JobProcessing äº‹ä»¶
           ! $job->fire();
             . Job@resolveAndFire(array $payload)
               . CallQueuedHandler@call(Job $job, array $data)
                 . Illuminate\Bus\Dispatcher@dispatchNow($command);
-                  # ÄÚ²¿Ê¹ÓÃ`pipeline`£¬Ö§³ÖÉèÖÃÖĞ¼ä¼ş
+                  # å†…éƒ¨ä½¿ç”¨`pipeline`ï¼Œæ”¯æŒè®¾ç½®ä¸­é—´ä»¶
                   . SmartWiki\Jobs\SomeJob@handle
-                    # Ö´ĞĞ ÓÃ»§×Ô¶¨ÒåµÄ¹¤×÷Àà µÄ`handle`·½·¨
+                    # æ‰§è¡Œ ç”¨æˆ·è‡ªå®šä¹‰çš„å·¥ä½œç±» çš„`handle`æ–¹æ³•
                 ! if (! $job->isDeletedOrReleased()) { $job->delete(); }  
-                  # ¹¤×÷Õı³£½áÊø£¬É¾³ı¼ÇÂ¼
-          . $this->events->fire(new Events\JobProcessed($connection, $job, $data)); // ´¥·¢ JobProcessed ÊÂ¼ş
-        # ´¦ÀíÒì³£
+                  # å·¥ä½œæ­£å¸¸ç»“æŸï¼Œåˆ é™¤è®°å½•
+          . $this->events->fire(new Events\JobProcessed($connection, $job, $data)); // è§¦å‘ JobProcessed äº‹ä»¶
+        # å¤„ç†å¼‚å¸¸
           . Worker@handleJobException($connection, Job $job, $delay, $e)
-            . $this->events->fire(new Events\JobExceptionOccurred($connection, $job, $data, $exception)); // ´¥·¢ JobExceptionOccurred ÊÂ¼ş
+            . $this->events->fire(new Events\JobExceptionOccurred($connection, $job, $data, $exception)); // è§¦å‘ JobExceptionOccurred äº‹ä»¶
             . $job->release($delay)
               . $job->released = true;
               . $this->delete();
-                # É¾³ı`jobs`±íÔ­À´µÄ¼ÇÂ¼
+                # åˆ é™¤`jobs`è¡¨åŸæ¥çš„è®°å½•
               . $this->database->release($this->queue, $this->job, $delay);
-                # ²åÈë`jobs`±íĞÂ¼ÇÂ¼£¬ºÍÔ­À´Ïà±È£¬attempts×Ö¶Î+1
-                ! ¡¾important¡¿´ËÊ±ÈÎÎñÔÚ¶ÓÁĞµÄ×îÄ©
-            . throw $e; // ÈÔÈ»Å×³öÒì³££¬¸øÉÏ¼¶´¦Àí
+                # æ’å…¥`jobs`è¡¨æ–°è®°å½•ï¼Œå’ŒåŸæ¥ç›¸æ¯”ï¼Œattemptså­—æ®µ+1
+                ! ã€importantã€‘æ­¤æ—¶ä»»åŠ¡åœ¨é˜Ÿåˆ—çš„æœ€æœ«
+            . throw $e; // ä»ç„¶æŠ›å‡ºå¼‚å¸¸ï¼Œç»™ä¸Šçº§å¤„ç†
           . Worker@pop
             . $this->exceptions->report($e);
               . Illuminate\Foundation\Exceptions\Handler@report
-                . $this->log->error($e); // ¼ÇÂ¼ÈÕÖ¾
+                . $this->log->error($e); // è®°å½•æ—¥å¿—
     . $this->sleep($sleep);
-      # Èç¹û¶ÓÁĞÖĞÃ»ÓĞ¿ÉÖ´ĞĞµÄJob£¬ĞİÃß`--sleep`Ãë
+      # å¦‚æœé˜Ÿåˆ—ä¸­æ²¡æœ‰å¯æ‰§è¡Œçš„Jobï¼Œä¼‘çœ `--sleep`ç§’
   . Worker@daemon
-    # ´ó¸Å¾ÍÊÇËÀÑ­»·µ÷ÓÃ`Worker@pop`£¬¶ÓÁĞÎª¿ÕÊ±ĞİÃß`--sleep`Ãë
-  ! ÁíÍâ£¬È«³ÌÃ»ÓĞ¿´µ½¹ØÓÚ³¬Ê±(timeout)µÄ´úÂë
-    . ºÃ°É£¬v5.3Ö®Ç°Ã»ÓĞ`retry_after`ºÍ`timeout`£¬ÎÒÓÃµÄÊÇv5.2´úÂë
-    # https://phpartisan.cn/news/97.html¡¾retry_after/expire¡¿
-. ·Ö·¢ÈÎÎñ `dispatch($someJob) | Illuminate\Bus\Dispatcher@dispatch()`
-  . Èç¹û`$someJob instanceof ShouldQueue`Ôò·Ö·¢¸ø¶ÓÁĞ(dispatchToQueue)£¬·ñÔòÖ±½ÓÖ´ĞĞ(dispatchNow)
+    # å¤§æ¦‚å°±æ˜¯æ­»å¾ªç¯è°ƒç”¨`Worker@pop`ï¼Œé˜Ÿåˆ—ä¸ºç©ºæ—¶ä¼‘çœ `--sleep`ç§’
+  ! å¦å¤–ï¼Œå…¨ç¨‹æ²¡æœ‰çœ‹åˆ°å…³äºè¶…æ—¶(timeout)çš„ä»£ç 
+    . å¥½å§ï¼Œv5.3ä¹‹å‰æ²¡æœ‰`retry_after`å’Œ`timeout`ï¼Œæˆ‘ç”¨çš„æ˜¯v5.2ä»£ç 
+    # https://phpartisan.cn/news/97.htmlã€retry_after/expireã€‘
+. åˆ†å‘ä»»åŠ¡ `dispatch($someJob) | Illuminate\Bus\Dispatcher@dispatch()`
+  . å¦‚æœ`$someJob instanceof ShouldQueue`åˆ™åˆ†å‘ç»™é˜Ÿåˆ—(dispatchToQueue)ï¼Œå¦åˆ™ç›´æ¥æ‰§è¡Œ(dispatchNow)
   . Dispatch@dispatchToQueue($someJob)
     . $queue = call_user_func($this->queueResolver, $connection); 
-      # ·µ»Ø`DatabseQueue`
+      # è¿”å›`DatabseQueue`
       . Dispatch@pushCommandToQueue($queue, $someJob)
         . $queue->push|later
-          # ¶ÓÁĞÇı¶¯(DatabseQueue)´æ´¢ÈÎÎñÊı¾İ
+          # é˜Ÿåˆ—é©±åŠ¨(DatabseQueue)å­˜å‚¨ä»»åŠ¡æ•°æ®
           . Queue@createPayload
-            # ½«`someJob`ĞòÁĞ»¯Îª×Ö·û´®£¬½«`Illuminate\Queue\CallQueuedHandler@call`×÷Îªjob
-. ÆäËüÇı¶¯
+            # å°†`someJob`åºåˆ—åŒ–ä¸ºå­—ç¬¦ä¸²ï¼Œå°†`Illuminate\Queue\CallQueuedHandler@call`ä½œä¸ºjob
+. å…¶å®ƒé©±åŠ¨
   . sync
-    # Ñ¡ÓÃ`sync`Çı¶¯£¬Êµ¼Ê²»´æÔÚ¶ÓÁĞ£¬¶øÊÇÍ¬²½µ÷ÓÃ£¬ËùÒÔÊÇ²»¿ÉÄÜÔÚ`artisan queue:work`ÖĞ±»µ÷ÓÃµÄ
-    # Æä´æÔÚµÄÒâÒåÔÚÓÚ·½±ãµ÷ÊÔ
+    # é€‰ç”¨`sync`é©±åŠ¨ï¼Œå®é™…ä¸å­˜åœ¨é˜Ÿåˆ—ï¼Œè€Œæ˜¯åŒæ­¥è°ƒç”¨ï¼Œæ‰€ä»¥æ˜¯ä¸å¯èƒ½åœ¨`artisan queue:work`ä¸­è¢«è°ƒç”¨çš„
+    # å…¶å­˜åœ¨çš„æ„ä¹‰åœ¨äºæ–¹ä¾¿è°ƒè¯•
     . SyncQueue@push
-      # `Queue@push`·½·¨Ô­±¾ÊÇÓÃÀ´½« ¹¤×÷ ¼ÓÈë¶ÓÁĞµÄ£¬µ«ÊÇ`SyncQueue@push`ÖĞÖ±½ÓÖ´ĞĞÁË ¹¤×÷£¬ÄÚÈİÍ¬`Worker@process`²î²»¶à
-      . $this->container['events']->fire(new Events\JobProcessing('sync', $job, $data)); // ´¥·¢ JobProcessing
+      # `Queue@push`æ–¹æ³•åŸæœ¬æ˜¯ç”¨æ¥å°† å·¥ä½œ åŠ å…¥é˜Ÿåˆ—çš„ï¼Œä½†æ˜¯`SyncQueue@push`ä¸­ç›´æ¥æ‰§è¡Œäº† å·¥ä½œï¼Œå†…å®¹åŒ`Worker@process`å·®ä¸å¤š
+      . $this->container['events']->fire(new Events\JobProcessing('sync', $job, $data)); // è§¦å‘ JobProcessing
       . $queueJob->fire(); // CallQueuedHandler@call -> SomeJob@handle
-      . $this->container['events']->fire(new Events\JobProcessed('sync', $job, $data)); //  ´¥·¢ JobProcessed
-      . try { ... } catch { // Òì³£´¦Àí }
-        . $this->container['events']->fire(new Events\JobExceptionOccurred('sync', $job, $data, $exception)); // ´¥·¢ JobExceptionOccurred
-        . $job->failed(); // ÓÃ»§×Ô¶¨ÒåµÄfailed·½·¨
-        . $this->container['events']->fire(new Events\JobFailed('sync', $job, $data)); // ´¥·¢JobFailedÊÂ¼ş
+      . $this->container['events']->fire(new Events\JobProcessed('sync', $job, $data)); //  è§¦å‘ JobProcessed
+      . try { ... } catch { // å¼‚å¸¸å¤„ç† }
+        . $this->container['events']->fire(new Events\JobExceptionOccurred('sync', $job, $data, $exception)); // è§¦å‘ JobExceptionOccurred
+        . $job->failed(); // ç”¨æˆ·è‡ªå®šä¹‰çš„failedæ–¹æ³•
+        . $this->container['events']->fire(new Events\JobFailed('sync', $job, $data)); // è§¦å‘JobFailedäº‹ä»¶
     . SyncQueue@pop
-      # ÊÇ¿ÕµÄ£¬ÒòÎª²»ĞèÒª
-  £¿redis
-# ¸½`DatabaseJob`½á¹¹£º
+      # æ˜¯ç©ºçš„ï¼Œå› ä¸ºä¸éœ€è¦
+  ï¼Ÿredis
+# é™„`DatabaseJob`ç»“æ„ï¼š
  Illuminate\Queue\Jobs\DatabaseJob {#633
   #database: Illuminate\Queue\DatabaseQueue {#634
   #job: {#646
@@ -597,50 +597,50 @@ createQueuedHandlerCallable £¿£¿£¿
   #deleted: false
   #released: false
  }
-# ¹ØÓÚ³¬Ê±
-  # ³¬Ê±µÄÊµÏÖÊÇÔÄ¶Á´úÂëÊ±×î´óµÄÀ§»ó
-  # Ïà¹ØµÄ¸ÅÄîÓĞ
+# å…³äºè¶…æ—¶
+  # è¶…æ—¶çš„å®ç°æ˜¯é˜…è¯»ä»£ç æ—¶æœ€å¤§çš„å›°æƒ‘
+  # ç›¸å…³çš„æ¦‚å¿µæœ‰
     . timeout / expire
     . {queue}:delayed / {queue} / {queue}:reserved
-  # v5.2 ËÆºõÈ·Êµ¡®³¬Ê±¡¯¸ÅÄî£¬µ«ÊÇ`expire`ºÍ`reserved`µÄ´æÔÚºÜÆæ¹Ö
-  # v5.4 ËÆºõÓÃ`pcntl`À©Õ¹µÄĞÅºÅ»úÖÆ£¬¶¨Ê±(timeout)·¢ËÍ`SIGALRM`ĞÅºÅ£¬ÔÚ»Øµ÷ÖĞ½áÊø½ø³Ì
-    # µ«ÊÇ²»¸ÃÑ½£¬³¬Ê±Ó¦¸Ã´Ó {queue}:reserved »Øµ½ {queue}:delayed
-  ! ²»¹ÜÁË
-# ²Î¿¼
-  # https://www.lijinma.com/blog/2017/01/31/laravel-queue/ ¡¾Ê¹ÓÃ Laravel Queue ²»µÃ²»Ã÷°×µÄÖªÊ¶¡¿¡¾good¡¿
-  # https://www.cnblogs.com/yjf512/p/6571941.html?utm_source=tuicool&utm_medium=referral¡¾laravelµÄÏûÏ¢¶ÓÁĞÆÊÎö¡¿¡¾good¡¿
-  # http://laravelacademy.org/post/6922.html ¡¾ÎÄµµ¡¿
-  # https://www.zhihu.com/question/34243607¡¾ÏûÏ¢¶ÓÁĞµÄÊ¹ÓÃ³¡¾°ÊÇÔõÑùµÄ¡¿
-  # https://www.cnblogs.com/dump/p/8243868.html¡¾PHPÏûÏ¢¶ÓÁĞÊµÏÖ¼°Ó¦ÓÃ¡¿¡¾excellent¡¿
-  # https://www.cnblogs.com/haoxinyue/p/6613706.html ¡¾ÏûÏ¢ÑÓ³Ù¡¿
+  # v5.2 ä¼¼ä¹ç¡®å®â€˜è¶…æ—¶â€™æ¦‚å¿µï¼Œä½†æ˜¯`expire`å’Œ`reserved`çš„å­˜åœ¨å¾ˆå¥‡æ€ª
+  # v5.4 ä¼¼ä¹ç”¨`pcntl`æ‰©å±•çš„ä¿¡å·æœºåˆ¶ï¼Œå®šæ—¶(timeout)å‘é€`SIGALRM`ä¿¡å·ï¼Œåœ¨å›è°ƒä¸­ç»“æŸè¿›ç¨‹
+    # ä½†æ˜¯ä¸è¯¥å‘€ï¼Œè¶…æ—¶åº”è¯¥ä» {queue}:reserved å›åˆ° {queue}:delayed
+  ! ä¸ç®¡äº†
+# å‚è€ƒ
+  # https://www.lijinma.com/blog/2017/01/31/laravel-queue/ ã€ä½¿ç”¨ Laravel Queue ä¸å¾—ä¸æ˜ç™½çš„çŸ¥è¯†ã€‘ã€goodã€‘
+  # https://www.cnblogs.com/yjf512/p/6571941.html?utm_source=tuicool&utm_medium=referralã€laravelçš„æ¶ˆæ¯é˜Ÿåˆ—å‰–æã€‘ã€goodã€‘
+  # http://laravelacademy.org/post/6922.html ã€æ–‡æ¡£ã€‘
+  # https://www.zhihu.com/question/34243607ã€æ¶ˆæ¯é˜Ÿåˆ—çš„ä½¿ç”¨åœºæ™¯æ˜¯æ€æ ·çš„ã€‘
+  # https://www.cnblogs.com/dump/p/8243868.htmlã€PHPæ¶ˆæ¯é˜Ÿåˆ—å®ç°åŠåº”ç”¨ã€‘ã€excellentã€‘
+  # https://www.cnblogs.com/haoxinyue/p/6613706.html ã€æ¶ˆæ¯å»¶è¿Ÿã€‘
 
 
-@ ¿ØÖÆÌ¨
-. ´´½¨ÃüÁîÀà(command)
-  . ÃüÁî `php artisan make:console SomeCommand`
-  . Ä¿Â¼ `/app/Console/Commands`
-  . `signature` ÊôĞÔ
-    # º¬ÒåÀàËÆ·½·¨Ç©Ãû£¬ÕâÀïÊÇÃüÁîÇ©Ãû£¬¶¨ÒåÁËÃüÁîµÄ²ÎÊı(arguments)ºÍÑ¡Ïî(options)
-    . email:send {user} // ²ÎÊı
-    . email:send {user?} // ¿ÉÑ¡²ÎÊı
-    . email:send {user=foo} // ´øÄ¬ÈÏÖµ
-    . email:send {user*} // Êı×é²ÎÊı¡£ Èç`email:send user1 user2`£¬ÓÃ`$this->argument('user')`½«µÃµ½Ò»¸öÊı×é
-    . email:send {user} {--queue} // Ã»ÓĞÖµµÄÑ¡Ïî£¬µÃµ½µÄÊÇtrue/false
-    . email:send {user} {--queue=} // ĞèÒªÖµµÄÑ¡Ïî
-    . email:send {user} {--queue=default} // ´øÄ¬ÈÏÖµµÄÑ¡Ïî
-    . email:send {user} {--Q|queue} // Ñ¡ÏîËõĞ´¡£ `email:send --queue` µÈÍ¬ `email:send -Q`
-    . email:send {user} {--queue=*} // Êı×éÑ¡Ïî¡£Èç`email:send user1 --queue=high --queue=low`
-  . `description` ÊôĞÔ
-    # ÃèÊö¡£`help`ÃüÁî ºÍ `list`ÃüÁî»áÓÃµ½
-  . `handle | fire`·½·¨£ºÃüÁîÄÚÈİ
-. ×¢²áÃüÁî
-  . ½«ÀàÃû¼ÓÈë`$kernel->commands`ÊôĞÔ
-  . »òÕß ·şÎñÌá¹©Õß ÖĞ£¬`$this->commands(SomeCommand::class)`
-. ±àĞ´ÃüÁî
-  . ÊäÈë
-    . Command@argument($key = null) // ²»ÉèÖÃkeyÊ±£¬ÒÔÊı×éĞÎÊ½·µ»ØËùÓĞ²ÎÊı
+@ æ§åˆ¶å°
+. åˆ›å»ºå‘½ä»¤ç±»(command)
+  . å‘½ä»¤ `php artisan make:console SomeCommand`
+  . ç›®å½• `/app/Console/Commands`
+  . `signature` å±æ€§
+    # å«ä¹‰ç±»ä¼¼æ–¹æ³•ç­¾åï¼Œè¿™é‡Œæ˜¯å‘½ä»¤ç­¾åï¼Œå®šä¹‰äº†å‘½ä»¤çš„å‚æ•°(arguments)å’Œé€‰é¡¹(options)
+    . email:send {user} // å‚æ•°
+    . email:send {user?} // å¯é€‰å‚æ•°
+    . email:send {user=foo} // å¸¦é»˜è®¤å€¼
+    . email:send {user*} // æ•°ç»„å‚æ•°ã€‚ å¦‚`email:send user1 user2`ï¼Œç”¨`$this->argument('user')`å°†å¾—åˆ°ä¸€ä¸ªæ•°ç»„
+    . email:send {user} {--queue} // æ²¡æœ‰å€¼çš„é€‰é¡¹ï¼Œå¾—åˆ°çš„æ˜¯true/false
+    . email:send {user} {--queue=} // éœ€è¦å€¼çš„é€‰é¡¹
+    . email:send {user} {--queue=default} // å¸¦é»˜è®¤å€¼çš„é€‰é¡¹
+    . email:send {user} {--Q|queue} // é€‰é¡¹ç¼©å†™ã€‚ `email:send --queue` ç­‰åŒ `email:send -Q`
+    . email:send {user} {--queue=*} // æ•°ç»„é€‰é¡¹ã€‚å¦‚`email:send user1 --queue=high --queue=low`
+  . `description` å±æ€§
+    # æè¿°ã€‚`help`å‘½ä»¤ å’Œ `list`å‘½ä»¤ä¼šç”¨åˆ°
+  . `handle | fire`æ–¹æ³•ï¼šå‘½ä»¤å†…å®¹
+. æ³¨å†Œå‘½ä»¤
+  . å°†ç±»ååŠ å…¥`$kernel->commands`å±æ€§
+  . æˆ–è€… æœåŠ¡æä¾›è€… ä¸­ï¼Œ`$this->commands(SomeCommand::class)`
+. ç¼–å†™å‘½ä»¤
+  . è¾“å…¥
+    . Command@argument($key = null) // ä¸è®¾ç½®keyæ—¶ï¼Œä»¥æ•°ç»„å½¢å¼è¿”å›æ‰€æœ‰å‚æ•°
     . Command@option($key = null)
-  . Êä³ö
+  . è¾“å‡º
     . Command@line
     . Command@info
     . Command@ask
@@ -654,57 +654,57 @@ createQueuedHandlerCallable £¿£¿£¿
 
 
 
-php artisan --version ²é¿´°æ±¾
+php artisan --version æŸ¥çœ‹ç‰ˆæœ¬
 
 laravel-admin
-http://www.mamicode.com/info-detail-1715776.html ¡¾laravel-adminºóÌ¨µÄ°²×°¡¿
+http://www.mamicode.com/info-detail-1715776.html ã€laravel-adminåå°çš„å®‰è£…ã€‘
 https://github.com/z-song/laravel-admin/blob/master/docs/zh/README.md
 https://www.oschina.net/p/laravel-admin
 
 
 
-autoload»úÖÆ
+autoloadæœºåˆ¶
 bootstrap/autoload.php
 vendor/autoload.php
-vendor/composer/ ¡¾composerÉú³ÉµÄ×Ô¶¯¼ÓÔØ¹æÔò¡¿
+vendor/composer/ ã€composerç”Ÿæˆçš„è‡ªåŠ¨åŠ è½½è§„åˆ™ã€‘
 vendor/composer/autoload_real.php
 	vender:psr-0 psr-4 
 	laravel:classmap 
-	file ÒıÈëÎÄ¼ş£¨²»ÊÇÀàÎÄ¼ş£©¡¾ÓĞ»úÖÆ±ÜÃâÖØ¸´ÒıÈë¡¿
-https://laravel-china.org/topics/1002/deep-composer-autoload¡¾good¡¿
+	file å¼•å…¥æ–‡ä»¶ï¼ˆä¸æ˜¯ç±»æ–‡ä»¶ï¼‰ã€æœ‰æœºåˆ¶é¿å…é‡å¤å¼•å…¥ã€‘
+https://laravel-china.org/topics/1002/deep-composer-autoloadã€goodã€‘
 
 composer
-"type": "project", // ËùÒÔ»áÔÚÍ¬¼¶Ä¿Â¼ÏÂĞÂ½¨vendorÄ¿Â¼£¿
-"type": "library", // ËùÒÔ»áÔÚ ÉÏÁ½¼¶ Ä¿Â¼ÏÂÒıÈërequireµÄ°ü£¿
-http://blog.csdn.net/nick_php/article/details/53994310¡¾³£ÓÃÃüÁî¡¿
+"type": "project", // æ‰€ä»¥ä¼šåœ¨åŒçº§ç›®å½•ä¸‹æ–°å»ºvendorç›®å½•ï¼Ÿ
+"type": "library", // æ‰€ä»¥ä¼šåœ¨ ä¸Šä¸¤çº§ ç›®å½•ä¸‹å¼•å…¥requireçš„åŒ…ï¼Ÿ
+http://blog.csdn.net/nick_php/article/details/53994310ã€å¸¸ç”¨å‘½ä»¤ã€‘
 
-Èç¹ûÒÀÀµ·¢Éú±ä¶¯£¿
-composer dump-autoload Èç¹û¸üĞÂÁËcomposer.jsonĞèÒª¸üĞÂautoload
+å¦‚æœä¾èµ–å‘ç”Ÿå˜åŠ¨ï¼Ÿ
+composer dump-autoload å¦‚æœæ›´æ–°äº†composer.jsonéœ€è¦æ›´æ–°autoload
 
-requireºÍrequire-devµÄÇø±ğ
-Ç°ÕßÓÃÓÚÉùÃ÷ÏîÄ¿·¢²¼°æ±¾µÄÒÀÀµ°ü£¬ºóÕßÓÃÓÚÉùÃ÷ÏîÄ¿¿ª·¢»ò²âÊÔÖĞÒÀÀµµÄ°ü¡£
+requireå’Œrequire-devçš„åŒºåˆ«
+å‰è€…ç”¨äºå£°æ˜é¡¹ç›®å‘å¸ƒç‰ˆæœ¬çš„ä¾èµ–åŒ…ï¼Œåè€…ç”¨äºå£°æ˜é¡¹ç›®å¼€å‘æˆ–æµ‹è¯•ä¸­ä¾èµ–çš„åŒ…ã€‚
 
 psr-4:
 namespace prefix --map--> path
-ÀàÃûÖĞµÄ ÏÂ»®Ïß_ ²»×ª»»ÎªÄ¿Â¼
+ç±»åä¸­çš„ ä¸‹åˆ’çº¿_ ä¸è½¬æ¢ä¸ºç›®å½•
 psr-0:
-²»´æÔÚ namespace¶Ôpath µÄÓ³Éä
-http://blog.csdn.net/loophome/article/details/52066981¡¾psr-4 VS psr-0¡¿
+ä¸å­˜åœ¨ namespaceå¯¹path çš„æ˜ å°„
+http://blog.csdn.net/loophome/article/details/52066981ã€psr-4 VS psr-0ã€‘
 
 \Closure
-http://www.dewen.net.cn/q/3998¡¾php ¸ø¶ÔÏóÌí¼Óº¯Êı excellent¡¿
+http://www.dewen.net.cn/q/3998ã€php ç»™å¯¹è±¡æ·»åŠ å‡½æ•° excellentã€‘
 
-laravel°æ±¾ºÅ
+laravelç‰ˆæœ¬å·
 vendor/laravel/framework/src/Illuminate/Foundation
 const VERSION = '5.4.24';
 
-vendor/laravel/framework/src/Illuminate/ContractsÄ¿Â¼ÏÂ¶¨ÒåµÄÈ«ÊÇ Interface
+vendor/laravel/framework/src/Illuminate/Contractsç›®å½•ä¸‹å®šä¹‰çš„å…¨æ˜¯ Interface
 
 
-Õâ¸öÓÉÓÚÕâÖÖĞ´·¨µÄÀàÊµÏÖÁËArrayAccess Õâ¸ö½Ó¿ÚÒÔºó¾Í¿ÉÒÔÊµÏÖÁËÏñ·ÃÎÊÊı×éÒ»Ñù·ÃÎÊ¶ÔÏó£¬¼´
+è¿™ä¸ªç”±äºè¿™ç§å†™æ³•çš„ç±»å®ç°äº†ArrayAccess è¿™ä¸ªæ¥å£ä»¥åå°±å¯ä»¥å®ç°äº†åƒè®¿é—®æ•°ç»„ä¸€æ ·è®¿é—®å¯¹è±¡ï¼Œå³
 $this['key'] == $this->key
 
-getenv ¡ª »ñÈ¡Ò»¸ö»·¾³±äÁ¿µÄÖµ
+getenv â€” è·å–ä¸€ä¸ªç¯å¢ƒå˜é‡çš„å€¼
 
 
         $ref = new \ReflectionObject($route);
@@ -717,72 +717,72 @@ getenv ¡ª »ñÈ¡Ò»¸ö»·¾³±äÁ¿µÄÖµ
 	-> runRouteWithinStack
 	
 	
-https://blog.csdn.net/qq_20678155/article/details/69542836¡¾laravelÊı¾İ¿âÈÕÖ¾¡¿
+https://blog.csdn.net/qq_20678155/article/details/69542836ã€laravelæ•°æ®åº“æ—¥å¿—ã€‘
 
 
 
-http://laravelacademy.org/post/2012.html ¡¾»ùÓÚ Redis ÊµÏÖÈÎÎñ¶ÓÁĞ¡¿¡¾--daemon¡¿
-https://segmentfault.com/a/1190000004997982 ¡¾»ùÓÚ Pusher Çı¶¯µÄ Laravel ÊÂ¼ş¹ã²¥£¨ÉÏ£©¡¿
+http://laravelacademy.org/post/2012.html ã€åŸºäº Redis å®ç°ä»»åŠ¡é˜Ÿåˆ—ã€‘ã€--daemonã€‘
+https://segmentfault.com/a/1190000004997982 ã€åŸºäº Pusher é©±åŠ¨çš„ Laravel äº‹ä»¶å¹¿æ’­ï¼ˆä¸Šï¼‰ã€‘
 
 
 
-£¿£¿ÄÇĞ©»º´æÎÄ¼ş
+ï¼Ÿï¼Ÿé‚£äº›ç¼“å­˜æ–‡ä»¶
 getCachedServicesPath
 \bootstrap\cache\compiled.php
 php artisan config:cache    \bootstrap\cache\config.php
 \bootstrap\cache\services.php
 php artisan route:cache | php artisan route:clear
- cache ÎÄ¼ş¼ĞÓÃÓÚ°üº¬¿ò¼ÜÎªÌáÉıĞÔÄÜËùÉú³ÉµÄÎÄ¼ş£¬ÈçÂ·ÓÉºÍ·şÎñ»º´æÎÄ¼ş£»
+ cache æ–‡ä»¶å¤¹ç”¨äºåŒ…å«æ¡†æ¶ä¸ºæå‡æ€§èƒ½æ‰€ç”Ÿæˆçš„æ–‡ä»¶ï¼Œå¦‚è·¯ç”±å’ŒæœåŠ¡ç¼“å­˜æ–‡ä»¶ï¼›
 
 
-¡¾½â¾ö¡¿deferredServices
-¡ı Illuminate\Foundation\Application@make($abstract, array $parameters = [])
+ã€è§£å†³ã€‘deferredServices
+â†“ Illuminate\Foundation\Application@make($abstract, array $parameters = [])
    $app->loadDeferredProvider($abstract)
    $provider = $this->deferredServices[$abstract];
-   ¡ı $app->registerDeferredProvider($provider, $service);
+   â†“ $app->registerDeferredProvider($provider, $service);
       $this->register($instance = new $provider($this));
       $this->booting(function () use ($instance) { $this->bootProvider($instance); });
-´ÓÕâÀï¿´£¬deferredServicesÊÇÖ¸ÄÇĞ©ÏÈregisterºóbootµÄ·şÎñ
+ä»è¿™é‡Œçœ‹ï¼ŒdeferredServicesæ˜¯æŒ‡é‚£äº›å…ˆregisteråbootçš„æœåŠ¡
 
 
-¡¾½â¾ö¡¿°ó¶¨
-¡ı Illuminate\Foundation\Application@registerCoreContainerAliases
+ã€è§£å†³ã€‘ç»‘å®š
+â†“ Illuminate\Foundation\Application@registerCoreContainerAliases
    aliases: [
     "Illuminate\Foundation\Application" => "app"
     "Illuminate\Contracts\Container\Container" => "app"
     "Illuminate\Contracts\Foundation\Application" => "app"
     ...
     ]
-¡ı Illuminate\Foundation\Application@registerBaseBindings
+â†“ Illuminate\Foundation\Application@registerBaseBindings
    $this->instance('app', $this);
-¡ı index.php
+â†“ index.php
    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-   ¡ı SmartWiki\Http\Kernel extends Illuminate\Foundation\Http\Kernel
+   â†“ SmartWiki\Http\Kernel extends Illuminate\Foundation\Http\Kernel
       use Illuminate\Contracts\Foundation\Application;
       public function __construct(Application $app, Router $router)
-      ¡ı Illuminate\Foundation\Application@make
+      â†“ Illuminate\Foundation\Application@make
          Illuminate\Contracts\Foundation\Application -getAlias-> app -bind-> Illuminate\Foundation\Application
-°ó¶¨(bind/singleton) ºÍ ±ğÃû(alias)µÄ¹¤×÷Ô­Àí
-router¶ÔÏóÒ²ÊÇÕâÃ´ÊµÀı»¯µÄ¡£Æä°ó¶¨ÊÇÔÚ
-   ¡ı Illuminate\Foundation\Application@registerBaseServiceProviders
-      RoutingServiceProviderÖĞÍê³ÉµÄ
+ç»‘å®š(bind/singleton) å’Œ åˆ«å(alias)çš„å·¥ä½œåŸç†
+routerå¯¹è±¡ä¹Ÿæ˜¯è¿™ä¹ˆå®ä¾‹åŒ–çš„ã€‚å…¶ç»‘å®šæ˜¯åœ¨
+   â†“ Illuminate\Foundation\Application@registerBaseServiceProviders
+      RoutingServiceProviderä¸­å®Œæˆçš„
 
 
-¡¾ÒÑ½â¾ö¡¿ÔõÃ´´òÓ¡±¨´í
+ã€å·²è§£å†³ã€‘æ€ä¹ˆæ‰“å°æŠ¥é”™
 storage/logs/laravel.log
-.env ÖĞ APP_ENV ÉèÖÃÎª testing
+.env ä¸­ APP_ENV è®¾ç½®ä¸º testing
 
 
-¡¾¸ÅÄî¡¿interface -> contracts / ÆõÔ¼
+ã€æ¦‚å¿µã€‘interface -> contracts / å¥‘çº¦
 
 
-¡¾·ç¸ñ¡¿£º
-1. Ï²»¶ÓÃÊôĞÔµÄÍ¬Ãû·½·¨×÷getter·½·¨
+ã€é£æ ¼ã€‘ï¼š
+1. å–œæ¬¢ç”¨å±æ€§çš„åŒåæ–¹æ³•ä½œgetteræ–¹æ³•
     protected function bootstrappers()
     {
         return $this->bootstrappers;
     }
-2. resolve/make/build ¶¼ÓĞ´´½¨¶ÔÏóµÄÒâË¼
+2. resolve/make/build éƒ½æœ‰åˆ›å»ºå¯¹è±¡çš„æ„æ€
 
 
 

@@ -5,13 +5,13 @@ tortoiseSVN
 
 APACHE,MYSQL,PHP,AJAX
 HTML,JAVASCRIPT,JQUERY,DIV/CSS,XML
-memcache»º´æ¼¼Êõ
-MVC£¬ThinkPHP
+memcacheç¼“å­˜æŠ€æœ¯
+MVCï¼ŒThinkPHP
 
 
-Êý¾Ý·Ö·¢£¬Nosql£¬redis£¬linux·þÎñÆ÷¼Ü¹¹,MySQLË÷ÒýÓÅ»¯,¾²Ì¬»¯Éè¼Æ,MonoDB,ECSHOP
+æ•°æ®åˆ†å‘ï¼ŒNosqlï¼Œredisï¼ŒlinuxæœåŠ¡å™¨æž¶æž„,MySQLç´¢å¼•ä¼˜åŒ–,é™æ€åŒ–è®¾è®¡,MonoDB,ECSHOP
 
-ÆÚÈ¨,¼¨Ð§£¬ÄêÖÕË«Ð½
+æœŸæƒ,ç»©æ•ˆï¼Œå¹´ç»ˆåŒè–ª
 
-µÛ¹úcms£¬WordPress£¬magentto£¬joomlar£¬codeigniter£¬
-b/sÏµÍ³£¬web2.0,
+å¸å›½cmsï¼ŒWordPressï¼Œmagenttoï¼Œjoomlarï¼Œcodeigniterï¼Œ
+b/sç³»ç»Ÿï¼Œweb2.0,

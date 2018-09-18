@@ -1,59 +1,59 @@
 ---------------------------------------- FOR MYSQL ---------------------------------------
 
-MySQL����Henry Spencer���������ʽʵʩ����Ŀ���Ƿ���POSIX 1003.2
-���ź���������ڲ�ͬ�汾����ʱ���ְٶȵ��ķ���û���ÿ��Կ������ԭ��
+MySQL采用Henry Spencer的正则表达式实施，其目标是符合POSIX 1003.2
+很遗憾，正则存在不同版本，有时候发现百度到的方法没有用可以考虑这个原因。
 
-|	��
-[...]	�������������ַ��б�
-[^...]	ֻҪ���ڷ������ַ��б���
-^	�ַ�����
-$	�ַ���β
-[[:<:]]	����
-[[:>:]]	��β
-.	ƥ�������ַ�
-*	ǰ�ߵ����ݿ��������ظ�ʹ���������ʹ��������ʽ�õ�ƥ��
-{2}	ǰ�ߵ����������ظ��Ĵ���
-?	ƥ��0��1��
-(ab)	��ϡ�����
-
-
-mysql��RLIKEƥ�� Ĭ�ϲ����ִ�Сд��
-��Ҫ��Сд���У��� RLIKE BINARY
+|	或
+[...]	方括号内任意字符列表
+[^...]	只要不在方括号字符列表内
+^	字符串首
+$	字符串尾
+[[:<:]]	词首
+[[:>:]]	词尾
+.	匹配任意字符
+*	前边的内容可以连续重复使用任意次以使整个表达式得到匹配
+{2}	前边的内容连续重复的次数
+?	匹配0或1次
+(ab)	结合。。。
 
 
-����var_dump("\r\n\b");  
-* �����string(6) " \b"
-* \r��\n��php���Խ��͵�ת���ַ�������1�ַ���\b php�޷����ͣ��ʲ���ת�壬��ͨ�������ַ�
-* \r\n�������������е�ͬ�ո�ͬ������ո�ֻ��ʾһ���ո�
-
-������"\r\n\b"����mysql,��ȡ����var_dump();
-* �����string(3) " "
-* ���Կ�����\b��mysql�б���Ϊ��ת���ַ�������
+mysql的RLIKE匹配 默认不区分大小写；
+若要大小写敏感，用 RLIKE BINARY
 
 
-����$reg="\\\\\\\\" ����ƥ�� \
+例：var_dump("\r\n\b");  
+* 结果：string(6) " \b"
+* \r和\n是php可以解释的转义字符，各算1字符；\b php无法解释，故不作转义，普通的两个字符
+* \r\n等输出到浏览器中等同空格，同理多个空格只显示一个空格
+
+例：将"\r\n\b"存入mysql,再取出：var_dump();
+* 结果：string(3) " "
+* 可以看出，\b在mysql中被认为是转义字符。。。
+
+
+现象：$reg="\\\\\\\\" 才能匹配 \
 $sql = "SELECT id,url FROM admin_nav WHERE url REGEXP '$reg' ";
-�ƺ������������ͣ�
-* php��ת�������ַ����������� \\\\ ������mysql
-* mysql������ת�����Σ�ֻҪ�� \ ?������
-* ����֤��mysql�е����� \ һ����ȥת�������ַ�
-	���� $reg = "\a"; \a��mysql��Ҳ����ĳת���ַ���������� ��ͬaȥƥ��
-* $reg = '\n';$reg = "\n";������Ҳ�����������
-* $reg = "\\^";$reg = "\\\\^";Ҳ�����������
-	�ַ���		\\^	ת���(\\)��^  2���ַ�
-	��php 		\^ 	�ַ�������Ϊ \��^  2���ַ�
-	��mysql��һ��	\^	ת���(\^)  1���ַ�  ��\^������ĳת���ַ���������� ^
-	��mysql�ڶ���	^	û�� \ ��û��ת�壬^ ƥ���ַ����Ŀ�ʼ
+似乎可以这样解释：
+* php中转义结果，字符串的内容是 \\\\ ，传入mysql
+* mysql中最多会转义两次，只要有 \ ?。。。
+* 试验证明mysql中单独的 \ 一定会去转义后面的字符
+	例如 $reg = "\a"; \a在mysql中也不是某转义字符，结果就是 等同a去匹配
+* $reg = '\n';$reg = "\n";的例子也符合这个解释
+* $reg = "\\^";$reg = "\\\\^";也符合这个解释
+	字符串		\\^	转义的(\\)和^  2个字符
+	经php 		\^ 	字符串内容为 \和^  2个字符
+	到mysql第一步	\^	转义的(\^)  1个字符  但\^并不是某转义字符，因此视作 ^
+	到mysql第二步	^	没有 \ ，没有转义，^ 匹配字符串的开始
 	
-	�ַ���		\\\\^	ת���(\\)*2��^  3���ַ�
-	��php		\\^	�ַ�������Ϊ \*2��^  3���ַ�
-	��mysql��һ��	\\^	ת���(\\)��^  2���ַ�
-	��mysql�ڶ���	\^	ת���(\^) ������ƥ���ַ����Ŀ�ʼ Ԫ�ַ�
-* $reg = "[\\\\]";����ƥ�� \
-	����Ϊ��[]�ڵĲ�����mysql�������Ҫת��һ��
+	字符串		\\\\^	转义的(\\)*2和^  3个字符
+	经php		\\^	字符串内容为 \*2和^  3个字符
+	到mysql第一步	\\^	转义的(\\)和^  2个字符
+	到mysql第二步	\^	转义的(\^) 不再是匹配字符串的开始 元字符
+* $reg = "[\\\\]";就能匹配 \
+	解释为，[]内的部分在mysql中最多需要转义一次
 
 
-�ο���
+参考：
 http://www.jb51.net/article/72928.htm
 http://blog.csdn.net/vvhesj/article/details/22299413
 
@@ -64,43 +64,43 @@ http://blog.csdn.net/vvhesj/article/details/22299413
 
 ---------------------------------------- FOR PHP ---------------------------------------
 
-preg_match (����, Ŀ���ַ��� [, �������� [, flags [, offset]]] )
-preg_match_all (����, Ŀ���ַ��� [, �������� [,$flags [, offset]]] )
+preg_match (正则, 目标字符串 [, 返回数组 [, flags [, offset]]] )
+preg_match_all (正则, 目标字符串 [, 返回数组 [,$flags [, offset]]] )
 
 preg_match($reg, $str, $out, $flag, $offset);
-* $reg ()������ȡ���ַ�������Ϊ���С������$out
-* flag�����ǳ��� PREG_SET_ORDER �� PREG_PATTERN_ORDER
-	PREG_SET_ORDER  �����С�����
-	PREG_PATTERN_ORDER  �����С�����
-������offset
+* $reg ()可以提取子字符串，作为“列”输出到$out
+* flag可以是常量 PREG_SET_ORDER 或 PREG_PATTERN_ORDER
+	PREG_SET_ORDER  按“列”分组
+	PREG_PATTERN_ORDER  按“行”分组
+？？？offset
 
 
-/	�����
-+ * ? {m,n}	ͬmysql
-\s	�ո��������tab \n
-\S	�� \s
-\w	��ĸ�����»���
-\W	�� \w
-\d	����
-.	�����з�֮��������ַ�
+/	定界符
++ * ? {m,n}	同mysql
+\s	空格符，包括tab \n
+\S	反 \s
+\w	字母数字下划线
+\W	反 \w
+\d	数字
+.	除换行符之外的所有字符
 
-^	�ַ���ͷ
-$	�ַ���β
-\b	����ͷ��β
-\B	�� \b ������ͷ��β֮��
+^	字符串头
+$	字符串尾
+\b	单词头或尾
+\B	反 \b ，单词头和尾之间
 
-[a-z][A-Z]	��Сд����
-[^...]	ȡ��
-|	��
-
-
-����$reg = "|<[^>]+>(.*)</[^>]+>|U";
-������ |U ��ʾֻƥ�������һ���ַ���;���ظ�ƥ��;
-�� .* ������̰��ģʽƥ��,�ᾡ��ƥ�������ַ���,
-������|U���Ϊ��̰��ģʽ,ֻƥ�����ٵ��ַ���
+[a-z][A-Z]	大小写敏感
+[^...]	取反
+|	或
 
 
-�ο���
+例：$reg = "|<[^>]+>(.*)</[^>]+>|U";
+最后面的 |U 表示只匹配最近的一个字符串;不重复匹配;
+即 .* 本来是贪婪模式匹配,会尽量匹配最多的字符串,
+后面有|U则变为非贪婪模式,只匹配最少的字符串
+
+
+参考：
 http://www.360doc.com/content/10/0921/10/930254_55292179.shtml
 http://zhidao.baidu.com/link?url=oAq9TUTle6BTcK-K2fq-wZ8O1UzTZlAN2IYsyfOkdbAmipJMOZGGFBMvB-Lf7xseTkUxY-sgVVkB1YCx_U-AeK
 http://www.phpddt.com/php/182.html
@@ -109,119 +109,119 @@ http://deerchao.net/tutorials/regex/regex.htm
 
 ---------------------------------------- FOR JS ---------------------------------------
 
-�󲿷ֹ���ͬphp
+大部分规则同php
 
 
-()	*�ڱ�����ƥ�������ʱ�������еı���ʽ������Ϊ���屻����
-	*ȡƥ������ʱ�������еı���ʽƥ�䵽�����ݿ��Ա������õ�
+()	*在被修饰匹配次数的时候，括号中的表达式可以作为整体被修饰
+	*取匹配结果的时候，括号中的表达式匹配到的内容可以被单独得到
 
 
-��̰��ģʽ��
-������ ƥ����� ��������ź��ټ���һ�� "?" �ţ������ʹƥ����������ı���ʽ�������ٵ�ƥ��;
+非贪婪模式：
+在修饰 匹配次数 的特殊符号后再加上一个 "?" 号，则可以使匹配次数不定的表达式尽可能少的匹配;
 
 
-��������
-С���Ű����ı���ʽ��ƥ�䵽���ַ���,������ƥ������е��ã�
-����<td>(.*?)</td>	(.*?)�е����ݿ����� /1 ƥ��
-����(i wanna be (.*?) )	(.*?)�е����ݿ����� /2 ƥ��
+反向引用
+小括号包含的表达式所匹配到的字符串,可以在匹配过程中调用：
+例：<td>(.*?)</td>	(.*?)中的内容可以用 /1 匹配
+例：(i wanna be (.*?) )	(.*?)中的内容可以用 /2 匹配
 
 
-����Ԥ������(?=xxxxx)  (?!xxxxx)
-����Ԥ������(?<=xxxxx)  (?<!xxxxx)
-ע��JScript.RegExp ��֧�ַ���Ԥ����
+正向预搜索：(?=xxxxx)  (?!xxxxx)
+反向预搜索：(?<=xxxxx)  (?<!xxxxx)
+注：JScript.RegExp 不支持反向预搜索
 
 
-����ʽ�������ã�
-Ignorecase  i	���Դ�Сд	ע�⣺Ĭ�����ִ�Сд����mysql php��ͬ
-Singleline	. ����ƥ�任�з�
-Multiline   m	^$ ����ƥ��ÿһ�� ��/n�� ���׺�β
-Global	    g	�滻ʱ�����ã���ʾ�滻����ƥ��
+表达式属性设置：
+Ignorecase  i	忽略大小写	注意：默认区分大小写，与mysql php不同
+Singleline	. 可以匹配换行符
+Multiline   m	^$ 可以匹配每一行 （/n） 的首和尾
+Global	    g	替换时起作用，表示替换所有匹配
 
 
-�� "|" ���������ߣ���ĳ���ַ����ֻ��һ�߿���ƥ�䣬������������Ϊ "|" ���ߵı���ʽ��Ϊ����λ�ö�������ͬ
+或 "|" 的左右两边，对某个字符最好只有一边可以匹配，这样，不会因为 "|" 两边的表达式因为交换位置而有所不同
 
 
-�������ʽ:
-1.��ͨ��ʽ��var reg=/����ʽ/���Ӳ���
-����var reg=/abc+f/g;  //�����ַ���������object
-2.���캯����ʽ��var reg=new RegExp(������ʽ��,�����Ӳ�����);
-����var reg=new RegExp(��abc+f��,��g��);
+正则表达式:
+1.普通方式：var reg=/表达式/附加参数
+例：var reg=/abc+f/g;  //不是字符串，而是object
+2.构造函数方式：var reg=new RegExp(“表达式”,”附加参数”);
+例：var reg=new RegExp(“abc+f”,”g”);
 
 
-exec()������
-ʹ�ã�reg.exec("string")
-���أ�һ�������顱��������ᱣ����ƥ��������ַ���
-ע�⣺����ж�����ʵ�ƥ�䣬��
-* ��Ҫ�Ӳ��� g ���� var var regx=/user/d/g;
-* ��һ��ִ��exec����һ����һ��ƥ�䣬��ʱ����ִ��exec�������η��صڶ���������ƥ��
-var rs1 = regx.exec(��ddduser1dsfuser2dd��); //user1
-var rs2 = regx.exec(��ddduser1dsfuser2dd��); //user2
+exec()函数：
+使用：reg.exec("string")
+返回：一个“数组”，该数组会保存所匹配的所有字符串
+注意：如果有多个合适的匹配，则
+* 需要加参数 g ，如 var var regx=/user/d/g;
+* 第一次执行exec返回一个第一个匹配，此时继续执行exec，则依次返回第二个第三个匹配
+var rs1 = regx.exec(“ddduser1dsfuser2dd”); //user1
+var rs2 = regx.exec(“ddduser1dsfuser2dd”); //user2
 
 
-test()		reg.test("string")	���أ�boolֵ	���ã��ж��Ƿ�ƥ��
-���û�мӲ���g���򷵻ص�һ��ƥ�䣬�������g�򷵻����е�ƥ��
+test()		reg.test("string")	返回：bool值	作用：判断是否匹配
+如果没有加参数g，则返回第一个匹配，加入参数g则返回所有的匹配
 
 match()
-������expr��ƥ���һ���ַ������飬���û�мӲ���g���򷵻ص�һ��ƥ�䣬�������g�򷵻����е�ƥ��
-������exec�кβ�ͬ
+返回与expr相匹配的一个字符串数组，如果没有加参数g，则返回第一个匹配，加入参数g则返回所有的匹配
+？？？exec有何不同
 
 search()	
-�����ַ�������expr��ƥ��ĵ�һ��ƥ���indexֵ
+返回字符串中与expr相匹配的第一个匹配的index值
 
-replace(str,replace) ���ַ�����ƥ��str�Ĳ����滻Ϊreplace
-str�п��Ժ���һ�ֱ�������$����ʽΪ$n������ƥ���б���ס�ĵ�n��ƥ���ַ���
+replace(str,replace) 将字符串中匹配str的部分替换为replace
+str中可以含有一种变量符号$，格式为$n，代表匹配中被记住的第n的匹配字符串
 var regx=/u(se)r/d/g;
-var str=��user13userddduser345��;
-var rs=str.replace(regx,��$1��);  //se3userdddse45
+var str=“user13userddduser345”;
+var rs=str.replace(regx,”$1”);  //se3userdddse45
 
 split(expr)  
-���ַ�����ƥ��expr�Ĳ������ָ����һ�����飬���ұ���ʽ�Ƿ񸽼Ӳ���g��û�й�ϵ
+将字符串以匹配expr的部分做分割，返回一个数组，而且表达式是否附加参数g都没有关系
 var regx=/user/d/g;
-var str=��user13userddduser345��;
+var str=“user13userddduser345”;
 var rs=str.split(regx);  //{3userddd, 45}
 
 
-/b js���� �˸�� ��ת���ַ�
-/d���� /D������ /f��ҳ /n���� /r�س�
+/b js中是 退格键 的转义字符
+/d数字 /D非数字 /f换页 /n换行 /r回车
 
 
-regx���ԣ�
-lastIndex	���ؿ�ʼ��һ��ƥ���λ��
-source		���ر���ʽ�ַ�������
+regx属性：
+lastIndex	返回开始下一个匹配的位置
+source		返回表达式字符串自身
 
-rs���ԣ�
-index		���ص�ǰƥ���λ��
+rs属性：
+index		返回当前匹配的位置
 input		rs.input = regx.source
-rs[0/1...]	����ƥ�����еĵ�1/2...��ƥ��ֵ
+rs[0/1...]	返回匹配结果中的第1/2...个匹配值
 
 
-����ʽ�У�����ʹ�� "/xXX" �� "/uXXXX" ��ʾһ���ַ���"X" ��ʾһ��ʮ����������
-ƥ�人�֣�\u4e00-\u9fa5
+表达式中，可以使用 "/xXX" 和 "/uXXXX" 表示一个字符（"X" 表示一个十六进制数）
+匹配汉字：\u4e00-\u9fa5
 
 
 \^[a-z]+$\.test("abc");
-new RegExp("^[a-z]+$");  //ע�� ���ַ�ʽû����λ\ \�Ķ����
+new RegExp("^[a-z]+$");  //注意 这种方式没有首位\ \的定界符
 
 
-ƥ��ո��ص���˵ ת�壩
+匹配空格（重点想说 转义）
 *
-var regx_str = "^[\\s]+$";  // "\\s"��ӡ������ \s ; "\s"��ӡ������ s
+var regx_str = "^[\\s]+$";  // "\\s"打印出来是 \s ; "\s"打印出来是 s
 var regx = new RegExp(regx_str);
 *
-var regx = /^[\s]/;  // ���ַ�ʽ \sû����Ϊ�ַ���������ת��
-���� var regx = /^[\\s]/; Ҳ����ƥ��ո񣬺ܶ�ط����Կ���js�Զ�� \ �ܿ���
-���鲻Ҫ�����������ˣ���һ�����þ���
+var regx = /^[\s]/;  // 这种方式 \s没有作为字符串，不用转义
+但是 var regx = /^[\\s]/; 也可以匹配空格，很多地方可以看出js对多出 \ 很宽容
+建议不要纠结具体机制了，试一试能用就行
 
 
-ƥ�� - ʱ���ת�� \-
+匹配 - 时最好转义 \-
 
 
-ƥ��url 
+匹配url 
 http://yuncode.net/code/c_52ef51ddd6a3423
 
 
-var reg = /(xxx)*/ ������д��������
-ֻ�۲�� ����Ҫ�� �ַ����׿�ʼƥ�� ��ͬ /^(xxx)*/
+var reg = /(xxx)*/ 这样的写法有问题
+只观察出 它会要求 字符串首开始匹配 如同 /^(xxx)*/
 
 
 
@@ -229,7 +229,7 @@ var reg = /(xxx)*/ ������д��������
 
 
 
-�ο���
+参考：
 http://blog.csdn.net/zaifendou/article/details/5746988 nice article
 
 

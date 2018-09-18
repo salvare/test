@@ -4,7 +4,7 @@ IEC
 ISOC	Internet Society	RFC
 W3C	World Wide Web Consortium
 
-ÖĞÎÄRFCÎÄµµÄ¿Â¼ http://man.chinaunix.net/develop/rfc/default.htm
+ä¸­æ–‡RFCæ–‡æ¡£ç›®å½• http://man.chinaunix.net/develop/rfc/default.htm
 
 
 http://justcoding.iteye.com/blog/1950270	OAuth
@@ -12,11 +12,11 @@ http://openid.net.cn/about.bml			OpenID
 http://www.cnblogs.com/likebeta/archive/2012/06/28/2568786.html
 http://desert3.iteye.com/blog/1701626
 
-½ø³Ì Ïß³Ì
-http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html¡¾×¢Òâ¿´ÆÀÂÛ¡¿
-cpuµ÷¶È¶ÔÏó»ù±¾ÉÏÊÇÏß³Ì£¬Óë½ø³ÌÎŞ¹Ø¡¾»úÖÆÊÓÏµÍ³¶ø¶¨£¬µ«Ä¿Ç°´ó¶àÏµÍ³ÊÇÕâÑùµÄ¡¿¡¾ÎªÁË¼ò»¯µ÷¶È»úÖÆ¡¿¡¾search "FredWe"¡¿
+è¿›ç¨‹ çº¿ç¨‹
+http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.htmlã€æ³¨æ„çœ‹è¯„è®ºã€‘
+cpuè°ƒåº¦å¯¹è±¡åŸºæœ¬ä¸Šæ˜¯çº¿ç¨‹ï¼Œä¸è¿›ç¨‹æ— å…³ã€æœºåˆ¶è§†ç³»ç»Ÿè€Œå®šï¼Œä½†ç›®å‰å¤§å¤šç³»ç»Ÿæ˜¯è¿™æ ·çš„ã€‘ã€ä¸ºäº†ç®€åŒ–è°ƒåº¦æœºåˆ¶ã€‘ã€search "FredWe"ã€‘
 http://www.cnblogs.com/lmule/archive/2010/08/18/1802774.html
-Ïß³ÌµÄÍ¬²½ºÍÒì²½http://bibo531651225.iteye.com/blog/1819018
+çº¿ç¨‹çš„åŒæ­¥å’Œå¼‚æ­¥http://bibo531651225.iteye.com/blog/1819018
 
 
 

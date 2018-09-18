@@ -9,59 +9,59 @@ for(var i=0;i<10;i++)
 for(var k in arr)
 
 document.write()
-* ÔÚÒ³Ãæ¼ÓÔØÍêµ÷ÓÃ»á¸²¸ÇÇ°ÃæÄÚÈİ
-* ¿ÉÊä³ö Êı×ÖË÷Òı Êı×é¡¢¶àÎ¬Êı×é£»²»ÄÜÊä³ö ·ÇÊı×ÖË÷Òı Êı×é
+* åœ¨é¡µé¢åŠ è½½å®Œè°ƒç”¨ä¼šè¦†ç›–å‰é¢å†…å®¹
+* å¯è¾“å‡º æ•°å­—ç´¢å¼• æ•°ç»„ã€å¤šç»´æ•°ç»„ï¼›ä¸èƒ½è¾“å‡º éæ•°å­—ç´¢å¼• æ•°ç»„
 
-´´½¨Êı×é
+åˆ›å»ºæ•°ç»„
 * var arr = new Array();arr['a']=0;
 * var arr = new Array(0,1);
 * var arr = [[0,1],[2,3]];
 
-µ¼ÈëjsÎÄ¼ş <script src='xxx.js'></script>
-Ò»µ©¼ÓÁËsrc,<script>±êÇ©ÄÚµÄjs´úÂë»áÒò¸²¸Ç¶øÎŞĞ§
+å¯¼å…¥jsæ–‡ä»¶ <script src='xxx.js'></script>
+ä¸€æ—¦åŠ äº†src,<script>æ ‡ç­¾å†…çš„jsä»£ç ä¼šå› è¦†ç›–è€Œæ— æ•ˆ
 
-onload Ïê¼ûhttp://blog.sina.com.cn/s/blog_48e6792c01010f29.html
-* Ö»ÄÜÔÚbody±êÇ©ÖĞÊ¹ÓÃ<body onload='load1(),load2()'>
-* ÄÜÔÚjsÖĞÊ¹ÓÃ window.onload=load1;
-* Ò³Ãæ¼ÓÔØÍê½« µ÷ÓÃonloadµÄº¯Êı
+onload è¯¦è§http://blog.sina.com.cn/s/blog_48e6792c01010f29.html
+* åªèƒ½åœ¨bodyæ ‡ç­¾ä¸­ä½¿ç”¨<body onload='load1(),load2()'>
+* èƒ½åœ¨jsä¸­ä½¿ç”¨ window.onload=load1;
+* é¡µé¢åŠ è½½å®Œå°† è°ƒç”¨onloadçš„å‡½æ•°
 
-ÊÂ¼ş£º
+äº‹ä»¶ï¼š
 onclick
 onchange
 onblur
 onfocus
 onmouseover
 onmouseout
-ÆäËü
+å…¶å®ƒ
 
 
-ÃîÎ¶¿ÎÌÃ
+å¦™å‘³è¯¾å ‚
 
-µÚ3¿Î-----------------------------------------------
+ç¬¬3è¯¾-----------------------------------------------
 
 var clock = setInterval(function,time)
-setTimeout(function,time)Ö»Ö´ĞĞÒ»´Î
+setTimeout(function,time)åªæ‰§è¡Œä¸€æ¬¡
 clearInterval(clock)
 
 date = new Date();
 date.getHours getMinutes getSeconds 
-getDay() ĞÇÆÚ ×¢£ºĞÇÆÚÌìÎª0
-getMonth() ÔÂ·İ ×¢£ºÃÔÖ®´Ó0ËãÆğ£¬getFullYearºÍgetDate¶¼Ã»ÎÊÌâ
+getDay() æ˜ŸæœŸ æ³¨ï¼šæ˜ŸæœŸå¤©ä¸º0
+getMonth() æœˆä»½ æ³¨ï¼šè¿·ä¹‹ä»0ç®—èµ·ï¼ŒgetFullYearå’ŒgetDateéƒ½æ²¡é—®é¢˜
 
 str.charAt(index)
 
-µÚ4¿Î-----------------ÑÓÊ±ÌáÊ¾¿ò--
+ç¬¬4è¯¾-----------------å»¶æ—¶æç¤ºæ¡†--
 
-getElementById ĞèÒªÔÚwindow.onload()²ÅÄÜµ÷ÓÃ£¬²»È»È¡²»µ½ÔªËØ¶ÔÏó
+getElementById éœ€è¦åœ¨window.onload()æ‰èƒ½è°ƒç”¨ï¼Œä¸ç„¶å–ä¸åˆ°å…ƒç´ å¯¹è±¡
 
 offsetLeft/Top/Width/Height
 
-jsÉèÖÃ±³¾°ÊôĞÔ£º
+jsè®¾ç½®èƒŒæ™¯å±æ€§ï¼š
 document.body.style.backgroundColor="#FFFFFF";
 document.body.style.backgroundImage="url(path/xxx.jpg)";
-±³¾°Í¼Æ¬´óĞ¡ background-size: 100% 100%;
+èƒŒæ™¯å›¾ç‰‡å¤§å° background-size: 100% 100%;
 
-Ë®Æ½·½ÏòµÄul£º°ÑliÉèÎªinline-block¾ÍĞĞÁË£¬±¾À´ÊÇblock
+æ°´å¹³æ–¹å‘çš„ulï¼šæŠŠliè®¾ä¸ºinline-blockå°±è¡Œäº†ï¼Œæœ¬æ¥æ˜¯block
 
 
 
@@ -69,57 +69,57 @@ document.body.style.backgroundImage="url(path/xxx.jpg)";
 
 2-3
 
-1.¿Õ°×µÄ±êÇ©Ò³ about:blank
+1.ç©ºç™½çš„æ ‡ç­¾é¡µ about:blank
 
-2.document Êµ¼ÊÉÏÊÇ window.document
+2.document å®é™…ä¸Šæ˜¯ window.document
 
-3.window.close Ö»ÄÜ¹Ø±Õ½Å±¾´ò¿ªµÄ±êÇ©Ò³
+3.window.close åªèƒ½å…³é—­è„šæœ¬æ‰“å¼€çš„æ ‡ç­¾é¡µ
 
-4.¼ÙÈç window.onload.... ±»ÒÔdocument.writeµÄĞÎÊ½Ğ´Èë£¬²¢ÔÚ±êÇ©Ò³ÖĞÏÔÊ¾£¬onloadÊÂ¼ş²¢²»»á±»´¥·¢¡£¿´À´document.writeÓëÒ»°ã¼ÓÔØÎÄ¼ş²»Ò»Ñù
+4.å‡å¦‚ window.onload.... è¢«ä»¥document.writeçš„å½¢å¼å†™å…¥ï¼Œå¹¶åœ¨æ ‡ç­¾é¡µä¸­æ˜¾ç¤ºï¼Œonloadäº‹ä»¶å¹¶ä¸ä¼šè¢«è§¦å‘ã€‚çœ‹æ¥document.writeä¸ä¸€èˆ¬åŠ è½½æ–‡ä»¶ä¸ä¸€æ ·
 
 5.
-document.documentElement.clientWidth/Height ÆÁÄ»¿í/¸ß
-document.documentElement.scrollWidth/Height ÆÁÄ»µÄ¹ö¶¯¿í/¸ß
+document.documentElement.clientWidth/Height å±å¹•å®½/é«˜
+document.documentElement.scrollWidth/Height å±å¹•çš„æ»šåŠ¨å®½/é«˜
 
 
 3-3
 
 1.
-document.body.clientWidth		bodyµÄ¿í¶È£¬²»ËãbodyµÄmargin
-document.documentElement.clientWidth	ÆÁÄ»¿í¶È
+document.body.clientWidth		bodyçš„å®½åº¦ï¼Œä¸ç®—bodyçš„margin
+document.documentElement.clientWidth	å±å¹•å®½åº¦
 
-2.right bottom offsetRight offsetBottom ÎŞĞ§£¿
+2.right bottom offsetRight offsetBottom æ— æ•ˆï¼Ÿ
 
-3.×èÖ¹ÊÂ¼şÃ°Åİ£º
-e.stopPropagation() »ò
+3.é˜»æ­¢äº‹ä»¶å†’æ³¡ï¼š
+e.stopPropagation() æˆ–
 e.cancelBubble()
 
-4.position:absolute; ÏÂ
-*leftµÄÓÅÏÈ¼¶±Èright¸ß£¬Ò»µ©ÉèÖÃleft£¬ÔÙÉèÖÃrightÎŞĞ§
-*Ö»´æÔÚoffsetLeft offsetTop,²»´æÔÚoffsetRight offsetBottom
-*scrollLeft±íÊ¾¹ö¶¯Î»ÖÃ£¬Í¬Ñù²»´æÔÚscrollRight
+4.position:absolute; ä¸‹
+*leftçš„ä¼˜å…ˆçº§æ¯”righté«˜ï¼Œä¸€æ—¦è®¾ç½®leftï¼Œå†è®¾ç½®rightæ— æ•ˆ
+*åªå­˜åœ¨offsetLeft offsetTop,ä¸å­˜åœ¨offsetRight offsetBottom
+*scrollLeftè¡¨ç¤ºæ»šåŠ¨ä½ç½®ï¼ŒåŒæ ·ä¸å­˜åœ¨scrollRight
 
-5.offsetWidth±íÊ¾Êµ¼ÊÏÔÊ¾¿í¶È£¬width¡¢padding¡¢border
-scrollWidth±íÊ¾ÄÚÈİµÄ¿í¶È£¬width¡¢padding£¬¼´Ê¹Ã»ÓĞoverflow: scroll;Ò²ÓĞĞ§£¬µ«ÓÖpaddingÊ±´óĞ¡ÂÔÎ¢²»Í¬¡£¡£¡£
+5.offsetWidthè¡¨ç¤ºå®é™…æ˜¾ç¤ºå®½åº¦ï¼Œwidthã€paddingã€border
+scrollWidthè¡¨ç¤ºå†…å®¹çš„å®½åº¦ï¼Œwidthã€paddingï¼Œå³ä½¿æ²¡æœ‰overflow: scroll;ä¹Ÿæœ‰æ•ˆï¼Œä½†åˆpaddingæ—¶å¤§å°ç•¥å¾®ä¸åŒã€‚ã€‚ã€‚
 
 4-1
 
-1.cookieÊ¹ÓÃ£º
+1.cookieä½¿ç”¨ï¼š
 var date = new Date();
 date.setDate(date.getDate()+30);
-document.cookie="user=blue;expires="+date;//ÉèÖÃÓĞĞ§Ê±¼ä
+document.cookie="user=blue;expires="+date;//è®¾ç½®æœ‰æ•ˆæ—¶é—´
 
 
-Çå³ı¸¡¶¯£º
-1.ÔÚ¸¸µÄ×îºóÌí¼ÓÒ»¸ö¿Õ×ÓÔªËØ£¬clear:both
-2.¸ø¸¸Ìí¼Ó overflow:hidden
+æ¸…é™¤æµ®åŠ¨ï¼š
+1.åœ¨çˆ¶çš„æœ€åæ·»åŠ ä¸€ä¸ªç©ºå­å…ƒç´ ï¼Œclear:both
+2.ç»™çˆ¶æ·»åŠ  overflow:hidden
 
-ÆÁÄ»Ö»ÄÜÏÔÊ¾ÕûÊı¸öÏñËØµã£¬
-chrome¶Ô 0.4pxµÄ½âÊÍÊÇ0px£¬¶Ô0.5pxµÄ½âÊÍÊÇ1px
-	 -0.4pxÎª0px£¬-0.5pxÊÇ-1px;
+å±å¹•åªèƒ½æ˜¾ç¤ºæ•´æ•°ä¸ªåƒç´ ç‚¹ï¼Œ
+chromeå¯¹ 0.4pxçš„è§£é‡Šæ˜¯0pxï¼Œå¯¹0.5pxçš„è§£é‡Šæ˜¯1px
+	 -0.4pxä¸º0pxï¼Œ-0.5pxæ˜¯-1px;
 
 
-float:left Ò²ÄÜÊ¹ÄÚÁªÔªËØµÄ width¡¢heightÓĞĞ§£¬²»ÖªµÀ´ËÊ±ÊÇ·ñÒÑ¾­ÊÇ¿éÔªËØ
+float:left ä¹Ÿèƒ½ä½¿å†…è”å…ƒç´ çš„ widthã€heightæœ‰æ•ˆï¼Œä¸çŸ¥é“æ­¤æ—¶æ˜¯å¦å·²ç»æ˜¯å—å…ƒç´ 
 
 
 

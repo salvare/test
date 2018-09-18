@@ -1,37 +1,37 @@
 2014
 
-����Դ����
+开放源代码
 
-���ڱ�д iOS �� OS X Ӧ��
+用于编写 iOS 和 OS X 应用
 
-�Զ����ü�����Automatic Reference Counting, ARC�� ������
+自动引用计数（Automatic Reference Counting, ARC） ？？？
 
-���� Objective-C ����
+兼容 Objective-C 代码
 
-֧�ִ���Ԥ��
-����һ�д��룬����������֡�
+支持代码预览
+输入一行代码，结果立即出现。
 
-�հ���ͳһ�뺯��ָ��
-Ԫ��Ͷ������ֵ
-����
-���ٶ����ĵ�����Χ�򼯺�
-֧�ֵķ�������չ��Э��ṹ��
-����ʽ���ģʽ�����磺ӳ�䣨map���͹�������filter��
+闭包的统一与函数指针
+元组和多个返回值
+泛型
+快速而简洁的迭代范围或集合
+支持的方法，扩展的协议结构。
+函数式编程模式，例如：映射（map）和过滤器（filter）
 
-�������ǳ�ʼ��֮ǰʹ�ã�������
-������������������ڴ��Զ�������
+变量总是初始化之前使用，？？？
+数组和整数检查溢出，内存自动管理。
 
-����һ��������var��������let��
+定义一个变量（var）或常量（let）
 
 println("Hello, world")
 
-�����ʼֵû���ṩ�㹻����Ϣ������û�г�ʼֵ����������Ҫ�ڱ��������������ͣ���ð�ŷָ
+如果初始值没有提供足够的信息（或者没有初始值），那你需要在变量后面声明类型，用冒号分割。
 
-ֵ��Զ���ᱻ��ʽת��Ϊ�������͡��������Ҫ��һ��ֵת�����������ͣ�����ʽת����
+值永远不会被隐式转换为其他类型。如果你需要把一个值转换成其他类型，请显式转换。
 
-ʹ��\()����һ���������ת�����ַ���
+使用\()来把一个浮点计算转换成字符串
 
-����var shoppingList = ["catfish", "water", "tulips", "blue paint"]
+数组var shoppingList = ["catfish", "water", "tulips", "blue paint"]
 var occupations = [
 "Malcolm": "Captain",
 "Kaylee": "Mechanic",

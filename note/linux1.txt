@@ -1,15 +1,15 @@
-����linux�̳�
+马哥linux教程
 
 1-1
-* ���
+* 提纲
 RH033
 RH133
 RH253
 
 RHCA:
 RH401
-RH442 ϵͳ����
-RH436 ��Ⱥ
+RH442 系统调优
+RH436 集群
 RHS333
 
 MySQL
@@ -17,563 +17,563 @@ NoSQL
 
 
 1-4
-1. $root #��ͨ�û�
+1. $root #普通用户
 
 2.
-*�����ʽ�� ������ ѡ�� ����
-*ѡ���ʽ�� -x��ѡ�� --x��ѡ��
+*命令格式： 命令名 选项 参数
+*选项格式： -x短选项 --x长选项
 
-3.�л��û��������նˣ�terminal��
-*ָ�	ctrl+alt+F1-F6 ָ�����
-	ctrl+alt+F7 ͼ�ν���
+3.切换用户，虚拟终端（terminal）
+*指令：	ctrl+alt+F1-F6 指令界面
+	ctrl+alt+F7 图形界面
 
 4.GUI: Gnome KDE XFace
 CLI(Command Line Interface) bash sh csh zsh ksh tcsh
 
-5.�л��û�
-*ָ� su username ���л����� ָ��exit�����˳�
-����ô�����û�
-*su -l ... ��ȫ�л�
+5.切换用户
+*指令： su username 半切换，用 指令exit可以退出
+？怎么创建用户
+*su -l ... 完全切换
 
-6.�̳����ݣ�RHCE+RHCA+shell���+MySQL+Web��Ⱥ+NoSQL+Hadoop+Hbass+OpenStack
+6.教程内容：RHCE+RHCA+shell编程+MySQL+Web集群+NoSQL+Hadoop+Hbass+OpenStack
 
 
 
 2-1
-1.linuxϵͳ���
-Ӳ��->�ں�(Kernel) ϵͳ����->��(Library) API->Ӧ��/shell
+1.linux系统层次
+硬件->内核(Kernel) 系统调用->库(Library) API->应用/shell
 
-2.magic numberħ�� ��ǳ�����ڵ���������
-���磺��û��mn�����ǿ�ִ���ļ���
+2.magic number魔数 标记程序入口的特殊数字
+例如：库没有mn，但是可执行文件有
 
-3.ָ��г�Ŀ¼ ls 
-���� -l(long) �ļ���ϸ��Ϣ��-��ͨ�ļ� dĿ¼�ļ� b���豸�ļ�block c�ַ��豸�ļ�char l���������ļ� p����ܵ��ļ� s�׽����ļ�socket
-���� -h(human readable) ����λת��
-���� -a ��ʾ��.��ͷ���ļ��������ļ��� .��ǰĿ¼  ..�ϼ�Ŀ¼
-���� -A ͬ�ϣ�ֻ�ǲ����� . �� ..
-���� -d ��ʾĿ¼��������
-���� -i ��ʾ�����ڵ��
-���� -r ������ʾ
-���� -R �ݹ���ʾ������Ŀ¼������Դ��
+3.指令：列出目录 ls 
+属性 -l(long) 文件详细信息。-普通文件 d目录文件 b块设备文件block c字符设备文件char l符号链接文件 p命令管道文件 s套接字文件socket
+属性 -h(human readable) 作单位转换
+属性 -a 显示以.开头的文件（隐藏文件） .当前目录  ..上级目录
+属性 -A 同上，只是不包括 . 和 ..
+属性 -d 显示目录自身属性
+属性 -i 显示索引节点号
+属性 -r 逆序显示
+属性 -R 递归显示所有子目录（耗资源）
 
-4.�ļ����ͣ�
-- ��ͨ�ļ�	��ɫ
-d Ŀ¼�ļ�	����
-b ���豸�ļ� block	�ٻ�
-c �ַ��豸�ļ� character	�ٻ�
-l ���������ļ� symbolic link file	����
-p ����ܵ� pipe
-s �׽����ļ� socket
+4.文件类型：
+- 普通文件	白色
+d 目录文件	深蓝
+b 块设备文件 block	橘黄
+c 字符设备文件 character	橘黄
+l 符号链接文件 symbolic link file	淡蓝
+p 命令管道 pipe
+s 套接字文件 socket
 
-5.�鿴�������� echo $PATH
-��$PATH��ʲô����
+5.查看环境变量 echo $PATH
+？$PATH是什么东西
 
-6.����rwxr--r--:
+6.类似rwxr--r--:
 *r:read; w:write x:execute
 *user|group|other
-*�ೣ�ð˽�������ʾ��644
+*亦常用八进制数表示：644
 
-7.��ҳ���Shift + PageUp �� Shift + PageDown
+7.翻页命令：Shift + PageUp 和 Shift + PageDown
 
-8.�򿪲��༭�ļ�
-*���	vi filename ����vi�༭��
-*ģʽ��	vi������ģʽ��
-	(1)һ��ģʽ������vi��Ĭ��ģʽ���ܹ����и��ơ������ɾ���Ȳ�����
-	(2)�༭ģʽ����һ��ģʽ���¡�i�����ɽ��룻
-	(3)������ģʽ����һ��ģʽ���¡�:����'?'��'/'���ɽ��룻
-*������	�ı��༭����Ϊ��
-	(1)����ͼ�ν��棬��gedit��geany�ȣ�
-	(2)���������У���nano��vi��joe�ȣ�
-*���	w���� q�˳� q!ǿ���˳�������...
-*�ο���	http://blog.csdn.net/xiazdong/article/details/7959495
+8.打开并编辑文件
+*命令：	vi filename 进入vi编辑器
+*模式：	vi有三种模式：
+	(1)一般模式：进入vi的默认模式，能够进行复制、黏贴、删除等操作；
+	(2)编辑模式：从一般模式按下‘i’即可进入；
+	(3)命令行模式：从一般模式按下“:”、'?'、'/'即可进入；
+*其它：	文本编辑器分为：
+	(1)基于图形界面，如gedit、geany等；
+	(2)基于命令行，如nano、vi、joe等；
+*命令：	w保存 q退出 q!强制退出不保存...
+*参考：	http://blog.csdn.net/xiazdong/article/details/7959495
 
-��readonly option is set add to override
-��e212 cant open file for writing
-��chmod operation not permitted
+？readonly option is set add to override
+？e212 cant open file for writing
+？chmod operation not permitted
 
-9.�޸��ļ�Ȩ�� 
-*���	chmod 777 FILENAME
+9.修改文件权限 
+*命令：	chmod 777 FILENAME
 
-10.ָ�ping HOST ֹͣctrl+C ��ctrl+D
+10.指令：ping HOST 停止ctrl+C 或ctrl+D
 
-11.ָ��鿴��ǰ·���� pwd
+11.指令：查看当前路径： pwd
 
-12.ָ��鿴�������ͣ�type COMMAND ����� �ڽ����� �� ��
+12.指令：查看命令类型：type COMMAND 结果有 内建命令 和 ？
 
-13.����
+13.词条
 window:dll(dynamic link library)
 linux:so(shared object)
-kenner�ں�
-IDE���ɿ�������
-authentication��֤
-authorization��Ȩ
-audition��ƣ���־
-prompt������ʾ��
+kenner内核
+IDE集成开发环境
+authentication认证
+authorization授权
+audition审计，日志
+prompt命令提示符
 
-14.linux�ļ�Ŀ¼�ṹ��
-��״·��������Ŀ¼���ڵ㣬����·�������·��
+14.linux文件目录结构：
+树状路径，根，目录，节点，绝对路径，相对路径
 
-15.ָ���ʾ��ǰĿ¼ pwd
+15.指令：显示当前目录 pwd
 
-16.���ls -a�ķ��ؽ����
-�ļ�Ȩ�� rwx(����д��ִ��)
-�ļ�Ӳ���Ӵ���
-�ļ����� owner
-�ļ����� group
-�ļ���С size��byte��
+16.解读ls -a的返回结果：
+文件权限 rwx(读，写，执行)
+文件硬链接次数
+文件属主 owner
+文件数组 group
+文件大小 size（byte）
 
-17.ʱ��� timestamp 
-*�������ʱ��access�� 
-*�޸�ʱ�� modify ���ݱ䶯��
-*�ı�ʱ�� change metadataԪ���� ���Ա䶯��
+17.时间戳 timestamp 
+*最近访问时间access； 
+*修改时间 modify 内容变动；
+*改变时间 change metadata元数据 属性变动；
 
-18.ָ� cd �л���ǰĿ¼
-ʾ����cd /user ע�⣺ֻ�ܴ�Ŀ¼�����ܴ��ļ�
-cd 	�ص� �û��� ��Ŀ¼/��Ŀ¼(home directory) �ڴ�Ŀ¼���û������Ȩ��
-cd ~user2	ȥuser2����Ŀ¼ ����Ա�ſ�����
-cd - 	��ǰһ��Ŀ¼�л�
+18.指令： cd 切换当前目录
+示例：cd /user 注意：只能打开目录，不能打开文件
+cd 	回到 用户的 家目录/主目录(home directory) 在此目录下用户有最高权限
+cd ~user2	去user2的主目录 管理员才可以用
+cd - 	与前一个目录切换
 
-19.ָ� type �鿴��������
-ʾ���� type ls
+19.指令： type 查看命令类型
+示例： type ls
 
-20.ָ����Է�Ϊ��
-�������shell���á��������κ�Ŀ¼��ֱ��ִ�У���Ϊ������ʵλ�����ڻ���������
-�ⲿ������ļ�ϵͳ��ĳ·������һ��������������Ӧ�Ŀ�ִ���ļ�
+20.指令可以分为：
+内置命令：shell内置。可以在任何目录下直接执行，因为命令真实位置列在环境变量中
+外部命令：在文件系统的某路径下有一个与命令名称相应的可执行文件
 
-21.�����ĺ��壺�������ڴ�ռ�    
-*���������Ĺ��̣���ʵ�������ڴ�ʹ�õĹ���
+21.变量的含义：命名的内存空间    
+*声明变量的过程，其实是申请内存使用的过程
 
-����(keep)ջ(stack)
-���ѣ�ջ
+？堆(keep)栈(stack)
+？堆？栈
 
-22.ָ�� clear����
-23.ָ�� printenv��ӡ��������
-24.ָ�� hash �鿴�����е���������
+22.指令 clear清屏
+23.指令 printenv打印环境变量
+24.指令 hash 查看缓存中的所有命令
 
 
-25.ָ�� date �鿴ϵͳʱ��
-26.ָ�� clock �鿴Ӳ��ʱ��
-*hwclock -w ��Ӳ��ʱ����Ϊ��ǰϵͳʱ��
-*hwclock -s ����
-*ָ�cal ����
+25.指令 date 查看系统时钟
+26.指令 clock 查看硬件时钟
+*hwclock -w 将硬件时钟设为当前系统时钟
+*hwclock -s 反上
+*指令：cal 日历
 
-27.��������ʹ�ð��� 
-*�ڲ����� help COMMAND
-*�ⲿ���� COMMAND --help
-*�ֲ� man �½����� COMMAND
-*�鿴�½���Ϣ whatis COMMAND 
+27.获得命令的使用帮助 
+*内部命令 help COMMAND
+*外部命令 COMMAND --help
+*手册 man 章节数字 COMMAND
+*查看章节信息 whatis COMMAND 
 
-28.�ֲᣨmanual���½ڽ���
-1.�û����/bin,/usr/bin,/usr/local/bin��
-2.ϵͳ����
-3.���û�
-4.�����ļ����豸�ļ���
-5.�ļ���ʽ�������ļ����﷨��
-6.��Ϸ
-7.����(miscellaneous)
-8.�������/sbin,/usr/sbin,/usr/local/sbin��
+28.手册（manual）章节介绍
+1.用户命令（/bin,/usr/bin,/usr/local/bin）
+2.系统调用
+3.库用户
+4.特殊文件（设备文件）
+5.文件格式（配置文件的语法）
+6.游戏
+7.杂项(miscellaneous)
+8.管理命令（/sbin,/usr/sbin,/usr/local/sbin）
 
-29.�ֲ��з��ű�ʾ
-<>��ѡ
-[]��ѡ
-...�ɳ��ֶ��
-|��ѡһ
-{} ����
+29.手册中符号表示
+<>必选
+[]可选
+...可出现多次
+|多选一
+{} 分组
 
-30.�ֲ�������Ŀ˵����
-NAME ��Ҫ˵��
-SYNOPSIS �÷�
-DESCRIPTION�꾡˵��
-OPTIONS ѡ��
-FILES ��������ļ�
+30.手册内容栏目说明：
+NAME 简要说民
+SYNOPSIS 用法
+DESCRIPTION详尽说明
+OPTIONS 选项
+FILES 相关配置文件
 BUGS
-EXAMPLES ʹ��ʾ��
-SEE ASLO �������
+EXAMPLES 使用示例
+SEE ASLO 另外参照
 
-31.�����н����з�ҳ��
+31.命令行界面中翻页：
 *shift+pageup/pagedown
-*manual�У�b/space
-*manual�У�j��k�ֱ������/��һ��
+*manual中，b/space
+*manual中，j和k分别可以上/下一行
 
-32.�ֲ��в��� �ؼ���
-*	/KEYWORD ���	?KEYWORD ��ǰ
-*	n��һ��		Nǰһ��
-33.�˳��ֲ᣺	q�˳�
+32.手册中查找 关键词
+*	/KEYWORD 向后	?KEYWORD 向前
+*	n下一个		N前一个
+33.退出手册：	q退出
 
-34.�ĵ���/user/share/doc
+34.文档：/user/share/doc
 
-���޷��������磺
+？无法连接网络：
 http://jingyan.baidu.com/article/17bd8e521775fb85ab2bb8e0.html
 
-35.�������⣺����vm�ϵ�redhatʱ�����ֱ������޷����ں��豸 \\.\global\vmx86...
-*�����	http://jingyan.baidu.com/article/3d69c5518b8bfef0cf02d7e1.html
+35.出现问题：运行vm上的redhat时，出现报错：无法打开内核设备 \\.\global\vmx86...
+*解决：	http://jingyan.baidu.com/article/3d69c5518b8bfef0cf02d7e1.html
 
-36.ָ��hash ��ʾ�����д洢������
-*�Ѿ�ִ�й�������Ỻ�棬�´�ִ��ʱ����Ѹ�ٵ���
-*hash����ӳ�䣬��һ����ֵ���ݿ⣬ִ���ٶȴﵽo(1)
+36.指令hash 显示缓存中存储的命令
+*已经执行过的命令会缓存，下次执行时可以迅速调用
+*hash本意映射，是一个键值数据库，执行速度达到o(1)
 
 
 2-2
 
-1.��ʱԭ����ʯӢ����
-*rtc(real time clock) Ӳ��ʱ�ӣ�ʵʱʱ��
-*ntp(network time p?) ����ʱ�������
-*linux�ڿ�����ȡһ��rtc�󣬾Ϳ�ʼʹ������ģ�⣬��Ϊ ��ϵͳʱ�䡱
+1.计时原理：石英振荡器
+*rtc(real time clock) 硬件时钟，实时时钟
+*ntp(network time p?) 网络时间服务器
+*linux在开机读取一次rtc后，就开始使用软件模拟，成为 “系统时间”
 
-2.[ָ��] echo 
-*���ܣ�	�������
-*ѡ�	1.ehco "hhh"	//��ͨ���
-	2.echo -n "hhh"	//ĩβ���Զ�����
-	3.echo -e "hhh\rh\thh"	//����ʹ��ת���ַ�
-*ת���ַ���	
+2.[指令] echo 
+*功能：	输出内容
+*选项：	1.ehco "hhh"	//普通输出
+	2.echo -n "hhh"	//末尾不自动换行
+	3.echo -e "hhh\rh\thh"	//可以使用转义字符
+*转义字符：	
 	\a alert(bell)
 	\b backspace
-	\c suppress trailing newline ����ĩβ����
-	\E escape character �����
-	\f form feed ��ҳ
-	\n new line ����
-	\r carriage return �س�
-	\t �Ʊ���
-	\v ��ֱ�Ʊ���
-*����ָ� printf. �����Զ���ĩβ�ӻ��з�
+	\c suppress trailing newline 抑制末尾换行
+	\E escape character 换码符
+	\f form feed 换页
+	\n new line 换行
+	\r carriage return 回车
+	\t 制表符
+	\v 垂直制表符
+*类似指令： printf. 不会自动在末尾加换行符
 
-3.[����] �����
-*���ܣ�	�����������ִ��һ�������һ��������ַ������ǲ��ᱻ��ӡ����Ļ��
-*������	һ������������ݸ�һ���豸�����߼������Ļ�Ժ�ɫ������ͨ���İ�ɫ����ʾ��һ��
-*�ṹ��	escape�ַ�+���������ַ� ��escape��\033�˽��ƣ�
-*�ο���	http://wenku.baidu.com/link?url=0AtD3fgvoZ2t049BiOLuNZFfvLwBUyAAd4XZAVSQ_obcoGsoxxiS9UDd5D6yOaCVBr6nfArYNbY5SfrdBA_Bc33jerEkcC43jE8pivKn3uG
+3.[词条] 换码符
+*功能：	换码符是用来执行一个命令或一项任务的字符，它们不会被打印到屏幕上
+*举例：	一个换码符被传递给一个设备，告诉计算机屏幕以红色而不是通常的白色来显示下一行
+*结构：	escape字符+具体命令字符 （escape是\033八进制）
+*参考：	http://wenku.baidu.com/link?url=0AtD3fgvoZ2t049BiOLuNZFfvLwBUyAAd4XZAVSQ_obcoGsoxxiS9UDd5D6yOaCVBr6nfArYNbY5SfrdBA_Bc33jerEkcC43jE8pivKn3uG
 
 
 2-3
 
-1.[ָ��] file
-*���ܣ�	ʶ���ļ����ͣ��������ʽ
-*ע��	����ͨ���鿴�ļ���ͷ����Ϣ����ȡ�ļ����ͣ���������Windowsͨ����չ����ȷ���ļ����͵�
+1.[指令] file
+*功能：	识别文件类型，辨别编码格式
+*注：	它是通过查看文件的头部信息来获取文件类型，而不是像Windows通过扩展名来确定文件类型的
 
-2.[����] 
-*ELF 		executable and linking format	��ִ�пɹ�����ʽ
-*rootfs 	root file system	linux���ø�Ŀ¼�ļ�ϵͳ
-*FHS		filesystem hierarchy standard 	�ļ�ϵͳ�㼶��׼
+2.[词条] 
+*ELF 		executable and linking format	可执行可关联格式
+*rootfs 	root file system	linux采用根目录文件系统
+*FHS		filesystem hierarchy standard 	文件系统层级标准
 
-3.[ϵͳ] Ŀ¼
-*/boot	���ã�ϵͳ��������ļ�
-	���飺initrd���ںˡ�grub(bootloader)
-*/dev	���ã��豸
-	������linux��һ�н��ļ����豸Ҳ���ļ���ʽ���ڣ�ʵ�������豸���ݵķ������
-	�豸�ţ����豸��(major) ���豸��(minor)
-*/etc	���ܣ������ļ�
-	ע��һ������ͨ�ļ������ı�
-*/home	���ܣ���Ŀ¼
-*/lib	���ܣ����ļ�
-	���飺/lib/modules:�ں�ģ���ļ�
-*/media	���ܣ����ص�Ŀ¼���ƶ��豸
-	���ͣ���һ���豸��ϵͳ��ĳһ�ļ�������Ĺ��̾ͽС����ء�
-	���ͣ�ͨ��/media/... ���� /dev/...
-*/mnt	���ܣ����ص�Ŀ¼���������ʱ�ļ�	
-*/opt	���ܣ���ѡĿ¼������ȥ������������������װĿ¼
-*/proc	���ܣ��ں˵�ӳ���ļ�
-	���ͣ�α�ļ�ϵͳ��ϵͳ����֮ǰ�ǿյ�
-	���ͣ���¼�ں˵�ǰ��������
-*/sys	���ܣ�Ӳ���豸������Ե�ӳ���ļ�
-	���ͣ�α�ļ�ϵͳ
-*/tmp	���ܣ���ʱ�ļ�
-	���ͣ������û�����Ȩ�޴����ļ�����ֻ����ɾ�Լ����ļ�
-	���ͣ��������ݻᶨ������
-*/var	���ܣ��ɱ仯�ļ�
-	���飺cache��db��mail��run����¼����id��
-*/bin	���ܣ�binary�����ƣ�����ִ���ļ����û�����
-*/sbin	���ܣ���������
-*/usr	���ܣ�universal shared read-only 
+3.[系统] 目录
+*/boot	作用：系统启动相关文件
+	详情：initrd、内核、grub(bootloader)
+*/dev	作用：设备
+	其它：linux下一切皆文件。设备也以文件形式存在，实际上是设备数据的访问入口
+	设备号：主设备号(major) 次设备号(minor)
+*/etc	功能：配置文件
+	注：一般是普通文件，纯文本
+*/home	功能：家目录
+*/lib	功能：库文件
+	详情：/lib/modules:内核模块文件
+*/media	功能：挂载点目录，移动设备
+	解释：将一个设备与系统中某一文件相关联的过程就叫“挂载”
+	解释：通过/media/... 访问 /dev/...
+*/mnt	功能：挂载点目录，额外的临时文件	
+*/opt	功能：可选目录，（过去用来作）第三方程序安装目录
+*/proc	功能：内核的映射文件
+	解释：伪文件系统，系统运行之前是空的
+	解释：记录内核当前工作属性
+*/sys	功能：硬件设备相关属性的映射文件
+	解释：伪文件系统
+*/tmp	功能：临时文件
+	解释：所有用户都有权限创建文件，但只可以删自己的文件
+	解释：其中内容会定期清理
+*/var	功能：可变化文件
+	详情：cache、db、mail、run（记录进程id）
+*/bin	功能：binary二进制，即可执行文件，用户命令
+*/sbin	功能：管理命令
+*/usr	功能：universal shared read-only 
  
-4.[ϵͳ] ���豸 �� �ַ��豸
-*���豸������������ʵ��豸���磺Ӳ��
-*�ַ��豸�����Է��ʡ�����꣬���̣���꣬��ʾ��
+4.[系统] 块设备 与 字符设备
+*块设备：可以随机访问的设备。如：硬盘
+*字符设备：线性访问。如鼠标，键盘，鼠标，显示器
 
-5.[ϵͳ] ��̬�� �� ��̬��
-*��̬�⣺shared object ��������
-*��̬�⣺.a��׺
+5.[系统] 静态库 与 动态库
+*动态库：shared object 共享对象
+*静态库：.a后缀
 
-6.[ָ��] mkdir
-*���ܣ�	������Ŀ¼
-*ʹ�ã�	mkdir root/x/y/z ;Ҫ��·�������·�������ڻ�ʧ��
-*ѡ� mkdir -p root/m/n/j/k ���·�������ڣ���������·��
-*ѡ�	mkdir -p root/m/n/{j/h,k} ��������չ�����÷�
-*[ָ��]: rmdir ɾ����Ŀ¼
-7.[ָ��] tree
-*���ܣ�	�鿴Ŀ¼��
+6.[指令] mkdir
+*功能：	创建空目录
+*使用：	mkdir root/x/y/z ;要带路径，如果路径不存在会失败
+*选项： mkdir -p root/m/n/j/k 如果路径不存在，创建整个路径
+*选项：	mkdir -p root/m/n/{j/h,k} “命令行展开”用法
+*[指令]: rmdir 删除空目录
+7.[指令] tree
+*功能：	查看目录树
 
-8.[ָ��] touch
-*���ܣ�	change file timestamp��Ҳ���Դ���һ�����ļ�
-*ʹ�ã� touch FILENAME
-*ѡ�	touch -a xxx	�ı����ʱ��
-*ѡ� touch -m xxx	�ı��޸�ʱ��
-*ѡ� touch -m -t xxx	201601151038 �ı�Ϊָ��ʱ��
+8.[指令] touch
+*功能：	change file timestamp；也可以创建一个新文件
+*使用： touch FILENAME
+*选项：	touch -a xxx	改变访问时间
+*选项： touch -m xxx	改变修改时间
+*选项： touch -m -t xxx	201601151038 改变为指定时间
 
-9.[ϵͳ] �ļ���Ҳ��һ���ļ������ͬĿ¼�²�����ͬ�����ļ����ļ���
+9.[系统] 文件夹也是一种文件，因此同目录下不能有同名的文件和文件夹
 
-10.[ָ��] stat
-*���ܣ�	��ʾ�ļ�״̬
-*���飺	�ļ������ļ���С�������޸ĸı�ʱ�䡢����(block�� �ȡ���
+10.[指令] stat
+*功能：	显示文件状态
+*详情：	文件名、文件大小、访问修改改变时间、区块(block） 等。。
 
-11.[ָ��] nano
-*���ܣ�	�򵥵���Ƕ�ı��༭��
+11.[指令] nano
+*功能：	简单的内嵌文本编辑器
 
-12.[ָ��] rm
-*���ܣ�	ɾ���ļ�
-*˵����	ʹ��type rm�鿴ʱ���õ� rm is aliased to rm -i����rm�Ǹ�����
-	�������rm������Ҫ����д \rm FILENAME
-*ѡ�	rm -i FILENAME ����ʽ��ѯ���Ƿ�ȷ��ɾ��
-*ѡ�	rm -f ��ѯ�ʣ�ֱ��ɾ��
-*ѡ�	rm -r �ݹ�ɾ�������ļ��к����ļ�
+12.[指令] rm
+*功能：	删除文件
+*说明：	使用type rm查看时，得到 rm is aliased to rm -i，即rm是个别名
+	如果想用rm本身，要这样写 \rm FILENAME
+*选项：	rm -i FILENAME 交互式，询问是否确认删除
+*选项：	rm -f 不询问，直接删除
+*选项：	rm -r 递归删除整个文件夹和子文件
 	
 
 2-4
 
-1.[ָ��] cp 
-*���ܣ�	�����ļ�
-*�÷���	cp SRC DESTINATION
-*ѡ�	cp a b c /test/ ��a��b��c�ļ�����ΪtestĿ¼�µ�ͬ���ļ�
-*ѡ�	cp -r /a/b /c/d ���Խ��ļ���b�����帴�Ƶ�d��d�����Ѿ�����
-*ѡ�	cp -p a b ����ԭ����������ʱ���
-*ѡ�	cp -a �鵵���ƣ����ڱ��ݣ���������ԭ����Ϣ
+1.[指令] cp 
+*功能：	复制文件
+*用法：	cp SRC DESTINATION
+*选项：	cp a b c /test/ 将a、b、c文件复制为test目录下的同名文件
+*选项：	cp -r /a/b /c/d 可以将文件夹b中整体复制到d。d不能已经存在
+*选项：	cp -p a b 保留原来的属主，时间戳
+*选项：	cp -a 归档复制，用于备份，保留所有原有信息
 
-2.[ָ��] mv
-*���ܣ�	�ƶ��ļ�������
-*ʹ�ã�	mv /test1/hello /test2 
-*ѡ�	mv /test1/hello /test2/world 
-	hello�Ǹ��ļ������world�����ڣ������������Ϊworld��
-	���world�������Ǹ��ļ�����ѯ���Ƿ�Ҫ����
-	���world�������Ǹ��ļ��У�����е�worldĿ¼�£�
-	hello�Ǹ��ļ��С����world�����ڣ�������Ч��
-	���world�Ǹ��ļ���������Ч��
-	���world �Ǹ��ļ��У����е�worldĿ¼��
+2.[指令] mv
+*功能：	移动文件，剪切
+*使用：	mv /test1/hello /test2 
+*选项：	mv /test1/hello /test2/world 
+	hello是个文件。如果world不存在，则剪切重命名为world；
+	如果world存在且是个文件，则询问是否要覆盖
+	如果world存在切是个文件夹，则剪切到world目录下；
+	hello是个文件夹。如果world不存在，命令无效；
+	如果world是个文件，命令无效；
+	如果world 是个文件夹，剪切到world目录下
 
-3.[ָ��] install
+3.[指令] install
 
 
-�ı�����
+文本处理
 cat more  less head tail cut sort uniq grep
-�ܵ����ض���
+管道和重定向
 > < >> <<
-�û� �� Ȱ��
-bash��������
+用户 组 劝降
+bash及其特性
 
 
 
 3-1
 
-1.[ָ��] cat
-*���ܣ�	contact ���Ӳ���ʾ
-*ѡ�	contact -n /test  ��ʾ�к�
-*ѡ�	contact -E /test  ��ʾ�н�����$
-	linux���ı����н������� $���� ����
-*ȱ�㣺 ���̫�����ļ����ѷ���
+1.[指令] cat
+*功能：	contact 连接并显示
+*选项：	contact -n /test  显示行号
+*选项：	contact -E /test  显示行结束符$
+	linux的文本的行结束符是 $或者 换行
+*缺点： 输出太长的文件很难翻看
 
-2.[ָ��] ctrl+C �ж�
-*���ܣ�	������ֹ�˳��ܶ�����
+2.[指令] ctrl+C 中断
+*功能：	可以中止退出很多命令
 
-3.[ָ��] more ���
-*��� space��һҹ bǰһҳ return��һ��
-4.[ָ��] less ��ǰ��
-*���	space b return �����������
-	q�˳�
-5.[ָ��] head
-*���ܣ�	��ʾǰ����
-*ʹ�ã�	head /test/hello
-*ѡ�	head -n 5 /test/hello  �鿴ǰ5��
-	head -5 /test/hello  Ҳ��������д
-6.[ָ��] tail
-*���ܣ�	��ʾ����
-*ѡ�	tail -n 5 /test/hello
-*ѡ�	tail -f /etc/inittab  ����ʵʱ��ʾ���ļ�����׷�ӵ����ݣ������������ն˲������ļ�
-	������鿴��־
-7.[����] 
-*delimiter	�ָ���	separator
+3.[指令] more 向后翻
+*命令： space后一夜 b前一页 return后一行
+4.[指令] less 向前翻
+*命令：	space b return 光标上下左右
+	q退出
+5.[指令] head
+*功能：	显示前几行
+*使用：	head /test/hello
+*选项：	head -n 5 /test/hello  查看前5行
+	head -5 /test/hello  也可以这样写
+6.[指令] tail
+*功能：	显示后几行
+*选项：	tail -n 5 /test/hello
+*选项：	tail -f /etc/inittab  可以实时显示该文件后续追加的内容，比如有其它终端操作该文件
+	常用语查看日志
+7.[单词] 
+*delimiter	分隔符	separator
 
-8.[ָ��] cut ��ȡ��ʾ
-*ѡ�	cut -d: /test/hello	dָ���ָ���Ϊ: ��Ĭ���ǿո�
-*ѡ�	cut -d: -f1 xxx		fָ���ֶ�
-	cut -f 1,3		��ʾ1��3�ֶ�
-	cut -f 1-3		��ʾ1��3�ֶ�
+8.[指令] cut 截取显示
+*选项：	cut -d: /test/hello	d指定分隔符为: ，默认是空格
+*选项：	cut -d: -f1 xxx		f指定字段
+	cut -f 1,3		显示1和3字段
+	cut -f 1-3		显示1到3字段
 
 sed awk grep
 
 
 3-2
 
-1.[ָ��] sort ������ʾ
-*ʹ�ã�	sort /test/sort  Ĭ�ϰ�ascii����
-*ѡ�	sort -n /test/sort  ����ֵ��С�������磺89������10000ǰ��
-*ѡ� -r  ����
-*ѡ�	sort -t: -k3 /test/sort  ��:�ָ�������3���ֶ�����
-	-t  �ֶηָ���
-	-k  �ֶ���
-*ѡ�	-u  uniqueȥ�ء�
-	ע�⣺ֻ����ͬ�����ڵ��� �ᱻ��Ϊ�ظ���
-*ѡ� -c  ��ʾ�е��ظ�����
-*ѡ� -d  ֻ��ʾ�ظ���
-*ѡ� -f  ����ʱ���Դ�Сд
+1.[指令] sort 排序显示
+*使用：	sort /test/sort  默认按ascii排序
+*选项：	sort -n /test/sort  按数值大小排序，例如：89会排在10000前面
+*选项： -r  反序
+*选项：	sort -t: -k3 /test/sort  以:分隔，按第3个字段排序
+	-t  字段分隔符
+	-k  字段数
+*选项：	-u  unique去重。
+	注意：只有相同且相邻的行 会被作为重复行
+*选项： -c  显示行的重复次数
+*选项： -d  只显示重复行
+*选项： -f  排序时忽略大小写
 
-2.[ָ��] wc 	word count	ͳ���ļ�����
-*���飺	���� ������ ��С(size)
-	size�����ո񣬵�λB
-*ѡ� -l  -w  -c
+2.[指令] wc 	word count	统计文件内容
+*详情：	行数 单词数 大小(size)
+	size包括空格，单位B
+*选项： -l  -w  -c
 
-3.[ָ��] tr	ת����ɾ���ַ�	�ַ���������
-*�÷���	tr "ab" "AB"	������� aת��ΪA bת��ΪB
-*�����ض���	tr "ab" "AB" < /etc/passwd	��passwd�ļ���Ϊ����
-*�÷���	tr "a-z" "A-Z"
-*ѡ�	tr -d "abc"  ɾ�����е�a b c
+3.[指令] tr	转换或删除字符	字符处理命令
+*用法：	tr "ab" "AB"	将输入的 a转换为A b转换为B
+*输入重定向：	tr "ab" "AB" < /etc/passwd	将passwd文件作为输入
+*用法：	tr "a-z" "A-Z"
+*选项：	tr -d "abc"  删除所有的a b c
 
-4.[ָ��] bash ����shell	exit �˳�
+4.[指令] bash 打开子shell	exit 退出
 
-5.[ָ��] history	��ʷ����
-*ѡ�	-c  �����ʷ
-*ѡ�	history -d 100 3
-	-d  ɾ����100����ʼ��3����¼
-*˵����	������ʷ�洢���ڴ棬�û������ǳ�ʱ���ᱣ���� ��Ŀ¼/.bash_history �ļ�
-*ѡ� -w  ����������ʷ����ʷ�ļ�
-*ʹ�ã�	!n	ʹ�õ�n������
-	!-n	ʹ�õ�����n������
-	!!	ʹ����һ������
-	!STRING	ʹ��������ʷ�����һ��ƥ�������
-*��չ��	!$	ʹ����һ����������һ������
-	ESC(�ɿ�).	ʹ����һ����������һ������
+5.[指令] history	历史命令
+*选项：	-c  清空历史
+*选项：	history -d 100 3
+	-d  删除第100条开始的3条记录
+*说明：	命令历史存储在内存，用户正常登出时，会保存在 家目录/.bash_history 文件
+*选项： -w  保存命令历史到历史文件
+*使用：	!n	使用第n条命令
+	!-n	使用倒数第n条命令
+	!!	使用上一条命令
+	!STRING	使用命令历史中最近一条匹配的命令
+*拓展：	!$	使用上一个命令的最后一个参数
+	ESC(松开).	使用上一个命令的最后一个参数
 
 
-6.[ϵͳ] ��������
-*����PATH��������bash�п����� echo $PATH �������
-*HISTSIZE  ������ʷ��С
+6.[系统] 环境变量
+*例如PATH变量，在bash中可以用 echo $PATH 命令输出
+*HISTSIZE  命令历史大小
 
-7.[ϵͳ] bash�Ĺ��ܣ�
-*������ʷ
-*�ܵ����ض���
-*�������
-*�����б༭
-*������չ��
-*�ļ���ͨ��
-*����
-*���
+7.[系统] bash的功能：
+*命令历史
+*管道，重定向
+*命令别名
+*命令行编辑
+*命令行展开
+*文件名通配
+*变量
+*编程
 
-8.[ϵͳ] �����б༭ 
-*ctrl+A ����	ctrl+E ��ĩ	ctrl+u ɾ�����������	ctrl+k ɾ���������ĩ	ctrl+l ����
-*����� ������ʷ
-*tab	���ȫ	tab*2	������ʾ
-*���ƣ�·����ȫ���÷�ͬ��������Ŀ¼ʱʹ��
+8.[系统] 命令行编辑 
+*ctrl+A 行首	ctrl+E 行末	ctrl+u 删除光标置行首	ctrl+k 删除光标至行末	ctrl+l 清屏
+*方向键 命令历史
+*tab	命令补全	tab*2	命令提示
+*类似：路径补全，用法同，在输入目录时使用
 
 
 3-3
 
-1.[ָ��] alias �������
-*�÷���	alias cls='command -p xxx'
-*˵����	��Ч��ΧΪ��ǰ����
-*�÷���	alias 	��ʾ��ǰ��������б���
-*ȡ��������	unalias cls
+1.[指令] alias 定义别名
+*用法：	alias cls='command -p xxx'
+*说明：	有效范围为当前进程
+*用法：	alias 	显示当前定义的所有别名
+*取消别名：	unalias cls
 
-2.[ϵͳ] �����滻����������ʹ������������������
-*ʾ����	echo "The current directory is $(pwd)."
-*���ߣ� echo "The current directory is `pwd`."	�Ƿ�����
+2.[系统] 命令替换：在命令中使用其它命令的输出内容
+*示例：	echo "The current directory is $(pwd)."
+*或者： echo "The current directory is `pwd`."	是反引号
 
-3.[ϵͳ] ����
-* ``	�����滻
-* ""	�����ã�ʵ�ֱ����滻������������ʲô
-* ''	ǿ���ã�����ɱ����滻
+3.[系统] 引号
+* ``	命令替换
+* ""	弱引用，实现变量替换？？？变量是什么
+* ''	强引用，不完成变量替换
 
-4.[ϵͳ] �ļ���ͨ�� glob
-* *	���ⳤ�� �� �����ַ�	����ls t*st
-* ?	���ⵥ���ַ�
-* []	ָ����Χ�ڵ������ַ�
+4.[系统] 文件名通配 glob
+* *	任意长度 的 任意字符	例：ls t*st
+* ?	任意单个字符
+* []	指定范围内的任意字符
 	[0-9] [a-z] [A-Z] [^0-9] 
-	^ȡ����
-	[:space:]�հ�  [:punct:]���  [:upper]  [:lower:] [:alpha:] [:digit:]
+	^取反号
+	[:space:]空白  [:punct:]标点  [:upper]  [:lower:] [:alpha:] [:digit:]
 
 
 3-4
-1.[ϵͳ] ���� �� ����
-* ����ִ��֮��ͱ���Ϊһ������
-* ���̿������������ã�һЩ�����⣬һ����������Ա�������̵��ã�ֻ��Ҫ�������ڴ�һ��
+1.[系统] 程序 与 进程
+* 程序被执行之后就表现为一个进程
+* 进程可能依赖（调用）一些共享库，一个共享库可以被多个进程调用，只需要被载入内存一次
 
-2.[ϵͳ] rwxȨ�ޣ�
-*�����ļ���	�ɶ�����д����ִ�У���Ϊһ�������ύ���ںˣ�������̣�
-*�����ļ��У�	��ls���ɽ��ļ�����ls -l
+2.[系统] rwx权限：
+*对于文件：	可读，可写，可执行（作为一条命令提交给内核，发起进程）
+*对于文件夹：	可ls，可建文件，可ls -l
 
-3.[ϵͳ] 
-*ʹ��shellִ������ʱ���������û�����һ����ִ�� �ļ� ��ִ����һ������
-*����ֻ��һ���������Ա���ͬ�û�ͬʱִ�ж�Σ�����ִ��ʱ������һ�����̣��൱�ڳ���ĸ���
-*�û�����������Ȩ��(�����ļ���ִ��Ȩ�ޣ��Ļ����Ϳ���ִ�иó��򣬴���һ������
-*��ʱ����ӵ�е�Ȩ�� �͵��� �û���Ȩ�ޣ����̲��������ļ�ʱ�õ�
-*�����Է����ߵ��������У���������������
+3.[系统] 
+*使用shell执行命令时，本质是用户运行一个可执行 文件 ，执行了一个程序
+*程序只有一个，但可以被不同用户同时执行多次，程序被执行时创建了一个进程，相当于程序的复本
+*用户如果有命令的权限(命令文件的执行权限）的话，就可以执行该程序，创建一个进程
+*此时进程拥有的权限 就等于 用户的权限，进程操作其它文件时用到
+*进程以发起者的身份运行，用于属主和属组
 
-4.[ϵͳ]
-*�û��������ļ���	etc/passwd
-*���������ļ���		etc/group
-���������벻���������û��ɼ���������ʵ�����
-*�û���	/etc/shadow
-*�飺	/etc/gshadow	
-��linux�б���ΪӰ���ļ�
+4.[系统]
+*用户名密码文件：	etc/passwd
+*组名密码文件：		etc/group
+但考虑密码不能让所有用户可见，密码其实存放在
+*用户：	/etc/shadow
+*组：	/etc/gshadow	
+在linux中被称为影子文件
 
-5.[ϵͳ] �û����
-*����Ա��0
-*ϵͳ�û���1-500	һЩ��̨����Ҳ��Ҫ�û�Ȩ�������𣬾��õ�ϵͳ�û�����������¼
-*��ͨ�û���500-60000
-*���֧�֣�65535
+5.[系统] 用户类别
+*管理员：0
+*系统用户：1-500	一些后台进程也需要用户权限来发起，就用到系统用户。不允许登录
+*普通用户：500-60000
+*最大支持：65535
 
-6.[ϵͳ] ��
-*���	����Ա�飬ϵͳ�飬һ����
-*˽���飺	�����û�ʱ�����û��ָ���飬���Զ���һ��ͬ���ġ�˽���顱
-*�����飺	�û���Ĭ����
-*������/������	
+6.[系统] 组
+*类别：	管理员组，系统组，一般组
+*私有组：	创建用户时，如果没有指定组，则自动建一个同名的“私有组”
+*基本组：	用户的默认组
+*附加组/额外组	
 
-7.[ϵͳ] etc/passwd �ļ��ֶ�
-*account	�û���
-*password	����
+7.[系统] etc/passwd 文件字段
+*account	用户名
+*password	密码
 *uid
-*gid		������id
-*comment	ע��
-*HOME DIR	��Ŀ¼
-*SHELL		�û�Ĭ��shell���󲿷���bash��ϵͳ�û���ֵΪnotlogin��
-ע��etc/shells�ļ��ж��������кϷ�shell
+*gid		基本组id
+*comment	注释
+*HOME DIR	家目录
+*SHELL		用户默认shell（大部分是bash，系统用户的值为notlogin）
+注：etc/shells文件中定义了所有合法shell
 
-8.[ϵͳ] shadow�ļ� �ֶ�
-*account	�û���
-*encrypted password	�������룬���û����ʾ  !!
-*��������޸�ʱ��
-*�������ʹ������
-*�����ʹ������ 
-*���뼴�����ڿ�ʼ��ʾʱ��
-*ǿ�Ƹ�������
-*�˺Ž���ʱ�䣨��������ܵĻ���
+8.[系统] shadow文件 字段
+*account	用户名
+*encrypted password	加密密码，如果没有显示  !!
+*密码最后修改时间
+*密码最短使用期限
+*密码最长使用期限 
+*密码即将过期开始提示时间
+*强制改密期限
+*账号禁用时间（如果不改密的话）
 
-9.���ܷ���
-*�ԳƼ��ܣ����ܺͽ�����ͬһ������
-*��Կ���ܣ�
-*������ܣ�ɢ�м��ܣ���ȡ���ݵ������룬��������������У��
-ע����Կ���ܽ�Ϊ��ȫ����Ҫ��1000��
+9.加密方法
+*对称加密：加密和解密用同一个密码
+*公钥加密：
+*单向加密：散列加密，提取数据的特征码，用于数据完整性校验
+注：公钥加密较为安全，但要慢1000倍
 
-10.[ָ��] md5sum ɢ�м��ܺ���
-*�÷���	md5sum FILENAME
-*������	128λ����
-*������	SHA1:Secure Hash Algorithm 160λ
+10.[指令] md5sum 散列加密函数
+*用法：	md5sum FILENAME
+*特征：	128位定长
+*其它：	SHA1:Secure Hash Algorithm 160位
 
-11.[ָ��] useradd ����һ���û�
-*�÷���	useradd USERNAME
-*Ĭ��û�����룬Ĭ�ϼ�Ŀ¼/home/... ��Ĭ��shell bash
-*��ЩĬ��ֵ��etc/default�ж�����
+11.[指令] useradd 添加一个用户
+*用法：	useradd USERNAME
+*默认没有密码，默认家目录/home/... ，默认shell bash
+*这些默认值在etc/default中定义了
 
-12.[ָ��] which �鿴ָ������·��
-��Ҳ���Ǹ����ļ���������ִ���ļ�
-��Ŀ���ǣ�����ʹ���ⲿָ��
-��$(which useradd)����������
+12.[指令] which 查看指令所在路径
+？也就是根据文件名搜索可执行文件
+？目的是：方便使用外部指令
+？$(which useradd)可以这样用
 
-13.[ָ��] passwd ����
-*ע�⣺	root����
-*�÷���	passwd USERNAME
+13.[指令] passwd 改密
+*注意：	root可用
+*用法：	passwd USERNAME
 
-14.[�ļ�] /etc/group �ֶ�
-*����
-*����ռλ��
-*��id
-*�Ը���Ϊ��������û��б�
+14.[文件] /etc/group 字段
+*组名
+*密码占位符
+*组id
+*以该组为附加组的用户列表
 
 
 4-1
@@ -583,233 +583,233 @@ useradd userdel usermod passwd chsh chfn finger id chage
 groupadd groupdel groupmod gpasswd
 chown chgrp chmod umask
 
-1.[command] useradd �����û�
-*option:	-u UID		ָ���û�ID����ͨ�û�Ҫ���ڵ���500�������ظ�
-*option:	-g GID/GNAME 	ָ�������飬
-*option:	-G xx,xxx	���ø����飬�������ö��ŷָ�
+1.[command] useradd 添加用户
+*option:	-u UID		指定用户ID，普通用户要大于等于500，不能重复
+*option:	-g GID/GNAME 	指定基本组，
+*option:	-G xx,xxx	设置附加组，如果多个用逗号分隔
 *option:	-c COMMENT	
-*option:	-d DIRECTORY	���ü�Ŀ¼·��
-*option:	-s SHELL	����shell
-*option:	-m -k 		-mǿ�ƴ�����Ŀ¼��-k����/etc/skel(�Ǽ�)����Ŀ¼��
-*option:	-M		��������Ŀ¼��Ҳ��ζ��û��skel��ע�⣺��ָ����Ŀ¼,��Ĭ��shell�����Ǽ�Ŀ¼�����ڣ�û�л����趨(skel)
-*option:	-r		����ϵͳ�û���ע�⣺ϵͳ�û�û�м�Ŀ¼
+*option:	-d DIRECTORY	设置家目录路径
+*option:	-s SHELL	设置shell
+*option:	-m -k 		-m强制创建家目录，-k复制/etc/skel(骨架)到家目录下
+*option:	-M		不创建家目录，也意味着没有skel，注意：有指定家目录,有默认shell，但是家目录不存在，没有环境设定(skel)
+*option:	-r		添加系统用户，注意：系统用户没有家目录
 
-2.[system] $SHELL �������� �����û���Ĭ��shell
+2.[system] $SHELL 环境变量 储存用户的默认shell
 *eg.	echo $SHELL	/sbin/bash
 
 3.[file] /etc/skel	directory 
-*�����û�ʱ�õ����������û�Ĭ�ϵĻ��������ļ�
-*��Ŀ¼�¶��������ļ�
+*创建用户时用到，定义了用户默认的环境配置文件
+*该目录下都是隐藏文件
 
 4.[file] /etc/login.defs	file
-*�����˴����û�ʱ�ĸ���Ĭ��ֵ����
-*������	�����С�û�ID��ID���Ƿ񴴽���Ŀ¼ ��
+*定义了创建用户时的各种默认值规则
+*包括：	最大最小用户ID组ID，是否创建家目录 等
 
-5.[command] userdel	ɾ���û�
-*usage:		userdel USERNAME	Ĭ�ϲ���ɾ����Ŀ¼
-*option:	-r	ͬʱɾ����Ŀ¼
+5.[command] userdel	删除用户
+*usage:		userdel USERNAME	默认不会删除家目录
+*option:	-r	同时删除家目录
 
-6.[command] id		�鿴�û���Ϣ
+6.[command] id		查看用户信息
 *usage:		id [option] USERNAME
-*include:	uid,gid,groups,context��
-*option:	-u -g -G	�鿴 uid/������/�����飨���������飩��ע�⣺��id��������
-*option:	-n		��ʾ����
+*include:	uid,gid,groups,context？
+*option:	-u -g -G	查看 uid/基本组/所有组（包括基本组），注意：仅id不含名称
+*option:	-n		显示名称
 
-7.[command] finger 	�鿴�û��˺���Ϣ
-*include:	username,comment,directory,shell,mail(�ʼ�),logintime(��¼ʱ��),plan(�ƻ�)
-*ע����id�����ѯ���ݲ�ͬ
+7.[command] finger 	查看用户账号信息
+*include:	username,comment,directory,shell,mail(邮件),logintime(登录时间),plan(计划)
+*注：与id命令查询内容不同
 
-8.[command] usermod	�޸��û���Ϣ
-*ѡ��ܶ�ͬuseradd
--u	�޸�uid
--g	�޸�gid��Ŀ��������Ѵ���
--G	���ø����飨����֮ǰ��
--a -G	׷���µĸ����飨�����ǣ�
--c	��ע��
--d	�޸ļ�Ŀ¼
--d -m	ͬʱ�ƶ���Ŀ¼��ԭ���ļ�
--e	�޸��˺Ź���ʱ��	
--f	�ǻʱ�䣨�˺��ѹ��ں�ĸ������ޣ�
--L	�����˺ţ�
--U	�����˺ţ�
+8.[command] usermod	修改用户信息
+*选项很多同useradd
+-u	修改uid
+-g	修改gid，目标组必须已存在
+-G	重置附加组（覆盖之前）
+-a -G	追加新的附加组（不覆盖）
+-c	改注释
+-d	修改家目录
+-d -m	同时移动家目录中原有文件
+-e	修改账号过期时间	
+-f	非活动时间（账号已过期后的改密期限）
+-L	锁定账号？
+-U	解锁账号？
 
-9.[command] chsh �޸�Ĭ��shell
+9.[command] chsh 修改默认shell
 *usage:		chsh user1
 
-10.[command] chfn �޸��û�ע��comment��Ϣ
-*��finger�鿴
+10.[command] chfn 修改用户注释comment信息
+*用finger查看
 
-11.[command] passwd �޸�����
-*important:	root�����޸������û�����
+11.[command] passwd 修改密码
+*important:	root可以修改其它用户密码
 *usage:		passwd [USERNAME]
-*option:	--stdin		ͨ����׼�����������ַ�������
-		echo 'mypasswd' | passwd -stdin		�˴�Ӧ���˹ܵ�(pipe)
-*option:	-d	ɾ�����룬ע�⣺����!! ���ǿգ�ɾ������󽫲��ܵ�½
-*option:	-n -x -w -i	�޸��û�һЩ��Ϣ��ͬusermod
-*option:	-l -u		����/�����˺ţ�ͬusermod
+*option:	--stdin		通过标准输入来接收字符串密码
+		echo 'mypasswd' | passwd -stdin		此处应用了管道(pipe)
+*option:	-d	删除密码，注意：不是!! 而是空，删除密码后将不能登陆
+*option:	-n -x -w -i	修改用户一些信息，同usermod
+*option:	-l -u		锁定/解锁账号，同usermod
 
 
-12.linux����Ҫ��ѧ˼��֮һ���������Ⲷ���û��ӿ�
+12.linux的重要哲学思想之一：尽量避免捕获用户接口
 
-13.[command] pwck ����û��˺�������
+13.[command] pwck 检查用户账号完整性
 
-14.[command] groupadd	������
-*option:	-g 	ָ��gid
-*option:	-r	����Ϊϵͳ��
+14.[command] groupadd	创建组
+*option:	-g 	指定gid
+*option:	-r	添加为系统组
 
-15.[command] groupmod	�޸���
-*option:	-g	�޸�gid
-*option:	-n	�޸�����
+15.[command] groupmod	修改组
+*option:	-g	修改gid
+*option:	-n	修改组名
 
-16.[command] groupdel	ɾ����
-17.[command] gpasswd	Ϊ�� ������
+16.[command] groupdel	删除组
+17.[command] gpasswd	为组 设密码
 
-18.[command] newgrp 	��ʱ��¼��һ���µĻ�����
-*���Ŀ������ �û��ĸ����飬�������������룻������Ҫ����������
-*��exit�˳�����
+18.[command] newgrp 	临时登录到一个新的基本组
+*如果目标组是 用户的附加组，则不用输入组密码；否则需要输入组密码
+*用exit退出该组
 
 19.[system] 
-����һ���û��Ĺ��̣���ʵ���޸���/etc/passwd /etc/shadow /etc/group�ļ���
-ʹ��useradd�����Ч������ʵͬ����ֱ���޸��ļ�
+创建一个用户的过程，其实是修改了/etc/passwd /etc/shadow /etc/group文件，
+使用useradd命令的效果，其实同等与直接修改文件
 
-20.[command] chage	�ı����������Ϣ
+20.[command] chage	改变密码过期信息
 *usage:		chage [option] user
-*option:	-d	��������޸�ʱ��
-*option:	-E	�������ʱ��
-*option:	-I	��������ں󣩲��ܻ��ǿ�Ƹ��ܣ�����		
-*option:	-m	�������ʹ������
-		-M	�ʹ������
-*option:	-W	������ǰ������ʱ��
+*option:	-d	密码最后修改时间
+*option:	-E	密码过期时间
+*option:	-I	（密码过期后）不能活动（强制改密）期限		
+*option:	-m	密码最短使用期限
+		-M	最长使用期限
+*option:	-W	（过期前）警告时长
 
 
 4-2
 
-1.[command] chown	�ı�����
-*usage:		chown USERNAME FILENAME		�����޸��ļ����ļ��е�����
-*option:	-R	������Ϊ�ļ���ʱ��Ч���ݹ��޸�Ŀ¼�����������ļ�������
-*option:	--reference	���ļ��������� ��Ϊ ͬ��һ���ļ�����������
+1.[command] chown	改变属主
+*usage:		chown USERNAME FILENAME		可以修改文件和文件夹的属主
+*option:	-R	当参数为文件夹时有效，递归修改目录及其所有子文件的属主
+*option:	--reference	将文件属主数组 改为 同另一个文件的属主数组
 		chown --reference=/tmp/abc FILENAME
-*option:	chown USER:GROUP FILE1��FILE2	ͬʱ���ļ�������������
-		chown :GROUP FILE		�����ļ�����
-2.[command] chgrp	�ı�����	��ȫͬchown
+*option:	chown USER:GROUP FILE1，FILE2	同时改文件的属主和数组
+		chown :GROUP FILE		更改文件数组
+2.[command] chgrp	改变数组	完全同chown
 
-3.[command] chmod	�޸��ļ�Ȩ��
+3.[command] chmod	修改文件权限
 *usage:		chmod MODE file1,file2,...
-*option:	-R 	����Ϊ�ļ���ʱ���ݹ��޸�
+*option:	-R 	参数为文件夹时，递归修改
 *option:	--reference
 		chmod --reference=/tmp/abc file1
-*option:	chmod u=rwx file	ֻ��д����Ȩ��
+*option:	chmod u=rwx file	只改写属主权限
 		chmod g=rwx file	..
 		chmod o=rw file	..
 		chmod g=r,o=w file
 		chmod og=rw file
-		chmod u= file		��Ȩ��
-*option		chmod u-x file		ȥ�� ������ xȨ��
+		chmod u= file		无权限
+*option		chmod u-x file		去除 属主的 x权限
 		chmod u-x,g+x file	..
-		chmod -w		ͬʱȥ�� ugo�� wȨ��
+		chmod -w		同时去除 ugo的 w权限
 
-��Ƶ20min������ϰ
+视频20min处有练习
 
-4.[command] bc �򿪼�����
-*����quit
-*Ĭ�϶�С������ ȥβ
-*���磺scale=2 ���Ա���2λ����С��
+4.[command] bc 打开计算器
+*用完quit
+*默认对小数采用 去尾
+*例如：scale=2 可以保留2位精度小数
 
-5.[command] openssl	����hash���ܵ�����
-*Ӧ�ã�		openssl	passwd	�������ɼ��ܵ�����	Ĭ�ϲ�����
-*usage��	openssl passwd -1 -salt 'mysalt'
-*option��	-1	md5��ʽ����
-*option��	-salt	����
-*���:		sslpasswd����
+5.[command] openssl	生成hash加密的密码
+*应用：		openssl	passwd	可以生成加密的密码	默认不含盐
+*usage：	openssl passwd -1 -salt 'mysalt'
+*option：	-1	md5方式加密
+*option：	-salt	加盐
+*相关:		sslpasswd命令
 
-6.[system] �����ļ�/Ŀ¼ʱ��Ĭ��Ȩ��
-*Ĭ��Ȩ�ޣ�	��ͨ�û���	Ŀ¼775		�ļ�664
-		root�û���	Ŀ¼755		�ļ�644
-*umask��	����/������
-		��ͨ�û���	002
-		root�û���	022
-*Ϊ�˰�ȫlinux���ļ�������Ŀ¼��Ĭ�ϲ���ִ��
-		Ŀ¼���Ȩ��	777
-		�ļ����Ȩ��	666
-*�������	��ͨ�û�	777-022=755 	666-022=644
-		root�û�	777-002=775 	666-002=664
-*command��	umask		�鿴/�޸�����
+6.[system] 创建文件/目录时的默认权限
+*默认权限：	普通用户：	目录775		文件664
+		root用户：	目录755		文件644
+*umask：	掩码/遮罩码
+		普通用户：	002
+		root用户：	022
+*为了安全linux的文件（区分目录）默认不能执行
+		目录最高权限	777
+		文件最高权限	666
+*计算规则	普通用户	777-022=755 	666-022=644
+		root用户	777-002=775 	666-002=664
+*command：	umask		查看/修改掩码
 		usage:		umask
-		option:		umask 022	�޸ĵ�ǰ�û�umask���´ε�¼ʱ��ָ�Ĭ�ϣ���Ϊд�������ļ�
-*����umask���ļ� ����õ���Ȩ�� ����ӵ�� xȨ�ޣ���ʱlinux��ǿ�Ƶ�ǰȨ��+1
+		option:		umask 022	修改当前用户umask，下次登录时会恢复默认，因为写在配置文件
+*重置umask后，文件 计算得到的权限 可能拥有 x权限，此时linux会强制当前权限+1
 
 
 
 
-��¼ʽshell	������¼ / su - username
-�ǵ�½shell	su username / ͼ���ն˴򿪵������ /�Զ�ִ�е�shell�ű�
+登录式shell	正常登录 / su - username
+非登陆shell	su username / 图形终端打开的命令窗口 /自动执行的shell脚本
 
-bash�������ļ���
-ȫ������	/etc/profile, /etc/profile.d/*.sh, /etc/bashrc
+bash的配置文件：
+全局配置	/etc/profile, /etc/profile.d/*.sh, /etc/bashrc
 
-��������	��ʼ����skel
+个人配置	初始来自skel
 		~/.bash_profile, ~/.bashrc
-�������ñ�ȫ����������
+个人配置比全局配置优先
 
-profile�ļ������ã�
-	�趨��������
-	���������ű�
-bashrc�ļ������ã�
-	�趨���ر���		���ر���������
-	�������
+profile文件的作用：
+	设定环境变量
+	运行命令或脚本
+bashrc文件的作用：
+	设定本地变量		本地变量？？？
+	定义别名
 
 
-��¼ʽshell ��ȡ�����ļ� ˳��
+登录式shell 读取配置文件 顺序
 /etc/profile -> /etc/profile.d/*.sh -> ~/.bash_profile -> ~/.bashrc -> /etc/bashrc
 
-�ǵ�¼ʽshell ��ȡ�����ļ� ˳��
+非登录式shell 读取配置文件 顺序
 ~/.bashrc -> /etc/bashrc -> /etc/profile.d/*.sh
 
 
-4-3 ������I/O�ض���
+4-3 管理及I/O重定向
 
-1.[system]  �����ϵͳ
-*���ģ�		�����������������ڴ�
-		��ַ���ߣ��ڴ�Ѱַ
-		�������ߣ���������
-		�������ߣ�����ָ�
-*���裺		I/O�豸		�磺Ӳ��
-*I/O		ϵͳ���趨Ĭ�ϵ���������豸������ָ���ǣ�������/�����Ĭ���豸�ϣ�����Ϊ��
-		��׼�����STDOUT��1	��ʾ��
-		��׼���룺STDIN��0	����
-		��׼���������STDERR,2
-*�ض���	>	�����ض����׼���
-	>>	׷���ض����׼���
-	2>	�����ض���������
-	2>>	׷���ض������ ���
-	&>	��׼��� ���� �������
-	&>>	ע�⣺��ʵû������д��
+1.[system]  计算机系统
+*核心：		控制器、运算器、内存
+		地址总线：内存寻址
+		数据总线：传输数据
+		控制总线：控制指令？
+*外设：		I/O设备		如：硬盘
+*I/O		系统会设定默认的输入输出设备，当不指定是，就输入/输出到默认设备上，被称为：
+		标准输出：STDOUT，1	显示器
+		标准输入：STDIN，0	键盘
+		标准错误输出：STDERR,2
+*重定向	>	覆盖重定向标准输出
+	>>	追加重定向标准输出
+	2>	覆盖重定向错误输出
+	2>>	追加重定向错误 输出
+	&>	标准输出 或是 错误输出
+	&>>	注意：其实没有这种写法
 
-	<	�����ض���	cat < /etc/abc	ͬ	cat /etc/abc
-				tr 'a-z' 'A-Z' ԭ�����ձ�׼���룬���������ض���
-				tr 'a-z' 'A-Z' < /test/abc  �൱������abc�ļ�������
-	<<	����������ض���ûʲô��ϵ������
-		�� here document ���ܣ��﷨��
-		  Here Document �� Shell �е�һ��������ض���ʽ�������������ض���һ������ʽ Shell �ű������
-		cat << END	END�ǽ�����
+	<	输入重定向	cat < /etc/abc	同	cat /etc/abc
+				tr 'a-z' 'A-Z' 原本接收标准输入，可以这样重定向
+				tr 'a-z' 'A-Z' < /test/abc  相当于输入abc文件的内容
+	<<	这个跟输入重定向没什么关系。。。
+		是 here document 功能？语法？
+		  Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序
+		cat << END	END是结束符
 		> balabala
 		> niconico
-		> END		������������һ���ĵ�������cat��ȡ����׼�������ʾ��
-		��2��
+		> END		这样就生成了一个文档，并被cat读取，标准输出到显示器
+		例2：
 		cat >> /test/abc << EOF
 		> xxx
 		> xxx
-		> EOF		����������һ���ĵ���������ض���abc�ļ���
+		> EOF		这样生成了一个文档，并输出重定向到abc文件中
 
-*�ܵ�	|	һ���������� ���������Ļ�����ļ���������Ϊ ��һ�����������
-		����	echo 'hello world' | tr 'a-z' 'A-Z'
-		��2��	echo 'apassword' | passwd --stdin user1
-*���С������ɸ������� ��linux��Ҫ��ѧ˼��֮һ
+*管道	|	一个命令的输出 不输出到屏幕或是文件，而是作为 另一个命令的输入
+		例：	echo 'hello world' | tr 'a-z' 'A-Z'
+		例2：	echo 'apassword' | passwd --stdin user1
+*组合小命令完成复杂任务 是linux重要哲学思想之一
 
-2.[command] set	bash���ڽ��������
-*option:	C �����ܷ񸲸Ƿ�ʽ������ݵ��Ѵ��ڵ��ļ��������ض���
-		set +C	��
-		set -C	�ر�		�������ʹ�� >| ��Ȼ����ǿ�и����ض���
+2.[command] set	bash的内建命令，设置
+*option:	C 设置能否覆盖方式输出内容到已存在的文件（覆盖重定向）
+		set +C	打开
+		set -C	关闭		这种情况使用 >| 依然可以强行覆盖重定向
 
 3.[command] tee		read from standard input and write to standard output and files
 
@@ -821,23 +821,23 @@ grep egrep fgrep
 
 
 
-[command] grep	����ģʽ�����ı�����ʾ
+[command] grep	根据模式搜索文本并显示
 *usage:		grep [options] PATTERN [file]
-*����pattern�� 	���ı��ַ�������Ԫ�ַ���϶��ɵ�ƥ������
-*option:	-i		���Դ�Сд
-*option:	--color		������ƥ�䵽�Ľ��������ʾ
-*option:	-v		��ʾû�б�ƥ�䵽����
-*option:	-o		ֻ��ʾ��ƥ�䵽���ַ����������У�
+*其中pattern： 	由文本字符和正则元字符组合而成的匹配条件
+*option:	-i		忽略大小写
+*option:	--color		对搜索匹配到的结果高亮显示
+*option:	-v		显示没有被匹配到的行
+*option:	-o		只显示被匹配到的字符串（而非行）
 
-? {} () Ҫת��	\? \{0,3\} \( \)
-<> ƥ����״�β ��Ҫת�� \<  \>
+? {} () 要转义	\? \{0,3\} \( \)
+<> 匹配词首词尾 需要转义 \<  \>
 
 
 ctrl+m
 
-cut	�ָ�
+cut	分割
 
-wc	������
+wc	单词数
 head
 sort
 

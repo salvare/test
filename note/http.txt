@@ -1,34 +1,34 @@
-http://blog.csdn.net/zhangboyj/article/details/6236780¡¾HTTP1.1ÖĞCHUNKED±àÂë½âÎö¡¿¡¾Transfer-Encoding: chunked¡¿
+http://blog.csdn.net/zhangboyj/article/details/6236780ã€HTTP1.1ä¸­CHUNKEDç¼–ç è§£æã€‘ã€Transfer-Encoding: chunkedã€‘
 
 
-¡¾proxy¡¿
-$ch¡¡=¡¡curl_init();
-curl_setopt($ch,¡¡CURLOPT_URL,¡¡'http://www.cmx8.cn');
-curl_setopt($ch,¡¡CURLOPT_HEADER,¡¡1);
-curl_setopt($ch,¡¡CURLOPT_RETURNTRANSFER,¡¡1);
-curl_setopt($ch,¡¡CURLOPT_HTTPPROXYTUNNEL,¡¡1);
-curl_setopt($ch,¡¡CURLOPT_PROXY,¡¡'proxy.lxvoip.com:1080');
-curl_setopt($ch,¡¡CURLOPT_PROXYUSERPWD,¡¡'user:password');
-$data¡¡=¡¡curl_exec();
+ã€proxyã€‘
+$chã€€=ã€€curl_init();
+curl_setopt($ch,ã€€CURLOPT_URL,ã€€'http://www.cmx8.cn');
+curl_setopt($ch,ã€€CURLOPT_HEADER,ã€€1);
+curl_setopt($ch,ã€€CURLOPT_RETURNTRANSFER,ã€€1);
+curl_setopt($ch,ã€€CURLOPT_HTTPPROXYTUNNEL,ã€€1);
+curl_setopt($ch,ã€€CURLOPT_PROXY,ã€€'proxy.lxvoip.com:1080');
+curl_setopt($ch,ã€€CURLOPT_PROXYUSERPWD,ã€€'user:password');
+$dataã€€=ã€€curl_exec();
 curl_close($ch);
 
 
-http://blog.csdn.net/yipiankongbai/article/details/25029183¡¾Ò»´ÎÍêÕûµÄHTTPÊÂÎñÊÇÔõÑùÒ»¸ö¹ı³Ì£¿¡¿
+http://blog.csdn.net/yipiankongbai/article/details/25029183ã€ä¸€æ¬¡å®Œæ•´çš„HTTPäº‹åŠ¡æ˜¯æ€æ ·ä¸€ä¸ªè¿‡ç¨‹ï¼Ÿã€‘
 
 
 ResponseHeader
-Content-type	ÄÚÈİµÄMIMEÀàĞÍ
-Content-Disposition	ä¯ÀÀÆ÷½ÓÊÕµ½¸ÃheaderÊ±£¬»áÊÔÍ¼ÏÂÔØÎÄ¼ş http://blog.csdn.net/lihua2915/article/details/6300773
-Accept-Ranges	Ò»¸öÏìÓ¦Í·±ê£¬ËüÔÊĞí·şÎñÆ÷Ö¸Ã÷£º½«ÔÚ¸ø¶¨µÄÆ«ÒÆºÍ³¤¶È´¦£¬Îª×ÊÔ´×é³É²¿·ÖµÄ½ÓÊÜÇëÇó¡£¸ÃÍ·±êµÄÖµ±»Àí½âÎªÇëÇó·¶Î§µÄ¶ÈÁ¿µ¥Î»¡£ÀıÈçAccept-Ranges: bytes»òAccept-Ranges: none
-		¸æÖªÏÂÔØ¿Í»§¶ËÕâÊÇÒ»¸ö¿ÉÒÔ»Ö¸´Ğø´«µÄÏÂÔØ£¬´æ·Å±¾´ÎÏÂÔØµÄ¿ªÊ¼×Ö½ÚÎ»ÖÃ¡¢ÎÄ¼şµÄ×Ö½Ú´óĞ¡£» http://blog.chinaunix.net/uid-24512513-id-3391252.html
-Content-Length	±íÊ¾ÇëÇóÏûÏ¢ÕıÎÄµÄ³¤¶È
+Content-type	å†…å®¹çš„MIMEç±»å‹
+Content-Disposition	æµè§ˆå™¨æ¥æ”¶åˆ°è¯¥headeræ—¶ï¼Œä¼šè¯•å›¾ä¸‹è½½æ–‡ä»¶ http://blog.csdn.net/lihua2915/article/details/6300773
+Accept-Ranges	ä¸€ä¸ªå“åº”å¤´æ ‡ï¼Œå®ƒå…è®¸æœåŠ¡å™¨æŒ‡æ˜ï¼šå°†åœ¨ç»™å®šçš„åç§»å’Œé•¿åº¦å¤„ï¼Œä¸ºèµ„æºç»„æˆéƒ¨åˆ†çš„æ¥å—è¯·æ±‚ã€‚è¯¥å¤´æ ‡çš„å€¼è¢«ç†è§£ä¸ºè¯·æ±‚èŒƒå›´çš„åº¦é‡å•ä½ã€‚ä¾‹å¦‚Accept-Ranges: bytesæˆ–Accept-Ranges: none
+		å‘ŠçŸ¥ä¸‹è½½å®¢æˆ·ç«¯è¿™æ˜¯ä¸€ä¸ªå¯ä»¥æ¢å¤ç»­ä¼ çš„ä¸‹è½½ï¼Œå­˜æ”¾æœ¬æ¬¡ä¸‹è½½çš„å¼€å§‹å­—èŠ‚ä½ç½®ã€æ–‡ä»¶çš„å­—èŠ‚å¤§å°ï¼› http://blog.chinaunix.net/uid-24512513-id-3391252.html
+Content-Length	è¡¨ç¤ºè¯·æ±‚æ¶ˆæ¯æ­£æ–‡çš„é•¿åº¦
 
 
-Access-Control-Allow-Origin Ö»ÄÜÉèÖÃÒ»¸öÓòÃû£¬»òÕßÓÃ * 
-https://blog.csdn.net/whackw/article/details/79210506¡¾¿çÓòÉèÖÃ¶àÓòÃû¡¿
+Access-Control-Allow-Origin åªèƒ½è®¾ç½®ä¸€ä¸ªåŸŸåï¼Œæˆ–è€…ç”¨ * 
+https://blog.csdn.net/whackw/article/details/79210506ã€è·¨åŸŸè®¾ç½®å¤šåŸŸåã€‘
 
 
-http://www.cnblogs.com/rinack/p/5209345.html¡¾ÈçºÎÀí½âHTTPĞ­ÒéµÄ¡°ÎŞÁ¬½Ó£¬ÎŞ×´Ì¬¡±ÌØµã¡¿
-http://www.ruanyifeng.com/blog/2016/04/cors.html¡¾¿çÓò×ÊÔ´¹²Ïí CORS Ïê½â¡¿
-http://blog.csdn.net/wzl002/article/details/51441704¡¾¿çÓòAjaxÇëÇóÊ±ÊÇ·ñ´øCookieµÄÉèÖÃ¡¿
-http://justsee.iteye.com/blog/1570652¡¾Session»úÖÆÏê½â¡¿
+http://www.cnblogs.com/rinack/p/5209345.htmlã€å¦‚ä½•ç†è§£HTTPåè®®çš„â€œæ— è¿æ¥ï¼Œæ— çŠ¶æ€â€ç‰¹ç‚¹ã€‘
+http://www.ruanyifeng.com/blog/2016/04/cors.htmlã€è·¨åŸŸèµ„æºå…±äº« CORS è¯¦è§£ã€‘
+http://blog.csdn.net/wzl002/article/details/51441704ã€è·¨åŸŸAjaxè¯·æ±‚æ—¶æ˜¯å¦å¸¦Cookieçš„è®¾ç½®ã€‘
+http://justsee.iteye.com/blog/1570652ã€Sessionæœºåˆ¶è¯¦è§£ã€‘

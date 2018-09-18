@@ -1,11 +1,11 @@
-��1��ʱ
+第1课时
 <font>
 <b>
 <br>
-<hr> width='50%������' size='50%������'
-xhtml�淶��<br/><hr/> Сд �ر�
+<hr> width='50%或像素' size='50%或像素'
+xhtml规范：<br/><hr/> 小写 关闭
 
-��2��ʱ
+第2课时
 <html>
 	<head>
 		<title><title>
@@ -15,18 +15,18 @@ xhtml�淶��<br/><hr/> Сд �ر�
 	<body>
 </html>
 
-<meta name='keywords' content='�ؼ�������'>
+<meta name='keywords' content='关键字内容'>
 <meta name='description' content='...'>
 
 <meta http-equiv='content-type' content='text/html;charset=utf8'>
 
-utf8 ���� 3�ֽ�
+utf8 中文 3字节
 
-*ҳ�涨ʱ��ת
+*页面定时跳转
 <meta http-equiv='refresh' content='2;URL=http://www.baidu.com'/>
 
 
-4��ʱ----------------------------------
+4课时----------------------------------
 
 <b>
 <i>
@@ -37,197 +37,197 @@ utf8 ���� 3�ֽ�
 <sup>
 <sub>
 
-ת���ַ�
+转义字符
 < &lt
 > &gt
 
-<p> ���� ��align='right'����
+<p> 段落 ？align='right'对齐
 
 
 
-5��ʱ---------------------------------
-<blockquote> ������ cite='url'
-<pre> ��ʾԴ����(�����س����ո�ȣ�
+5课时---------------------------------
+<blockquote> 块引用 cite='url'
+<pre> 显示源代码(保留回车、空格等）
 
 
-6��ʱ---------------------------
-ת���ַ�
-&nbsp �ո�
+6课时---------------------------
+转义字符
+&nbsp 空格
  
-<ul>	�����б� type='circle'
+<ul>	无序列表 type='circle'
 	<li></li>
 </ul>
 
-<ol> �����б� type='a' start='z'
+<ol> 有序列表 type='a' start='z'
 
-<dl> �Զ����б�
-	<dt>��Ŀ��</dt>
+<dl> 自定义列表
+	<dt>项目名</dt>
 	<dd>item1</dd>
 	<dd>item2</dd>
 </dl>
 
-<img src='xxxx' alt='' width height align border vspace hspace>ͼƬ
+<img src='xxxx' alt='' width height align border vspace hspace>图片
 
 
 
-7��ʱ------------------------------------------
+7课时------------------------------------------
 
-table ������ҳ�沼�֣����淶
+table 可以作页面布局，不规范
 <table> <tr> <td> <th> cellspacing cellpadding border bordercolor rowspan colspan
 
 
-8��ʱ--------------------------
+8课时--------------------------
 
-bordercolorlight��chrome����Ч
-
-
-9��ʱ-------------------------------
-
-<table> frame����:����߿� rules:��Ԫ��߿�
-
-width=100 ���أ����Գ��ȣ� width=100%��Գ���
+bordercolorlight在chrome中无效
 
 
-10��ʱ----------------------
+9课时-------------------------------
 
-<caption> table�£�����
+<table> frame属性:表格边框 rules:单元格边框
 
-<thead> <tbody> <tfoot> ����ṹ��������ʽЧ��
+width=100 像素，绝对长度， width=100%相对长度
+
+
+10课时----------------------
+
+<caption> table下，标题
+
+<thead> <tbody> <tfoot> 表格结构化，无样式效果
 
 <tr> <colgroup span=2 bgcolor="blue">
 
 
-11��ʱ----------------------------
+11课时----------------------------
 
 <a href="xxx.cm" title="xxx" target="_blank/_self/_parent?/_top?">
-<a href="mailto:xxx@qq.com" �ʼ�����
-<a href="xxx.php#tag">	<a name="tag">	ê������
-<a href="#">�����ӣ���ˢ��ҳ�棩
+<a href="mailto:xxx@qq.com" 邮件链接
+<a href="xxx.php#tag">	<a name="tag">	锚点链接
+<a href="#">空连接（会刷新页面）
 
 
-12��ʱ-----------------------------
-<form> ����
+12课时-----------------------------
+<form> 表单
 
-13��ʱ------------------------------
-<input type="reset����/file/text/radio/checkbox/password/button/hidden/image/submit"
+13课时------------------------------
+<input type="reset重置/file/text/radio/checkbox/password/button/hidden/image/submit"
 
-<input type="text" name value="��ֵ" size maxlength="5" readonly disabled>
+<input type="text" name value="初值" size maxlength="5" readonly disabled>
 
-<label for="ĳid">content</label>��עĳ��ǩ
+<label for="某id">content</label>标注某标签
 
-<select size=3 mutiple="mutiple�ɶ�ѡ">
+<select size=3 mutiple="mutiple可多选">
 	<optgroup>
 		<option></option>
 	</optgroup>
 <select>
 
-<input type="image" src="xxx.gif" onclick="return dosubmit();"/>���׳���
-<img src="xxx.gif" onclick="return dosubmit();" /> ����д��
+<input type="image" src="xxx.gif" onclick="return dosubmit();"/>容易出错
+<img src="xxx.gif" onclick="return dosubmit();" /> 这样写好
 
 <textarea rows=5 cols=15>
 
-<fieldset> �������
-	<legend>����</legend>
+<fieldset> 表单外框
+	<legend>名称</legend>
 	xxxxxxxx
 	xxxxxxxx
 </fieldset>
 
 
-14��ʱ--------------------------------------
-<embed src='xxx.swf' width/height wmode="transparent����͸��"> ����flash����
+14课时--------------------------------------
+<embed src='xxx.swf' width/height wmode="transparent背景透明"> 插入flash动画
 
-<marquee behavior loop direction scrollamount onmouseover="this.stop()">������
+<marquee behavior loop direction scrollamount onmouseover="this.stop()">滚动条
 
 
-15��ʱ---------------------------------------
+15课时---------------------------------------
 
-<frameset cols="300,200,*" border="100"> ��html�ļ�������body��������
+<frameset cols="300,200,*" border="100"> 该html文件不能有body！！！！
 	<frame src="left.html name="left">
 	<frame src="rigth.html name="rigth">
 </frameset> 
 
-����ʱ <a href="xxx.html" target="left">
+链接时 <a href="xxx.html" target="left">
 
-<iframe src="url"> ��Ƕʽ���
+<iframe src="url"> 内嵌式框架
 
 
 
-17��ʱ--------------------------------css
+17课时--------------------------------css
 
-<style type="text/css">  !!!!!!!Ƕ����ʽ
-	ѡ����:{
-		����:ֵ;
+<style type="text/css">  !!!!!!!嵌入样式
+	选择器:{
+		属性:值;
 	}
 </style>
 
-��Щ��ǩ����<h1>�Դ�һЩ��ʽ��
-��Щ��ʽ�ڲ�ͬ������п��ܻ��в�ͬ�Ľ��ͣ�Ϊ��ͳһ��ʾЧ����Ӧ����Щ��ǩ���¶�����ʽ��
+有些标签，如<h1>自带一些样式。
+这些样式在不同浏览器中可能会有不同的解释，为了统一显示效果，应将这些标签重新定义样式。
 
-<span> ��������
+<span> 行内内容
 
-��ʽ�� ���ȵ�λ em �����С
+样式中 长度单位 em 字体大小
 
 font-size font-family
-font-weight:normal/bold/bolder/light �����ϸ
+font-weight:normal/bold/bolder/light 字体粗细
 
-����Ӣ������ֱ����ã�font-family:"Arial","����";��Ӣ�ĺ�����
+对中英文字体分别设置：font-family:"Arial","黑体";先英文后中文
 
-line-height="150%/1.5em" �о� 
+line-height="150%/1.5em" 行距 
 
-<ĳ��ǩ style="color:black"> !!!!!!!!!������ʽ��Ӧ����һ����ǩ
+<某标签 style="color:black"> !!!!!!!!!行内样式，应用于一个标签
 
-<link href="xxx.css" rel="stylesheet" type="text/css" /> !!!!!!!!!!����css�ļ� 
+<link href="xxx.css" rel="stylesheet" type="text/css" /> !!!!!!!!!!连接css文件 
 
-<style>	!!!!!!!������ʽ��������.css����
+<style>	!!!!!!!导入样式，可以在.css中用
 	@import url("xxx.css");
 </style>
 
 
-18��ʱ--------------------------------------------------
+18课时--------------------------------------------------
 
-��ǩѡ��� p
-idѡ��� #id
-��ѡ��� .class   <p class="c1 c2 ,...."> 
+标签选择符 p
+id选择符 #id
+类选择符 .class   <p class="c1 c2 ,...."> 
 
-id�� �� ���� ���������ֿ�ͷ
-
-
-19��ʱ-----------------------------------------------
-
-css���ԣ�
-�̳С���������ǣ���
-����Ȩ��������ʽ>��Ƕ��ʽ>����ʽlink>import
-	����>id>class>��ǩ
-
-��������Ȩ:             ����: ֵ !important;  
+id名 和 类名 不能以数字开头
 
 
-20��ʱ--------------------------------------------
+19课时-----------------------------------------------
 
-letter-spacing�ַ����	word-spacing���ʼ��
-font-stype������ʽ	text-decoration��������	
-text-indent����		text-align
-white-spacing:normal�Զ�����/pre���кͿո��ܱ���/nowrapǿ�в�����
-text-transform��Сд	
+css特性：
+继承、层叠（覆盖）；
+优先权：行内样式>内嵌样式>链接式link>import
+	行内>id>class>标签
+
+提升优先权:             属性: 值 !important;  
+
+
+20课时--------------------------------------------
+
+letter-spacing字符间距	word-spacing单词间距
+font-stype字体样式	text-decoration文字修饰	
+text-indent缩进		text-align
+white-spacing:normal自动换行/pre换行和空格受保护/nowrap强行不换行
+text-transform大小写	
 vertical-align:sub/super
 
-α��
-a:link 		��������״̬
-a:visited	���ʹ�������
-a:hover		����ƶ����ϱ�
-a:active	�������
+伪类
+a:link 		链接正常状态
+a:visited	访问过的链接
+a:hover		鼠标移动到上边
+a:active	鼠标点击中
 
 input:focus
 
 
-21��ʱ----------------------------------------------------
-ͨ��� *
+21课时----------------------------------------------------
+通配符 *
 
-p div a{.....}	����ѡ��� ��ǩǶ��
-h1,h2,h3{....}	ѡ�������
+p div a{.....}	包含选择符 标签嵌套
+h1,h2,h3{....}	选择符分组
 
 
-22��ʱ--------------------------------------------------
+22课时--------------------------------------------------
 css box model  border > content/padding > backgroud-image > background-color > margin
 
 
@@ -235,31 +235,31 @@ css box model  border > content/padding > backgroud-image > background-color > m
 
 
 
-24��ʱ------------------------------------------------------
+24课时------------------------------------------------------
 
-�ռ���� margin:auto;
-
-
-25��ʱ--------------------------------------------------------
-
-��״Ԫ��	��width height ,��ռһ�У����԰�������Ԫ��
-����/����Ԫ��	
-
-display:inline/block ����/��
+空间居中 margin:auto;
 
 
-26��ʱ--------------------------------------
+25课时--------------------------------------------------------
+
+块状元素	有width height ,独占一行，可以包含其他元素
+行内/内联元素	
+
+display:inline/block 内联/块
+
+
+26课时--------------------------------------
 
 background-image
 background-repeat:repeat/no-repeat/repeat-x/-y
-background-position:center right;	ˮƽ ��ֱ/����
+background-position:center right;	水平 垂直/像素
 
-Ӧ�ã�css���� ���ã�����ftp����
+应用：css精灵 作用：减少ftp请求
 xxx{
 	background:url("xxxxxxxxxxxx");
 }
 xxx:hover{
-	background-position:0 -40px;	ˮƽ0,��ֱ��ͼ��
+	background-position:0 -40px;	水平0,垂直半图高
 }
 
 
@@ -267,121 +267,121 @@ xxx:hover{
 
 
 
-30��ʱ--------------------------------------------------
+30课时--------------------------------------------------
 
-position:absolute; ���Զ�λ������ڸ���ǩ��λ
-ǰ���ǣ�����ǩ��position���ԣ�relative��absolute������
+position:absolute; 绝对定位，相对于父标签定位
+前提是：父标签有position属性，relative、absolute都可以
 
-position:relative; ��Զ�λ�����������ԭ��λ�ö�λ
+position:relative; 相对定位，相对于自身原来位置定位
 
-left: ��ֵ��ʾ�����Ŀ����������ƫ��
-top: ��ֵ��ʾ�����Ŀ��Ķ������±���
+left: 正值表示相对于目标的左侧向右偏移
+top: 正值表示相对于目标的顶部乡下编译
 
-ע�⣺position��float��һ���������������ǩλ�����Ӱ��
+注意：position与float不一样，不会对其他标签位置造成影响
 
-rbg() url() ��������ֵ
+rbg() url() 可做属性值
 
-ע�⣺
-ͬһ����ʽ����������Գ�ͻ����ȡǰһ������ֵ����:left:30px;right:40px;
-����ͬ��ʽ����������Գ�ͻ����һ���Ḳ��ǰһ����
-
-
-������
-
-һ������position:absolute;����floatһ������ǩ�Ͳ�ռ��ԭ��λ���ˣ�
-��position:relative;ԭλ���Ա�����Ӱ����������ǩ��λ��
-
-body��backgroundһ����ռ��ȫ����body���������ǣ���border���Կ���
-
-bodyĬ�� �߶���auto ������100%
-
-body{height:100%;}û����,ԭ�����丸��ǩδ���ø߶�;
-html,body{height:100%}��Ч����ʱ�߶�Ϊ��Ļ�ߣ�ע�⣺������margin��border��������Ϊ��Ļ�ߡ�
-
-����Ԫ�أ�height/width/margin top��bottom����Ч����ֻ����padding left��right
-
-img���������滻Ԫ��
-���ƿ�Ԫ�أ�����ʹ��width��height����������margin�����ܶ�ռһ�У�
-
-height������border��margin
-
-ʹĳ��ǩ�̶���Ļĳ���������������������position:fixed�����������body��λ
-
-position:absolute; �������text-align:center; �г�ͻ������ﵽԤ�ڽ��
-����
-1.text-align:center;�Կ�״Ԫ�� �� ����Ԫ�ض���Ч����ǩ���Ļ����д�����
-2.����Ԫ�� ����position:absolute;ʱ���������󣬱�ǩ�����д����Ҳ�
-2.��״Ԫ�� ����position:absolute;ʱ�����پ��У�IE6��ͬ��
-
-table���δ���ÿ��ȣ�Ĭ����Ӧ���ݡ�
-div�ͻ�ռһ����
-������ǩ�������ݣ�inline-blockҲ��
-
-��Ҫ��ǩ�� �ӱ�ǩ ������У�heigth="100px" line-height="100px"
-ע�⣺ֻ������Ԫ����Ч����block��inline-block����Ч
-
-inline-block��float��inline����:
-inlineҲ��float������float����������block��width��height��Ч������line-heightӰ��
+注意：
+同一个样式中如果有属性冲突，会取前一个属性值。如:left:30px;right:40px;
+而不同样式中如果有属性冲突，后一个会覆盖前一个；
 
 
-��Ʈ����Ʈ ��λ��ô�����
-������ǩ�ӹ̶��Ŀ��ȣ���Ҫ�ø���ǩ��Ӧ����
+？？？
+
+一旦加上position:absolute;就像float一样，标签就不占用原来位置了；
+而position:relative;原位置仍保留，影响着其他标签的位置
+
+body的background一定会占满全屏，body本身并不是，加border可以看出
+
+body默认 高度是auto 宽度是100%
+
+body{height:100%;}没有用,原因是其父标签未设置高度;
+html,body{height:100%}有效，此时高度为屏幕高，注意：不包括margin和border，仅内容为屏幕高。
+
+行内元素：height/width/margin top、bottom均无效果。只能用padding left、right
+
+img属于行内替换元素
+类似块元素：可以使用width、height；但不能用margin，不能独占一行；
+
+height不包括border和margin
+
+使某标签固定屏幕某处不动（不随滚动条）：position:fixed，总是相对于body定位
+
+position:absolute; 如果父中text-align:center; 有冲突，不会达到预期结果
+现象：
+1.text-align:center;对块状元素 和 内联元素都有效，标签中心会在中垂线上
+2.内联元素 加了position:absolute;时，仍有现象，标签会在中垂线右侧
+2.块状元素 加了position:absolute;时，不再居中（IE6不同）
+
+table如果未设置宽度，默认适应内容。
+div就会占一整行
+内联标签包裹内容，inline-block也是
+
+想要标签内 子标签 纵向居中：heigth="100px" line-height="100px"
+注意：只对行内元素有效，对block和inline-block都无效
+
+inline-block能float。inline能吗:
+inline也能float，而且float后性质类似block，width和height有效，不受line-height影响
 
 
-*{} ��ʹд�ں���Ҳ���Ḳ��ǰ�����ʽ��
+左飘、右飘 错位怎么解决：
+给父标签加固定的宽度，不要让父标签适应窗口
 
-css����Ȩ�������� �� http://www.cnblogs.com/xugang/archive/2010/09/24/1833760.html
 
-div:not(.red)��ʾ���಻Ϊred��div��ǩ
+*{} 即使写在后面也不会覆盖前面的样式；
 
-������У�
-1.line-height:100%;�ǲ��е�
-2.block��inline-block�ǲ����еģ���background-color���Կ�����
-3.����block��inline-block�е������Ի���У���ʹoverflow����Ϊ�̳���line-height
-4.������������������ֻ��ʹ��position��
+css优先权，见上文 和 http://www.cnblogs.com/xugang/archive/2010/09/24/1833760.html
+
+div:not(.red)表示：类不为red的div标签
+
+纵向居中：
+1.line-height:100%;是不行的
+2.block、inline-block是不居中的，从background-color可以看出。
+3.但是block、inline-block中的文字仍会居中，即使overflow。因为继承了line-height
+4.接上条，解决这个估计只能使用position了
 
 vertical-align???????????????????
 
-margin���Ը�inline��inline-blockʹ�ã���margin:0 auto���ܾ��У�
+margin可以给inline、inline-block使用，但margin:0 auto不能居中；
 
-<a>��������ǩ
+<a>是内联标签
 
-������ <a>��<span>���м�϶����<img>��<span>��û��
-<input>��<button><span><div>Ҳ�м�϶
+例子中 <a>与<span>间有间隙，而<img>与<span>间没有
+<input>与<button><span><div>也有间隙
 
-ֻ�е�ͬʱ��������ͬ������ʽʱ���ſ��������ã���������������.
+只有当同时出现两个同名的样式时，才可以这样用，就像下面这样的.
 .myclass{
  margin-left:20px!important;
  margin-left:40px;
 }
 
-text-decoration���������»��ߡ���˸��
+text-decoration可以描述下划线、闪烁等
 
-<img>��û��srcʱ�����ȳ���Ϊ0��
-�����Ϊ���˿��ߣ����б߿���֣�
-��ˣ����imgֻ��backgroundû��src���б߿�ȥ����
+<img>在没有src时，首先长宽为0；
+如果人为设了宽高，会有边框出现；
+因此，如果img只有background没有src会有边框去不掉
 
 
 margin:0 auto;
-0.���ڱ�ǩ��������text-align:center���ڸ���ǩ�������ݾ���
-1.ֻ��block��Ч
-2.��˵��float��Ҳ��Ч
+0.用于标签本身；而text-align:center用于父标签是其内容居中
+1.只对block有效
+2.据说对float的也无效
 
 
-������У�height=line-height;
-1.��inline��inline-block��Ч����block��Ч
+纵向居中：height=line-height;
+1.对inline、inline-block有效，对block无效
 2.
 <div line-height=height=100px>
-	<span></span> 			��ռ1�У�100px��
-	<div height=50px></div>		��ռ1�У��������߶�50px
+	<span></span> 			会占1行，100px高
+	<div height=50px></div>		会占1行，按自身高度50px
 <div>
 
 
 
-calc����������ô��ĳһ���Ե�����һ����ֵ��-----------------------------
+calc？？？？怎么让某一属性等于另一属性值？-----------------------------
 
 
-ͬ�е�inline-blockĬ��vertical-align:bottom
+同行的inline-block默认vertical-align:bottom
 
 
 

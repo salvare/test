@@ -1,12 +1,12 @@
 2016-1-5
 
 2.[HTML]
-<input type="radio"  Î´Ñ¡ÖĞ
-<input type="radio" checked/>  Ñ¡ÖĞ
-<input type="radio" checked=/>  Ñ¡ÖĞ 
-<input type="radio" checked=""/>  Ñ¡ÖĞ  
-<input type="radio" checked="false"/>  Ñ¡ÖĞ  
-<input type="radio" checked="0"/>  Ñ¡ÖĞ 
+<input type="radio"  æœªé€‰ä¸­
+<input type="radio" checked/>  é€‰ä¸­
+<input type="radio" checked=/>  é€‰ä¸­ 
+<input type="radio" checked=""/>  é€‰ä¸­  
+<input type="radio" checked="false"/>  é€‰ä¸­  
+<input type="radio" checked="0"/>  é€‰ä¸­ 
 
 
 3.[PHP]
@@ -16,70 +16,70 @@ $var = false; // true
 var_dump(isset($var));
 
 
-5.[JavaScript] window.document¿ÉÒÔÖ±½ÓÍ¨¹ıname»ñÈ¡ÔªËØ£¬Èç£º
+5.[JavaScript] window.documentå¯ä»¥ç›´æ¥é€šè¿‡nameè·å–å…ƒç´ ï¼Œå¦‚ï¼š
 document.myform
-×¢Òâ£ºname¶ø·Çid
+æ³¨æ„ï¼šnameè€Œéid
 
 
-6.[JavaScript] ÅĞ¶Ïjs¶ÔÏóÎª¿ÕµÄ·½·¨£º
+6.[JavaScript] åˆ¤æ–­jså¯¹è±¡ä¸ºç©ºçš„æ–¹æ³•ï¼š
 * if( obj[0]===undefined )
-* undefined¿ÉÒÔµ±falseÓÃ if(obj[0])
+* undefinedå¯ä»¥å½“falseç”¨ if(obj[0])
 
 
-7.[JavaScript] jqueryÌá¹©ÁËinArray·½·¨£º
-$.inArray(one, arr);//ÅĞ¶ÏoneÊÇ·ñÊÇÊı×éarrµÄÒ»¸öÔªËØ
-·µ»Ø£ºÈç¹ûÊÇ·µ»ØÎ»ÖÃ£¬Èç¹û²»ÊÇ·µ»Ø-1
+7.[JavaScript] jqueryæä¾›äº†inArrayæ–¹æ³•ï¼š
+$.inArray(one, arr);//åˆ¤æ–­oneæ˜¯å¦æ˜¯æ•°ç»„arrçš„ä¸€ä¸ªå…ƒç´ 
+è¿”å›ï¼šå¦‚æœæ˜¯è¿”å›ä½ç½®ï¼Œå¦‚æœä¸æ˜¯è¿”å›-1
 
 
-1.[JavaScript] ÅĞ¶ÏJS¶ÔÏóÊÇ·ñÓµÓĞÄ³ÊôĞÔ:
-* in ÔËËã·û 
+1.[JavaScript] åˆ¤æ–­JSå¯¹è±¡æ˜¯å¦æ‹¥æœ‰æŸå±æ€§:
+* in è¿ç®—ç¬¦ 
 var obj = {name:'jack'};
 alert('name' in obj); // true
-alert('toString' in obj); // true toStringÊÇ¶ÔÏóÔ­ĞÍÖĞµÄº¯Êı Ïàµ±ÓÚ¼Ì³ĞµÄº¯Êı
-* hasOwnProperty ·½·¨
+alert('toString' in obj); // true toStringæ˜¯å¯¹è±¡åŸå‹ä¸­çš„å‡½æ•° ç›¸å½“äºç»§æ‰¿çš„å‡½æ•°
+* hasOwnProperty æ–¹æ³•
 var obj = {name:'jack'};
 obj.hasOwnProperty('name'); // true
-obj.hasOwnProperty('toString'); // false Ô­ĞÍÁ´ÉÏ¼Ì³Ğ¹ıÀ´µÄÊôĞÔÎŞ·¨Í¨¹ıhasOwnProperty¼ì²âµ½
+obj.hasOwnProperty('toString'); // false åŸå‹é“¾ä¸Šç»§æ‰¿è¿‡æ¥çš„å±æ€§æ— æ³•é€šè¿‡hasOwnPropertyæ£€æµ‹åˆ°
 * 
 var obj = {name:'jack'};
 alert(obj['name']!==undefined); //true
-ÆäÊµ¿ÉÒÔÖ±½ÓÅĞ¶Ï£ºif(obj['name'])
-* ÒÉÎÊ£º¶à²ãÈçobj.a.b.c.d.eÊÇ·ñ´æÔÚ£¬³ıÁËÒ»¼¶¼¶ÅĞ¶Ï»¹ÓĞÆäËü·½·¨Âğ£¿£¿£¿
+å…¶å®å¯ä»¥ç›´æ¥åˆ¤æ–­ï¼šif(obj['name'])
+* ç–‘é—®ï¼šå¤šå±‚å¦‚obj.a.b.c.d.eæ˜¯å¦å­˜åœ¨ï¼Œé™¤äº†ä¸€çº§çº§åˆ¤æ–­è¿˜æœ‰å…¶å®ƒæ–¹æ³•å—ï¼Ÿï¼Ÿï¼Ÿ
 
 
-2.[JavaScript] Ëã·¨£ºjs¶ÔÏóÊı×é ¸ù¾İÄ³¸ö¹²Í¬×Ö¶Î ·Ö×é
+2.[JavaScript] ç®—æ³•ï¼šjså¯¹è±¡æ•°ç»„ æ ¹æ®æŸä¸ªå…±åŒå­—æ®µ åˆ†ç»„
 http://zhidao.baidu.com/link?url=eNVdYbhCs3CDbDgPeJgLIOSwKbVyJBS7ntgUM4sxAOTJv6_jYfn6gw8SrO3lEn6g6lhd5FwzD4-WgM8rIaSf3j2mBxAmQqPkF6cDgEzT1La
 
 
-3.[JavaScript] °¸Àı£ºjsÕıÔò Æ¥ÅäÓ¢ÎÄĞÕÃû
+3.[JavaScript] æ¡ˆä¾‹ï¼šjsæ­£åˆ™ åŒ¹é…è‹±æ–‡å§“å
 http://zhidao.baidu.com/link?url=USx1Q_LvMkaKSotRot1tRRdZXh8JL4PiM8MHyEzkzA-Z6KVxleVIULrqIGB6PCusoZwo6NyP1Kym-9PTcslXV_
 
 
-1.[JavaScript] ½ØÈ¡×Ö·û´®·½·¨
+1.[JavaScript] æˆªå–å­—ç¬¦ä¸²æ–¹æ³•
 * substr(start [, length])
 * substring(start, end)
-²Î¿¼£ºhttp://www.jb51.net/article/42482.htm ÎÄÖĞÓĞ°¸Àı
+å‚è€ƒï¼šhttp://www.jb51.net/article/42482.htm æ–‡ä¸­æœ‰æ¡ˆä¾‹
 
-2.[JavaScript] Æ¥Åäemail
-* emailÃû³ÆÔ­Ôò£º
-ÓÃ»§ÃûÃüÃû¹æÔò£º¿ªÍ·±ØÎªÊı×Ö»ò×ÖÄ¸£¬ÖĞ¼ä¿Éº¬"_"¡¢"-"(ËÑºüÓÊÏä)¡¢"."(Gmail)£¬³¤¶È32
-ÓòÃû¹¹³É¹æÔò£º¿ªÍ·ºÍ½áÎ²±ØÎªÊı×Ö»ò×ÖÄ¸£¬ÖĞ¼ä¿Éº¬"-"£¬³¤¶È32£¬×î¶à4¼¶ÓòÃû£¬¶¥¼¶ÓòÃûÓÖ2ÖÁ4¸ö×ÖÄ¸
-×¢£ºÉÏ±ßËùÊöÓ¢ÎÄ×ÖÄ¸Ö»ÓĞĞ¡Ğ´
+2.[JavaScript] åŒ¹é…email
+* emailåç§°åŸåˆ™ï¼š
+ç”¨æˆ·åå‘½åè§„åˆ™ï¼šå¼€å¤´å¿…ä¸ºæ•°å­—æˆ–å­—æ¯ï¼Œä¸­é—´å¯å«"_"ã€"-"(æœç‹é‚®ç®±)ã€"."(Gmail)ï¼Œé•¿åº¦32
+åŸŸåæ„æˆè§„åˆ™ï¼šå¼€å¤´å’Œç»“å°¾å¿…ä¸ºæ•°å­—æˆ–å­—æ¯ï¼Œä¸­é—´å¯å«"-"ï¼Œé•¿åº¦32ï¼Œæœ€å¤š4çº§åŸŸåï¼Œé¡¶çº§åŸŸååˆ2è‡³4ä¸ªå­—æ¯
+æ³¨ï¼šä¸Šè¾¹æ‰€è¿°è‹±æ–‡å­—æ¯åªæœ‰å°å†™
 
-3.[JavaScript] boolean number stringÊı¾İÀàĞÍ×ª»»µÄ·½·¨
+3.[JavaScript] boolean number stringæ•°æ®ç±»å‹è½¬æ¢çš„æ–¹æ³•
 http://blog.csdn.net/ufo2910628/article/details/40735691
 
-4.[JavaScript] Æ¥Åäurl 
+4.[JavaScript] åŒ¹é…url 
 http://yuncode.net/code/c_52ef51ddd6a3423
 
 1.[JavaScript]
-Ò»¸ö <input type="text"> ÓĞlabelsÊôĞÔ£¬ËäÈ»¿ÉÄÜÎª¿Õ
-Ò»¸ö <input type="hidden"> Ã»ÓĞlabelsÊôĞÔ
-ÆäËüÇé¿ö²»ÖªµÀÁË£¬¿ÓÕæ¶à
+ä¸€ä¸ª <input type="text"> æœ‰labelså±æ€§ï¼Œè™½ç„¶å¯èƒ½ä¸ºç©º
+ä¸€ä¸ª <input type="hidden"> æ²¡æœ‰labelså±æ€§
+å…¶å®ƒæƒ…å†µä¸çŸ¥é“äº†ï¼Œå‘çœŸå¤š
 
 
-2.[JavaScript] jsµÄ && || Ò²ÊÇÓĞ¶ÌÂ·»úÖÆµÄ
+2.[JavaScript] jsçš„ && || ä¹Ÿæ˜¯æœ‰çŸ­è·¯æœºåˆ¶çš„
 
 
-ÔÄ¶Áhttp://baike.baidu.com/link?url=9Sjj9j7F6xhwfj_O7g6hgcF1knAPv0gDEX1djKRqocAKie3XY2HCMwahCwENBVHjYcfM2NACkYu8Nrw7X3BSYa
+é˜…è¯»http://baike.baidu.com/link?url=9Sjj9j7F6xhwfj_O7g6hgcF1knAPv0gDEX1djKRqocAKie3XY2HCMwahCwENBVHjYcfM2NACkYu8Nrw7X3BSYa
 

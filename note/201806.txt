@@ -1,146 +1,146 @@
-1.[php] »ñÈ¡ÇëÇó·½µÄIP
+1.[php] èŽ·å–è¯·æ±‚æ–¹çš„IP
 http://www.111cn.net/phper/php-cy/59523.htm
 
-2.[other] ÕýÔò±í´ïÊ½Ö®Áã¿í¶ÏÑÔÏê½â
+2.[other] æ­£åˆ™è¡¨è¾¾å¼ä¹‹é›¶å®½æ–­è¨€è¯¦è§£
 # http://blog.csdn.net/hsd2012/article/details/51272902
 # http://www.jianshu.com/p/8c7f803d3f59
-. ?= ÕýÏÈÐÐ¶ÏÑÔ
-  <= Õýºó·¢¶ÏÑÔ
-  ?! ·´ÏÈÐÐ¶ÏÑÔ
-  ?<! ·´ºó·¢¶ÏÑÔ
+. ?= æ­£å…ˆè¡Œæ–­è¨€
+  <= æ­£åŽå‘æ–­è¨€
+  ?! åå…ˆè¡Œæ–­è¨€
+  ?<! ååŽå‘æ–­è¨€
 
 3.[php] phptrace
-. ¹¦ÄÜ£º1.´òÓ¡µ±Ç°PHP½ø³Ìµ÷ÓÃÕ» 2.ÊµÊ±×·×ÙPHPµ÷ÓÃ£¨ÏÔÊ¾Ã¿Ò»ÌõÓï¾ä¡¢º¯ÊýµÄ²ÎÊý¡¢º¯ÊýµÄÖ´ÐÐÊ±¼ä£©
-. ÐèÒª°²×° `phptrace`À©ÕÅ
+. åŠŸèƒ½ï¼š1.æ‰“å°å½“å‰PHPè¿›ç¨‹è°ƒç”¨æ ˆ 2.å®žæ—¶è¿½è¸ªPHPè°ƒç”¨ï¼ˆæ˜¾ç¤ºæ¯ä¸€æ¡è¯­å¥ã€å‡½æ•°çš„å‚æ•°ã€å‡½æ•°çš„æ‰§è¡Œæ—¶é—´ï¼‰
+. éœ€è¦å®‰è£… `phptrace`æ‰©å¼ 
   # https://github.com/Qihoo360/phptrace/blob/master/README_ZH.md
 . $ phptrace -p 3130
-  # 3130 Îª`php-fpm`µÄ½ø³ÌID
-    # `php-fpm`ÊÇ`FastCGI`ÔËÐÐÄ£Ê½ÏÂµÄ½ø³Ì£¬ÎÒÊ¹ÓÃµÄ`xampp`¼¯³É»·¾³ÊÇ`apache2handler`¡£²»ÖªµÀÕâ¸öÇéÐÎÔõÃ´Ê¹ÓÃ`phptrace`
-. ²Î¿¼
+  # 3130 ä¸º`php-fpm`çš„è¿›ç¨‹ID
+    # `php-fpm`æ˜¯`FastCGI`è¿è¡Œæ¨¡å¼ä¸‹çš„è¿›ç¨‹ï¼Œæˆ‘ä½¿ç”¨çš„`xampp`é›†æˆçŽ¯å¢ƒæ˜¯`apache2handler`ã€‚ä¸çŸ¥é“è¿™ä¸ªæƒ…å½¢æ€Žä¹ˆä½¿ç”¨`phptrace`
+. å‚è€ƒ
   # http://mp.weixin.qq.com/s?__biz=MzAxNzMwOTQ0NA%3D%3D&mid=2653354782&idx=2&sn=9b63f6655230bec82d37a97968a55926&chksm=8035d175b74258632c3fecb6f18ed4f961afb5cf69bd2b6f547b44a3f73d9c98bf0f27720a99
-? ÔÚ¸ßËÙµÄÖ´ÐÐ¹ý³ÌÖÐÔõÃ´·ÖÎöÄÚÈÝ
-# `debug_backtrace`·½·¨ÒÑ¾­ÄÜ½â¾öÎÒ´ó²¿·ÖµÄµ÷ÊÔÐèÇó
-  # ÕûÀíÕâ¸öµÄÄ¿µÄÊÇ£ºÁË½â`phptrace`µÄ´óÖÂÓÃÍ¾£¬ÐèÒªµÄÊ±ºò¿ÉÒÔÏëÆðËü
+? åœ¨é«˜é€Ÿçš„æ‰§è¡Œè¿‡ç¨‹ä¸­æ€Žä¹ˆåˆ†æžå†…å®¹
+# `debug_backtrace`æ–¹æ³•å·²ç»èƒ½è§£å†³æˆ‘å¤§éƒ¨åˆ†çš„è°ƒè¯•éœ€æ±‚
+  # æ•´ç†è¿™ä¸ªçš„ç›®çš„æ˜¯ï¼šäº†è§£`phptrace`çš„å¤§è‡´ç”¨é€”ï¼Œéœ€è¦çš„æ—¶å€™å¯ä»¥æƒ³èµ·å®ƒ
 
-4.[other] Composer¸üÐÂÂýµÄÖÕ¼«½â¾ö·½°¸ 
+4.[other] Composeræ›´æ–°æ…¢çš„ç»ˆæžè§£å†³æ–¹æ¡ˆ 
 http://blog.csdn.net/fishermanmax/article/details/51975692
 
-5.[php] ³éÏóÀà(abstract class) Óë ½Ó¿Ú(interface)
-# https://blog.csdn.net/sunlylorn/article/details/6124319¡¾PHPÖÐµÄ ³éÏóÀà£¨abstract class£©ºÍ ½Ó¿Ú£¨interface£©¡¿
-. interface iG extends iD // ½Ó¿Ú¿ÉÒÔ¼Ì³Ð½Ó¿Ú 
-. interface iG extends iD,iE // ¶øÇÒ¿ÉÒÔ¶à¼Ì³Ð
-. interface Ç¿µ÷ÌØ¶¨¹¦ÄÜµÄÊµÏÖ£¬¶ø abstract class Ç¿µ÷ËùÊô¹ØÏµ¡¾£¿¡¿
-# ²»ÓÃÌ«¾À½á ³éÏóÀà µÄÓÃÍ¾£¬»ù±¾ ½Ó¿Ú ¶¼ÄÜÌæ´ú
+5.[php] æŠ½è±¡ç±»(abstract class) ä¸Ž æŽ¥å£(interface)
+# https://blog.csdn.net/sunlylorn/article/details/6124319ã€PHPä¸­çš„ æŠ½è±¡ç±»ï¼ˆabstract classï¼‰å’Œ æŽ¥å£ï¼ˆinterfaceï¼‰ã€‘
+. interface iG extends iD // æŽ¥å£å¯ä»¥ç»§æ‰¿æŽ¥å£ 
+. interface iG extends iD,iE // è€Œä¸”å¯ä»¥å¤šç»§æ‰¿
+. interface å¼ºè°ƒç‰¹å®šåŠŸèƒ½çš„å®žçŽ°ï¼Œè€Œ abstract class å¼ºè°ƒæ‰€å±žå…³ç³»ã€ï¼Ÿã€‘
+# ä¸ç”¨å¤ªçº ç»“ æŠ½è±¡ç±» çš„ç”¨é€”ï¼ŒåŸºæœ¬ æŽ¥å£ éƒ½èƒ½æ›¿ä»£
 
-6.[other] Ç°¶Ë°²È«ÎÊÌâ
-# http://web.jobbole.com/92875/¡¾8 ´óÇ°¶Ë°²È«ÎÊÌâ¡¿
+6.[other] å‰ç«¯å®‰å…¨é—®é¢˜
+# http://web.jobbole.com/92875/ã€8 å¤§å‰ç«¯å®‰å…¨é—®é¢˜ã€‘
 # http://web.jobbole.com/92893/
-# https://blog.csdn.net/a401461843/article/details/77622299/¡¾web´óÇ°¶Ë¿ª·¢ÖÐÒ»Ð©³£¼ûµÄ°²È«ÐÔÎÊÌâ¡¿
+# https://blog.csdn.net/a401461843/article/details/77622299/ã€webå¤§å‰ç«¯å¼€å‘ä¸­ä¸€äº›å¸¸è§çš„å®‰å…¨æ€§é—®é¢˜ã€‘
 . xss(cross site scripting) 
-  . ½â¾ö£º×ªÒåÊäÈë
+  . è§£å†³ï¼šè½¬ä¹‰è¾“å…¥
 . csrf(cross site request forge)
-  . ½â¾ö£ºtoken
+  . è§£å†³ï¼štoken
 
-7.[other] xss¹¥»÷
-. ²Î¿¼
-  # https://zhuanlan.zhihu.com/p/38327058¡¾Ç³ÎöÇ°¶Ë°²È«Ö® XSS¡¿¡¾excellent¡¿
-  # https://zhuanlan.zhihu.com/p/24249045¡¾XSSÊµÕ½£ºÎÒÊÇÈçºÎÄÃÏÂÄãµÄ°Ù¶ÈÕËºÅ¡¿¡¾excellent¡¿
-. Ô­Àí
-  1. Ñ°ÕÒÊäÈëµã¡£±ÈÈç½²×Ô¼ºµÄ°Ù¶ÈêÇ³Æ¸Ä³É 
+7.[other] xssæ”»å‡»
+. å‚è€ƒ
+  # https://zhuanlan.zhihu.com/p/38327058ã€æµ…æžå‰ç«¯å®‰å…¨ä¹‹ XSSã€‘ã€excellentã€‘
+  # https://zhuanlan.zhihu.com/p/24249045ã€XSSå®žæˆ˜ï¼šæˆ‘æ˜¯å¦‚ä½•æ‹¿ä¸‹ä½ çš„ç™¾åº¦è´¦å·ã€‘ã€excellentã€‘
+. åŽŸç†
+  1. å¯»æ‰¾è¾“å…¥ç‚¹ã€‚æ¯”å¦‚è®²è‡ªå·±çš„ç™¾åº¦æ˜µç§°æ”¹æˆ 
      Salvare
      <script>
        getcookie=document.cookie // maybe more important info
        // send cookie to my email
      </script>
-  2. ÄãµÄêÇ³Æ±»Ð´Èë·þÎñÆ÷Êý¾Ý¿â
-  3. ÆäËüÓÃ»§ÔÚä¯ÀÀÄ³Ð©Ò³ÃæÊ±£¨ºÃÓÑ¡¢·ÖÏí£©£¬»áÏÔÊ¾ÄãµÄêÇ³Æ
-  4. Óë´ËÍ¬Ê±£¬êÇ³ÆÖÐµÄ½Å±¾Ò²Ö´ÐÐÁË£¬Äã»ñµÃÁËÆäËüÓÃ»§µÄcookie
-  5. ´ò¿ª°Ù¶È£¬ÐÞ¸Ä×Ô¼ºµÄcookie£¬¾ÍÄÜÃ°³ä±ðÈËµÄ»á»°
+  2. ä½ çš„æ˜µç§°è¢«å†™å…¥æœåŠ¡å™¨æ•°æ®åº“
+  3. å…¶å®ƒç”¨æˆ·åœ¨æµè§ˆæŸäº›é¡µé¢æ—¶ï¼ˆå¥½å‹ã€åˆ†äº«ï¼‰ï¼Œä¼šæ˜¾ç¤ºä½ çš„æ˜µç§°
+  4. ä¸Žæ­¤åŒæ—¶ï¼Œæ˜µç§°ä¸­çš„è„šæœ¬ä¹Ÿæ‰§è¡Œäº†ï¼Œä½ èŽ·å¾—äº†å…¶å®ƒç”¨æˆ·çš„cookie
+  5. æ‰“å¼€ç™¾åº¦ï¼Œä¿®æ”¹è‡ªå·±çš„cookieï¼Œå°±èƒ½å†’å……åˆ«äººçš„ä¼šè¯
 
 8.[other] psr
-# https://www.php-fig.org/psr/¡¾¹ÙÍø¡¿
-# http://www.cnblogs.com/x3d/p/php-psr-standards.html ¡¾psr¡¿
-# https://my.oschina.net/1pei/blog/485099 ¡¾psr-4¡¿¡¾good¡¿
+# https://www.php-fig.org/psr/ã€å®˜ç½‘ã€‘
+# http://www.cnblogs.com/x3d/p/php-psr-standards.html ã€psrã€‘
+# https://my.oschina.net/1pei/blog/485099 ã€psr-4ã€‘ã€goodã€‘
 
-9.[other] ä¯ÀÀÆ÷¶Ë¿ÉÒÔ£¨¶ñÒâ£©ÐÞ¸ÄjsÂð£¬ÒÔÈÆ¹ýÑéÖ¤Ö®Àà£¿
-. `<tag data-foo="1"/>`ÐÞ¸ÄdomÔªËØºó `<tag data-foo="2"/>`
-  * DOMÔªËØÊÇËæÒâÐÞ¸Ä£¬¼´Ê±ÉúÐ§µÄ
-. `$("tag").data("foo")`Ã»ÓÐ¸üÐÂ£¬»¹ÊÇ1£»`$("tag").attr("data-foo")`ÓÐ¸üÐÂ£¬ÊÇ2
-  * JSÖÐ¶ÁÈ¡DOMÔªËØÒ²ÊÇÊµÊ±µÄ
-. `function foo() { alert("xxx") }` ÐÞ¸ÄJSÎª `function foo() { alert("ooo") }`
-  . ¿ØÖÆÌ¨µ÷ÓÃ`foo()`Ê±£¬µ¯³öÐÞ¸ÄºóµÄ"ooo"
-  . µ«ÊÇµã»÷`<button onclick="foo()"></button>`£¬ÒÀÈ»µ¯³öµÄ"xxx"
-  * Ö±½ÓÐÞ¸ÄJS´úÂëÊÇÎÞÐ§µÄ¡£¿ÉÒÔÀí½âÎªÒ³Ãæ¼ÓÔØÍê³ÉÖ®ºó£¬JS´úÂëÒ²ÒÑÍê³É¼ÓÔØ£¬ÐÞ¸ÄÔ´´úÂëÎÞÐ§
+9.[other] æµè§ˆå™¨ç«¯å¯ä»¥ï¼ˆæ¶æ„ï¼‰ä¿®æ”¹jså—ï¼Œä»¥ç»•è¿‡éªŒè¯ä¹‹ç±»ï¼Ÿ
+. `<tag data-foo="1"/>`ä¿®æ”¹domå…ƒç´ åŽ `<tag data-foo="2"/>`
+  * DOMå…ƒç´ æ˜¯éšæ„ä¿®æ”¹ï¼Œå³æ—¶ç”Ÿæ•ˆçš„
+. `$("tag").data("foo")`æ²¡æœ‰æ›´æ–°ï¼Œè¿˜æ˜¯1ï¼›`$("tag").attr("data-foo")`æœ‰æ›´æ–°ï¼Œæ˜¯2
+  * JSä¸­è¯»å–DOMå…ƒç´ ä¹Ÿæ˜¯å®žæ—¶çš„
+. `function foo() { alert("xxx") }` ä¿®æ”¹JSä¸º `function foo() { alert("ooo") }`
+  . æŽ§åˆ¶å°è°ƒç”¨`foo()`æ—¶ï¼Œå¼¹å‡ºä¿®æ”¹åŽçš„"ooo"
+  . ä½†æ˜¯ç‚¹å‡»`<button onclick="foo()"></button>`ï¼Œä¾ç„¶å¼¹å‡ºçš„"xxx"
+  * ç›´æŽ¥ä¿®æ”¹JSä»£ç æ˜¯æ— æ•ˆçš„ã€‚å¯ä»¥ç†è§£ä¸ºé¡µé¢åŠ è½½å®Œæˆä¹‹åŽï¼ŒJSä»£ç ä¹Ÿå·²å®ŒæˆåŠ è½½ï¼Œä¿®æ”¹æºä»£ç æ— æ•ˆ
 . `function foo() { alert("ooo") }` 
-  # ÔÚ¿ØÖÆÌ¨¡°ÖØÐÂÉùÃ÷¡±·½·¨
-  * jsÖÐ£¬º¯Êý¿ÉÒÔÖØ¸´ÉùÃ÷·½·¨£¨¸²¸Ç£©
-  . ´ËÊ±µã»÷`<button onclick="foo()"></button>`£¬µ¯³ö"ooo"
-  * ²»Ïëº¯Êý±»¸²¸ÇµÄ»°
+  # åœ¨æŽ§åˆ¶å°â€œé‡æ–°å£°æ˜Žâ€æ–¹æ³•
+  * jsä¸­ï¼Œå‡½æ•°å¯ä»¥é‡å¤å£°æ˜Žæ–¹æ³•ï¼ˆè¦†ç›–ï¼‰
+  . æ­¤æ—¶ç‚¹å‡»`<button onclick="foo()"></button>`ï¼Œå¼¹å‡º"ooo"
+  * ä¸æƒ³å‡½æ•°è¢«è¦†ç›–çš„è¯
     . const foo = function() {
   alert("xxx") } 
-  * ÀàClass²»ÄÜÖØ¸´ÉùÃ÷
-  * var±äÁ¿¿ÉÒÔÖØ¸´ÉùÃ÷
-  * let±äÁ¿²»¿ÉÒÔÖØ¸´ÉùÃ÷¡£µ«ÊÇ¿ÉÒÔ¸³Öµ¡£
-. `<tag onclick="handle1()"/>` ÐÞ¸ÄonclickÊôÐÔ `<tag onclick="handle2()"/>`
-  . handle1ÒÀÈ»ÓÐÐ§£¬ÏÈ´¥·¢handle1ºó´¥·¢handle2
-* Ð¡½á
-  . ÒÔÉÏÊÇ×Ô¼ºÊÔÑéÄÚÈÝ£¬ä¯ÀÀÆ÷ÊÇ`Chrome v67`
-  . ÐÞ¸ÄDOMÔªËØ¡¢ÐÞ¸ÄJS£¬¹æÔòÃ»ÓÐÍêÈ«ÅªÇå£¬µ«ÊÇ¿ÉÒÔµÃ³ö½áÂÛ£ºÊÇ¿ÉÒÔÐÞ¸Ä£¨ºÜ¶à¶«Î÷£©µÄ
-. ÈçºÎ·ÀÖ¹JS±»ÐÞ¸Ä
-  * Ö»ÄÜÊÇÌá¸ßÐÞ¸ÄÄÑ¶È£¬²»ÄÜ¸ù±¾Ô¤·À
-  . ºó¶ËÑéÖ¤
-  . js´úÂëÑ¹Ëõ
-  . js±äÁ¿·Åµ½±Õ°üÄÚ£¬¿ÉÒÔ·ÀÖ¹±»¼òµ¥µÄ·½Ê½ÐÞ¸Ä
-  # https://www.zhihu.com/question/24657840¡¾½â¾öjs±äÁ¿ÔÚ¿Í»§¶Ëä¯ÀÀÆ÷±»ÐÞ¸Ä£¿¡¿
-. ÈçºÎÈÆ¹ýÇ°¶ËÑéÖ¤
-  . À¹½Ø²¢ÐÞ¸ÄHTTPÇëÇó
+  * ç±»Classä¸èƒ½é‡å¤å£°æ˜Ž
+  * varå˜é‡å¯ä»¥é‡å¤å£°æ˜Ž
+  * letå˜é‡ä¸å¯ä»¥é‡å¤å£°æ˜Žã€‚ä½†æ˜¯å¯ä»¥èµ‹å€¼ã€‚
+. `<tag onclick="handle1()"/>` ä¿®æ”¹onclickå±žæ€§ `<tag onclick="handle2()"/>`
+  . handle1ä¾ç„¶æœ‰æ•ˆï¼Œå…ˆè§¦å‘handle1åŽè§¦å‘handle2
+* å°ç»“
+  . ä»¥ä¸Šæ˜¯è‡ªå·±è¯•éªŒå†…å®¹ï¼Œæµè§ˆå™¨æ˜¯`Chrome v67`
+  . ä¿®æ”¹DOMå…ƒç´ ã€ä¿®æ”¹JSï¼Œè§„åˆ™æ²¡æœ‰å®Œå…¨å¼„æ¸…ï¼Œä½†æ˜¯å¯ä»¥å¾—å‡ºç»“è®ºï¼šæ˜¯å¯ä»¥ä¿®æ”¹ï¼ˆå¾ˆå¤šä¸œè¥¿ï¼‰çš„
+. å¦‚ä½•é˜²æ­¢JSè¢«ä¿®æ”¹
+  * åªèƒ½æ˜¯æé«˜ä¿®æ”¹éš¾åº¦ï¼Œä¸èƒ½æ ¹æœ¬é¢„é˜²
+  . åŽç«¯éªŒè¯
+  . jsä»£ç åŽ‹ç¼©
+  . jså˜é‡æ”¾åˆ°é—­åŒ…å†…ï¼Œå¯ä»¥é˜²æ­¢è¢«ç®€å•çš„æ–¹å¼ä¿®æ”¹
+  # https://www.zhihu.com/question/24657840ã€è§£å†³jså˜é‡åœ¨å®¢æˆ·ç«¯æµè§ˆå™¨è¢«ä¿®æ”¹ï¼Ÿã€‘
+. å¦‚ä½•ç»•è¿‡å‰ç«¯éªŒè¯
+  . æ‹¦æˆªå¹¶ä¿®æ”¹HTTPè¯·æ±‚
     # https://www.cnblogs.com/devlige/p/8440736.html
-  . ÔÄ¶ÁÔ´´úÂë²¢ÀûÓÃÂ©¶´
-    # https://www.jianshu.com/p/32411761236f¡¾good¡¿
-  . ä¯ÀÀÆ÷ÉèÖÃ½ûÓÃ½Å±¾
+  . é˜…è¯»æºä»£ç å¹¶åˆ©ç”¨æ¼æ´ž
+    # https://www.jianshu.com/p/32411761236fã€goodã€‘
+  . æµè§ˆå™¨è®¾ç½®ç¦ç”¨è„šæœ¬
     # http://www.360doc.com/content/13/0925/21/13812121_317077519.shtml
-    # https://blog.csdn.net/u011250882/article/details/46898571¡¾Chrome¹È¸èä¯ÀÀÆ÷ÈçºÎ½ûÓÃJavaScript¡¿
+    # https://blog.csdn.net/u011250882/article/details/46898571ã€Chromeè°·æ­Œæµè§ˆå™¨å¦‚ä½•ç¦ç”¨JavaScriptã€‘
 
-10.[php] `var_export`º¯Êý
-. ·µ»ØºÏ·¨µÄPHP´úÂë
+10.[php] `var_export`å‡½æ•°
+. è¿”å›žåˆæ³•çš„PHPä»£ç 
 # http://www.cnblogs.com/nyapasu/p/5039463.html
 
 11.[js] 
-# http://www.ruanyifeng.com/blog/2016/04/cors.html¡¾¿çÓò×ÊÔ´¹²Ïí CORS Ïê½â - ÈîÒ»·å¡¿
+# http://www.ruanyifeng.com/blog/2016/04/cors.htmlã€è·¨åŸŸèµ„æºå…±äº« CORS è¯¦è§£ - é˜®ä¸€å³°ã€‘
 
-12.[sql] Áª±í²éÑ¯ vs ×Ó²éÑ¯
-. Áª±í²éÑ¯ ÓÖ³Æ ¹ØÁª×Ó²éÑ¯£»×Ó²éÑ¯ ÓÖ³Æ Ç¶Ì×²éÑ¯
-. ½áÂÛ£º
-  . ´ó²¿·Ö¹Ûµã£ºÁª±í²éÑ¯Ð§ÂÊ½Ï¸ß
-    # ËäÈ»Êµ²âÁËÒ»¸ö°¸ÀýËÙ¶È£ºÄÚÁª>Ç¶Ì×>×óÁª
-  . Ð¡ÖÚ¹Ûµã£º×Ó²éÑ¯Ð§ÂÊ¸ß
-    . ÀíÓÉ£ºÁª±í²éÑ¯ÐèÒªÏÈ×öµÑ¿¨¶û»ý£¬¶øÇ¶Ì×²éÑ¯ÊµÏÖËõÐ¡µÄ½á¹û¼¯
-  .£¨ºÃÏñ£©Êý¾ÝÁ¿¼«´óÊ±Áª±í»áÓÐÎÊÌâ
-. ²Î¿¼
-  # http://bbs.csdn.net/topics/310125796¡¾Çë½ÌÁª½ÓÓë×Ó²éÑ¯µÄ±È½Ï£¬ÄÄ¸öÐ§ÂÊ¸ß...¡¿
-  # https://www.zhihu.com/question/21657443¡¾mysql µ¥±í¶à´Î²éÑ¯ºÍ¶à±íÁªºÏ²éÑ¯£¬ÄÄ¸öÐ§ÂÊ¸ß?¡¿
-  # https://my.oschina.net/fuckboogie/blog/204656¡¾¹ØÓÚÇ¶Ì×²éÑ¯ºÍÁ¬½Ó²éÑ¯µÄÐ§ÂÊÎÊÌâ¡¿¡¾Ö§³ÖÇ¶Ì×²éÑ¯¡¿
-  # http://blog.csdn.net/nsj820/article/details/6606732¡¾exist vs in¡¿¡¾excellent¡¿
-* Õæ½áÂÛ
-  . `INNER JOIN`µÄÂß¼­Ò»¶¨Ñ¡ÓÃÁª±í²éÑ¯
-    . `INNER JOIN`ÔÚ ²éÑ¯ÓÅ»¯Æ÷ µÄ°ïÖúÏÂ£¬ÄÜ×Ô¶¯Ñ¡ÔñÖ÷±íºÍ´Ó±í¡£
-    . ÆäÊµÊ¹ÓÃ×Ó²éÑ¯Ê±£¬Èç¹ûÖ÷´Ó±íÑ¡ÔñÕýÈ·µÄ»°£¬ÆäÖ´ÐÐ¼Æ»®ºÍ`INNER JOIN`ÊÇÒ»ÑùµÄ
-      . SELECT loan.id FROM oa_loan loan JOIN oa_loan_pay pay ON loan.id=pay.loan_id; -- ÓÅ
-      . SELECT loan.id FROM oa_loan loan WHERE loan.id IN (SELECT loan_id FROM oa_loan_pay); -- Ö´ÐÐ¼Æ»®²»ºÃ¿´£¬µ«ÆäÊµÅÜµÃ×î¿ì¡£¡£
-      . SELECT loan_id FROM oa_loan_pay pay WHERE pay.loan_id IN (SELECT id FROM oa_loan); -- ÓÅ
-  . `LEFT JOIN`»ò×Ó²éÑ¯ µÄÂß¼­ÏÂ£¬Ò²Ê¹ÓÃÁª±í²éÑ¯
-  . ·¢ÉúÂý²éÑ¯µÄ»°£¬ÔÙÄÃ³öÀ´¾ßÌå·ÖÎö£¬²é¿´Ö´ÐÐ¼Æ»®ºÍÊµ²â
+12.[sql] è”è¡¨æŸ¥è¯¢ vs å­æŸ¥è¯¢
+. è”è¡¨æŸ¥è¯¢ åˆç§° å…³è”å­æŸ¥è¯¢ï¼›å­æŸ¥è¯¢ åˆç§° åµŒå¥—æŸ¥è¯¢
+. ç»“è®ºï¼š
+  . å¤§éƒ¨åˆ†è§‚ç‚¹ï¼šè”è¡¨æŸ¥è¯¢æ•ˆçŽ‡è¾ƒé«˜
+    # è™½ç„¶å®žæµ‹äº†ä¸€ä¸ªæ¡ˆä¾‹é€Ÿåº¦ï¼šå†…è”>åµŒå¥—>å·¦è”
+  . å°ä¼—è§‚ç‚¹ï¼šå­æŸ¥è¯¢æ•ˆçŽ‡é«˜
+    . ç†ç”±ï¼šè”è¡¨æŸ¥è¯¢éœ€è¦å…ˆåšç¬›å¡å°”ç§¯ï¼Œè€ŒåµŒå¥—æŸ¥è¯¢å®žçŽ°ç¼©å°çš„ç»“æžœé›†
+  .ï¼ˆå¥½åƒï¼‰æ•°æ®é‡æžå¤§æ—¶è”è¡¨ä¼šæœ‰é—®é¢˜
+. å‚è€ƒ
+  # http://bbs.csdn.net/topics/310125796ã€è¯·æ•™è”æŽ¥ä¸Žå­æŸ¥è¯¢çš„æ¯”è¾ƒï¼Œå“ªä¸ªæ•ˆçŽ‡é«˜...ã€‘
+  # https://www.zhihu.com/question/21657443ã€mysql å•è¡¨å¤šæ¬¡æŸ¥è¯¢å’Œå¤šè¡¨è”åˆæŸ¥è¯¢ï¼Œå“ªä¸ªæ•ˆçŽ‡é«˜?ã€‘
+  # https://my.oschina.net/fuckboogie/blog/204656ã€å…³äºŽåµŒå¥—æŸ¥è¯¢å’Œè¿žæŽ¥æŸ¥è¯¢çš„æ•ˆçŽ‡é—®é¢˜ã€‘ã€æ”¯æŒåµŒå¥—æŸ¥è¯¢ã€‘
+  # http://blog.csdn.net/nsj820/article/details/6606732ã€exist vs inã€‘ã€excellentã€‘
+* çœŸç»“è®º
+  . `INNER JOIN`çš„é€»è¾‘ä¸€å®šé€‰ç”¨è”è¡¨æŸ¥è¯¢
+    . `INNER JOIN`åœ¨ æŸ¥è¯¢ä¼˜åŒ–å™¨ çš„å¸®åŠ©ä¸‹ï¼Œèƒ½è‡ªåŠ¨é€‰æ‹©ä¸»è¡¨å’Œä»Žè¡¨ã€‚
+    . å…¶å®žä½¿ç”¨å­æŸ¥è¯¢æ—¶ï¼Œå¦‚æžœä¸»ä»Žè¡¨é€‰æ‹©æ­£ç¡®çš„è¯ï¼Œå…¶æ‰§è¡Œè®¡åˆ’å’Œ`INNER JOIN`æ˜¯ä¸€æ ·çš„
+      . SELECT loan.id FROM oa_loan loan JOIN oa_loan_pay pay ON loan.id=pay.loan_id; -- ä¼˜
+      . SELECT loan.id FROM oa_loan loan WHERE loan.id IN (SELECT loan_id FROM oa_loan_pay); -- æ‰§è¡Œè®¡åˆ’ä¸å¥½çœ‹ï¼Œä½†å…¶å®žè·‘å¾—æœ€å¿«ã€‚ã€‚
+      . SELECT loan_id FROM oa_loan_pay pay WHERE pay.loan_id IN (SELECT id FROM oa_loan); -- ä¼˜
+  . `LEFT JOIN`æˆ–å­æŸ¥è¯¢ çš„é€»è¾‘ä¸‹ï¼Œä¹Ÿä½¿ç”¨è”è¡¨æŸ¥è¯¢
+  . å‘ç”Ÿæ…¢æŸ¥è¯¢çš„è¯ï¼Œå†æ‹¿å‡ºæ¥å…·ä½“åˆ†æžï¼ŒæŸ¥çœ‹æ‰§è¡Œè®¡åˆ’å’Œå®žæµ‹
 
 13.[sql] IN vs EXISTS
-# ²Î¿¼£ºhttp://blog.csdn.net/nsj820/article/details/6606732¡¾excellent¡¿
-. ½áÂÛ
-  1 inÊÊºÏÓÚÍâ±í´ó¶øÄÚ±íÐ¡µÄÇé¿ö£»existsÊÊºÏÓÚÍâ±íÐ¡¶øÄÚ±í´óµÄÇé¿ö
-  2 Èç¹ûÁ½¸ö±íÏàµ±Ôòin/exists²î±ð²»´ó
-  3 ÓÃnot exists±Ènot inÖ´ÐÐµÄÐ§ÂÊÒª¸ßµÄ¶à
-  4 Ê¹ÓÃinÊ±²»¶Ônull½øÐÐ´¦Àí
+# å‚è€ƒï¼šhttp://blog.csdn.net/nsj820/article/details/6606732ã€excellentã€‘
+. ç»“è®º
+  1 iné€‚åˆäºŽå¤–è¡¨å¤§è€Œå†…è¡¨å°çš„æƒ…å†µï¼›existsé€‚åˆäºŽå¤–è¡¨å°è€Œå†…è¡¨å¤§çš„æƒ…å†µ
+  2 å¦‚æžœä¸¤ä¸ªè¡¨ç›¸å½“åˆ™in/existså·®åˆ«ä¸å¤§
+  3 ç”¨not existsæ¯”not inæ‰§è¡Œçš„æ•ˆçŽ‡è¦é«˜çš„å¤š
+  4 ä½¿ç”¨inæ—¶ä¸å¯¹nullè¿›è¡Œå¤„ç†
 
-13.5.[sql] Ê¾Àý£¬Ò»ÏÂ¼¸¾äsqlÖ´ÐÐ¼Æ»®ÍêÈ«ÏàÍ¬
-# ÔÚ`test_newoadev`Êý¾Ý¿âÖÐ²âÊÔ
+13.5.[sql] ç¤ºä¾‹ï¼Œä¸€ä¸‹å‡ å¥sqlæ‰§è¡Œè®¡åˆ’å®Œå…¨ç›¸åŒ
+# åœ¨`test_newoadev`æ•°æ®åº“ä¸­æµ‹è¯•
 EXPLAIN
 SELECT
 	*
@@ -151,7 +151,7 @@ FROM
 WHERE
 	approve.process_id = process.id
 AND process.flow_id = flow.id
-AND flow.`name` = 'GPSÒì³£'
+AND flow.`name` = 'GPSå¼‚å¸¸'
 AND approve.mark = 1
 AND process.mark = 1
 AND flow.mark = 1;
@@ -164,7 +164,7 @@ FROM
 LEFT JOIN oa_flow_process process ON process.id = approve.process_id
 LEFT JOIN oa_flow flow ON flow.id = process.flow_id
 WHERE
-	flow.`name` = 'GPSÒì³£'
+	flow.`name` = 'GPSå¼‚å¸¸'
 AND approve.mark = 1
 AND process.mark = 1
 AND flow.mark = 1;
@@ -190,7 +190,7 @@ AND process_id IN (
 			oa_flow
 		WHERE
 			mark = 1
-		AND NAME = 'GPSÒì³£'
+		AND NAME = 'GPSå¼‚å¸¸'
 	)
 );
 -- -----------------
@@ -217,93 +217,93 @@ AND EXISTS (
 		WHERE
 			flow.id = process.flow_id
 		AND mark = 1
-		AND `name` = 'GPSÒì³£'
+		AND `name` = 'GPSå¼‚å¸¸'
 	)
 );
 
-14.[sql] Ö´ÐÐ¼Æ»®
-. ×Ö¶Î
+14.[sql] æ‰§è¡Œè®¡åˆ’
+. å­—æ®µ
   * id 
-    . °üº¬Ò»×éÊý×Ö£¬±íÊ¾²éÑ¯ÖÐÖ´ÐÐselect×Ó¾ä»ò²Ù×÷±íµÄË³Ðò
-    . idÏàÍ¬£¬Ö´ÐÐË³ÐòÓÉÉÏÖÁÏÂ
-      . ÏÈÖ´ÐÐµÄ±»³ÆÎª¡°Çý¶¯±í¡±£¨¼ûÏÂ£©
-    . id²»Í¬£¬idÖµÔ½´óÓÅÏÈ¼¶Ô½¸ß£¬Ô½ÏÈ±»Ö´ÐÐ
+    . åŒ…å«ä¸€ç»„æ•°å­—ï¼Œè¡¨ç¤ºæŸ¥è¯¢ä¸­æ‰§è¡Œselectå­å¥æˆ–æ“ä½œè¡¨çš„é¡ºåº
+    . idç›¸åŒï¼Œæ‰§è¡Œé¡ºåºç”±ä¸Šè‡³ä¸‹
+      . å…ˆæ‰§è¡Œçš„è¢«ç§°ä¸ºâ€œé©±åŠ¨è¡¨â€ï¼ˆè§ä¸‹ï¼‰
+    . idä¸åŒï¼Œidå€¼è¶Šå¤§ä¼˜å…ˆçº§è¶Šé«˜ï¼Œè¶Šå…ˆè¢«æ‰§è¡Œ
   . select_type 
-    . ±íÊ¾²éÑ¯ÖÐÃ¿¸öselect×Ó¾äµÄÀàÐÍ
+    . è¡¨ç¤ºæŸ¥è¯¢ä¸­æ¯ä¸ªselectå­å¥çš„ç±»åž‹
     . SIMPLE | PRIMARY | SUBQUERY | DERIVED | UNION | UNION RESULT | DEPENDENT SUBQUERY
   * type
-    . ±íÊ¾MySQLÔÚ±íÖÐÕÒµ½ËùÐèÐÐµÄ·½Ê½£¬ÓÖ³Æ¡°·ÃÎÊÀàÐÍ¡±
+    . è¡¨ç¤ºMySQLåœ¨è¡¨ä¸­æ‰¾åˆ°æ‰€éœ€è¡Œçš„æ–¹å¼ï¼Œåˆç§°â€œè®¿é—®ç±»åž‹â€
     . ALL < INDEX < RANGE < REF < EQ_REF < CONST 
   . possible_keys
-    . Ö¸³öMySQLÄÜÊ¹ÓÃÄÄ¸öË÷ÒýÔÚ±íÖÐÕÒµ½ÐÐ£¬²éÑ¯Éæ¼°µ½µÄ×Ö¶ÎÉÏÈô´æÔÚË÷Òý£¬Ôò¸ÃË÷Òý½«±»ÁÐ³ö£¬µ«²»Ò»¶¨±»²éÑ¯Ê¹ÓÃ
+    . æŒ‡å‡ºMySQLèƒ½ä½¿ç”¨å“ªä¸ªç´¢å¼•åœ¨è¡¨ä¸­æ‰¾åˆ°è¡Œï¼ŒæŸ¥è¯¢æ¶‰åŠåˆ°çš„å­—æ®µä¸Šè‹¥å­˜åœ¨ç´¢å¼•ï¼Œåˆ™è¯¥ç´¢å¼•å°†è¢«åˆ—å‡ºï¼Œä½†ä¸ä¸€å®šè¢«æŸ¥è¯¢ä½¿ç”¨
   . key
-    . ÏÔÊ¾MySQLÔÚ²éÑ¯ÖÐÊµ¼ÊÊ¹ÓÃµÄË÷Òý
+    . æ˜¾ç¤ºMySQLåœ¨æŸ¥è¯¢ä¸­å®žé™…ä½¿ç”¨çš„ç´¢å¼•
   . key_len
-    . ±íÊ¾Ë÷ÒýÖÐÊ¹ÓÃµÄ×Ö½ÚÊý£¬¿ÉÍ¨¹ý¸ÃÁÐ¼ÆËã²éÑ¯ÖÐÊ¹ÓÃµÄË÷ÒýµÄ³¤¶È
+    . è¡¨ç¤ºç´¢å¼•ä¸­ä½¿ç”¨çš„å­—èŠ‚æ•°ï¼Œå¯é€šè¿‡è¯¥åˆ—è®¡ç®—æŸ¥è¯¢ä¸­ä½¿ç”¨çš„ç´¢å¼•çš„é•¿åº¦
   . ref
-    . ±íÊ¾ÉÏÊö±íµÄÁ¬½ÓÆ¥ÅäÌõ¼þ£¬¼´ÄÄÐ©ÁÐ»ò³£Á¿±»ÓÃÓÚ²éÕÒË÷ÒýÁÐÉÏµÄÖµ
+    . è¡¨ç¤ºä¸Šè¿°è¡¨çš„è¿žæŽ¥åŒ¹é…æ¡ä»¶ï¼Œå³å“ªäº›åˆ—æˆ–å¸¸é‡è¢«ç”¨äºŽæŸ¥æ‰¾ç´¢å¼•åˆ—ä¸Šçš„å€¼
   * rows
-    . ±íÊ¾MySQL¸ù¾Ý±íÍ³¼ÆÐÅÏ¢¼°Ë÷ÒýÑ¡ÓÃÇé¿ö£¬¡°¹ÀËã¡±µÄÕÒµ½ËùÐèµÄ¼ÇÂ¼ËùÐèÒª¶ÁÈ¡µÄÐÐÊý
+    . è¡¨ç¤ºMySQLæ ¹æ®è¡¨ç»Ÿè®¡ä¿¡æ¯åŠç´¢å¼•é€‰ç”¨æƒ…å†µï¼Œâ€œä¼°ç®—â€çš„æ‰¾åˆ°æ‰€éœ€çš„è®°å½•æ‰€éœ€è¦è¯»å–çš„è¡Œæ•°
   * Extra
     . Using index | Using where | Using temporary | Using filesort
-? Çý¶¯±í
-  . `LEFT JOIN`Ö±½ÓÖ¸¶¨×ó±íÎªÇý¶¯±í£»`RIGHT JOIN`Ö±½ÓÖ¸¶¨ÓÒ²à±íÎªÇý¶¯±í
-  . Ö¸¶¨ÁËÁ¬½ÓÌõ¼þÊ±£¬Âú×ã²éÑ¯Ìõ¼þµÄ¼ÇÂ¼ÐÐÊýÉÙµÄ±íÎª[Çý¶¯±í]
-    ? ¡®Á¬½ÓÌõ¼þ¡¯Àí½âÎª¡®ON×Ó¾ä¡¯
-    ? µ«ÊÇÊÂÏÈÒ²²»ÄÜµÃÖª¸Ä²éÑ¯Ìõ¼þÏÂµÄ¼ÇÂ¼Êý°É
-  . Î´Ö¸¶¨Á¬½ÓÌõ¼þÊ±£¬ÐÐÊýÉÙµÄ±íÎª[Çý¶¯±í]£¨Important!£©
-  . ÓÀÔ¶ÓÃÐ¡½á¹û¼¯Çý¶¯´ó½á¹û¼¯
-  . µ«ÊÇÊµ¼ùÊ±·¢ÏÖ£ºÓÐË÷ÒýµÄÇé¿öÏÂ£¬»á¾¡¿ÉÄÜÀûÓÃË÷Òý£¬Ê¹´Ó±í·ÃÎÊÀàÐÍ(type)Îª`eq_ref|ref`
+? é©±åŠ¨è¡¨
+  . `LEFT JOIN`ç›´æŽ¥æŒ‡å®šå·¦è¡¨ä¸ºé©±åŠ¨è¡¨ï¼›`RIGHT JOIN`ç›´æŽ¥æŒ‡å®šå³ä¾§è¡¨ä¸ºé©±åŠ¨è¡¨
+  . æŒ‡å®šäº†è¿žæŽ¥æ¡ä»¶æ—¶ï¼Œæ»¡è¶³æŸ¥è¯¢æ¡ä»¶çš„è®°å½•è¡Œæ•°å°‘çš„è¡¨ä¸º[é©±åŠ¨è¡¨]
+    ? â€˜è¿žæŽ¥æ¡ä»¶â€™ç†è§£ä¸ºâ€˜ONå­å¥â€™
+    ? ä½†æ˜¯äº‹å…ˆä¹Ÿä¸èƒ½å¾—çŸ¥æ”¹æŸ¥è¯¢æ¡ä»¶ä¸‹çš„è®°å½•æ•°å§
+  . æœªæŒ‡å®šè¿žæŽ¥æ¡ä»¶æ—¶ï¼Œè¡Œæ•°å°‘çš„è¡¨ä¸º[é©±åŠ¨è¡¨]ï¼ˆImportant!ï¼‰
+  . æ°¸è¿œç”¨å°ç»“æžœé›†é©±åŠ¨å¤§ç»“æžœé›†
+  . ä½†æ˜¯å®žè·µæ—¶å‘çŽ°ï¼šæœ‰ç´¢å¼•çš„æƒ…å†µä¸‹ï¼Œä¼šå°½å¯èƒ½åˆ©ç”¨ç´¢å¼•ï¼Œä½¿ä»Žè¡¨è®¿é—®ç±»åž‹(type)ä¸º`eq_ref|ref`
 . Extra
-  . using filesort£¨¸ºÃæ£©
-    . MySQLÐèÒª¶îÍâµÄÒ»´Î´«µÝ£¬ÒÔÕÒ³öÈçºÎ°´ÅÅÐòË³Ðò¼ìË÷ÐÐ¡£Í¨¹ý¸ù¾ÝÁª½ÓÀàÐÍä¯ÀÀËùÓÐÐÐ²¢ÎªËùÓÐÆ¥ÅäWHERE×Ó¾äµÄÐÐ±£´æÅÅÐò¹Ø¼ü×ÖºÍÐÐµÄÖ¸ÕëÀ´Íê³ÉÅÅÐò¡£È»ºó¹Ø¼ü×Ö±»ÅÅÐò£¬²¢°´ÅÅÐòË³Ðò¼ìË÷ÐÐ¡£
-  . using temporary£¨¸ºÃæ£©
-    . ÎªÁË½â¾ö²éÑ¯£¬MySQLÐèÒª´´½¨Ò»¸öÁÙÊ±±íÀ´ÈÝÄÉ½á¹û¡£µäÐÍÇé¿öÈç²éÑ¯°üº¬¿ÉÒÔ°´²»Í¬Çé¿öÁÐ³öÁÐµÄGROUP BYºÍORDER BY×Ó¾äÊ±
-  . Using index£¨ÕýÃæ£©
-    . ±íÊ¾Ö±½Ó·ÃÎÊË÷Òý¾Í×ã¹»»ñÈ¡µ½ËùÐèÒªµÄÊý¾Ý£¬²»ÐèÒªÍ¨¹ýË÷Òý»Ø±í
+  . using filesortï¼ˆè´Ÿé¢ï¼‰
+    . MySQLéœ€è¦é¢å¤–çš„ä¸€æ¬¡ä¼ é€’ï¼Œä»¥æ‰¾å‡ºå¦‚ä½•æŒ‰æŽ’åºé¡ºåºæ£€ç´¢è¡Œã€‚é€šè¿‡æ ¹æ®è”æŽ¥ç±»åž‹æµè§ˆæ‰€æœ‰è¡Œå¹¶ä¸ºæ‰€æœ‰åŒ¹é…WHEREå­å¥çš„è¡Œä¿å­˜æŽ’åºå…³é”®å­—å’Œè¡Œçš„æŒ‡é’ˆæ¥å®ŒæˆæŽ’åºã€‚ç„¶åŽå…³é”®å­—è¢«æŽ’åºï¼Œå¹¶æŒ‰æŽ’åºé¡ºåºæ£€ç´¢è¡Œã€‚
+  . using temporaryï¼ˆè´Ÿé¢ï¼‰
+    . ä¸ºäº†è§£å†³æŸ¥è¯¢ï¼ŒMySQLéœ€è¦åˆ›å»ºä¸€ä¸ªä¸´æ—¶è¡¨æ¥å®¹çº³ç»“æžœã€‚å…¸åž‹æƒ…å†µå¦‚æŸ¥è¯¢åŒ…å«å¯ä»¥æŒ‰ä¸åŒæƒ…å†µåˆ—å‡ºåˆ—çš„GROUP BYå’ŒORDER BYå­å¥æ—¶
+  . Using indexï¼ˆæ­£é¢ï¼‰
+    . è¡¨ç¤ºç›´æŽ¥è®¿é—®ç´¢å¼•å°±è¶³å¤ŸèŽ·å–åˆ°æ‰€éœ€è¦çš„æ•°æ®ï¼Œä¸éœ€è¦é€šè¿‡ç´¢å¼•å›žè¡¨
   . Using where
-    . ±íÊ¾ÓÅ»¯Æ÷ÐèÒªÍ¨¹ýË÷Òý»Ø±í²éÑ¯Êý¾Ý
-  * »ù±¾ÉÏ£¬ÔÚExtraÁÐÀïÃæ£¬¾¡¿ÉÄÜ²»Òª³öÏÖUse Temporary Table ºÍ Using file sort£¬Ïà±È½Ï¶øÑÔ£¬Ê¹ÓÃÁÙÊ±±íµÄÓ°Ïì¸ü´ó£¬file sort»áÐ¡Ò»Ð©
+    . è¡¨ç¤ºä¼˜åŒ–å™¨éœ€è¦é€šè¿‡ç´¢å¼•å›žè¡¨æŸ¥è¯¢æ•°æ®
+  * åŸºæœ¬ä¸Šï¼Œåœ¨Extraåˆ—é‡Œé¢ï¼Œå°½å¯èƒ½ä¸è¦å‡ºçŽ°Use Temporary Table å’Œ Using file sortï¼Œç›¸æ¯”è¾ƒè€Œè¨€ï¼Œä½¿ç”¨ä¸´æ—¶è¡¨çš„å½±å“æ›´å¤§ï¼Œfile sortä¼šå°ä¸€äº›
 . select_type
-  . DEPENDENT SUBQUERY£¨¸ºÃæ£©
-    # http://itindex.net/detail/46772-%E4%BC%98%E5%8C%96-mysql-dependent¡¾Ã»ÑéÖ¤¹ý£¬ÉóÉ÷µÄ¿´¡¿
-. ²Î¿¼
-  # https://blog.csdn.net/zhuxineli/article/details/14455029¡¾MYSQL explainÏê½â¡¿¡¾excellent¡¿
-  # http://www.cnblogs.com/ggjucheng/archive/2012/11/11/2765237.html¡¾MySQLÖ´ÐÐ¼Æ»®½â¶Á¡¿¡¾good¡¿
-  # http://blog.itpub.net/29510932/viewspace-1709732¡¾MySQLÖ®SQL·ÖÎöÈý²¿Çú¡¿
+  . DEPENDENT SUBQUERYï¼ˆè´Ÿé¢ï¼‰
+    # http://itindex.net/detail/46772-%E4%BC%98%E5%8C%96-mysql-dependentã€æ²¡éªŒè¯è¿‡ï¼Œå®¡æ…Žçš„çœ‹ã€‘
+. å‚è€ƒ
+  # https://blog.csdn.net/zhuxineli/article/details/14455029ã€MYSQL explainè¯¦è§£ã€‘ã€excellentã€‘
+  # http://www.cnblogs.com/ggjucheng/archive/2012/11/11/2765237.htmlã€MySQLæ‰§è¡Œè®¡åˆ’è§£è¯»ã€‘ã€goodã€‘
+  # http://blog.itpub.net/29510932/viewspace-1709732ã€MySQLä¹‹SQLåˆ†æžä¸‰éƒ¨æ›²ã€‘
   # http://blog.csdn.net/u011244446/article/details/60609495
 
-15.[php] ·ÖÆ¬ÉÏ´«
-. ÎªÊ²Ã´²»ÄÜÖ±½Ó´«´óÎÄ¼þ
-  . upload_max_filesize = 2M //PHP×î´óÄÜ½ÓÊÜµÄÎÄ¼þ´óÐ¡
-  . post_max_size = 8M //PHPÄÜÊÕµ½µÄ×î´óPOSTÖµ
-  . memory_limit = 128M //ÄÚ´æÉÏÏÞ
-  . max_execution_time = 30 //×î´óÖ´ÐÐÊ±¼ä
-. Ç°¶Ë
-  . Ê¹ÓÃ`Web Uploader`²å¼þ£¬ÅäÖÃ`chunked: true` 
-  # http://fex.baidu.com/webuploader/¡¾Web Uploader¡¿
-. ºó¶Ë
-  . ²ÎÊý $chunks×ÜÆ¬Êý $chunkµ±Ç°Æ¬±àºÅ
-  . ·Ö±ð½ÓÊÕ²¢´æ´¢Ã¿Ò»Æ¬ÎÄ¼þ
-  . ¼ì²âµ½ÒÑ½ÓÊÕµ½ËùÓÐ·ÖÆ¬Ê±£¬°´´ÎÐò¶ÁÈ¡¸÷·ÖÆ¬ÄÚÈÝ£¬Ð´ÈëµÄÄ¿±êÎÄ¼þ
-  . É¾³ý·ÖÆ¬ÎÄ¼þºÍÁÙÊ±Ä¿Â¼
-. ²Î¿¼
-  # https://www.cnblogs.com/AllenChou/p/7852719.html¡¾´óÎÄ¼þ·ÖÆ¬ÉÏ´«£¬¶ÏµãÐø´«£¬Ãë´« ÊµÏÖ¡¿
-  # https://segmentfault.com/a/1190000006909562¡¾·ÖÆ¬ÉÏ´«Óë¶ÏµãÐø´«½â¾ö·½°¸¡¿
+15.[php] åˆ†ç‰‡ä¸Šä¼ 
+. ä¸ºä»€ä¹ˆä¸èƒ½ç›´æŽ¥ä¼ å¤§æ–‡ä»¶
+  . upload_max_filesize = 2M //PHPæœ€å¤§èƒ½æŽ¥å—çš„æ–‡ä»¶å¤§å°
+  . post_max_size = 8M //PHPèƒ½æ”¶åˆ°çš„æœ€å¤§POSTå€¼
+  . memory_limit = 128M //å†…å­˜ä¸Šé™
+  . max_execution_time = 30 //æœ€å¤§æ‰§è¡Œæ—¶é—´
+. å‰ç«¯
+  . ä½¿ç”¨`Web Uploader`æ’ä»¶ï¼Œé…ç½®`chunked: true` 
+  # http://fex.baidu.com/webuploader/ã€Web Uploaderã€‘
+. åŽç«¯
+  . å‚æ•° $chunksæ€»ç‰‡æ•° $chunkå½“å‰ç‰‡ç¼–å·
+  . åˆ†åˆ«æŽ¥æ”¶å¹¶å­˜å‚¨æ¯ä¸€ç‰‡æ–‡ä»¶
+  . æ£€æµ‹åˆ°å·²æŽ¥æ”¶åˆ°æ‰€æœ‰åˆ†ç‰‡æ—¶ï¼ŒæŒ‰æ¬¡åºè¯»å–å„åˆ†ç‰‡å†…å®¹ï¼Œå†™å…¥çš„ç›®æ ‡æ–‡ä»¶
+  . åˆ é™¤åˆ†ç‰‡æ–‡ä»¶å’Œä¸´æ—¶ç›®å½•
+. å‚è€ƒ
+  # https://www.cnblogs.com/AllenChou/p/7852719.htmlã€å¤§æ–‡ä»¶åˆ†ç‰‡ä¸Šä¼ ï¼Œæ–­ç‚¹ç»­ä¼ ï¼Œç§’ä¼  å®žçŽ°ã€‘
+  # https://segmentfault.com/a/1190000006909562ã€åˆ†ç‰‡ä¸Šä¼ ä¸Žæ–­ç‚¹ç»­ä¼ è§£å†³æ–¹æ¡ˆã€‘
 
-£¿£¿£¿¶ÏµãÐø´«
+ï¼Ÿï¼Ÿï¼Ÿæ–­ç‚¹ç»­ä¼ 
 
-16.[other] https://blog.fundebug.com/2017/05/31/docker-and-vm/ ¡¾docker VS VM¡¿
+16.[other] https://blog.fundebug.com/2017/05/31/docker-and-vm/ ã€docker VS VMã€‘
 
-17.[php] ¶þÎ¬Êý×é ÈçºÎÏñÊý¾Ý¿â±íÒ»Ñù °´×Ö¶ÎÅÅÐò
-. Êý¾Ý
+17.[php] äºŒç»´æ•°ç»„ å¦‚ä½•åƒæ•°æ®åº“è¡¨ä¸€æ · æŒ‰å­—æ®µæŽ’åº
+. æ•°æ®
 $list = [
 	['a'=>1, 'b'=>50, 'c'=>500,],
 	['a'=>2, 'b'=>10, 'c'=>300,],
 	['a'=>3, 'b'=>30, 'c'=>200,],
 	['a'=>3, 'b'=>20, 'c'=>100,],
 ];
-. ·½·¨Ò»
+. æ–¹æ³•ä¸€
 $column_a = array_column($list, 'a');
 $column_b = array_column($list, 'b');
 $column_c = array_column($list, 'c');
@@ -313,7 +313,7 @@ array_multisort(
 	$column_c, SORT_ASC, SORT_REGULAR,
 	$list
 );
-. ·½·¨¶þ
+. æ–¹æ³•äºŒ
 function array_msort($array, $cols)
 {
     $colarr = array();
@@ -340,45 +340,45 @@ function array_msort($array, $cols)
 $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 
 18.[redis] redis
-. `redis`ÊÇÒ»¸ö`C-S`¼Ü¹¹µÄÓ¦ÓÃ
-  . ·þÎñ¶Ë£º`redis-server redis.windows.conf`
-  . ¿Í»§¶Ë£º`redis-cli -h 127.0.0.1 -p 6379`
-. ÎåÖÖÊý¾ÝÀàÐÍ
+. `redis`æ˜¯ä¸€ä¸ª`C-S`æž¶æž„çš„åº”ç”¨
+  . æœåŠ¡ç«¯ï¼š`redis-server redis.windows.conf`
+  . å®¢æˆ·ç«¯ï¼š`redis-cli -h 127.0.0.1 -p 6379`
+. äº”ç§æ•°æ®ç±»åž‹
   . String
-    # ×Ö·û´®
+    # å­—ç¬¦ä¸²
     . set {key} {value}
     . get {key}
     . del {key}
     . exists {key}
     . setex {key} {seconds} {value}
-      # ÉèÖÃ¹ýÆÚÊ±¼ä
+      # è®¾ç½®è¿‡æœŸæ—¶é—´
     . setnx {key} {value}
-      . Ö»ÓÐÔÚ key²»´æÔÚÊ±ÉèÖÃ keyµÄÖµ
-      ! ÓÉÓÚredisÃüÁî¶¼ÊÇÔ­×Ó²Ù×÷£¬`setnx`ÃüÁî¿ÉÒÔÓÃÀ´ÊµÏÖ¡°Ëø¡±
-        # http://blog.csdn.net/fdipzone/article/details/51793837¡¾php Ê¹ÓÃredisËøÏÞÖÆ²¢·¢·ÃÎÊÀà¡¿
+      . åªæœ‰åœ¨ keyä¸å­˜åœ¨æ—¶è®¾ç½® keyçš„å€¼
+      ! ç”±äºŽrediså‘½ä»¤éƒ½æ˜¯åŽŸå­æ“ä½œï¼Œ`setnx`å‘½ä»¤å¯ä»¥ç”¨æ¥å®žçŽ°â€œé”â€
+        # http://blog.csdn.net/fdipzone/article/details/51793837ã€php ä½¿ç”¨redisé”é™åˆ¶å¹¶å‘è®¿é—®ç±»ã€‘
   . List
-    # ÓÐÐò×Ö·û´®ÁÐ±í¡£¿ÉÒÔÌí¼ÓÒ»¸öÔªËØµ½ÁÐ±íµÄÍ·²¿£¨×ó±ß£©»òÕßÎ²²¿£¨ÓÒ±ß£©¡£
+    # æœ‰åºå­—ç¬¦ä¸²åˆ—è¡¨ã€‚å¯ä»¥æ·»åŠ ä¸€ä¸ªå…ƒç´ åˆ°åˆ—è¡¨çš„å¤´éƒ¨ï¼ˆå·¦è¾¹ï¼‰æˆ–è€…å°¾éƒ¨ï¼ˆå³è¾¹ï¼‰ã€‚
     . lpush {key} {value}
     . lpop {key}
     . lrange {key} {start} {end} 
       . start<=end
-      . 0±íÊ¾µÚÒ»¸öÔªËØ 
-      . ¿ÉÒÔÊÇ¸ºÊý£¬Èç-2±íÊ¾ÁÐ±íµÄµ¹ÊýµÚ¶þ¸öÔªËØ
+      . 0è¡¨ç¤ºç¬¬ä¸€ä¸ªå…ƒç´  
+      . å¯ä»¥æ˜¯è´Ÿæ•°ï¼Œå¦‚-2è¡¨ç¤ºåˆ—è¡¨çš„å€’æ•°ç¬¬äºŒä¸ªå…ƒç´ 
     . rpush {key} {value}
   . Hash
-    # ÊÇÒ»¸ö¼üÖµ(key=>string)¶Ô¼¯ºÏ
-    # https://www.cnblogs.com/shuo-128/p/7073528.html¡¾Redis µÄÊý¾ÝÀàÐÍ - Hash ¶ÔÏóÀàÐÍ¡¿
-    # ÊÊºÏ´æ´¢¶ÔÏó 
+    # æ˜¯ä¸€ä¸ªé”®å€¼(key=>string)å¯¹é›†åˆ
+    # https://www.cnblogs.com/shuo-128/p/7073528.htmlã€Redis çš„æ•°æ®ç±»åž‹ - Hash å¯¹è±¡ç±»åž‹ã€‘
+    # é€‚åˆå­˜å‚¨å¯¹è±¡ 
     . hset {key} {field} {value} 
     . hget {key} {field} 
     . hdel {key} {field} [{field2} ...]
     . hgetall {key}
     . hkeys {key}
-      # »ñÈ¡ËùÓÐ¹þÏ£±íÖÐµÄ×Ö¶Î
+      # èŽ·å–æ‰€æœ‰å“ˆå¸Œè¡¨ä¸­çš„å­—æ®µ
   . Set
-    # stringÀàÐÍµÄÎÞÐò¼¯ºÏ
-      # ¼¯ºÏµÄÔªËØ²»ÄÜÖØ¸´µÄ
-    # ÊÇÍ¨¹ý¹þÏ£±íÊµÏÖµÄ£¬ËùÒÔÌí¼Ó£¬É¾³ý£¬²éÕÒµÄ¸´ÔÓ¶È¶¼ÊÇ O(1)
+    # stringç±»åž‹çš„æ— åºé›†åˆ
+      # é›†åˆçš„å…ƒç´ ä¸èƒ½é‡å¤çš„
+    # æ˜¯é€šè¿‡å“ˆå¸Œè¡¨å®žçŽ°çš„ï¼Œæ‰€ä»¥æ·»åŠ ï¼Œåˆ é™¤ï¼ŒæŸ¥æ‰¾çš„å¤æ‚åº¦éƒ½æ˜¯ O(1)
     . sadd {key} {member} [{member2} ...]
     . srem {key} {member} [{member2} ...]
     . smembers {key}
@@ -387,166 +387,166 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
     . sunion {key1} {key2}
     . sismember {key} {member}
     . scard {key}
-      # ³ÉÔ±×ÜÊý
+      # æˆå‘˜æ€»æ•°
   . Ordered Set 
-    # stringÀàÐÍÔªËØµÄ¼¯ºÏ 
-    # Ã¿¸öÔªËØ¶¼»á¹ØÁªÒ»¸ödoubleÀàÐÍµÄ·ÖÊý¡£redisÕýÊÇÍ¨¹ý·ÖÊýÀ´Îª¼¯ºÏÖÐµÄ³ÉÔ±½øÐÐ¡°´ÓÐ¡µ½´ó¡±µÄÅÅÐò¡£
+    # stringç±»åž‹å…ƒç´ çš„é›†åˆ 
+    # æ¯ä¸ªå…ƒç´ éƒ½ä¼šå…³è”ä¸€ä¸ªdoubleç±»åž‹çš„åˆ†æ•°ã€‚redisæ­£æ˜¯é€šè¿‡åˆ†æ•°æ¥ä¸ºé›†åˆä¸­çš„æˆå‘˜è¿›è¡Œâ€œä»Žå°åˆ°å¤§â€çš„æŽ’åºã€‚
     . zadd {key} {score} {member} [{score2} {member2} ...] 
     . zrem {key} {member} [{member2} ...] 
     . zcard {key}
     . zrange {key} {start} {end} [WITHSCORES] 
     . zrangebyscore {key} {min} {max} [WITHSCORES] [LIMIT {offset} {count}]
-. ÃüÁî·µ»ØÖµ
-  . RedisÃüÁî ·µ»Ø1±íÊ¾³É¹¦ 0±íÊ¾Ê§°Ü
-  . RedisÃüÁî Ö»»á·µ»Ø µ¥¸öÖµ »ò Ò»¸öÒ»Î¬Êý×é¡£Êý×é°´ÕÕ¾ßÌåÇé¿ö¿ÉÄÜÊÇ `key1,val1,key2,val2...` »òÊÇ `A1,B1,C1,A2,B2,C2...`
-. ÊÂÎñ
-  . RedisµÄËùÓÐ²Ù×÷¶¼ÊÇÔ­×ÓÐÔµÄ£¬ÒâË¼¾ÍÊÇÒªÃ´³É¹¦Ö´ÐÐÒªÃ´Ê§°ÜÍêÈ«²»Ö´ÐÐ¡£
-    . µ¥¸ö²Ù×÷ÊÇÔ­×ÓÐÔµÄ
-    . ¶à¸ö²Ù×÷Ò²Ö§³ÖÊÂÎñ£¬¼´Ô­×ÓÐÔ£¬Í¨¹ýMULTIºÍEXECÖ¸Áî°üÆðÀ´¡£
-. ÉèÖÃÃÜÂë
-  . config get requirepass // ²é¿´ÊÇ·ñÓÐÃÜÂë
-  . config set requirepass {password} // ÉèÖÃÃÜÂë
-  . auth {password} // ÉèÖÃÃÜÂëºó£¬ÐèÒªÍ¨¹ýÕâ¸öÑéÖ¤£¬²ÅÄÜÊ¹ÓÃ±ðµÄÃüÁî
-  . »òÕßÖ±½ÓÔÚÅäÖÃÎÄ¼þÖÐ `requirepass {password}`
-. ÅäÖÃ
-  . Æô¶¯·þÎñÊ±£¬ÒªÑ¡ÔñÅäÖÃÎÄ¼þ£º `redis-server redis.windows.conf`
-  . CONFIG GET {CONFIG_SETTING_NAME} // ¶ÁÅäÖÃÏî
-  . CONFIG SET {CONFIG_SETTING_NAME} {NEW_CONFIG_VALUE} // Ð´ÅäÖÃÏî
-  . CONFIG GET * // ¶ÁÈ«²¿ÅäÖÃ
-. ·¢²¼/¶©ÔÄ
-  # ¿Í»§¶Ë¿ÉÒÔ·¢²¼(publish)ºÍ¶©ÔÄ(subscribe)ÆµµÀ(channel)
+. å‘½ä»¤è¿”å›žå€¼
+  . Rediså‘½ä»¤ è¿”å›ž1è¡¨ç¤ºæˆåŠŸ 0è¡¨ç¤ºå¤±è´¥
+  . Rediså‘½ä»¤ åªä¼šè¿”å›ž å•ä¸ªå€¼ æˆ– ä¸€ä¸ªä¸€ç»´æ•°ç»„ã€‚æ•°ç»„æŒ‰ç…§å…·ä½“æƒ…å†µå¯èƒ½æ˜¯ `key1,val1,key2,val2...` æˆ–æ˜¯ `A1,B1,C1,A2,B2,C2...`
+. äº‹åŠ¡
+  . Redisçš„æ‰€æœ‰æ“ä½œéƒ½æ˜¯åŽŸå­æ€§çš„ï¼Œæ„æ€å°±æ˜¯è¦ä¹ˆæˆåŠŸæ‰§è¡Œè¦ä¹ˆå¤±è´¥å®Œå…¨ä¸æ‰§è¡Œã€‚
+    . å•ä¸ªæ“ä½œæ˜¯åŽŸå­æ€§çš„
+    . å¤šä¸ªæ“ä½œä¹Ÿæ”¯æŒäº‹åŠ¡ï¼Œå³åŽŸå­æ€§ï¼Œé€šè¿‡MULTIå’ŒEXECæŒ‡ä»¤åŒ…èµ·æ¥ã€‚
+. è®¾ç½®å¯†ç 
+  . config get requirepass // æŸ¥çœ‹æ˜¯å¦æœ‰å¯†ç 
+  . config set requirepass {password} // è®¾ç½®å¯†ç 
+  . auth {password} // è®¾ç½®å¯†ç åŽï¼Œéœ€è¦é€šè¿‡è¿™ä¸ªéªŒè¯ï¼Œæ‰èƒ½ä½¿ç”¨åˆ«çš„å‘½ä»¤
+  . æˆ–è€…ç›´æŽ¥åœ¨é…ç½®æ–‡ä»¶ä¸­ `requirepass {password}`
+. é…ç½®
+  . å¯åŠ¨æœåŠ¡æ—¶ï¼Œè¦é€‰æ‹©é…ç½®æ–‡ä»¶ï¼š `redis-server redis.windows.conf`
+  . CONFIG GET {CONFIG_SETTING_NAME} // è¯»é…ç½®é¡¹
+  . CONFIG SET {CONFIG_SETTING_NAME} {NEW_CONFIG_VALUE} // å†™é…ç½®é¡¹
+  . CONFIG GET * // è¯»å…¨éƒ¨é…ç½®
+. å‘å¸ƒ/è®¢é˜…
+  # å®¢æˆ·ç«¯å¯ä»¥å‘å¸ƒ(publish)å’Œè®¢é˜…(subscribe)é¢‘é“(channel)
   . subscribe {channel} [{channel2} ...]
   . publish {channel} {message} 
   . unsubscribe {channel} [{channel2} ...]
-. ¿Í»§¶Ë
+. å®¢æˆ·ç«¯
   . client list
   . client kill [addr {ip}:{port}] [id {client-id}] [type {type}]
-? ÆäËüÌØÐÔ 
-  . ¹ýÆÚ
-  . Í¨Öª
+? å…¶å®ƒç‰¹æ€§ 
+  . è¿‡æœŸ
+  . é€šçŸ¥
 . php
-  . `phpredis`À©Õ¹
-  . `predis`¿â
-  # https://segmentfault.com/q/1010000008848852¡¾predis°üºÍphpredisÀ©Õ¹µÄÇø±ðÊÇÊ²Ã´¡¿¡¾good¡¿
-# ²Î¿¼£ºhttp://www.runoob.com/redis/redis-tutorial.html
-. ÆäËü
-  # https://segmentfault.com/q/1010000005115279¡¾redis¿ÉÒÔ¶àkey¶ÔÓ¦Ò»¸övalueÂð£¿¡¿
+  . `phpredis`æ‰©å±•
+  . `predis`åº“
+  # https://segmentfault.com/q/1010000008848852ã€predisåŒ…å’Œphpredisæ‰©å±•çš„åŒºåˆ«æ˜¯ä»€ä¹ˆã€‘ã€goodã€‘
+# å‚è€ƒï¼šhttp://www.runoob.com/redis/redis-tutorial.html
+. å…¶å®ƒ
+  # https://segmentfault.com/q/1010000005115279ã€rediså¯ä»¥å¤škeyå¯¹åº”ä¸€ä¸ªvalueå—ï¼Ÿã€‘
 
-19.[other] http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.html¡¾ä¯ÀÀÆ÷»º´æ»úÖÆ¡¿¡¾excellent¡¿
+19.[other] http://www.cnblogs.com/skynet/archive/2012/11/28/2792503.htmlã€æµè§ˆå™¨ç¼“å­˜æœºåˆ¶ã€‘ã€excellentã€‘
 
-20.[other] http://blog.csdn.net/hinyunsin/article/details/6401854¡¾Ò»¸öfopenº¯ÊýÖÐÎ´Ê¹ÓÃ¶þ½øÖÆÄ£Ê½(b)Òý·¢µÄÑª°¸¡¿
+20.[other] http://blog.csdn.net/hinyunsin/article/details/6401854ã€ä¸€ä¸ªfopenå‡½æ•°ä¸­æœªä½¿ç”¨äºŒè¿›åˆ¶æ¨¡å¼(b)å¼•å‘çš„è¡€æ¡ˆã€‘
 
-21.[php] ½â¾ö²¢·¢ÎÊÌâ
-. ÓÐÒ»Ð©Çé¿öÐèÒª¿ØÖÆ²»ÄÜ²¢·¢
-  . ÈçÇÀ¹º¹¦ÄÜ£º `if ($stock>0) {$stock--; save($stock); return 'success';}`
-. ×èÈû ºÍ ·Ç×èÈû
-  . ×èÈûÄ£Ê½£ºµ±Óöµ½²¢·¢¿ØÖÆÊ±£¬³¢ÊÔ»ñµÃÄ¿±ê×ÊÔ´£¬·ñÔò½ø³Ì×èÈû£¬Ö±µ½×ÊÔ´±»ÆäËü½ø³ÌÊÍ·Å
-  . ·Ç×èÈûÄ£Ê½£ºµ±Óöµ½²¢·¢¿ØÖÆÊ±£¬³¢ÊÔ»ñµÃÄ¿±ê×ÊÔ´£¬Èç¹ûÊ§°Ü£¬Ôò½øÈëÊ§°Ü´¦ÀíÒµÎñÂß¼­
-. ¼¸ÖÖÊµÏÖ·½Ê½
-  . ÎÄ¼þËø
-  . Êý¾Ý¿âÐÐËø
-  . ¶ÓÁÐ
-  . redisµÄsetnx²Ù×÷
-. ²Î¿¼
-  # http://blog.csdn.net/kankan231/article/details/51108450¡¾PHP½â¾ö²¢·¢ÎÊÌâµÄ¼¸ÖÖÊµÏÖ¡¿¡¾good¡¿
-  # http://www.thinkphp.cn/code/2984.html¡¾½â¾ö²¢·¢Ïê½âÒ»£º×èÈûÄ£Ê½¡¿
-  # http://www.w3school.com.cn/php/func_filesystem_flock.asp¡¾PHP flockº¯Êý¡¿
-. ²¢·¢(concurrency) µÄ·´Òå´ÊÊÇ Ë³Ðò(sequential) 
+21.[php] è§£å†³å¹¶å‘é—®é¢˜
+. æœ‰ä¸€äº›æƒ…å†µéœ€è¦æŽ§åˆ¶ä¸èƒ½å¹¶å‘
+  . å¦‚æŠ¢è´­åŠŸèƒ½ï¼š `if ($stock>0) {$stock--; save($stock); return 'success';}`
+. é˜»å¡ž å’Œ éžé˜»å¡ž
+  . é˜»å¡žæ¨¡å¼ï¼šå½“é‡åˆ°å¹¶å‘æŽ§åˆ¶æ—¶ï¼Œå°è¯•èŽ·å¾—ç›®æ ‡èµ„æºï¼Œå¦åˆ™è¿›ç¨‹é˜»å¡žï¼Œç›´åˆ°èµ„æºè¢«å…¶å®ƒè¿›ç¨‹é‡Šæ”¾
+  . éžé˜»å¡žæ¨¡å¼ï¼šå½“é‡åˆ°å¹¶å‘æŽ§åˆ¶æ—¶ï¼Œå°è¯•èŽ·å¾—ç›®æ ‡èµ„æºï¼Œå¦‚æžœå¤±è´¥ï¼Œåˆ™è¿›å…¥å¤±è´¥å¤„ç†ä¸šåŠ¡é€»è¾‘
+. å‡ ç§å®žçŽ°æ–¹å¼
+  . æ–‡ä»¶é”
+  . æ•°æ®åº“è¡Œé”
+  . é˜Ÿåˆ—
+  . redisçš„setnxæ“ä½œ
+. å‚è€ƒ
+  # http://blog.csdn.net/kankan231/article/details/51108450ã€PHPè§£å†³å¹¶å‘é—®é¢˜çš„å‡ ç§å®žçŽ°ã€‘ã€goodã€‘
+  # http://www.thinkphp.cn/code/2984.htmlã€è§£å†³å¹¶å‘è¯¦è§£ä¸€ï¼šé˜»å¡žæ¨¡å¼ã€‘
+  # http://www.w3school.com.cn/php/func_filesystem_flock.aspã€PHP flockå‡½æ•°ã€‘
+. å¹¶å‘(concurrency) çš„åä¹‰è¯æ˜¯ é¡ºåº(sequential) 
 
-22.[other] http://blog.csdn.net/tmylzq187/article/details/41677819¡¾Huffman±àÂë¡¿
+22.[other] http://blog.csdn.net/tmylzq187/article/details/41677819ã€Huffmanç¼–ç ã€‘
 
-23.[other] https://www.zhihu.com/question/28557115¡¾ÔõÑùÓÃÍ¨Ë×µÄÓïÑÔ½âÊÍREST£¬ÒÔ¼°RESTful£¿¡¿
+23.[other] https://www.zhihu.com/question/28557115ã€æ€Žæ ·ç”¨é€šä¿—çš„è¯­è¨€è§£é‡ŠRESTï¼Œä»¥åŠRESTfulï¼Ÿã€‘
 
-24.[sql] http://www.jb51.net/article/27138.htm ¡¾phpÖÐÔÚPDOÖÐÊ¹ÓÃÊÂÎñ(Transaction)¡¿
+24.[sql] http://www.jb51.net/article/27138.htm ã€phpä¸­åœ¨PDOä¸­ä½¿ç”¨äº‹åŠ¡(Transaction)ã€‘
 
-25.[sql] Êý¾Ý¿âµÄ Á¬½Ó(connection) ºÍ »á»°(session)
-. ¸ÅÄîÀí½â
-  . »á»°£ºÊÇÍ¨ÐÅË«·½´Ó¿ªÊ¼Í¨ÐÅµ½Í¨ÐÅ½áÊøÆÚ¼äµÄÒ»¸öÉÏÏÂÎÄ£¨context£©£¬Õâ¸öÉÏÏÂÎÄÊÇÒ»¶ÎÎ»ÓÚ·þÎñÆ÷¶ËµÄÄÚ´æ£»
-  . Á¬½Ó£ºÊÇ´Ó¿Í»§¶Ëµ½Êý¾Ý¿âÊµÀý(instance)µÄÒ»ÌõÎïÀíÂ·¾¶£»
-  . »á»° ºÍ Á¬½Ó ÊÇÍ¬Ê±½¨Á¢µÄ£¬Á½ÕßÊÇ¶ÔÍ¬Ò»¼þÊÂÇé²»Í¬²ã´ÎµÄÃèÊö£»
-. ¹ØÏµ
-  . Ò»¸öÁ¬½Ó¿ÉÒÔÓµÓÐ¶à¸ö»á»°Ò²¿ÉÒÔÃ»ÓÐ»á»°£¬Í¬Ò»¸öÁ¬½ÓÉÏµÄ²»Í¬»á»°Ö®¼ä²»»áÏà»¥Ó°Ïì
-  . Á½¸ö»á»°Ö®¼äµÄÓ°Ïì£¬ÌåÏÖÔÚËøºÍËø´æ£¬¼´¶ÔÏàÍ¬×ÊÔ´µÄ²Ù×÷£¨¶ÔÏó¶¨Òå»òÊý¾Ý¿é£©»òÇëÇó£¨CPU/ÄÚ´æ£©£¬ËüÃÇµÄ´¦ÀíÒ»°ãÊÇ°´¶ÓÁÐÀ´´¦ÀíµÄ£¬Ç°ÃæµÄÃ»ÓÐ´¦ÀíºÃ£¬ºóÃæµÄ¾ÍÒªµÈ´ý¡£Èç¹ûÒÔ´òµç»°À´±ÈÓ÷£ºconnect¾ÍºÃ±ÈÄã½ÓÍ¨¶Ô·½£¬ÕâÊ±£¬connect¾Í½¨Á¢ÁË£¬ÓÐÃ»ÓÐÍ¨»°£¬²»¹Ü¡£Ë«·½½øÐÐÍ¨»°£¬Ôò session½¨Á¢ÁË£¬Èç¹û»»ÈË£¬ÔòÐÂµÄsession½¨Á¢£¬Ô­session½áÊø£¬ÀàËÆµÄ£¬¿ÉÒÔÔÚÍ¬Ò»¸öconnectÉÏ½øÐÐ¶à¸ö»á»°¡£×îºó£¬¹Ò»ú£¬connect½áÊø¡£
-  # ²»Àí½âÕâÐ©Ò²²»ÖØÒª
-. ËùÐèÖªµÀµÄÓÐ
-  . `Navicat`µÄÃ¿Ò»¸ö²éÑ¯´°¿Ú¶¼ÊÇÒ»¸ö¶ÀÁ¢µÄ»á»°
+25.[sql] æ•°æ®åº“çš„ è¿žæŽ¥(connection) å’Œ ä¼šè¯(session)
+. æ¦‚å¿µç†è§£
+  . ä¼šè¯ï¼šæ˜¯é€šä¿¡åŒæ–¹ä»Žå¼€å§‹é€šä¿¡åˆ°é€šä¿¡ç»“æŸæœŸé—´çš„ä¸€ä¸ªä¸Šä¸‹æ–‡ï¼ˆcontextï¼‰ï¼Œè¿™ä¸ªä¸Šä¸‹æ–‡æ˜¯ä¸€æ®µä½äºŽæœåŠ¡å™¨ç«¯çš„å†…å­˜ï¼›
+  . è¿žæŽ¥ï¼šæ˜¯ä»Žå®¢æˆ·ç«¯åˆ°æ•°æ®åº“å®žä¾‹(instance)çš„ä¸€æ¡ç‰©ç†è·¯å¾„ï¼›
+  . ä¼šè¯ å’Œ è¿žæŽ¥ æ˜¯åŒæ—¶å»ºç«‹çš„ï¼Œä¸¤è€…æ˜¯å¯¹åŒä¸€ä»¶äº‹æƒ…ä¸åŒå±‚æ¬¡çš„æè¿°ï¼›
+. å…³ç³»
+  . ä¸€ä¸ªè¿žæŽ¥å¯ä»¥æ‹¥æœ‰å¤šä¸ªä¼šè¯ä¹Ÿå¯ä»¥æ²¡æœ‰ä¼šè¯ï¼ŒåŒä¸€ä¸ªè¿žæŽ¥ä¸Šçš„ä¸åŒä¼šè¯ä¹‹é—´ä¸ä¼šç›¸äº’å½±å“
+  . ä¸¤ä¸ªä¼šè¯ä¹‹é—´çš„å½±å“ï¼Œä½“çŽ°åœ¨é”å’Œé”å­˜ï¼Œå³å¯¹ç›¸åŒèµ„æºçš„æ“ä½œï¼ˆå¯¹è±¡å®šä¹‰æˆ–æ•°æ®å—ï¼‰æˆ–è¯·æ±‚ï¼ˆCPU/å†…å­˜ï¼‰ï¼Œå®ƒä»¬çš„å¤„ç†ä¸€èˆ¬æ˜¯æŒ‰é˜Ÿåˆ—æ¥å¤„ç†çš„ï¼Œå‰é¢çš„æ²¡æœ‰å¤„ç†å¥½ï¼ŒåŽé¢çš„å°±è¦ç­‰å¾…ã€‚å¦‚æžœä»¥æ‰“ç”µè¯æ¥æ¯”å–»ï¼šconnectå°±å¥½æ¯”ä½ æŽ¥é€šå¯¹æ–¹ï¼Œè¿™æ—¶ï¼Œconnectå°±å»ºç«‹äº†ï¼Œæœ‰æ²¡æœ‰é€šè¯ï¼Œä¸ç®¡ã€‚åŒæ–¹è¿›è¡Œé€šè¯ï¼Œåˆ™ sessionå»ºç«‹äº†ï¼Œå¦‚æžœæ¢äººï¼Œåˆ™æ–°çš„sessionå»ºç«‹ï¼ŒåŽŸsessionç»“æŸï¼Œç±»ä¼¼çš„ï¼Œå¯ä»¥åœ¨åŒä¸€ä¸ªconnectä¸Šè¿›è¡Œå¤šä¸ªä¼šè¯ã€‚æœ€åŽï¼ŒæŒ‚æœºï¼Œconnectç»“æŸã€‚
+  # ä¸ç†è§£è¿™äº›ä¹Ÿä¸é‡è¦
+. æ‰€éœ€çŸ¥é“çš„æœ‰
+  . `Navicat`çš„æ¯ä¸€ä¸ªæŸ¥è¯¢çª—å£éƒ½æ˜¯ä¸€ä¸ªç‹¬ç«‹çš„ä¼šè¯
   . `$db = new PDO('mysql:host=localhost;dbname=test', 'root', '123456')` 
-    . ÔÚÒ»´ÎÇëÇóÖÐ£¬¶Ô`$db`µÄ¶à´ÎÊ¹ÓÃÊôÓÚÍ¬Ò»»á»°
+    . åœ¨ä¸€æ¬¡è¯·æ±‚ä¸­ï¼Œå¯¹`$db`çš„å¤šæ¬¡ä½¿ç”¨å±žäºŽåŒä¸€ä¼šè¯
   . `$db = new PDO('mysql:host=localhost;dbname=test', 'root', '123456', [PDO::ATTR_PERSISTENT => true])`
-    . ½¨Á¢³¤Á¬½ÓµÄ»°£¬¶à´ÎÇëÇó¶¼ÊôÓÚÍ¬Ò»»á»°
-  . »á»°±äÁ¿/¹ý³Ì/º¯Êý ÊôÓÚµ±Ç°»á»°£¨ÉÏÏÂÎÄ£©£¬»á»°¼ä»¥²»Ó°Ïì
-. ²Î¿¼
-  # https://www.cnblogs.com/yasmi/articles/5587868.html¡¾MySQLÖÐµÄÁ¬½Ó¡¢ÊµÀý¡¢»á»°¡¢Êý¾Ý¿â¡¢Ïß³ÌÖ®¼äµÄ¹ØÏµ¡¿¡¾good¡¿
-  # https://blog.csdn.net/jimsonhappy/article/details/54707694¡¾Êý¾Ý¿âConnectionÁ¬½ÓÓëSession»á»°µÄÀí½â¡¿
+    . å»ºç«‹é•¿è¿žæŽ¥çš„è¯ï¼Œå¤šæ¬¡è¯·æ±‚éƒ½å±žäºŽåŒä¸€ä¼šè¯
+  . ä¼šè¯å˜é‡/è¿‡ç¨‹/å‡½æ•° å±žäºŽå½“å‰ä¼šè¯ï¼ˆä¸Šä¸‹æ–‡ï¼‰ï¼Œä¼šè¯é—´äº’ä¸å½±å“
+. å‚è€ƒ
+  # https://www.cnblogs.com/yasmi/articles/5587868.htmlã€MySQLä¸­çš„è¿žæŽ¥ã€å®žä¾‹ã€ä¼šè¯ã€æ•°æ®åº“ã€çº¿ç¨‹ä¹‹é—´çš„å…³ç³»ã€‘ã€goodã€‘
+  # https://blog.csdn.net/jimsonhappy/article/details/54707694ã€æ•°æ®åº“Connectionè¿žæŽ¥ä¸ŽSessionä¼šè¯çš„ç†è§£ã€‘
 
-26.[sql] ´æ´¢¹ý³Ì(procedure)
-. ¸ÅÄî
-  . SQLÓï¾äÐèÒªÏÈ±àÒëÈ»ºóÖ´ÐÐ£¬¶ø´æ´¢¹ý³Ì£¨Stored Procedure£©ÊÇÒ»×éÎªÁËÍê³ÉÌØ¶¨¹¦ÄÜµÄSQLÓï¾ä¼¯£¬¾­±àÒëºó´æ´¢ÔÚÊý¾Ý¿âÖÐ£¬ÓÃ»§Í¨¹ýÖ¸¶¨´æ´¢¹ý³ÌµÄÃû×Ö²¢¸ø¶¨²ÎÊýÀ´µ÷ÓÃÖ´ÐÐËü¡£
-. Óï·¨
+26.[sql] å­˜å‚¨è¿‡ç¨‹(procedure)
+. æ¦‚å¿µ
+  . SQLè¯­å¥éœ€è¦å…ˆç¼–è¯‘ç„¶åŽæ‰§è¡Œï¼Œè€Œå­˜å‚¨è¿‡ç¨‹ï¼ˆStored Procedureï¼‰æ˜¯ä¸€ç»„ä¸ºäº†å®Œæˆç‰¹å®šåŠŸèƒ½çš„SQLè¯­å¥é›†ï¼Œç»ç¼–è¯‘åŽå­˜å‚¨åœ¨æ•°æ®åº“ä¸­ï¼Œç”¨æˆ·é€šè¿‡æŒ‡å®šå­˜å‚¨è¿‡ç¨‹çš„åå­—å¹¶ç»™å®šå‚æ•°æ¥è°ƒç”¨æ‰§è¡Œå®ƒã€‚
+. è¯­æ³•
 	DELIMITER //
-	CREATE PROCEDURE {name}([[IN|OUT|INOUT] {parameter} {type} [, [IN|OUT|INOUT] {parameter} {type} ...]]) [ÌØÐÔ ...] 
+	CREATE PROCEDURE {name}([[IN|OUT|INOUT] {parameter} {type} [, [IN|OUT|INOUT] {parameter} {type} ...]]) [ç‰¹æ€§ ...] 
 	{body}
 	//
 	DELIMITER ;
-. ²ÎÊýÀàÐÍ
-  . IN:²ÎÊýµÄÖµ±ØÐëÔÚµ÷ÓÃ´æ´¢¹ý³ÌÊ±Ö¸¶¨£¬ÔÚ´æ´¢¹ý³ÌÖÐÐÞ¸Ä¸Ã²ÎÊýµÄÖµ²»ÄÜ±»·µ»Ø£¬ÎªÄ¬ÈÏÖµ
-  . OUT:¸ÃÖµ¿ÉÔÚ´æ´¢¹ý³ÌÄÚ²¿±»¸Ä±ä£¬²¢¿É·µ»Ø
-  . INOUT:µ÷ÓÃÊ±Ö¸¶¨£¬²¢ÇÒ¿É±»¸Ä±äºÍ·µ»Ø
-. µ÷ÓÃ
+. å‚æ•°ç±»åž‹
+  . IN:å‚æ•°çš„å€¼å¿…é¡»åœ¨è°ƒç”¨å­˜å‚¨è¿‡ç¨‹æ—¶æŒ‡å®šï¼Œåœ¨å­˜å‚¨è¿‡ç¨‹ä¸­ä¿®æ”¹è¯¥å‚æ•°çš„å€¼ä¸èƒ½è¢«è¿”å›žï¼Œä¸ºé»˜è®¤å€¼
+  . OUT:è¯¥å€¼å¯åœ¨å­˜å‚¨è¿‡ç¨‹å†…éƒ¨è¢«æ”¹å˜ï¼Œå¹¶å¯è¿”å›ž
+  . INOUT:è°ƒç”¨æ—¶æŒ‡å®šï¼Œå¹¶ä¸”å¯è¢«æ”¹å˜å’Œè¿”å›ž
+. è°ƒç”¨
   . CALL {name}([parameter [, parameter2 ...]])
-. É¾³ý
-  . DROP PROCEDURE [¹ý³Ì1[,¹ý³Ì2¡­]]
+. åˆ é™¤
+  . DROP PROCEDURE [è¿‡ç¨‹1[,è¿‡ç¨‹2â€¦]]
   . DROP PROCEDURE IF EXISTS {name}
-. ÓÅµã
-  . ½Ï¿ìµÄÖ´ÐÐËÙ¶È£¨Ô¤ÏÈ±àÒë£©
-  . ¼õÉÙÍøÂçÁ÷Á¿£¨¼õÉÙ²éÑ¯´ÎÊý£©
-. ·Ö¸ô·û
-  . ÏÈÉèÖÃ³É`//`ÔÙ»¹Ô­£¬²»ÖªµÀÎªÊ²Ã´µ«ÊÇÐèÒª
-. ²éÑ¯µ±Ç°»á»°µÄ ´æ´¢¹ý³Ì/×Ô¶¨Òåº¯Êý µÄÐÅÏ¢
+. ä¼˜ç‚¹
+  . è¾ƒå¿«çš„æ‰§è¡Œé€Ÿåº¦ï¼ˆé¢„å…ˆç¼–è¯‘ï¼‰
+  . å‡å°‘ç½‘ç»œæµé‡ï¼ˆå‡å°‘æŸ¥è¯¢æ¬¡æ•°ï¼‰
+. åˆ†éš”ç¬¦
+  . å…ˆè®¾ç½®æˆ`//`å†è¿˜åŽŸï¼Œä¸çŸ¥é“ä¸ºä»€ä¹ˆä½†æ˜¯éœ€è¦
+. æŸ¥è¯¢å½“å‰ä¼šè¯çš„ å­˜å‚¨è¿‡ç¨‹/è‡ªå®šä¹‰å‡½æ•° çš„ä¿¡æ¯
   . SELECT * FROM mysql.proc WHERE db='erp';
   . SELECT * FROM information_schema.routines WHERE routine_schema='erp';
   . SHOW PROCEDURE STATUS WHERE db='erp';
   . SHOW FUNCTION STATUS WHERE db='erp';
   . SHOW CREATE PROCEDURE erp.in_param;
-? ´æ´¢¹ý³Ì Ó¦¸ÃÖ»ÊÇÔÚµ±Ç°»á»°ÓÐÐ§£¬²»ÄÜ³Ö¾Ã´æ´¢
-. ²Î¿¼
-  # https://www.cnblogs.com/mark-chan/p/5384139.html¡¾MySQL´æ´¢¹ý³Ì¡¿¡¾good¡¿
+? å­˜å‚¨è¿‡ç¨‹ åº”è¯¥åªæ˜¯åœ¨å½“å‰ä¼šè¯æœ‰æ•ˆï¼Œä¸èƒ½æŒä¹…å­˜å‚¨
+. å‚è€ƒ
+  # https://www.cnblogs.com/mark-chan/p/5384139.htmlã€MySQLå­˜å‚¨è¿‡ç¨‹ã€‘ã€goodã€‘
 
-27.[sql] ×Ô¶¨Òåº¯Êý(user-defined function)
-. Óï·¨
+27.[sql] è‡ªå®šä¹‰å‡½æ•°(user-defined function)
+. è¯­æ³•
 	CREATE [AGGREGATE] FUNCTION {name}([{parameter} {type} [, {parameter2} {type} ...]])
 	RETURNS {type}
 	{body}
-  . º¯ÊýÌåÖÐÒ»¶¨ÒªÓÐ·µ»ØÕýÈ·ÀàÐÍµÄ·µ»ØÖµ£¬ÐÎÈç£º`RETURN 'hello'`
-. µ÷ÓÃ
+  . å‡½æ•°ä½“ä¸­ä¸€å®šè¦æœ‰è¿”å›žæ­£ç¡®ç±»åž‹çš„è¿”å›žå€¼ï¼Œå½¢å¦‚ï¼š`RETURN 'hello'`
+. è°ƒç”¨
   . SELECT {name}([{parameter} ...])
-. É¾³ý
+. åˆ é™¤
   . DROP FUNCTION {name}
   . DROP FUNCTION IF EXISTS {name} 
-. Óë´æ´¢¹ý³Ì(procedure)µÄ¹²Í¬µã
-  . µ±Ç°»á»°ÓÐÐ§
-  . `body`¿ÉÒÔ°üº¬ ¸´ºÏ½á¹¹/Á÷³Ì¿ØÖÆ/SQLÓï¾ä/×Ô¶¨Òå±äÁ¿ µÈµÈÄÚÈÝ
-. Çø±ð
-  . ´æ´¢¹ý³Ì¿ÉÒÔÓÐ¶à¸ö·µ»ØÖµ			º¯ÊýÖ»ÓÐÒ»¸ö·µ»ØÖµ
-  . ´æ´¢¹ý³ÌÒ»°ã¶ÀÁ¢µÄÀ´Ö´ÐÐ			º¯ÊýÍùÍùÊÇ×÷ÎªÆäËûSQLÓï¾äµÄÒ»²¿·ÖÀ´Ê¹ÓÃ
-  . ´æ´¢¹ý³Ì¿ÉÒÔÖ´ÐÐ`SELECT`Óï¾ä		º¯ÊýÖÐ²»ÄÜ£¬µ«ÊÇ¿ÉÒÔ`SET rt = (SELECT id FROM admin_users WHERE id=1);`»ò`SELECT id INTO rt FROM admin_users WHERE id=1`
-. ²Î¿¼
-  # https://www.cnblogs.com/zhangminghui/p/4113160.html¡¾MySQLÖ®×Ô¶¨Òåº¯Êý¡¿
-  # https://www.cnblogs.com/caoruiy/p/4486249.html¡¾MySQL´æ´¢¹ý³Ì/´æ´¢¹ý³ÌÓë×Ô¶¨Òåº¯ÊýµÄÇø±ð¡¿
+. ä¸Žå­˜å‚¨è¿‡ç¨‹(procedure)çš„å…±åŒç‚¹
+  . å½“å‰ä¼šè¯æœ‰æ•ˆ
+  . `body`å¯ä»¥åŒ…å« å¤åˆç»“æž„/æµç¨‹æŽ§åˆ¶/SQLè¯­å¥/è‡ªå®šä¹‰å˜é‡ ç­‰ç­‰å†…å®¹
+. åŒºåˆ«
+  . å­˜å‚¨è¿‡ç¨‹å¯ä»¥æœ‰å¤šä¸ªè¿”å›žå€¼			å‡½æ•°åªæœ‰ä¸€ä¸ªè¿”å›žå€¼
+  . å­˜å‚¨è¿‡ç¨‹ä¸€èˆ¬ç‹¬ç«‹çš„æ¥æ‰§è¡Œ			å‡½æ•°å¾€å¾€æ˜¯ä½œä¸ºå…¶ä»–SQLè¯­å¥çš„ä¸€éƒ¨åˆ†æ¥ä½¿ç”¨
+  . å­˜å‚¨è¿‡ç¨‹å¯ä»¥æ‰§è¡Œ`SELECT`è¯­å¥		å‡½æ•°ä¸­ä¸èƒ½ï¼Œä½†æ˜¯å¯ä»¥`SET rt = (SELECT id FROM admin_users WHERE id=1);`æˆ–`SELECT id INTO rt FROM admin_users WHERE id=1`
+. å‚è€ƒ
+  # https://www.cnblogs.com/zhangminghui/p/4113160.htmlã€MySQLä¹‹è‡ªå®šä¹‰å‡½æ•°ã€‘
+  # https://www.cnblogs.com/caoruiy/p/4486249.htmlã€MySQLå­˜å‚¨è¿‡ç¨‹/å­˜å‚¨è¿‡ç¨‹ä¸Žè‡ªå®šä¹‰å‡½æ•°çš„åŒºåˆ«ã€‘
 
 28.[sql] 
-. È«¾Ö±äÁ¿
-  . `@`ÐÞÊÎÈ«¾Ö±äÁ¿
-  . È«¾Ö±äÁ¿ÔÚµ±Ç°»á»°ÓÐÐ§
-  . ÓÖ³ÆÓÃ»§±äÁ¿¡¢»á»°±äÁ¿
+. å…¨å±€å˜é‡
+  . `@`ä¿®é¥°å…¨å±€å˜é‡
+  . å…¨å±€å˜é‡åœ¨å½“å‰ä¼šè¯æœ‰æ•ˆ
+  . åˆç§°ç”¨æˆ·å˜é‡ã€ä¼šè¯å˜é‡
   . SET @foo = 1
-  . ²»ÐèÒªÉùÃ÷£¬Ö±½Ó¸³Öµ
-. ¾Ö²¿±äÁ¿
-  . ÓÖ³ÆÄÚ²¿±äÁ¿
-  . ÊÇÖ¸ BEGIN ... END ÖÐµÄ±äÁ¿
-  . ±ØÐëÏÈÉùÃ÷  `DECLARE bar varchar(20) DEFAULT 'hello'`
-  . ºó¸³Öµ `SET bar = 'world'`
-  . ×÷ÓÃÓò
+  . ä¸éœ€è¦å£°æ˜Žï¼Œç›´æŽ¥èµ‹å€¼
+. å±€éƒ¨å˜é‡
+  . åˆç§°å†…éƒ¨å˜é‡
+  . æ˜¯æŒ‡ BEGIN ... END ä¸­çš„å˜é‡
+  . å¿…é¡»å…ˆå£°æ˜Ž  `DECLARE bar varchar(20) DEFAULT 'hello'`
+  . åŽèµ‹å€¼ `SET bar = 'world'`
+  . ä½œç”¨åŸŸ
 	BEGIN
 	  DECLARE x1 VARCHAR(5) DEFAULT 'outer';
 	    BEGIN
@@ -555,16 +555,16 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 	    END;
 	  SELECT x1; -- outer
 	END;
-. INTO×Ó¾ä ÓÃÓÚ¸³Öµ
+. INTOå­å¥ ç”¨äºŽèµ‹å€¼
   . SELECT 'Hello World' INTO @foo
-  . µÈ¼ÛÓÚ `SET @foo = (SELECT 'Hello World')`
-  . Óï¾ä±¾Éí²»ÔÙ·µ»Ø½á¹û¼¯
+  . ç­‰ä»·äºŽ `SET @foo = (SELECT 'Hello World')`
+  . è¯­å¥æœ¬èº«ä¸å†è¿”å›žç»“æžœé›†
 . BEGIN ... END
-  . mysqlÖÐ£¬begin-end¡¢Á÷³Ì¿ØÖÆÓï¾ä¡¢¾Ö²¿±äÁ¿Ö»ÄÜÓÃÓÚº¯Êý¡¢´æ´¢¹ý³Ì¡¢ÓÎ±ê£¨£¿£©¡¢´¥·¢Æ÷£¨£¿£©µÄ¶¨ÒåÄÚ²¿
-    # https://www.cnblogs.com/lisuyun/p/6207134.html¡¾begin-endÓï¾ä¿éÔÚmysqlÖÐµÄÊ¹ÓÃÎÊÌâ¡¿
-  . ÒâÒå£º±ê¼ÇÒ»¸ö´úÂë¿é£¬µÈÍ¬ÓÚÆäËüÓïÑÔÖÐµÄ¡°{}¡±
-    # https://bbs.csdn.net/topics/290072895¡¾´æ´¢¹ý³Ì¼ÓÉÏbegin endÓë²»¼ÓÓÐÊ²Ã´Çø±ð£¿¡¿
-. ¿ØÖÆÓï¾ä
+  . mysqlä¸­ï¼Œbegin-endã€æµç¨‹æŽ§åˆ¶è¯­å¥ã€å±€éƒ¨å˜é‡åªèƒ½ç”¨äºŽå‡½æ•°ã€å­˜å‚¨è¿‡ç¨‹ã€æ¸¸æ ‡ï¼ˆï¼Ÿï¼‰ã€è§¦å‘å™¨ï¼ˆï¼Ÿï¼‰çš„å®šä¹‰å†…éƒ¨
+    # https://www.cnblogs.com/lisuyun/p/6207134.htmlã€begin-endè¯­å¥å—åœ¨mysqlä¸­çš„ä½¿ç”¨é—®é¢˜ã€‘
+  . æ„ä¹‰ï¼šæ ‡è®°ä¸€ä¸ªä»£ç å—ï¼Œç­‰åŒäºŽå…¶å®ƒè¯­è¨€ä¸­çš„â€œ{}â€
+    # https://bbs.csdn.net/topics/290072895ã€å­˜å‚¨è¿‡ç¨‹åŠ ä¸Šbegin endä¸Žä¸åŠ æœ‰ä»€ä¹ˆåŒºåˆ«ï¼Ÿã€‘
+. æŽ§åˆ¶è¯­å¥
 	IF ... THEN 
 	  ... 
 	ELSEIF ... THEN 
@@ -592,41 +592,41 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 	  UNTIL ...
 	END REPEAT;
 
-29.[php] Òì³£(Exception) vs ´íÎó(Error)
-. Òì³£
-  . Ò»°ãÊÇÒµÎñÂß¼­ÉÏ³öÏÖµÄ²»ºÏÔ¤ÆÚµÄ×´¿ö
-  . ÓÃ»§ÊÖ¶¯Å×³ö
-  . Òì³£ÊÇPHP5ÐÂÔöµÄÌØÐÔ£¬ÓëJAVAµÄÒì³£²»Ò»Ñù£¬JAVAµÄÒì³£´ó²¿·ÖÊÇÏµÍ³×Ô¶¯Å×³ö
-    # Òì³£¾ÍÊÇÒâÁÏÖ®ÍâµÄÊÂÇé£¬¸ù±¾ÎÒÃÇÒâÁÏ²»µ½µÄ£¬Èç¹ûÓÃÊÖ¶¯Å×³ö£¬Ö¤Ã÷ÒÑ¾­Ô¤ÏÈÔ¤ÁÏµ½ÁË£¬ÄÇÒì³£µÄÒâÒå¾Í±äÎ¶ÁË
-    # Ò²¾ÍÊÇËµ£¬Ïà½ÏÒ»°ã¶ÔÒµÎñÂß¼­ÎÊÌâµÄ´¦Àí£¬Ê¹ÓÃÒì³£¶à´¦µÄÌØÐÔ¾ÍÊÇ¿ÉÒÔÅ×³öºÍ²¶×½
-. ´íÎó
-  . php³ÌÐò×ÔÉíµÄÎÊÌâ£¬Ò»°ãÊÇÓÉ·Ç·¨µÄÓï·¨£¬»·¾³ÎÊÌâµ¼ÖÂµÄ£¬Ê¹µÃ±àÒëÆ÷ÎÞ·¨Í¨¹ý¼ì²é£¬ÉõÖÁÎÞ·¨ÔËÐÐ
-  . ÏµÍ³×Ô¶¯Å×³ö
-  . Ò²Ö§³ÖÊÖ¶¯Å×³ö `trigger_error($msg, $type)`
-. ´íÎó¼¶±ð
+29.[php] å¼‚å¸¸(Exception) vs é”™è¯¯(Error)
+. å¼‚å¸¸
+  . ä¸€èˆ¬æ˜¯ä¸šåŠ¡é€»è¾‘ä¸Šå‡ºçŽ°çš„ä¸åˆé¢„æœŸçš„çŠ¶å†µ
+  . ç”¨æˆ·æ‰‹åŠ¨æŠ›å‡º
+  . å¼‚å¸¸æ˜¯PHP5æ–°å¢žçš„ç‰¹æ€§ï¼Œä¸ŽJAVAçš„å¼‚å¸¸ä¸ä¸€æ ·ï¼ŒJAVAçš„å¼‚å¸¸å¤§éƒ¨åˆ†æ˜¯ç³»ç»Ÿè‡ªåŠ¨æŠ›å‡º
+    # å¼‚å¸¸å°±æ˜¯æ„æ–™ä¹‹å¤–çš„äº‹æƒ…ï¼Œæ ¹æœ¬æˆ‘ä»¬æ„æ–™ä¸åˆ°çš„ï¼Œå¦‚æžœç”¨æ‰‹åŠ¨æŠ›å‡ºï¼Œè¯æ˜Žå·²ç»é¢„å…ˆé¢„æ–™åˆ°äº†ï¼Œé‚£å¼‚å¸¸çš„æ„ä¹‰å°±å˜å‘³äº†
+    # ä¹Ÿå°±æ˜¯è¯´ï¼Œç›¸è¾ƒä¸€èˆ¬å¯¹ä¸šåŠ¡é€»è¾‘é—®é¢˜çš„å¤„ç†ï¼Œä½¿ç”¨å¼‚å¸¸å¤šå¤„çš„ç‰¹æ€§å°±æ˜¯å¯ä»¥æŠ›å‡ºå’Œæ•æ‰
+. é”™è¯¯
+  . phpç¨‹åºè‡ªèº«çš„é—®é¢˜ï¼Œä¸€èˆ¬æ˜¯ç”±éžæ³•çš„è¯­æ³•ï¼ŒçŽ¯å¢ƒé—®é¢˜å¯¼è‡´çš„ï¼Œä½¿å¾—ç¼–è¯‘å™¨æ— æ³•é€šè¿‡æ£€æŸ¥ï¼Œç”šè‡³æ— æ³•è¿è¡Œ
+  . ç³»ç»Ÿè‡ªåŠ¨æŠ›å‡º
+  . ä¹Ÿæ”¯æŒæ‰‹åŠ¨æŠ›å‡º `trigger_error($msg, $type)`
+. é”™è¯¯çº§åˆ«
   . Parse error > Fatal Error > Waning > Notice > Deprecated
-  . `Deprecated` `Notice` `Waning` ´íÎó²»»áµ¼ÖÂ³ÌÐò±ÀÀ£
-  . `Parse error` `Fatal Error` ´íÎó»áÖÕÖ¹³ÌÐòÔËÐÐ
-. Òì³£´¦Àí
-  . Å×³öÒì³£Èç¹û²»±»´¦ÀíµÄ»°£¬»áÅ×³ö`Fatal error: Uncaught exception ...`
+  . `Deprecated` `Notice` `Waning` é”™è¯¯ä¸ä¼šå¯¼è‡´ç¨‹åºå´©æºƒ
+  . `Parse error` `Fatal Error` é”™è¯¯ä¼šç»ˆæ­¢ç¨‹åºè¿è¡Œ
+. å¼‚å¸¸å¤„ç†
+  . æŠ›å‡ºå¼‚å¸¸å¦‚æžœä¸è¢«å¤„ç†çš„è¯ï¼Œä¼šæŠ›å‡º`Fatal error: Uncaught exception ...`
   . try { ... } catch(SomeException $e) { ... } finally { ... }
   . set_exception_handler($handler)
-. ´íÎó´¦Àí
+. é”™è¯¯å¤„ç†
   . set_error_handler($handler)
-    # Ö»ÄÜ´¦ÀíDeprecated¡¢Notice¡¢WaningÕâÈýÖÖ¼¶±ð´íÎó£¬¶øÇÒ´¦Àíºó£¬½Å±¾½«»á¼ÌÐøÖ´ÐÐ·¢Éú´íÎóµÄºóÒ»ÐÐ
+    # åªèƒ½å¤„ç†Deprecatedã€Noticeã€Waningè¿™ä¸‰ç§çº§åˆ«é”™è¯¯ï¼Œè€Œä¸”å¤„ç†åŽï¼Œè„šæœ¬å°†ä¼šç»§ç»­æ‰§è¡Œå‘ç”Ÿé”™è¯¯çš„åŽä¸€è¡Œ
   . register_shutdown_function($handler)
-    # Õâ¸ö·½·¨ÊÇ½Å±¾½áÊøÇ°µÄ×îºóÒ»¸ö»Øµ÷º¯Êý£¬ËùÒÔÎÞÂÛÊÇdie()/´íÎó£¨Òì³££©/»¹ÊÇ½Å±¾Õý³£½áÊø¶¼»áµ÷ÓÃ
-. Ïà¹ØÅäÖÃ
-  . ini_set('display_errors', 0); //¹Ø±Õ´íÎóÊä³ö(¿ª·¢»·¾³¿ªÆô£¬Éú²ú»·¾³¹Ø±Õ)
-  . error_reporting(E_ALL&~E_NOTICE); //ÉèÖÃ´íÎó±¨¸æ¼¶±ð
-  . ini_set('error_reporting',0); //ÉèÖÃ´íÎó±¨¸æ¼¶±ð
-. PHP7µÄÐÔÌØÐÔ
-  . `Error`ºÍ`Exception`¶¼ÊµÏÖÁË`Throwable`½Ó¿Ú
-  . `try { ... } catch ([Exception|Error|Throwable] $t) { ... }` ´íÎóÒ²¿ÉÒÔÓÃ`try...catch`²¶×½ÁË
-  . ´ó²¿·Ö`Fatel Error`Ò²¿ÉÒÔ±»`try...catch`»ò`set_error_handler`´¦ÀíÁË
-. ²Î¿¼
-  # https://segmentfault.com/a/1190000009504337¡¾PHP ´íÎóÓëÒì³£¡¿¡¾excellent¡¿
-  # http://www.cnblogs.com/taijun/p/4234603.html¡¾PHPÒì³£Óë´íÎó´¦Àí»úÖÆ¡¿¡¾ÓÐÊµÀý¡¿
+    # è¿™ä¸ªæ–¹æ³•æ˜¯è„šæœ¬ç»“æŸå‰çš„æœ€åŽä¸€ä¸ªå›žè°ƒå‡½æ•°ï¼Œæ‰€ä»¥æ— è®ºæ˜¯die()/é”™è¯¯ï¼ˆå¼‚å¸¸ï¼‰/è¿˜æ˜¯è„šæœ¬æ­£å¸¸ç»“æŸéƒ½ä¼šè°ƒç”¨
+. ç›¸å…³é…ç½®
+  . ini_set('display_errors', 0); //å…³é—­é”™è¯¯è¾“å‡º(å¼€å‘çŽ¯å¢ƒå¼€å¯ï¼Œç”Ÿäº§çŽ¯å¢ƒå…³é—­)
+  . error_reporting(E_ALL&~E_NOTICE); //è®¾ç½®é”™è¯¯æŠ¥å‘Šçº§åˆ«
+  . ini_set('error_reporting',0); //è®¾ç½®é”™è¯¯æŠ¥å‘Šçº§åˆ«
+. PHP7çš„æ€§ç‰¹æ€§
+  . `Error`å’Œ`Exception`éƒ½å®žçŽ°äº†`Throwable`æŽ¥å£
+  . `try { ... } catch ([Exception|Error|Throwable] $t) { ... }` é”™è¯¯ä¹Ÿå¯ä»¥ç”¨`try...catch`æ•æ‰äº†
+  . å¤§éƒ¨åˆ†`Fatel Error`ä¹Ÿå¯ä»¥è¢«`try...catch`æˆ–`set_error_handler`å¤„ç†äº†
+. å‚è€ƒ
+  # https://segmentfault.com/a/1190000009504337ã€PHP é”™è¯¯ä¸Žå¼‚å¸¸ã€‘ã€excellentã€‘
+  # http://www.cnblogs.com/taijun/p/4234603.htmlã€PHPå¼‚å¸¸ä¸Žé”™è¯¯å¤„ç†æœºåˆ¶ã€‘ã€æœ‰å®žä¾‹ã€‘
   # https://blog.csdn.net/hguisu/article/details/7464977
 
 30.[php] `new static()` vs `new self()`
@@ -644,14 +644,14 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 	echo get_class(B::foo()); // B
 	echo get_class(B::bar()); // A
   ```
-. ²Î¿¼
-  # http://www.cnblogs.com/shizqiang/p/6277091.html¡¾PHPÖÐnew self()ºÍnew static()µÄÇø±ðÌ½¾¿¡¿
-. µ¥ÀýÄ£Ê½
+. å‚è€ƒ
+  # http://www.cnblogs.com/shizqiang/p/6277091.htmlã€PHPä¸­new self()å’Œnew static()çš„åŒºåˆ«æŽ¢ç©¶ã€‘
+. å•ä¾‹æ¨¡å¼
   ```
   Class A {
     static $instance = null;
-    private function __construct() {} // ½ûÖ¹ÓÃ`new`ÊµÀý»¯
-    private function __clone() {} // ½ûÖ¹ÓÃ`new`ÊµÀý»¯
+    private function __construct() {} // ç¦æ­¢ç”¨`new`å®žä¾‹åŒ–
+    private function __clone() {} // ç¦æ­¢ç”¨`new`å®žä¾‹åŒ–
 	public static function instance($options = [])
     {
         if (is_null(self::$instance))
@@ -662,183 +662,183 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
     }
   }
   ```
-  # https://blog.csdn.net/jungsagacity/article/details/7618587¡¾PHP µ¥ÀýÄ£Ê½½âÎöºÍÊµÕ½¡¿
+  # https://blog.csdn.net/jungsagacity/article/details/7618587ã€PHP å•ä¾‹æ¨¡å¼è§£æžå’Œå®žæˆ˜ã€‘
 . `self::` vs `parent::` vs `static::`
-  . `self::` Ö¸Ïòµ±Ç°´úÂëËùÔÚµÄÀà
-  . `parent::` Ö¸Ïòµ±Ç°´úÂëËùÔÚµÄÀàµÄ¸¸Àà
-  . `static::` Ö¸Ïòµ±Ç°¶ÔÏóµÄÀà
+  . `self::` æŒ‡å‘å½“å‰ä»£ç æ‰€åœ¨çš„ç±»
+  . `parent::` æŒ‡å‘å½“å‰ä»£ç æ‰€åœ¨çš„ç±»çš„çˆ¶ç±»
+  . `static::` æŒ‡å‘å½“å‰å¯¹è±¡çš„ç±»
 
-31.[other] `swagger`APIÎÄµµ¿ò¼Ü
-# https://blog.csdn.net/i6448038/article/details/77622977¡¾5·ÖÖÓÁË½âswagger¡¿¡¾good¡¿
-# http://www.cnblogs.com/JoiT/p/6378086.html¡¾SwaggerÈëÃÅ½Ì³Ì¡¿
-# http://www.cnblogs.com/chenweixuan/p/5737235.html¡¾Swagger RESTful APIÎÄµµ¹æ·¶¡¿
+31.[other] `swagger`APIæ–‡æ¡£æ¡†æž¶
+# https://blog.csdn.net/i6448038/article/details/77622977ã€5åˆ†é’Ÿäº†è§£swaggerã€‘ã€goodã€‘
+# http://www.cnblogs.com/JoiT/p/6378086.htmlã€Swaggerå…¥é—¨æ•™ç¨‹ã€‘
+# http://www.cnblogs.com/chenweixuan/p/5737235.htmlã€Swagger RESTful APIæ–‡æ¡£è§„èŒƒã€‘
 
-32.[other] `mock`ÔÚprogrammingÁìÓòÖÐµÄÒâÒå 
-. µ¥´ÊÒëÎª£ºÄ£ÄâµÄ;Ðé¼ÙµÄ¡£
-1 µ¥Ôª²âÊÔ
-  . mock¾ÍÊÇÔÚ²âÊÔ¹ý³ÌÖÐ£¬¶ÔÓÚÒ»Ð©²»ÈÝÒ×¹¹Ôì/»ñÈ¡µÄ¶ÔÏó£¬´´½¨Ò»¸ömock¶ÔÏóÀ´Ä£Äâ¶ÔÏóµÄÐÐÎª
-  # http://baijiahao.baidu.com/s?id=1572237477611353&wfr=spider&for=pc¡¾MockµÄÓ¦ÓÃ³¡¾°¡¢Ô­ÔòºÍ¹¤¾ß×Ü½á¡¿¡¾excellent¡¿
-2 Ç°¶Ë½Ó¿Ú
-  . ÏîÄ¿ÖÐÇ°¶ËºÍºó¶ËÍ¨³£ÊÇ²¢ÐÐ¿ª·¢£¬ÎªÁË¼õÉÙµÈ´ýºó¶Ë½Ó¿Ú¿ª·¢µÄÊ±¼ä£¬ÎÒÃÇ¾­³£ÐèÒªÔÚ±¾µØÄ£Äâºó¶Ë½Ó¿ÚÓÃÀ´²âÊÔÇ°¶ËÐ§¹û¡£ÕâÖÖ×ö·¨³ÆÖ®Îª¹¹½¨Ç°¶ËMock
-  # https://www.jianshu.com/p/81373d90f9f0¡¾Mock Server¡¿¡¾good¡¿
-    # `Mock Server`»ù±¾ÉÏÊÇ Â·ÓÉ+¾²Ì¬·þÎñÆ÷ £¿
+32.[other] `mock`åœ¨programmingé¢†åŸŸä¸­çš„æ„ä¹‰ 
+. å•è¯è¯‘ä¸ºï¼šæ¨¡æ‹Ÿçš„;è™šå‡çš„ã€‚
+1 å•å…ƒæµ‹è¯•
+  . mockå°±æ˜¯åœ¨æµ‹è¯•è¿‡ç¨‹ä¸­ï¼Œå¯¹äºŽä¸€äº›ä¸å®¹æ˜“æž„é€ /èŽ·å–çš„å¯¹è±¡ï¼Œåˆ›å»ºä¸€ä¸ªmockå¯¹è±¡æ¥æ¨¡æ‹Ÿå¯¹è±¡çš„è¡Œä¸º
+  # http://baijiahao.baidu.com/s?id=1572237477611353&wfr=spider&for=pcã€Mockçš„åº”ç”¨åœºæ™¯ã€åŽŸåˆ™å’Œå·¥å…·æ€»ç»“ã€‘ã€excellentã€‘
+2 å‰ç«¯æŽ¥å£
+  . é¡¹ç›®ä¸­å‰ç«¯å’ŒåŽç«¯é€šå¸¸æ˜¯å¹¶è¡Œå¼€å‘ï¼Œä¸ºäº†å‡å°‘ç­‰å¾…åŽç«¯æŽ¥å£å¼€å‘çš„æ—¶é—´ï¼Œæˆ‘ä»¬ç»å¸¸éœ€è¦åœ¨æœ¬åœ°æ¨¡æ‹ŸåŽç«¯æŽ¥å£ç”¨æ¥æµ‹è¯•å‰ç«¯æ•ˆæžœã€‚è¿™ç§åšæ³•ç§°ä¹‹ä¸ºæž„å»ºå‰ç«¯Mock
+  # https://www.jianshu.com/p/81373d90f9f0ã€Mock Serverã€‘ã€goodã€‘
+    # `Mock Server`åŸºæœ¬ä¸Šæ˜¯ è·¯ç”±+é™æ€æœåŠ¡å™¨ ï¼Ÿ
 
 33.[php] $_ENV & $_SERVER
-. `get_env`ÄÚÈÝÓë`$_SERVER`ÏàÍ¬£¬¶ø·Ç`$_ENV` 
-. `put_env`µÄ²Ù×÷¿ÉÒÔÓÃ`get_env`»ñÈ¡£¬µ«²»»áÔÙÐ´Èë`$_SERVER`ÁË
-. ×Ü½á£ºÃ»ÓÐÊ²Ã´µØ·½ÊÇÒ»¶¨ÒªÓÃ `get_env` `put_env` µÄ
+. `get_env`å†…å®¹ä¸Ž`$_SERVER`ç›¸åŒï¼Œè€Œéž`$_ENV` 
+. `put_env`çš„æ“ä½œå¯ä»¥ç”¨`get_env`èŽ·å–ï¼Œä½†ä¸ä¼šå†å†™å…¥`$_SERVER`äº†
+. æ€»ç»“ï¼šæ²¡æœ‰ä»€ä¹ˆåœ°æ–¹æ˜¯ä¸€å®šè¦ç”¨ `get_env` `put_env` çš„
 # http://www.moqifei.com/archives/1002
 
-34.[php] ¶ÔÔËËã·û½áºÏÐÔµÄÀí½â
-. ÒÔÇ°ÈÏÎª£ºÏÈ¿¼ÂÇÔËËã·ûµÄÓÅÏÈ¼¶£¬ÓÅÏÈ¼¶ÏàÍ¬µÄÇé¿öÏÂ¿¼ÂÇ½áºÏÐÔ¡£µ«ÕâÊÇ´íµÄ
-. Àý1 `$a<$b?'xx':$a<$c?'yy':$a<$d?'zz':'oo' // a=1, b=c=d=2`
-  . µÈÍ¬ÓÚ `(($a<$b?'xx':$a<$c)?'yy':$a<$d)?'zz':'oo'`
-  . ¶ø·Ç  `$a<$b?'xx':($a<$c?'yy':($a<$d?'zz':'oo'))`
-  * ·ÖÎö
-    . ÈýÄ¿ÔËËã·ûÊÇ´ÓÓÒÏò×ó½áºÏµÄ
-    . ÓÅÏÈ¼¶ ±È½ÏÔËËã>ÈýÄ¿ÔËËã£¬ËùÒÔ±¾ÀýÖÐÕýºÃ¿ÉÒÔ²»¿¼ÂÇÆäËüÔËËã·ûµÄÓ°Ïì£¬¼ò»¯Îª`A ? B : C ? D : E ? F : G`
-    . ´ÓÓÒÏò×óµÄº¬ÒåÊÇ£º×îÏÈ¿¼ÂÇ×îÓÒµÄÒ»×é `?:`ÔËËã·û
-      . `?:`ÔËËã·ûÊÇË³ÐòµÄ£¨ÓëÖ®¶ÔÓ¦£¬`[]`ÔËËã·ûÊÇÇ¶Ì×µÄ£©£¬½âÎöÎª`(A ? B : C ? D : E) ? F : G`
-      . Í¬Àí×îÖÕ½âÎöÎª`((A ? B : C) ? D : E) ? F : G`
-. Àý2 `false == $foo = true`
-  . µÈÍ¬ÓÚ `false == ($foo = true)`
-  . ¶ø·Ç `( false == $foo ) = true`
-  * ·ÖÎö
-    . ¸³ÖµÔËËã·ûÊÇ´ÓÓÒÏò×ó½áºÏµÄ£»ÓÅÏÈ¼¶ ¸³ÖµÔËËã<Âß¼­ÔËËã
-    . ¸³ÖµÔËËã`=|+=|*=|...`µÄ×ó²à±ØÐëÊÇÒ»¸ö ×óÖµ(left-value)£¬¼òµ¥À´Ëµ¾ÍÊÇ±ØÐëÊÇÒ»¸ö¿ÉÒÔ±»¸³ÖµµÄ±äÁ¿£¬³£Á¿`1`±í´ïÊ½`(1+$a)`¶¼ÊÇ²»ÐÐµÄ
-    ? ÕâÃ´Ò»¿´£¬¸³ÖµµÄ½áºÏÐÔÊÇ×îÓÅ±»¿¼ÂÇµÄ£¬±ÈÓÅÏÈ¼¶µÄ¿¼Á¿»¹Òª¸ß
-. Àý3 `false==$foo=true==$bar=true`
-  . µÈÍ¬ÓÚ `false==($foo=(true==($bar=true)))`
-  . ¶ø·Ç `false==($foo=true)==($bar=true)` // Óï·¨´íÎó£¬¼ûÏÂ  
-  * ·ÖÎö
-    . ¸³ÖµÔËËãµÄÓÒ²à¾ÍÊÇÓÒ²àµÄËùÓÐÄÚÈÝ¡£ÑéÖ¤¡ý
+34.[php] å¯¹è¿ç®—ç¬¦ç»“åˆæ€§çš„ç†è§£
+. ä»¥å‰è®¤ä¸ºï¼šå…ˆè€ƒè™‘è¿ç®—ç¬¦çš„ä¼˜å…ˆçº§ï¼Œä¼˜å…ˆçº§ç›¸åŒçš„æƒ…å†µä¸‹è€ƒè™‘ç»“åˆæ€§ã€‚ä½†è¿™æ˜¯é”™çš„
+. ä¾‹1 `$a<$b?'xx':$a<$c?'yy':$a<$d?'zz':'oo' // a=1, b=c=d=2`
+  . ç­‰åŒäºŽ `(($a<$b?'xx':$a<$c)?'yy':$a<$d)?'zz':'oo'`
+  . è€Œéž  `$a<$b?'xx':($a<$c?'yy':($a<$d?'zz':'oo'))`
+  * åˆ†æž
+    . ä¸‰ç›®è¿ç®—ç¬¦æ˜¯ä»Žå³å‘å·¦ç»“åˆçš„
+    . ä¼˜å…ˆçº§ æ¯”è¾ƒè¿ç®—>ä¸‰ç›®è¿ç®—ï¼Œæ‰€ä»¥æœ¬ä¾‹ä¸­æ­£å¥½å¯ä»¥ä¸è€ƒè™‘å…¶å®ƒè¿ç®—ç¬¦çš„å½±å“ï¼Œç®€åŒ–ä¸º`A ? B : C ? D : E ? F : G`
+    . ä»Žå³å‘å·¦çš„å«ä¹‰æ˜¯ï¼šæœ€å…ˆè€ƒè™‘æœ€å³çš„ä¸€ç»„ `?:`è¿ç®—ç¬¦
+      . `?:`è¿ç®—ç¬¦æ˜¯é¡ºåºçš„ï¼ˆä¸Žä¹‹å¯¹åº”ï¼Œ`[]`è¿ç®—ç¬¦æ˜¯åµŒå¥—çš„ï¼‰ï¼Œè§£æžä¸º`(A ? B : C ? D : E) ? F : G`
+      . åŒç†æœ€ç»ˆè§£æžä¸º`((A ? B : C) ? D : E) ? F : G`
+. ä¾‹2 `false == $foo = true`
+  . ç­‰åŒäºŽ `false == ($foo = true)`
+  . è€Œéž `( false == $foo ) = true`
+  * åˆ†æž
+    . èµ‹å€¼è¿ç®—ç¬¦æ˜¯ä»Žå³å‘å·¦ç»“åˆçš„ï¼›ä¼˜å…ˆçº§ èµ‹å€¼è¿ç®—<é€»è¾‘è¿ç®—
+    . èµ‹å€¼è¿ç®—`=|+=|*=|...`çš„å·¦ä¾§å¿…é¡»æ˜¯ä¸€ä¸ª å·¦å€¼(left-value)ï¼Œç®€å•æ¥è¯´å°±æ˜¯å¿…é¡»æ˜¯ä¸€ä¸ªå¯ä»¥è¢«èµ‹å€¼çš„å˜é‡ï¼Œå¸¸é‡`1`è¡¨è¾¾å¼`(1+$a)`éƒ½æ˜¯ä¸è¡Œçš„
+    ? è¿™ä¹ˆä¸€çœ‹ï¼Œèµ‹å€¼çš„ç»“åˆæ€§æ˜¯æœ€ä¼˜è¢«è€ƒè™‘çš„ï¼Œæ¯”ä¼˜å…ˆçº§çš„è€ƒé‡è¿˜è¦é«˜
+. ä¾‹3 `false==$foo=true==$bar=true`
+  . ç­‰åŒäºŽ `false==($foo=(true==($bar=true)))`
+  . è€Œéž `false==($foo=true)==($bar=true)` // è¯­æ³•é”™è¯¯ï¼Œè§ä¸‹  
+  * åˆ†æž
+    . èµ‹å€¼è¿ç®—çš„å³ä¾§å°±æ˜¯å³ä¾§çš„æ‰€æœ‰å†…å®¹ã€‚éªŒè¯â†“
     . `false==$foo=true+$bar=true` 
-      . => `false==($foo=true+($bar=true)); dump($foo); // ½á¹ûÊÇ2`;
-. Àý4 `false==false==false` // Óï·¨´íÎó
-  * ÒòÎª ±È½ÏÔËËã·û Ã»ÓÐ½áºÏÐÔ
-* ×Ü½á
-  . ½áºÏÐÔ²¢²»ÊÇÄ³Ò»ÖÖÐÔÖÊ£¬¶øÊÇ¾ßÌåµÄÃ¿ÖÖÔËËã·û¸÷×ÔµÄÐÔÖÊ
-# http://php.net/manual/zh/language.operators.precedence.php¡¾ÔËËã·ûÓÅÏÈ¼¶¡¿
-# http://www.jb51.net/article/29404.htm¡¾ÈýÔªÔËËã·ûµÄ½áºÏÐÔ½éÉÜ¡¿
+      . => `false==($foo=true+($bar=true)); dump($foo); // ç»“æžœæ˜¯2`;
+. ä¾‹4 `false==false==false` // è¯­æ³•é”™è¯¯
+  * å› ä¸º æ¯”è¾ƒè¿ç®—ç¬¦ æ²¡æœ‰ç»“åˆæ€§
+* æ€»ç»“
+  . ç»“åˆæ€§å¹¶ä¸æ˜¯æŸä¸€ç§æ€§è´¨ï¼Œè€Œæ˜¯å…·ä½“çš„æ¯ç§è¿ç®—ç¬¦å„è‡ªçš„æ€§è´¨
+# http://php.net/manual/zh/language.operators.precedence.phpã€è¿ç®—ç¬¦ä¼˜å…ˆçº§ã€‘
+# http://www.jb51.net/article/29404.htmã€ä¸‰å…ƒè¿ç®—ç¬¦çš„ç»“åˆæ€§ä»‹ç»ã€‘
 
-35.[css] CSS3Ñ¡ÔñÆ÷ `:nth-child` ºÍ `:nth-of-type` Ö®¼äµÄ²îÒì
-# http://www.zhangxinxu.com/wordpress/2011/06/css3Ñ¡ÔñÆ÷nth-childºÍnth-of-typeÖ®¼äµÄ²îÒì
+35.[css] CSS3é€‰æ‹©å™¨ `:nth-child` å’Œ `:nth-of-type` ä¹‹é—´çš„å·®å¼‚
+# http://www.zhangxinxu.com/wordpress/2011/06/css3é€‰æ‹©å™¨nth-childå’Œnth-of-typeä¹‹é—´çš„å·®å¼‚
 . p:nth-child(2)
-  . Ñ¡ÔñÒ»¸ö<p>ÔªËØ ÇÒ ¸ÃÔªËØÊÇ¸¸ÔªËØµÄµÚ¶þ¸ö×ÓÔªËØ
+  . é€‰æ‹©ä¸€ä¸ª<p>å…ƒç´  ä¸” è¯¥å…ƒç´ æ˜¯çˆ¶å…ƒç´ çš„ç¬¬äºŒä¸ªå­å…ƒç´ 
 . p:nth-of-type(2)
-  . Ñ¡Ôñ ¸¸ÔªËØµÄËùÓÐ×ÓÔªËØÖÐµÄ <p>ÔªËØ µÄµÚ¶þ¸ö
+  . é€‰æ‹© çˆ¶å…ƒç´ çš„æ‰€æœ‰å­å…ƒç´ ä¸­çš„ <p>å…ƒç´  çš„ç¬¬äºŒä¸ª
 
-36.[js] `location`µÄÊôÐÔ
-. Àý£º`http://www.erp2.com/admin/user/index?a=b#cd`
+36.[js] `location`çš„å±žæ€§
+. ä¾‹ï¼š`http://www.erp2.com/admin/user/index?a=b#cd`
 . location.href=http://www.erp2.com/admin/user/index?a=b#cd
 . location.origin=http://www.erp2.com
 . location.pathname=/admin/user/index
 . location.search=?a=b
 . location.hash=#cd
 
-37.[other] `Eclipse`¿ì½Ý¼ü²¹³ä
-. Ctrl+F6 <=> Ctrl+Tab ÇÐ»»ÎÄ¼þ
-. Ctrl+F7 ÇÐ»»ÊÓÍ¼
-. Ctrl+K ¿ìËÙ²éÕÒÑ¡¶¨µÄÄÚÈÝ
+37.[other] `Eclipse`å¿«æ·é”®è¡¥å……
+. Ctrl+F6 <=> Ctrl+Tab åˆ‡æ¢æ–‡ä»¶
+. Ctrl+F7 åˆ‡æ¢è§†å›¾
+. Ctrl+K å¿«é€ŸæŸ¥æ‰¾é€‰å®šçš„å†…å®¹
 
-38.[sql] Êý¾Ý¿âÉè¼ÆÖÐ¶ÔÓÚ ¶à¶Ô¶à¹ØÏµ£¬¹ØÁª±í VS ¶ººÅ·Ö¸î
-. Àý£ºÓÃ»§ ºÍ ½ÇÉ«Á½¸ö¹ØÏµ
-  a ¹ØÁª±í `user_role(user_id, role_id)` `user(id)` `role(id)`
-  b ¶ººÅ·Ö¸î `user(id, roles)` `role(id)`£¬ÆäÖÐ`roles`ÐÎÈç`1,2,3,10,11`
-. ·ÖÎö
-  . ÅÐ¶ÏÄ³ÓÃ»§ÓÐÄÄÐ©È¨ÏÞ
+38.[sql] æ•°æ®åº“è®¾è®¡ä¸­å¯¹äºŽ å¤šå¯¹å¤šå…³ç³»ï¼Œå…³è”è¡¨ VS é€—å·åˆ†å‰²
+. ä¾‹ï¼šç”¨æˆ· å’Œ è§’è‰²ä¸¤ä¸ªå…³ç³»
+  a å…³è”è¡¨ `user_role(user_id, role_id)` `user(id)` `role(id)`
+  b é€—å·åˆ†å‰² `user(id, roles)` `role(id)`ï¼Œå…¶ä¸­`roles`å½¢å¦‚`1,2,3,10,11`
+. åˆ†æž
+  . åˆ¤æ–­æŸç”¨æˆ·æœ‰å“ªäº›æƒé™
     a SELECT rlat.role_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id 
       WHERE user.id={user_id}
     b SELECT roles,* FROM user WHERE id={user_id}
-    . ¶ººÅ·Ö¸î ·½Ê½¸üÎª¼ò½à
-  . ÅÐ¶ÏÄ³È¨ÏÞ±»ÄÄÐ©ÓÃ»§ÓµÓÐ
+    . é€—å·åˆ†å‰² æ–¹å¼æ›´ä¸ºç®€æ´
+  . åˆ¤æ–­æŸæƒé™è¢«å“ªäº›ç”¨æˆ·æ‹¥æœ‰
     a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
       WHERE rlat.role_id={role_id}
     b SELECT user.id,* FROM user WHERE FIND_IN_SET({role_id}, roles)
-    . ËäÈ» ¶ººÅ·Ö¸î ÒÀÈ»¼ò½à£¬µ«ÊÇ`FIND_IN_SET`×÷²éÑ¯Ìõ¼þÊÇÐ§ÂÊºÜµÍµÄ
-  . ÅÐ¶ÏÄ³¡®Ð©¡¯È¨ÏÞ±»ÄÄÐ©ÓÃ»§ÓµÓÐ
+    . è™½ç„¶ é€—å·åˆ†å‰² ä¾ç„¶ç®€æ´ï¼Œä½†æ˜¯`FIND_IN_SET`ä½œæŸ¥è¯¢æ¡ä»¶æ˜¯æ•ˆçŽ‡å¾ˆä½Žçš„
+  . åˆ¤æ–­æŸâ€˜äº›â€™æƒé™è¢«å“ªäº›ç”¨æˆ·æ‹¥æœ‰
     a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
       WHERE rlat.role_id IN ({role_id1},{role_id2}...)
     b SELECT user.id,* FROM user WHERE FIND_IN_SET({role_id1}, roles)
       OR FIND_IN_SET({role_id2}, roles) OR ...
-    . ¶ººÅ·Ö¸î ²»½öÐ§ÂÊµÍ£¬SQLÒ²±ä¸´ÔÓ
-  . ÅÐ¶ÏÃûÎª¡®ÐÞ¸ÄÃÜÂë¡¯»ò¡®Ìí¼ÓÓÃ»§¡¯µÄÈ¨ÏÞ±»ÄÄÐ©ÓÃ»§ÓµÓÐ
+    . é€—å·åˆ†å‰² ä¸ä»…æ•ˆçŽ‡ä½Žï¼ŒSQLä¹Ÿå˜å¤æ‚
+  . åˆ¤æ–­åä¸ºâ€˜ä¿®æ”¹å¯†ç â€™æˆ–â€˜æ·»åŠ ç”¨æˆ·â€™çš„æƒé™è¢«å“ªäº›ç”¨æˆ·æ‹¥æœ‰
     a SELECT rlat.user_id,* FROM user JOIN user_role AS rlat ON rlat.user_id=user.id
       JOIN role ON role.id=rlat.role_id
-      WHERE role.name='ÐÞ¸ÄÃÜÂë' OR role.name='Ìí¼ÓÓÃ»§'
+      WHERE role.name='ä¿®æ”¹å¯†ç ' OR role.name='æ·»åŠ ç”¨æˆ·'
     b ...
-    . ¶ººÅ·Ö¸î ¸ù±¾ÎÞ·¨ÊµÏÖ
-. ×Ü½á
-  . ÓÅµã£º¶ººÅ·Ö¸î ·½Ê½ÉÙÁËÒ»¸ö¹ØÁª±í£¬Ê¹²éÑ¯Óï¾ä¸ü¼ò½à
-  . È±µã£º¶ººÅ·Ö¸î ÔÚ¹¦ÄÜÉÏÓÐ×ÅÖÂÃüÈ±ÏÝ
-  . Àí½â£º¶ººÅ·Ö¸î µÄ¹ØÁª¹ØÏµÊÇµ¥ÏòµÄ(user->role)
-  . ÊÊÓÃ·¶Î§£ºÓëÃ¶¾Ù±í¹ØÁª£¬Óë¸½¼þ±í¹ØÁª£¬¼°ÆäËûÖ»Ðèµ¥Ïò¹ØÁª£¬ÇÒ¹ØÁªÊýÁ¿²»»áÌ«¶àµÄÇé¿ö
-  ! ¾¯¸æ£ºÃ»ÓÐ°ÑÎÕµÄ»°²»ÒªÊ¹ÓÃ ¶ººÅ·Ö¸î
-# ²Î¿¼£º https://blog.csdn.net/u012325403/article/details/47253617¡¾¶à¶Ô¶à¹ØÏµÊ¹ÓÃÊ¹ÓÃ¶ººÅ·Ö¸î¹ØÁªÌÖÂÛ¡¿¡¾exactly¡¿
+    . é€—å·åˆ†å‰² æ ¹æœ¬æ— æ³•å®žçŽ°
+. æ€»ç»“
+  . ä¼˜ç‚¹ï¼šé€—å·åˆ†å‰² æ–¹å¼å°‘äº†ä¸€ä¸ªå…³è”è¡¨ï¼Œä½¿æŸ¥è¯¢è¯­å¥æ›´ç®€æ´
+  . ç¼ºç‚¹ï¼šé€—å·åˆ†å‰² åœ¨åŠŸèƒ½ä¸Šæœ‰ç€è‡´å‘½ç¼ºé™·
+  . ç†è§£ï¼šé€—å·åˆ†å‰² çš„å…³è”å…³ç³»æ˜¯å•å‘çš„(user->role)
+  . é€‚ç”¨èŒƒå›´ï¼šä¸Žæžšä¸¾è¡¨å…³è”ï¼Œä¸Žé™„ä»¶è¡¨å…³è”ï¼ŒåŠå…¶ä»–åªéœ€å•å‘å…³è”ï¼Œä¸”å…³è”æ•°é‡ä¸ä¼šå¤ªå¤šçš„æƒ…å†µ
+  ! è­¦å‘Šï¼šæ²¡æœ‰æŠŠæ¡çš„è¯ä¸è¦ä½¿ç”¨ é€—å·åˆ†å‰²
+# å‚è€ƒï¼š https://blog.csdn.net/u012325403/article/details/47253617ã€å¤šå¯¹å¤šå…³ç³»ä½¿ç”¨ä½¿ç”¨é€—å·åˆ†å‰²å…³è”è®¨è®ºã€‘ã€exactlyã€‘
 
 39.[js] `==` vs `===`
-# ²Î¿¼£ºhttps://www.zhihu.com/question/20348948
-# ½áÂÛ
-  . ¿ÉÒÔÊ¹ÓÃ `x==null` ×÷Îª `x===null || x===undefined` µÄËõÐ´
-  . ÆäËüÇé¿ö¶¼¸ÃÊ¹ÓÃ`===`
+# å‚è€ƒï¼šhttps://www.zhihu.com/question/20348948
+# ç»“è®º
+  . å¯ä»¥ä½¿ç”¨ `x==null` ä½œä¸º `x===null || x===undefined` çš„ç¼©å†™
+  . å…¶å®ƒæƒ…å†µéƒ½è¯¥ä½¿ç”¨`===`
 
-40.[js] Ä£°å×Ö·û´®
-. Óï·¨
+40.[js] æ¨¡æ¿å­—ç¬¦ä¸²
+. è¯­æ³•
   . var foo = `bar`
-  . ¿ÉÒÔ»»ÐÐ
-  . ¿ÉÒÔÓÃÕ¼Î»·û `string text ${expression} string text`£¬${}ÖÐ¿ÉÒÔ×÷ÔËËã
-  . ÔÚÄ£°æ×Ö·û´®ÄÚÊ¹ÓÃ·´ÒýºÅ£¨`£©Ê±£¬ÐèÒªÔÚËüÇ°Ãæ¼Ó×ªÒå·û£¨\£©
-  . ¿ÉÒÔÇ¶Ì×
-# ²Î¿¼£º https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings¡¾MDN¡¿
+  . å¯ä»¥æ¢è¡Œ
+  . å¯ä»¥ç”¨å ä½ç¬¦ `string text ${expression} string text`ï¼Œ${}ä¸­å¯ä»¥ä½œè¿ç®—
+  . åœ¨æ¨¡ç‰ˆå­—ç¬¦ä¸²å†…ä½¿ç”¨åå¼•å·ï¼ˆ`ï¼‰æ—¶ï¼Œéœ€è¦åœ¨å®ƒå‰é¢åŠ è½¬ä¹‰ç¬¦ï¼ˆ\ï¼‰
+  . å¯ä»¥åµŒå¥—
+# å‚è€ƒï¼š https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_stringsã€MDNã€‘
   . MDN (The Mozilla Developer Network)
 
 41.[js] var VS let VS const VS 
 . var
-  . Óï·¨ `var {name} [={value}]`
-  . ×÷ÓÃÓò£ºµ±Ç°ÉÏÏÂÎÄ£¨£¿£©
-    . Èç¹ûÔÚÍâ²¿ÉùÃ÷£¬ÔòÊÇÈ«¾Ö±äÁ¿
-    . Èç¹ûÔÚº¯ÊýÄÚÉùÃ÷£¬ÔòÔÚº¯ÊýÄÚÓÐÐ§
-    ! ×¢Òâ£º´úÂë¿é¡®{}¡¯·¶Î§²»ÊÇÕâÀïµÄ¡®ÉÏÏÂÎÄ¡¯
-      . if (true) { var foo = 1; } console.log(foo); // ×÷ÓÃÓò°üº¬´úÂë¿éÍâ
-  . ±äÁ¿ÌáÉý(hoisting)
-    . ±äÁ¿ÉùÃ÷ ÎÞÂÛ·¢ÉúÔÚºÎ´¦£¬¶¼ÔÚÉÏÏÂÎÄÄÚµÄÈÎºÎ´úÂëÖ®Ç°½øÐÐ´¦Àí
+  . è¯­æ³• `var {name} [={value}]`
+  . ä½œç”¨åŸŸï¼šå½“å‰ä¸Šä¸‹æ–‡ï¼ˆï¼Ÿï¼‰
+    . å¦‚æžœåœ¨å¤–éƒ¨å£°æ˜Žï¼Œåˆ™æ˜¯å…¨å±€å˜é‡
+    . å¦‚æžœåœ¨å‡½æ•°å†…å£°æ˜Žï¼Œåˆ™åœ¨å‡½æ•°å†…æœ‰æ•ˆ
+    ! æ³¨æ„ï¼šä»£ç å—â€˜{}â€™èŒƒå›´ä¸æ˜¯è¿™é‡Œçš„â€˜ä¸Šä¸‹æ–‡â€™
+      . if (true) { var foo = 1; } console.log(foo); // ä½œç”¨åŸŸåŒ…å«ä»£ç å—å¤–
+  . å˜é‡æå‡(hoisting)
+    . å˜é‡å£°æ˜Ž æ— è®ºå‘ç”Ÿåœ¨ä½•å¤„ï¼Œéƒ½åœ¨ä¸Šä¸‹æ–‡å†…çš„ä»»ä½•ä»£ç ä¹‹å‰è¿›è¡Œå¤„ç†
     . `alert(a); var a=1;` <=> `var a; alert(a); a=1;`
-    ! ×¢Òâ£ºÉùÃ÷ÊÇÌáÇ°µÄ£¬µ«ÊÇ¸³Öµ²»ÊÇ
-    ! ²»½¨ÒéÊ¹ÓÃÕâ¸öÌØÐÔ£¬ÀÏÀÏÊµÊµÏÈÉùÃ÷ºóÊ¹ÓÃ
-  . Î´ÉùÃ÷¸³Öµ
-    . ½«ÒþÊ½µÄÉùÃ÷Ò»¸öÈ«¾Ö±äÁ¿
+    ! æ³¨æ„ï¼šå£°æ˜Žæ˜¯æå‰çš„ï¼Œä½†æ˜¯èµ‹å€¼ä¸æ˜¯
+    ! ä¸å»ºè®®ä½¿ç”¨è¿™ä¸ªç‰¹æ€§ï¼Œè€è€å®žå®žå…ˆå£°æ˜ŽåŽä½¿ç”¨
+  . æœªå£°æ˜Žèµ‹å€¼
+    . å°†éšå¼çš„å£°æ˜Žä¸€ä¸ªå…¨å±€å˜é‡
     . function foo() {a=1}; foo(); console.log(a);
-    ! Èç¹ûµ±Ç°ÉÏÏÂÎÄÖÐÒÑ¾­´æÔÚ±äÁ¿`a`£¬`a=1`½«Ö»ÊÇ¸³Öµ²Ù×÷£¬¶ø²»»áÉùÃ÷ÎªÈ«¾Ö±äÁ¿ 
-  # ²Î¿¼£ºhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var
+    ! å¦‚æžœå½“å‰ä¸Šä¸‹æ–‡ä¸­å·²ç»å­˜åœ¨å˜é‡`a`ï¼Œ`a=1`å°†åªæ˜¯èµ‹å€¼æ“ä½œï¼Œè€Œä¸ä¼šå£°æ˜Žä¸ºå…¨å±€å˜é‡ 
+  # å‚è€ƒï¼šhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/var
 . let
-  . Óï·¨ `var {name} [={value}]`
-  . ×÷ÓÃÓò£ºµ±Ç°¿é
-    . if (true) { // block }  // ¡®{}¡¯µÄ·¶Î§¾ÍÊÇ¿é
+  . è¯­æ³• `var {name} [={value}]`
+  . ä½œç”¨åŸŸï¼šå½“å‰å—
+    . if (true) { // block }  // â€˜{}â€™çš„èŒƒå›´å°±æ˜¯å—
     . for (let i = 1; i <= 5; i++) { // block }
-      . Ã¿´ÎÑ­»·¶¼ÊÇÁíÒ»¸ö¡°¿é¡± 
-      . `let i` ÊÇ¿éÄÚÉùÃ÷µÄ±äÁ¿
-  . ÏàÍ¬µÄ×÷ÓÃÓòÄÚÖØÐÂletÉùÃ÷Í¬Ò»¸ö±äÁ¿»áÒý·¢Óï·¨´íÎó
-    . `var a=1; var a=2;` // success. Ö»ÓÐ¶à´Î`var`¿ÉÒÔÖØ¸´ÉùÃ÷
+      . æ¯æ¬¡å¾ªçŽ¯éƒ½æ˜¯å¦ä¸€ä¸ªâ€œå—â€ 
+      . `let i` æ˜¯å—å†…å£°æ˜Žçš„å˜é‡
+  . ç›¸åŒçš„ä½œç”¨åŸŸå†…é‡æ–°letå£°æ˜ŽåŒä¸€ä¸ªå˜é‡ä¼šå¼•å‘è¯­æ³•é”™è¯¯
+    . `var a=1; var a=2;` // success. åªæœ‰å¤šæ¬¡`var`å¯ä»¥é‡å¤å£°æ˜Ž
     . `let a=1; let a=2;` // syntaxError
     . `let a=1; if(true){let a=2};` // success
-    . `var a=1; let a=2;` // syntaxError. ÈÎÁ½ÖÖÔÚÍ¬Ò»×÷ÓÃÓòÏÂÉùÃ÷Í¬Ãû±äÁ¿¶¼²»ÐÐ
-  # ²Î¿¼£ºhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let
+    . `var a=1; let a=2;` // syntaxError. ä»»ä¸¤ç§åœ¨åŒä¸€ä½œç”¨åŸŸä¸‹å£°æ˜ŽåŒåå˜é‡éƒ½ä¸è¡Œ
+  # å‚è€ƒï¼šhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let
 . const
-  . ÉùÃ÷³£Á¿£¬±ØÐëÔÚÉùÃ÷Ê±¸³Öµ£¬ÇÒ²»ÄÜÔÙ±»ÐÞ¸Ä
+  . å£°æ˜Žå¸¸é‡ï¼Œå¿…é¡»åœ¨å£°æ˜Žæ—¶èµ‹å€¼ï¼Œä¸”ä¸èƒ½å†è¢«ä¿®æ”¹
     . `const foo = 1; foo = 2;` // error
     . `const foo = {a:1, b:2}; foo.b = 3;` // success
-  . ×÷ÓÃÓòÍ¬`let`£¬¿é¼¶×÷ÓÃÓò
-  . Í¬`let`£¬ÖØ¸´ÉùÃ÷»áÒý·¢Óï·¨´íÎó
-  # ²Î¿¼£ºhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const
-. `html`ÖÐµÄ`<script>`±êÇ©²»¶ÔÈýÕßµÄ×÷ÓÃÓòÓÐÈÎºÎÓ°Ïì
+  . ä½œç”¨åŸŸåŒ`let`ï¼Œå—çº§ä½œç”¨åŸŸ
+  . åŒ`let`ï¼Œé‡å¤å£°æ˜Žä¼šå¼•å‘è¯­æ³•é”™è¯¯
+  # å‚è€ƒï¼šhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/const
+. `html`ä¸­çš„`<script>`æ ‡ç­¾ä¸å¯¹ä¸‰è€…çš„ä½œç”¨åŸŸæœ‰ä»»ä½•å½±å“
 
-42.[js] ±Õ°ü
+42.[js] é—­åŒ…
 . what
-  . ±Õ°üÊÇÖ¸¿ÉÒÔ·ÃÎÊÁíÒ»¸öº¯Êý×÷ÓÃÓò±äÁ¿µÄº¯Êý£¬Ò»°ãÊÇ¶¨ÒåÔÚÍâ²ãº¯ÊýÖÐµÄÄÚ²ãº¯Êý
-  . ¼´½«¾Ö²¿±äÁ¿±©Â¶¸øÍâ²¿
+  . é—­åŒ…æ˜¯æŒ‡å¯ä»¥è®¿é—®å¦ä¸€ä¸ªå‡½æ•°ä½œç”¨åŸŸå˜é‡çš„å‡½æ•°ï¼Œä¸€èˆ¬æ˜¯å®šä¹‰åœ¨å¤–å±‚å‡½æ•°ä¸­çš„å†…å±‚å‡½æ•°
+  . å³å°†å±€éƒ¨å˜é‡æš´éœ²ç»™å¤–éƒ¨
 . why
-  . ¾Ö²¿±äÁ¿ÎÞ·¨¹²ÏíºÍ³¤¾ÃµÄ±£´æ£¬¶øÈ«¾Ö±äÁ¿¿ÉÄÜÔì³É±äÁ¿ÎÛÈ¾
-  . ÐèÒªÓÐÒ»ÖÖ»úÖÆ¼È¿ÉÒÔ³¤¾ÃµÄ±£´æ±äÁ¿ÓÖ²»»áÔì³ÉÈ«¾ÖÎÛÈ¾
+  . å±€éƒ¨å˜é‡æ— æ³•å…±äº«å’Œé•¿ä¹…çš„ä¿å­˜ï¼Œè€Œå…¨å±€å˜é‡å¯èƒ½é€ æˆå˜é‡æ±¡æŸ“
+  . éœ€è¦æœ‰ä¸€ç§æœºåˆ¶æ—¢å¯ä»¥é•¿ä¹…çš„ä¿å­˜å˜é‡åˆä¸ä¼šé€ æˆå…¨å±€æ±¡æŸ“
 . how
 	var getNum;
 	function getCounter() {
@@ -850,21 +850,21 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 	console.log(getNum()); // 1
 	console.log(getNum()); // 2
 . feature
-  . Õ¼ÓÃ¸ü¶àÄÚ´æ£¬²»Ò×±»ÊÍ·Å
+  . å ç”¨æ›´å¤šå†…å­˜ï¼Œä¸æ˜“è¢«é‡Šæ”¾
 . reference
-  # https://zhuanlan.zhihu.com/p/27857268¡¾Í¼½âJS±Õ°ü¡¿
-  # https://www.zhihu.com/question/34510484?sort=created¡¾JS±Õ°üµÄÕæÕýÒâÒå¡¿¡¾ÓÐÐ©´ð°¸ÓÐ¿Ó£¬¿´ÆÀÂÛÕç±ð¡¿
+  # https://zhuanlan.zhihu.com/p/27857268ã€å›¾è§£JSé—­åŒ…ã€‘
+  # https://www.zhihu.com/question/34510484?sort=createdã€JSé—­åŒ…çš„çœŸæ­£æ„ä¹‰ã€‘ã€æœ‰äº›ç­”æ¡ˆæœ‰å‘ï¼Œçœ‹è¯„è®ºç”„åˆ«ã€‘
 
 43.[js] call & apply & bind
-. Óï·¨
+. è¯­æ³•
   . {funcName}.call({obj} [, {arg1} [, {arg2} ...]])
   . {funcName}.apply({obj} [, {argArray}])
   . {funcName}.bind({obj} [, {arg1} [, {arg2} ...]])
-. `call` ºÍ `apply`
-  . ½«´«ÈëµÄ`obj`×÷Îª·½·¨µÄµ÷ÓÃ¶ÔÏó
-    . ¼´·½·¨ÄÚ`this`Ö¸Ïò`obj`
-  . Á½ÕßÇø±ðÖ»ÊÇ´«Èë²ÎÊýµÄ·½Ê½²»Í¬
-  . ÊµÏÖ¼Ì³Ð
+. `call` å’Œ `apply`
+  . å°†ä¼ å…¥çš„`obj`ä½œä¸ºæ–¹æ³•çš„è°ƒç”¨å¯¹è±¡
+    . å³æ–¹æ³•å†…`this`æŒ‡å‘`obj`
+  . ä¸¤è€…åŒºåˆ«åªæ˜¯ä¼ å…¥å‚æ•°çš„æ–¹å¼ä¸åŒ
+  . å®žçŽ°ç»§æ‰¿
 		function Animal() {
 			this.greeting = ()=>{ console.log(this.voice) }
 		}
@@ -874,50 +874,50 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 		}
 		dog = new Dog();
 		dog.greeting();
-    ! `ES6`ÒÑ¾­ÕæÕýÊµÏÖÁË`Class`ºÍ`extends`
+    ! `ES6`å·²ç»çœŸæ­£å®žçŽ°äº†`Class`å’Œ`extends`
 . bind
   . var newFunc = oldFunc.apply(someObj)
-  . ·µ»ØÒ»¸öº¯Êý£¬¶ø·ÇÁ¢¿ÌÖ´ÐÐ
-  ! `bind`·µ»ØµÄ·½·¨ÔÙ´Î`bind`ÎÞÐ§
+  . è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè€Œéžç«‹åˆ»æ‰§è¡Œ
+  ! `bind`è¿”å›žçš„æ–¹æ³•å†æ¬¡`bind`æ— æ•ˆ
     . let a=1; let b='2'; function foo() {console.log(this;)};
     . foo.bind(a); // Number{1}
     . foo.bind(a).bind(b); // Number{1}
-# ²Î¿¼£ºhttp://www.cnblogs.com/libin-1/p/6069031.html¡¾Àí½âJSÖÐµÄcall¡¢apply¡¢bind·½·¨¡¿
+# å‚è€ƒï¼šhttp://www.cnblogs.com/libin-1/p/6069031.htmlã€ç†è§£JSä¸­çš„callã€applyã€bindæ–¹æ³•ã€‘
 
-44.[js] ½âÎöJson×Ö·û´®
-1 var obj = eval('{a:"a"}') // ÀûÓÃÁËjsµÄ ¶ÔÏó×ÖÃæÁ¿ ÕýºÃÊÇjson¸ñÊ½
+44.[js] è§£æžJsonå­—ç¬¦ä¸²
+1 var obj = eval('{a:"a"}') // åˆ©ç”¨äº†jsçš„ å¯¹è±¡å­—é¢é‡ æ­£å¥½æ˜¯jsonæ ¼å¼
 2 JSON.parse('{a:"a"}')
-# ²Î¿¼£ºhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse¡¾JSON.parse()¡¿
+# å‚è€ƒï¼šhttps://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parseã€JSON.parse()ã€‘
 
 45.[js] window.onload VS document.ready
-. ÓòÃû½âÎö -1-> ¼ÓÔØHTML -2-> ¼ÓÔØJSºÍCSS -3-> ¼ÓÔØÍ¼Æ¬µÈ·ÇÎÄ×ÖÃ½ÌåÎÄ¼þ -4-> ...
-. `document.ready`ÔÚ<3>´¦´¥·¢
-. `window.onload`ÔÚ<4>´¦´¥·¢
-. `jquery`ÖÐ£¬`$(function(){	... });` <=> `document.ready`
-. `window.onbeforeunload` ºÍ `window.onunload` 
-  . ÔÚË¢ÐÂ¡¢¹Ø±Õ¡¢Ìø×ªÊ±´¥·¢
-  . ²»ÄÜalert£»²»ÄÜÖ±½Ó×èÖ¹¹Ø±Õ/Ìø×ª/Ë¢ÐÂ
-  . ¼àÌý`window.onbeforeunload`»áÔÚ´¥·¢Ê±Ñ¯ÎÊ¡°ÊÇ·ñÈ·ÈÏÀë¿ªÒ³Ãæ¡±£¬Ò»°ãÊÇä¯ÀÀÆ÷×Ô´øµÄ¸ñÊ½
-  ¡ü ²»Í¬ä¯ÀÀÆ÷ÖÐ¼æÈÝÐÔ²»Í¬
-. ²Î¿¼
-  # https://blog.csdn.net/zhouziyu2011/article/details/64123804¡¾document.readyºÍonloadµÄÇø±ð¡¿
-  # https://www.jb51.net/article/102461.htm¡¾javascript¼àÌýÒ³ÃæË¢ÐÂºÍÒ³Ãæ¹Ø±ÕÊÂ¼þ·½·¨Ïê½â¡¿
-  # http://www.runoob.com/jsref/event-onbeforeunload.html¡¾onbeforeunload ÊÂ¼þ¡¿
-  # https://yq.aliyun.com/ziliao/167356¡¾document.readyÇ¶Ì×Ê±µÄÖ´ÐÐË³Ðò¡¿¡¾ÓÉÍâÖÁÄÚ¡¿
+. åŸŸåè§£æž -1-> åŠ è½½HTML -2-> åŠ è½½JSå’ŒCSS -3-> åŠ è½½å›¾ç‰‡ç­‰éžæ–‡å­—åª’ä½“æ–‡ä»¶ -4-> ...
+. `document.ready`åœ¨<3>å¤„è§¦å‘
+. `window.onload`åœ¨<4>å¤„è§¦å‘
+. `jquery`ä¸­ï¼Œ`$(function(){	... });` <=> `document.ready`
+. `window.onbeforeunload` å’Œ `window.onunload` 
+  . åœ¨åˆ·æ–°ã€å…³é—­ã€è·³è½¬æ—¶è§¦å‘
+  . ä¸èƒ½alertï¼›ä¸èƒ½ç›´æŽ¥é˜»æ­¢å…³é—­/è·³è½¬/åˆ·æ–°
+  . ç›‘å¬`window.onbeforeunload`ä¼šåœ¨è§¦å‘æ—¶è¯¢é—®â€œæ˜¯å¦ç¡®è®¤ç¦»å¼€é¡µé¢â€ï¼Œä¸€èˆ¬æ˜¯æµè§ˆå™¨è‡ªå¸¦çš„æ ¼å¼
+  â†‘ ä¸åŒæµè§ˆå™¨ä¸­å…¼å®¹æ€§ä¸åŒ
+. å‚è€ƒ
+  # https://blog.csdn.net/zhouziyu2011/article/details/64123804ã€document.readyå’Œonloadçš„åŒºåˆ«ã€‘
+  # https://www.jb51.net/article/102461.htmã€javascriptç›‘å¬é¡µé¢åˆ·æ–°å’Œé¡µé¢å…³é—­äº‹ä»¶æ–¹æ³•è¯¦è§£ã€‘
+  # http://www.runoob.com/jsref/event-onbeforeunload.htmlã€onbeforeunload äº‹ä»¶ã€‘
+  # https://yq.aliyun.com/ziliao/167356ã€document.readyåµŒå¥—æ—¶çš„æ‰§è¡Œé¡ºåºã€‘ã€ç”±å¤–è‡³å†…ã€‘
 
-45.[js] `in`ÔËËã·û
-1 ÓÃÓÚÑ­»·
+45.[js] `in`è¿ç®—ç¬¦
+1 ç”¨äºŽå¾ªçŽ¯
   . for (let k in obj)
   . console.log(obj[k])
-2 ÅÐ¶Ï ¶ÔÏó/Êý×é ÊÇ·ñ´æÔÚÄ³¼ü(key)
+2 åˆ¤æ–­ å¯¹è±¡/æ•°ç»„ æ˜¯å¦å­˜åœ¨æŸé”®(key)
   . obj = {a:1, 2:3}
   . "a" in obj // true
   . 2 in obj // true
   . "b" in obj // false
-  . "toString" in obj // true, Ô­ÐÍ(proto)ÖÐµÄÊôÐÔÒ²Ëã
-# ²Î¿¼£ºhttps://www.cnblogs.com/lsy0403/p/5918145.html¡¾js in ¹Ø¼ü×ÖµÄÓÃ·¨¡¿
+  . "toString" in obj // true, åŽŸåž‹(proto)ä¸­çš„å±žæ€§ä¹Ÿç®—
+# å‚è€ƒï¼šhttps://www.cnblogs.com/lsy0403/p/5918145.htmlã€js in å…³é”®å­—çš„ç”¨æ³•ã€‘
 
-46.[sql] ²éÑ¯Ê±¼äÓë±éÀú¼ÇÂ¼ÊýÁ¿³ÉÕý±È
+46.[sql] æŸ¥è¯¢æ—¶é—´ä¸ŽéåŽ†è®°å½•æ•°é‡æˆæ­£æ¯”
 -- SELECT COUNT(*) AS tp_count FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) LIMIT 1 -- 17.484s
 -- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 0,15 -- 0.001s
 -- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 100,15 -- 0.001s
@@ -925,118 +925,118 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 -- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 10000,15 -- 0.033s
 -- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 100000,15 -- 2.514s
 -- SELECT `id` FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) ORDER BY id DESC LIMIT 1000000,15 -- 18.992s
-. Óë²éÑ¯ËùµÃµÄ¼ÇÂ¼ÊýÁ¿¼¸ºõÎÞ¹Ø
-. ÍÆÂÛ£ºdistinct¶ÔÐ§ÂÊÓ°Ïì²»´ó
+. ä¸ŽæŸ¥è¯¢æ‰€å¾—çš„è®°å½•æ•°é‡å‡ ä¹Žæ— å…³
+. æŽ¨è®ºï¼šdistinctå¯¹æ•ˆçŽ‡å½±å“ä¸å¤§
 
 47.[sql] something important
-. ÊÔÑé
+. è¯•éªŒ
 	EXPLAIN SELECT id FROM oa_loan_repay WHERE mark=1;
 	-- 0.9s type:all
 	EXPLAIN SELECT id FROM oa_loan_repay WHERE mark=1 AND customer_id=666;
 	-- 0.001s type:ref key:idx_customer_id
-. ½áÂÛ£º²éÑ¯¹ý³ÌÖÐ£¬»áÏÈ´¦ÀíÄÜÀûÓÃË÷ÒýµÄ WHEREÌõ¼þ£¬¼õÐ¡½á¹û¼¯£¬ÔÙ´¦Àí²»ÄÜÀûÓÃË÷ÒýµÄÌõ¼þ
-. »ù´¡¶øÖØÒª
+. ç»“è®ºï¼šæŸ¥è¯¢è¿‡ç¨‹ä¸­ï¼Œä¼šå…ˆå¤„ç†èƒ½åˆ©ç”¨ç´¢å¼•çš„ WHEREæ¡ä»¶ï¼Œå‡å°ç»“æžœé›†ï¼Œå†å¤„ç†ä¸èƒ½åˆ©ç”¨ç´¢å¼•çš„æ¡ä»¶
+. åŸºç¡€è€Œé‡è¦
 
-48.[sql] ÓÅ»¯½¨Òé
-. ±ÜÃâÓÃ`<>` 
-. ±ÜÃâÓÃ`IS NULL`
-  . ¸ø×Ö¶ÎÉèÖÃ`not null`»òÄ¬ÈÏÖµ£¬È·±£Ã»ÓÐ`null`Öµ
-. ±ÜÃâÔÚ`where`×Ó¾äÖÐÊ¹ÓÃ`or`À´Á¬½ÓÌõ¼þ
-  . select id from t where num=10 or num=20 ¸ÄÐ´Îª
+48.[sql] ä¼˜åŒ–å»ºè®®
+. é¿å…ç”¨`<>` 
+. é¿å…ç”¨`IS NULL`
+  . ç»™å­—æ®µè®¾ç½®`not null`æˆ–é»˜è®¤å€¼ï¼Œç¡®ä¿æ²¡æœ‰`null`å€¼
+. é¿å…åœ¨`where`å­å¥ä¸­ä½¿ç”¨`or`æ¥è¿žæŽ¥æ¡ä»¶
+  . select id from t where num=10 or num=20 æ”¹å†™ä¸º
   . (select id from t where num=10) union all (select id from t where num=20)
-. ¾¡Á¿ÓÃ`between`Ìæ´ú`in`
-. ¾¡Á¿ÓÃ`not exists`Ìæ´ú`not in`
-  . ·¢ÏÖÐÔÄÜÎÊÌâµÄÊ±ºò£¬Ò²¿ÉÒÔ³¢ÊÔÓÃ `exists` ºÍ `in` Ïà»¥Ìæ´úÊÔÊÔ
-. ±ÜÃâÔÚwhere×Ó¾äÖÐ¶Ô×Ö¶Î½øÐÐº¯Êý²Ù×÷£¬Õâ½«µ¼ÖÂÒýÇæ·ÅÆúÊ¹ÓÃË÷Òý¶øÐÐÈ«±íÉ¨Ãè
-. ±ÜÃâÓÃ`select *`£¬½öÑ¡ÔñÐèÒªµÄ×Ö¶Î
-! ²¢²»ÊÇËùÓÐË÷Òý¶Ô²éÑ¯¶¼ÓÐÐ§£¬µ±Ë÷ÒýÁÐÓÐ´óÁ¿Êý¾ÝÖØ¸´Ê±£¬Èç`sex`¡¢`is_xxx`µÈ×Ö¶Î £¬½¨Ë÷ÒýÒ²Ã»Ê²Ã´ÓÃµÄ
-  . ÁíÍâË÷Òý²»ÊÇÔ½¶àÔ½ºÃ£¬Ë÷ÒýÌá¸ß`select`Ð§ÂÊ£¬µ«½µµÍ`insert`¼°`update`Ð§ÂÊ
-. ÓÅ»¯`LIMIT`
+. å°½é‡ç”¨`between`æ›¿ä»£`in`
+. å°½é‡ç”¨`not exists`æ›¿ä»£`not in`
+  . å‘çŽ°æ€§èƒ½é—®é¢˜çš„æ—¶å€™ï¼Œä¹Ÿå¯ä»¥å°è¯•ç”¨ `exists` å’Œ `in` ç›¸äº’æ›¿ä»£è¯•è¯•
+. é¿å…åœ¨whereå­å¥ä¸­å¯¹å­—æ®µè¿›è¡Œå‡½æ•°æ“ä½œï¼Œè¿™å°†å¯¼è‡´å¼•æ“Žæ”¾å¼ƒä½¿ç”¨ç´¢å¼•è€Œè¡Œå…¨è¡¨æ‰«æ
+. é¿å…ç”¨`select *`ï¼Œä»…é€‰æ‹©éœ€è¦çš„å­—æ®µ
+! å¹¶ä¸æ˜¯æ‰€æœ‰ç´¢å¼•å¯¹æŸ¥è¯¢éƒ½æœ‰æ•ˆï¼Œå½“ç´¢å¼•åˆ—æœ‰å¤§é‡æ•°æ®é‡å¤æ—¶ï¼Œå¦‚`sex`ã€`is_xxx`ç­‰å­—æ®µ ï¼Œå»ºç´¢å¼•ä¹Ÿæ²¡ä»€ä¹ˆç”¨çš„
+  . å¦å¤–ç´¢å¼•ä¸æ˜¯è¶Šå¤šè¶Šå¥½ï¼Œç´¢å¼•æé«˜`select`æ•ˆçŽ‡ï¼Œä½†é™ä½Ž`insert`åŠ`update`æ•ˆçŽ‡
+. ä¼˜åŒ–`LIMIT`
   . SELECT id FROM sometable WHERE xxx ORDER BY create_time LIMIT 100000,10
-    # Ö´ÐÐºÜÂý£¬¼û[46]Ìõ
+    # æ‰§è¡Œå¾ˆæ…¢ï¼Œè§[46]æ¡
   . SELECT id FROM sometable WHERE xxx AND create_time>1500000000 ORDER BY create_time LIMIT 10
-    . Õâ¸ö·½·¨ÓÐ¾ÖÏÞÐÔ£¬¾ÍÊÇËùÓÐÐÐµÄ`create_time`×Ö¶Î²»ÄÜÖØ¸´
-. ²Î¿¼
-  . https://zhuanlan.zhihu.com/p/27540896¡¾MySQL SQLÓï¾äÓÅ»¯¼¼ÇÉ¡¿¡¾good¡¿
-  . https://zhuanlan.zhihu.com/p/26043916¡¾MySQL ÐÔÄÜÓÅ»¯¡¿¡¾excellent¡¿
-! ÔÙ´ÎÇ¿µ÷£¬ÒÔÉÏÖ»ÊÇÓÅ»¯Ë¼Â·£¬Ò»ÇÐÒÑÊµ¼ÊÇé¿öÎª×¼
+    . è¿™ä¸ªæ–¹æ³•æœ‰å±€é™æ€§ï¼Œå°±æ˜¯æ‰€æœ‰è¡Œçš„`create_time`å­—æ®µä¸èƒ½é‡å¤
+. å‚è€ƒ
+  . https://zhuanlan.zhihu.com/p/27540896ã€MySQL SQLè¯­å¥ä¼˜åŒ–æŠ€å·§ã€‘ã€goodã€‘
+  . https://zhuanlan.zhihu.com/p/26043916ã€MySQL æ€§èƒ½ä¼˜åŒ–ã€‘ã€excellentã€‘
+! å†æ¬¡å¼ºè°ƒï¼Œä»¥ä¸Šåªæ˜¯ä¼˜åŒ–æ€è·¯ï¼Œä¸€åˆ‡å·²å®žé™…æƒ…å†µä¸ºå‡†
 
-49.[sql] `SELECT *` Óë `SELECT f1,f2,...` µÄÇø±ð
-. ÊÔÑéÖÐ
-  . Ç°Õß±ÈºóÕßÊý¾ÝÁ¿ÉÔ´óÒ»µãµã£¨¼¸ºõºöÂÔ²»¼Æ£©
-  . µ±²éÑ¯µ½µÄ¼ÇÂ¼ÊýÁ¿ºÜ´ó£¬»òÕß´æÔÚºÜ´óµÄ×Ö¶ÎÈç`varchar(1000)`£¬ÐÔÄÜ²î¾àºÜÃ÷ÏÔ
-. »úÖÆÉÏ£¬Ç°ÕßÐèÒªÊý¾Ý¿âÏÈ Query Table Metadata For Columns£¬Ò»¶¨³Ì¶ÈÉÏÎªÊý¾Ý¿âÔö¼ÓÁË¸ºµ£¡£
-. ±à³Ì½Ç¶È£¬ºóÕß²ÅÊÇºÃÏ°¹ß£¬ËùÓÐÈË¶¼ÕâÃ´ÍÆ¼ö
-. ½áÂÛ£ºÓÃºóÕß
+49.[sql] `SELECT *` ä¸Ž `SELECT f1,f2,...` çš„åŒºåˆ«
+. è¯•éªŒä¸­
+  . å‰è€…æ¯”åŽè€…æ•°æ®é‡ç¨å¤§ä¸€ç‚¹ç‚¹ï¼ˆå‡ ä¹Žå¿½ç•¥ä¸è®¡ï¼‰
+  . å½“æŸ¥è¯¢åˆ°çš„è®°å½•æ•°é‡å¾ˆå¤§ï¼Œæˆ–è€…å­˜åœ¨å¾ˆå¤§çš„å­—æ®µå¦‚`varchar(1000)`ï¼Œæ€§èƒ½å·®è·å¾ˆæ˜Žæ˜¾
+. æœºåˆ¶ä¸Šï¼Œå‰è€…éœ€è¦æ•°æ®åº“å…ˆ Query Table Metadata For Columnsï¼Œä¸€å®šç¨‹åº¦ä¸Šä¸ºæ•°æ®åº“å¢žåŠ äº†è´Ÿæ‹…ã€‚
+. ç¼–ç¨‹è§’åº¦ï¼ŒåŽè€…æ‰æ˜¯å¥½ä¹ æƒ¯ï¼Œæ‰€æœ‰äººéƒ½è¿™ä¹ˆæŽ¨è
+. ç»“è®ºï¼šç”¨åŽè€…
 
 50.[sql] 
-# https://segmentfault.com/q/1010000004197413¡¾excellent¡¿
-. ½áÂÛ£ºµ±ÐèÒª¶ÁÈ¡µÄÊý¾Ý³¬¹ýÒ»¸öÁÙ½çÖµÊ±£¬ÓÅ»¯Æ÷»á·ÅÆú´ÓË÷ÒýÖÐ¶ÁÈ¡¶ø¸ÄÎª½øÐÐÈ«±íÉ¨Ãè£¬ÕâÊÇÎªÁË±ÜÃâ¹ý¶àµÄ random disk.
+# https://segmentfault.com/q/1010000004197413ã€excellentã€‘
+. ç»“è®ºï¼šå½“éœ€è¦è¯»å–çš„æ•°æ®è¶…è¿‡ä¸€ä¸ªä¸´ç•Œå€¼æ—¶ï¼Œä¼˜åŒ–å™¨ä¼šæ”¾å¼ƒä»Žç´¢å¼•ä¸­è¯»å–è€Œæ”¹ä¸ºè¿›è¡Œå…¨è¡¨æ‰«æï¼Œè¿™æ˜¯ä¸ºäº†é¿å…è¿‡å¤šçš„ random disk.
 
 51.[js] promise
-. ÓÅµã£º½«Òì²½²Ù×÷ÒÔÍ¬²½²Ù×÷µÄÐÎÊ½±í´ï³öÀ´£¬±ÜÃâÁË²ã²ãÇ¶Ì×µÄ»Øµ÷º¯Êý
-. Ïê¼û`play/js/promise.php`
-. ²Î¿¼
-  # https://segmentfault.com/a/1190000007678185¡¾promise½éÉÜ--»ù´¡Æª¡¿¡¾good¡¿
-  # https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise¡¾MDN¡¿
-  # https://blog.csdn.net/guoquanyou/article/details/60573633¡¾PromiseÏê½â¡¿
+. ä¼˜ç‚¹ï¼šå°†å¼‚æ­¥æ“ä½œä»¥åŒæ­¥æ“ä½œçš„å½¢å¼è¡¨è¾¾å‡ºæ¥ï¼Œé¿å…äº†å±‚å±‚åµŒå¥—çš„å›žè°ƒå‡½æ•°
+. è¯¦è§`play/js/promise.php`
+. å‚è€ƒ
+  # https://segmentfault.com/a/1190000007678185ã€promiseä»‹ç»--åŸºç¡€ç¯‡ã€‘ã€goodã€‘
+  # https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promiseã€MDNã€‘
+  # https://blog.csdn.net/guoquanyou/article/details/60573633ã€Promiseè¯¦è§£ã€‘
 
 52.[js] async & await
-. ÓÅµã
-  . ÓïÒå¸ü¼ÓÃ÷È·
-  . ´¦Àí`then`Á´
-. Ïê¼û `play/js/async.php`
-. ²Î¿¼
-  # https://segmentfault.com/a/1190000007535316¡¾Àí½â JavaScript µÄ async/await¡¿¡¾perfect!¡¿
-  # http://www.ruanyifeng.com/blog/2015/05/async.html¡¾async º¯ÊýµÄº¬ÒåºÍÓÃ·¨¡¿
+. ä¼˜ç‚¹
+  . è¯­ä¹‰æ›´åŠ æ˜Žç¡®
+  . å¤„ç†`then`é“¾
+. è¯¦è§ `play/js/async.php`
+. å‚è€ƒ
+  # https://segmentfault.com/a/1190000007535316ã€ç†è§£ JavaScript çš„ async/awaitã€‘ã€perfect!ã€‘
+  # http://www.ruanyifeng.com/blog/2015/05/async.htmlã€async å‡½æ•°çš„å«ä¹‰å’Œç”¨æ³•ã€‘
 
 53.[js] for ... of
-. Óï·¨ `for(let {val} of {s}) { ... }`
-. `val`ÊÇÊý×éµÄÖµ(value) ¶ø²»ÊÇ¼ü(key)
-  . Óë`for ... in`Ïà·´
-. ÊÊÓÃ
+. è¯­æ³• `for(let {val} of {s}) { ... }`
+. `val`æ˜¯æ•°ç»„çš„å€¼(value) è€Œä¸æ˜¯é”®(key)
+  . ä¸Ž`for ... in`ç›¸å
+. é€‚ç”¨
   . let a = ['a', 'b', 'c'];
   . let s = new Set(['a', 'b', 'c']);
   . let m = new Map([[1, 'a'], [2, 'b'], [3, 'c']]);
-  ! let o = {a:1, b:2, c:3} // ÆÕÍ¨¶ÔÏóÊÇ²»¿ÉÒÔµÄ£º`o is not iterable`
-# ²Î¿¼£ºhttps://blog.csdn.net/chicNancy/article/details/73844585¡¾JSÀïµÄfor¡­inºÍfor¡­ofµÄÓÃ·¨¡¿
+  ! let o = {a:1, b:2, c:3} // æ™®é€šå¯¹è±¡æ˜¯ä¸å¯ä»¥çš„ï¼š`o is not iterable`
+# å‚è€ƒï¼šhttps://blog.csdn.net/chicNancy/article/details/73844585ã€JSé‡Œçš„forâ€¦inå’Œforâ€¦ofçš„ç”¨æ³•ã€‘
 
-54.[js] jsµÄµ¥Ïß³ÌÈçºÎÊµÏÖÒì²½
+54.[js] jsçš„å•çº¿ç¨‹å¦‚ä½•å®žçŽ°å¼‚æ­¥
 # https://www.zhihu.com/question/20866267
 # http://blog.csdn.net/hotdogcug/article/details/2312615
 
-55.[sql] ×Ö¶ÎÀàÐÍ¾¡Á¿ÓÃ Êý×ÖÀàÐÍ ´úÌæ  ×Ö·ûÀàÐÍ
+55.[sql] å­—æ®µç±»åž‹å°½é‡ç”¨ æ•°å­—ç±»åž‹ ä»£æ›¿  å­—ç¬¦ç±»åž‹
 . SELECT * FROM `oa_loan` WHERE over_date=1461254400
-. Èç¹ûµ±`over_date`ÊÇ×Ö·û´´ÀàÐÍ£¬ÄÇÃ´mysql»áÏÈ½«×Ö¶Î×°»»ÎªÊý×Ö£¬ËùÒÔ½²ÎÞ·¨Ê¹ÓÃoverdateË÷Òý
+. å¦‚æžœå½“`over_date`æ˜¯å­—ç¬¦åˆ›ç±»åž‹ï¼Œé‚£ä¹ˆmysqlä¼šå…ˆå°†å­—æ®µè£…æ¢ä¸ºæ•°å­—ï¼Œæ‰€ä»¥è®²æ— æ³•ä½¿ç”¨overdateç´¢å¼•
 . SELECT * FROM `oa_loan` WHERE over_date='1461254400'; 
-. µ«·´¹ýÀ´Ã»ÎÊÌâ£ºÈç¹û`over_date`ÊÇÊý×ÖÀàÐÍ£¬mysql»á½«'1461254400'ÈÏ×÷Êý×ÖµÄ
+. ä½†åè¿‡æ¥æ²¡é—®é¢˜ï¼šå¦‚æžœ`over_date`æ˜¯æ•°å­—ç±»åž‹ï¼Œmysqlä¼šå°†'1461254400'è®¤ä½œæ•°å­—çš„
 
-56.[sql] ²¢·ÇÖ»ÒªÓÐ`fieldA`µÄË÷Òý£¬¾ÍÒ»¶¨ÄÜ±£ÕÏ£¨Ö¸ÎÞÐèfilesort£©¶Ô`fieldA`µÄÅÅÐò
-. ¼ÙÉè`fieldA`×Ö¶ÎÓÐË÷Òý£¬`fieldB`×Ö¶ÎÃ»ÓÐË÷Òý
+56.[sql] å¹¶éžåªè¦æœ‰`fieldA`çš„ç´¢å¼•ï¼Œå°±ä¸€å®šèƒ½ä¿éšœï¼ˆæŒ‡æ— éœ€filesortï¼‰å¯¹`fieldA`çš„æŽ’åº
+. å‡è®¾`fieldA`å­—æ®µæœ‰ç´¢å¼•ï¼Œ`fieldB`å­—æ®µæ²¡æœ‰ç´¢å¼•
 . SELECT id FROM foo ORDER BY fieldB // Using filesort
   SELECT id FROM foo ORDER BY fieldA // Using index
   SELECT id FROM foo WHERE fieldB=xxx ORDER BY fieldA // Using where; Using filesort
-. ·ÖÎö
-  . Ô­±¾ÒÔÎª£¬Ö»ÒªÓÐ`fieldA`Ë÷Òý£¬¾ÍÄÜ¶ÔÈÎºÎ½á¹û¼¯½øÐÐ¶Ô`fieldA`ÅÅÐò
+. åˆ†æž
+  . åŽŸæœ¬ä»¥ä¸ºï¼Œåªè¦æœ‰`fieldA`ç´¢å¼•ï¼Œå°±èƒ½å¯¹ä»»ä½•ç»“æžœé›†è¿›è¡Œå¯¹`fieldA`æŽ’åº
   . fieldA	fieldB
 	1		2
 	2		1
 	3		2
 	4		3
 	5		2
-  ¡ý WHERE fieldB=2
+  â†“ WHERE fieldB=2
 	1		2
 	3		2
 	5		2
-  . µ«ÆäÊµÊý¾Ý¿âÃ»ÓÐÄÇÃ´ÖÇÄÜ£¬`WHERE field=2`µÃµ½µÄ½á¹û¼¯£¬ÎÞ·¨Ê¹ÓÃ`index_field_A`
-  ? ³¢ÊÔÕâÃ´Àí½â£¬Ê¹ÓÃË÷ÒýÅÅÐò£¬Ö»ÄÜÊ¹ÓÃ±¾ÉíÍêÕûµÄË÷Òý
-    . ±»ÆäËüÌõ¼þÆÆ»µµ¼ÖÂ½á¹û¼¯¶ÔÓÚÄ¿±êË÷ÒýÊÇ¡®ÀëÉ¢¡¯µÄ»°£¬Ë÷ÒýÊ±ÎÞ·¨¹¤×÷µÄ
-. ¼ÙÉèÔÙÓÐÓÐË÷ÒýµÄ`fieldC`
+  . ä½†å…¶å®žæ•°æ®åº“æ²¡æœ‰é‚£ä¹ˆæ™ºèƒ½ï¼Œ`WHERE field=2`å¾—åˆ°çš„ç»“æžœé›†ï¼Œæ— æ³•ä½¿ç”¨`index_field_A`
+  ? å°è¯•è¿™ä¹ˆç†è§£ï¼Œä½¿ç”¨ç´¢å¼•æŽ’åºï¼Œåªèƒ½ä½¿ç”¨æœ¬èº«å®Œæ•´çš„ç´¢å¼•
+    . è¢«å…¶å®ƒæ¡ä»¶ç ´åå¯¼è‡´ç»“æžœé›†å¯¹äºŽç›®æ ‡ç´¢å¼•æ˜¯â€˜ç¦»æ•£â€™çš„è¯ï¼Œç´¢å¼•æ—¶æ— æ³•å·¥ä½œçš„
+. å‡è®¾å†æœ‰æœ‰ç´¢å¼•çš„`fieldC`
 . SELECT id FROM foo ORDER BY fieldA,fieldC // Using filesort
-. ½â¾öÕâ¸öÎÊÌâ£ºÊ¹ÓÃÁªºÏË÷Òý
+. è§£å†³è¿™ä¸ªé—®é¢˜ï¼šä½¿ç”¨è”åˆç´¢å¼•
 
-57.[sql] ¸´ºÏË÷Òý & ÅÅÐòÔ­Àí
-. ½¨Á¢·ûºÏË÷Òý `(key_part1,key_part2)`£¬ÒÔÏÂ²éÑ¯¿ÉÒÔÀûÓÃ
+57.[sql] å¤åˆç´¢å¼• & æŽ’åºåŽŸç†
+. å»ºç«‹ç¬¦åˆç´¢å¼• `(key_part1,key_part2)`ï¼Œä»¥ä¸‹æŸ¥è¯¢å¯ä»¥åˆ©ç”¨
   . SELECT * FROM t1 ORDER BY key_part1,key_part2,... ;
   . SELECT * FROM t1 WHERE key_part1 = constant ORDER BY key_part2;
   . SELECT * FROM t1 ORDER BY key_part1 DESC, key_part2 DESC;
@@ -1044,24 +1044,24 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
   . SELECT * FROM t1 WHERE key_part1 > constant ORDER BY key_part1 ASC;
   . SELECT * FROM t1 WHERE key_part1 < constant ORDER BY key_part1 DESC;
   . SELECT * FROM t1 WHERE key_part1 = constant1 AND key_part2 > constant2 ORDER BY key_part2
-. ²Î¿¼
-  # https://www.zhihu.com/question/20622094¡¾ÓÅ»¯order by¡¿
-  # http://blog.itpub.net/22664653/viewspace-2122656/¡¾order by Ô­ÀíÒÔ¼°ÓÅ»¯¡¿¡¾excellent¡¿
-  # http://www.cnblogs.com/cchust/p/5304594.html¡¾MySQLÅÅÐòÔ­ÀíÓë°¸Àý·ÖÎö¡¿¡¾good¡¿
-. ³£¹æÅÅÐò
-  . »ñÈ¡Âú×ãWHEREÌõ¼þµÄ¼ÇÂ¼
-  . Èç¹û¿ÉÒÔÀûÓÃË÷Òý£¬Ö±½ÓÀûÓÃË÷ÒýË³Ðò
-  . ¶ÔÓÚÃ¿Ìõ¼ÇÂ¼£¬½«¼ÇÂ¼µÄÖ÷¼ü+ÅÅÐò¼ü(id,col2)È¡³ö·ÅÈë`sort buffer`
-  . Èç¹ûsort buffer¿ÉÒÔ´æ·ÅËùÓÐÂú×ãÌõ¼þµÄ(id,col2)¶Ô£¬Ôò½øÐÐÅÅÐò
-  . ·ñÔòsort bufferÂúºó£¬½øÐÐÅÅÐò²¢¹Ì»¯µ½ÁÙÊ±ÎÄ¼þÖÐ¡£
-  . ÅÅÐòËã·¨²ÉÓÃµÄÊÇ¿ìËÙÅÅÐòËã·¨
-  . ÈôÅÅÐòÖÐ²úÉúÁËÁÙÊ±ÎÄ¼þ£¬ÐèÒªÀûÓÃ¹é²¢ÅÅÐòËã·¨£¬±£Ö¤ÁÙÊ±ÎÄ¼þÖÐ¼ÇÂ¼ÊÇÓÐÐòµÄ
-  . É¨ÃèÅÅºÃÐòµÄ(id,col2)¶Ô£¬²¢ÀûÓÃidÈ¥ÀÌÈ¡SELECTÐèÒª·µ»ØµÄÁÐ(col1,col2,col3)
+. å‚è€ƒ
+  # https://www.zhihu.com/question/20622094ã€ä¼˜åŒ–order byã€‘
+  # http://blog.itpub.net/22664653/viewspace-2122656/ã€order by åŽŸç†ä»¥åŠä¼˜åŒ–ã€‘ã€excellentã€‘
+  # http://www.cnblogs.com/cchust/p/5304594.htmlã€MySQLæŽ’åºåŽŸç†ä¸Žæ¡ˆä¾‹åˆ†æžã€‘ã€goodã€‘
+. å¸¸è§„æŽ’åº
+  . èŽ·å–æ»¡è¶³WHEREæ¡ä»¶çš„è®°å½•
+  . å¦‚æžœå¯ä»¥åˆ©ç”¨ç´¢å¼•ï¼Œç›´æŽ¥åˆ©ç”¨ç´¢å¼•é¡ºåº
+  . å¯¹äºŽæ¯æ¡è®°å½•ï¼Œå°†è®°å½•çš„ä¸»é”®+æŽ’åºé”®(id,col2)å–å‡ºæ”¾å…¥`sort buffer`
+  . å¦‚æžœsort bufferå¯ä»¥å­˜æ”¾æ‰€æœ‰æ»¡è¶³æ¡ä»¶çš„(id,col2)å¯¹ï¼Œåˆ™è¿›è¡ŒæŽ’åº
+  . å¦åˆ™sort bufferæ»¡åŽï¼Œè¿›è¡ŒæŽ’åºå¹¶å›ºåŒ–åˆ°ä¸´æ—¶æ–‡ä»¶ä¸­ã€‚
+  . æŽ’åºç®—æ³•é‡‡ç”¨çš„æ˜¯å¿«é€ŸæŽ’åºç®—æ³•
+  . è‹¥æŽ’åºä¸­äº§ç”Ÿäº†ä¸´æ—¶æ–‡ä»¶ï¼Œéœ€è¦åˆ©ç”¨å½’å¹¶æŽ’åºç®—æ³•ï¼Œä¿è¯ä¸´æ—¶æ–‡ä»¶ä¸­è®°å½•æ˜¯æœ‰åºçš„
+  . æ‰«ææŽ’å¥½åºçš„(id,col2)å¯¹ï¼Œå¹¶åˆ©ç”¨idåŽ»æžå–SELECTéœ€è¦è¿”å›žçš„åˆ—(col1,col2,col3)
 
 58.[sql] Using filesort
-. º¬Òå£ºAnytime a sort can't be performed from an index, it's a filesort
+. å«ä¹‰ï¼šAnytime a sort can't be performed from an index, it's a filesort
   # https://www.percona.com/blog/2009/03/05/what-does-using-filesort-mean-in-mysql/
-. ÊÔÑé£º`kefu_id`×Ö¶ÎÓÐÉèÖÃË÷Òý
+. è¯•éªŒï¼š`kefu_id`å­—æ®µæœ‰è®¾ç½®ç´¢å¼•
 	SELECT 			WHERE		Extra
 	kefu_id						Using index
 	salesman_id					Using filesort
@@ -1072,74 +1072,74 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
 	salesman_id		salesman_id	Using filesort
 	kefu_id			both		Using filesort
 	salesman_id		both		Using filesort
-? ÊÔÑé½á¹û
+? è¯•éªŒç»“æžœ
   . SELECT [id,] kefu_id FROM oa_loan [WHERE kefu_id xxx] ORDER BY kefu_id
-  . Ö»ÓÐÕâÑù²ÅÄÜÓÃ²»ÓÃ`filesort`£¬²»ÄÜÓÐ¶àÓàµÄ`SELECT`×Ö¶Î£¨³ýÁËid£© ºÍ `WHERE`Ìõ¼þ£¿£¿£¿
-# ²Î¿¼£ºhttps://blog.csdn.net/lan12334321234/article/details/70048830
-. ×ÜÖ®¡£¡£Ã»¸ãÇå³þ¡£±ðÌ«¾À½áÁË
+  . åªæœ‰è¿™æ ·æ‰èƒ½ç”¨ä¸ç”¨`filesort`ï¼Œä¸èƒ½æœ‰å¤šä½™çš„`SELECT`å­—æ®µï¼ˆé™¤äº†idï¼‰ å’Œ `WHERE`æ¡ä»¶ï¼Ÿï¼Ÿï¼Ÿ
+# å‚è€ƒï¼šhttps://blog.csdn.net/lan12334321234/article/details/70048830
+. æ€»ä¹‹ã€‚ã€‚æ²¡æžæ¸…æ¥šã€‚åˆ«å¤ªçº ç»“äº†
 
-58.[sql] ·Ö×éÈ¡Ã¿×é°´Ä³×Ö¶ÎÅÅÐòµÄµÚÒ»Ìõ
--- ¢Ù
+58.[sql] åˆ†ç»„å–æ¯ç»„æŒ‰æŸå­—æ®µæŽ’åºçš„ç¬¬ä¸€æ¡
+-- â‘ 
 EXPLAIN
 SELECT id, customer_id,create_time FROM oa_customer_store s1 
 WHERE NOT EXISTS (SELECT * FROM oa_customer_store s2 WHERE s2.customer_id=s1.customer_id AND s2.id>s1.id)
 ORDER BY customer_id ASC; -- 30.49
--- ¢Ú
+-- â‘¡
 EXPLAIN 
 SELECT id, customer_id FROM oa_customer_store s1 
 WHERE id IN (SELECT MAX(id) FROM oa_customer_store s2 GROUP BY customer_id)
 ORDER BY customer_id ASC; -- 0.46
--- ¢Û
+-- â‘¢
 EXPLAIN
-SELECT id, customer_id FROM oa_customer_store s1 -- ºÍ¢Ù²î²»¶à
+SELECT id, customer_id FROM oa_customer_store s1 -- å’Œâ‘ å·®ä¸å¤š
 WHERE id=(SELECT MAX(id) FROM oa_customer_store s2 WHERE s1.customer_id=s2.customer_id) 
 ORDER BY customer_id ASC; -- 32.33
--- ¸øcustomer_id¼ÓÁËË÷Òýºó¿ìÁËºÜ¶à
--- ¢Ü
-EXPLAIN -- ºÍ¢Ú²î²»¶à
+-- ç»™customer_idåŠ äº†ç´¢å¼•åŽå¿«äº†å¾ˆå¤š
+-- â‘£
+EXPLAIN -- å’Œâ‘¡å·®ä¸å¤š
 SELECT s1.id, s1.customer_id FROM oa_customer_store s1, (SELECT MAX(id) id FROM oa_customer_store s2 GROUP BY customer_id) tmp
 WHERE s1.id=tmp.id
 ORDER BY s1.customer_id ASC; -- 0.46 
--- ¢Ý
+-- â‘¤
 EXPLAIN
 SELECT id, customer_id
 FROM (SELECT * FROM (SELECT * FROM oa_customer_store s1 ORDER BY id DESC LIMIT 99999999) t1 GROUP BY customer_id) t2 
-ORDER BY customer_id DESC; -- 0.26 ×î¿ì
+ORDER BY customer_id DESC; -- 0.26 æœ€å¿«
 
-59.[sql] Êý¾Ý¿âÊÂÎñ¸ôÀë¼¶±ð
-. `MySQL InnoDB`ÊÂÎñµÄ¸ôÀë¼¶±ðÓÐËÄ¼¶
-  1 ¶ÁÎ´Ìá½»(READ UNCOMMITTED) »Ã¶Á & ²»¿ÉÖØ¸´¶Á & Ôà¶Á
-  2 ¶ÁÒÑÌá½»(READ COMMITTED)   »Ã¶Á & ²»¿ÉÖØ¸´¶Á 
-  3 ¿ÉÖØ¸´¶Á(REPEATABLE READ)  »Ã¶Á 
-  4 ´®ÐÐ»¯(SERIALIZABLE)       
-. ²é¿´Êý¾Ý¿âÖÐµÄÊÂÎñ¸ôÀë¼¶±ðÅäÖÃ
+59.[sql] æ•°æ®åº“äº‹åŠ¡éš”ç¦»çº§åˆ«
+. `MySQL InnoDB`äº‹åŠ¡çš„éš”ç¦»çº§åˆ«æœ‰å››çº§
+  1 è¯»æœªæäº¤(READ UNCOMMITTED) å¹»è¯» & ä¸å¯é‡å¤è¯» & è„è¯»
+  2 è¯»å·²æäº¤(READ COMMITTED)   å¹»è¯» & ä¸å¯é‡å¤è¯» 
+  3 å¯é‡å¤è¯»(REPEATABLE READ)  å¹»è¯» 
+  4 ä¸²è¡ŒåŒ–(SERIALIZABLE)       
+. æŸ¥çœ‹æ•°æ®åº“ä¸­çš„äº‹åŠ¡éš”ç¦»çº§åˆ«é…ç½®
   . SELECT @@global.tx_isolation, @@tx_isolation
-. ËÄ¸ö¼¶±ð¸ôÀëÐÔÖð½¥ÔöÇ¿£¬Ã¿¸ö¼¶±ð½â¾öÒ»¸öÎÊÌâ
-. Æä±¾ÖÊÊÇ£ºÔÚ²¢ÐÐ²Ù×÷ ºÍ Êý¾Ý°²È« ¼ä×÷³öµÄ²»Í¬Æ«ÏòµÄÈ¡Éá
-. Êý¾ÝÎÊÌâ
-  . Ôà¶Á£º¶Áµ½ÆäËüÊÂÎñÖÐÉÐÎ´Ìá½»µÄÖÐ¼äÊý¾Ý
-  . ²»¿ÉÖØ¸´¶Á£ºÔÚÊÂÎñ¹ý³ÌÖÐ£¬·¢ÉúÁËÁíÒ»¸öÊÂÎñÐÞ¸ÄÁËÄ³Êý¾Ý£¬Òò¶øÊÂÎñÔÙÏÈºóÁ½´Î¶Á¸ÃÊý¾ÝÊ±µÃµ½µÄÄÚÈÝ²»Í¬
-  . »Ã¶Á£ºÓë²»¿ÉÖØ¸´¶ÁÏà¶Ô£¬Êý¾Ý¿âÊ¹ÓÃÄ³Ð©»úÖÆ£¨¿ìÕÕ¸ôÀë£©ÊµÏÖÁË¿ÉÖØ¸´¶Á£¬µ«µÚ¶þ´Î¶Áµ½µÄÄÚÈÝÓë¸üÐÂºóµÄÄÚÈÝ²»Ò»ÖÂ
-. ¶ÁÒÑÌá½»(read-committed)
-  . ÊµÏÖ¶ÁÐ´²¢ÐÐ
+. å››ä¸ªçº§åˆ«éš”ç¦»æ€§é€æ¸å¢žå¼ºï¼Œæ¯ä¸ªçº§åˆ«è§£å†³ä¸€ä¸ªé—®é¢˜
+. å…¶æœ¬è´¨æ˜¯ï¼šåœ¨å¹¶è¡Œæ“ä½œ å’Œ æ•°æ®å®‰å…¨ é—´ä½œå‡ºçš„ä¸åŒåå‘çš„å–èˆ
+. æ•°æ®é—®é¢˜
+  . è„è¯»ï¼šè¯»åˆ°å…¶å®ƒäº‹åŠ¡ä¸­å°šæœªæäº¤çš„ä¸­é—´æ•°æ®
+  . ä¸å¯é‡å¤è¯»ï¼šåœ¨äº‹åŠ¡è¿‡ç¨‹ä¸­ï¼Œå‘ç”Ÿäº†å¦ä¸€ä¸ªäº‹åŠ¡ä¿®æ”¹äº†æŸæ•°æ®ï¼Œå› è€Œäº‹åŠ¡å†å…ˆåŽä¸¤æ¬¡è¯»è¯¥æ•°æ®æ—¶å¾—åˆ°çš„å†…å®¹ä¸åŒ
+  . å¹»è¯»ï¼šä¸Žä¸å¯é‡å¤è¯»ç›¸å¯¹ï¼Œæ•°æ®åº“ä½¿ç”¨æŸäº›æœºåˆ¶ï¼ˆå¿«ç…§éš”ç¦»ï¼‰å®žçŽ°äº†å¯é‡å¤è¯»ï¼Œä½†ç¬¬äºŒæ¬¡è¯»åˆ°çš„å†…å®¹ä¸Žæ›´æ–°åŽçš„å†…å®¹ä¸ä¸€è‡´
+. è¯»å·²æäº¤(read-committed)
+  . å®žçŽ°è¯»å†™å¹¶è¡Œ
 	trax1 |---R---x---R--|
 	trax2  |----W---|
-  . trax1ÊÂÎñÏÈÓµÓÐÄ³Êý¾ÝµÄ¶ÁËø£¬ÔÚ`read committed`¸ôÀë¼¶±ðÏÂ£¬ÔÊÐí±ðµÄÊÂÎñ½«¶ÁËøÉý¼¶ÎªÐ´Ëø£¬´Ó¶ø`¶Á-Ð´`²¢ÐÐ¡£
-  . ÁíÍâ£¬trax2»ñµÃÐ´Ëøºó£¬Ö±ÖÁtrax2ÊÂÎñ½áÊø£¬ÊÍ·ÅËøºó£¬trax1²ÅÄÜÔÙ´Î¶Á¸ÃÊý¾Ý£¨¶ÁËø£¿£©£¬´ËÊ±`Ð´-¶Á`ÊÇ²»²¢ÐÐµÄ¡£
-  . ¶øÇÒ£¬trax1µÄÇ°ºóÁ½´Î¶ÁÊý¾Ý²»Í¬£¬Õâ¾ÍÊÇ`²»¿ÉÖØ¸´¶Á`¡£
-. ¶ÁÎ´Ìá½»(read-uncommitted)
-  . ÊµÏÖÐ´¶Á²¢ÐÐ
+  . trax1äº‹åŠ¡å…ˆæ‹¥æœ‰æŸæ•°æ®çš„è¯»é”ï¼Œåœ¨`read committed`éš”ç¦»çº§åˆ«ä¸‹ï¼Œå…è®¸åˆ«çš„äº‹åŠ¡å°†è¯»é”å‡çº§ä¸ºå†™é”ï¼Œä»Žè€Œ`è¯»-å†™`å¹¶è¡Œã€‚
+  . å¦å¤–ï¼Œtrax2èŽ·å¾—å†™é”åŽï¼Œç›´è‡³trax2äº‹åŠ¡ç»“æŸï¼Œé‡Šæ”¾é”åŽï¼Œtrax1æ‰èƒ½å†æ¬¡è¯»è¯¥æ•°æ®ï¼ˆè¯»é”ï¼Ÿï¼‰ï¼Œæ­¤æ—¶`å†™-è¯»`æ˜¯ä¸å¹¶è¡Œçš„ã€‚
+  . è€Œä¸”ï¼Œtrax1çš„å‰åŽä¸¤æ¬¡è¯»æ•°æ®ä¸åŒï¼Œè¿™å°±æ˜¯`ä¸å¯é‡å¤è¯»`ã€‚
+. è¯»æœªæäº¤(read-uncommitted)
+  . å®žçŽ°å†™è¯»å¹¶è¡Œ
 	trax1 |---R---R---R--|
 	trax2  |----W---|
-  . Ã»ÓÐ¶ÁËø£¬Ö»ÓÐÐ´Ëø¡£Òò´Ëtrax1ÔÚÈÎºÎÊ±ºò£¨°üÀ¨trax2Ð´²Ù×÷ºó£¬ÊÂÎñ½áÊøÇ°£©¶¼¿ÉÒÔ¶ÁÊý¾Ý¡£`Ð´-¶Á`¿ÉÒÔ²¢ÐÐ
-  . trax1µÚ¶þ´Î¶ÁÊ±£¬¶Áµ½trax2ÖÐÐÞ¸Äµ«Î´Ìá½»µÄÊý¾Ý£¬Õâ¾ÍÊÇ`Ôà¶Á`
-. ²Î¿¼
-  # http://blog.sina.com.cn/s/blog_499740cb0100ugs7.html¡¾excellent¡¿
-  # http://blog.csdn.net/jiesa/article/details/51317164¡¾good¡¿
+  . æ²¡æœ‰è¯»é”ï¼Œåªæœ‰å†™é”ã€‚å› æ­¤trax1åœ¨ä»»ä½•æ—¶å€™ï¼ˆåŒ…æ‹¬trax2å†™æ“ä½œåŽï¼Œäº‹åŠ¡ç»“æŸå‰ï¼‰éƒ½å¯ä»¥è¯»æ•°æ®ã€‚`å†™-è¯»`å¯ä»¥å¹¶è¡Œ
+  . trax1ç¬¬äºŒæ¬¡è¯»æ—¶ï¼Œè¯»åˆ°trax2ä¸­ä¿®æ”¹ä½†æœªæäº¤çš„æ•°æ®ï¼Œè¿™å°±æ˜¯`è„è¯»`
+. å‚è€ƒ
+  # http://blog.sina.com.cn/s/blog_499740cb0100ugs7.htmlã€excellentã€‘
+  # http://blog.csdn.net/jiesa/article/details/51317164ã€goodã€‘
 
-60.[sql] `group_concat`º¯ÊýÓï·¨
-. group_concat( [distinct] ÒªÁ¬½ÓµÄ×Ö¶Î [order by ÅÅÐò×Ö¶Î asc/desc  ] [separator '·Ö¸ô·û'] )
-# ²Î¿¼£ºhttps://blog.csdn.net/mary19920410/article/details/76545053¡¾concat & concat_ws & group_concat¡¿
+60.[sql] `group_concat`å‡½æ•°è¯­æ³•
+. group_concat( [distinct] è¦è¿žæŽ¥çš„å­—æ®µ [order by æŽ’åºå­—æ®µ asc/desc  ] [separator 'åˆ†éš”ç¬¦'] )
+# å‚è€ƒï¼šhttps://blog.csdn.net/mary19920410/article/details/76545053ã€concat & concat_ws & group_concatã€‘
 
 
 

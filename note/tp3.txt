@@ -1,83 +1,83 @@
-# »ùÓÚ°æ±¾5.0
+# åŸºäºç‰ˆæœ¬5.0
 
 * index.php
 * start.php
 * base.php
-  . ¶¨Òå³£Á¿
-  . ×¢²á×Ô¶¯¼ÓÔØ
-  . ×¢²á´íÎóºÍÒì³£´¦Àí»úÖÆ
-    # https://segmentfault.com/a/1190000009504337 ¡¾PHP ´íÎóÓëÒì³£¡¿¡¾excellent¡¿
-    . set_error_handler // ´¦Àíerrror
-      . ¾­³£½«error´ò°üÎªexceptionÅ×³öÒÔÍêÉÆÒì³£»úÖÆ
-    . set_exception_handler // ´¦Àíexception
-      . ½«´íÎóĞÅÏ¢ºÍÔËĞĞÊ±µÄÆäËüÊı¾İ°´Ä£°å¸ñÊ½»¯Êä³ö
-    . register_shutdown_function // `fatalError`»òÕı³£½áÊø¶¼»áÖ´ĞĞ
-    . ²¶×½Òì³£Óë´íÎó try {} catch (Exception $e) {...} catch (Error $e) {...}
-  . ¼ÓÔØ¹ßÀıÅäÖÃÎÄ¼ş THINK/convention.php
-* ³õÊ¼»¯Ó¦ÓÃ
-  . ×¢²á`App`ÃüÃû¿Õ¼ä
-  . ¶ÁÈ¡ÅäÖÃÎÄ¼ş
+  . å®šä¹‰å¸¸é‡
+  . æ³¨å†Œè‡ªåŠ¨åŠ è½½
+  . æ³¨å†Œé”™è¯¯å’Œå¼‚å¸¸å¤„ç†æœºåˆ¶
+    # https://segmentfault.com/a/1190000009504337 ã€PHP é”™è¯¯ä¸å¼‚å¸¸ã€‘ã€excellentã€‘
+    . set_error_handler // å¤„ç†errror
+      . ç»å¸¸å°†erroræ‰“åŒ…ä¸ºexceptionæŠ›å‡ºä»¥å®Œå–„å¼‚å¸¸æœºåˆ¶
+    . set_exception_handler // å¤„ç†exception
+      . å°†é”™è¯¯ä¿¡æ¯å’Œè¿è¡Œæ—¶çš„å…¶å®ƒæ•°æ®æŒ‰æ¨¡æ¿æ ¼å¼åŒ–è¾“å‡º
+    . register_shutdown_function // `fatalError`æˆ–æ­£å¸¸ç»“æŸéƒ½ä¼šæ‰§è¡Œ
+    . æ•æ‰å¼‚å¸¸ä¸é”™è¯¯ try {} catch (Exception $e) {...} catch (Error $e) {...}
+  . åŠ è½½æƒ¯ä¾‹é…ç½®æ–‡ä»¶ THINK/convention.php
+* åˆå§‹åŒ–åº”ç”¨
+  . æ³¨å†Œ`App`å‘½åç©ºé—´
+  . è¯»å–é…ç½®æ–‡ä»¶
     . APP/config.php
     . APP/database.php
     . APP/extra/*.php
-    . APP/{$config[app_status]}.php // Ó¦ÓÃ×´Ì¬ÅäÖÃ
-  . ¼ÓÔØ APP/common.php
+    . APP/{$config[app_status]}.php // åº”ç”¨çŠ¶æ€é…ç½®
+  . åŠ è½½ APP/common.php
   * Hook
-    . Ìí¼Ó Hook::import(include APP/tags.php); »ò Hook:add('app_end', 'app\admin\behavior\Test')
-    . ¼àÌı Hook::listen($tag, &$params = null, $extra = null, $once = false)
-    . ĞĞÎª class Test { public function appEnd(&params, $extra) { ... return false; } }
-      . ·½·¨ÃûÎª±êÇ©ÃûµÄÍÕ·åĞ´·¨£¬Ä¬ÈÏ·½·¨Ãûrun
-      . Ò»¸ö²ÎÊıÍ¨¹ıÒıÓÃ´«µİ£¬Ò»¸öÆÕÍ¨²ÎÊı
-      . return false ½«×èÖ¹ºóÃæµÄbehavior£¬µ«²»Í£Ö¹³ÌĞò
-    # ĞĞÎªµÄ´æÔÚÈÃÄãÎŞĞè¸Ä¶¯¿ò¼ÜºÍÓ¦ÓÃ£¬¶øÔÚÍâÎ§Í¨¹ıÀ©Õ¹»òÕßÅäÖÃÀ´¸Ä±ä»òÕßÔö¼ÓÒ»Ğ©¹¦ÄÜ¡£
+    . æ·»åŠ  Hook::import(include APP/tags.php); æˆ– Hook:add('app_end', 'app\admin\behavior\Test')
+    . ç›‘å¬ Hook::listen($tag, &$params = null, $extra = null, $once = false)
+    . è¡Œä¸º class Test { public function appEnd(&params, $extra) { ... return false; } }
+      . æ–¹æ³•åä¸ºæ ‡ç­¾åçš„é©¼å³°å†™æ³•ï¼Œé»˜è®¤æ–¹æ³•årun
+      . ä¸€ä¸ªå‚æ•°é€šè¿‡å¼•ç”¨ä¼ é€’ï¼Œä¸€ä¸ªæ™®é€šå‚æ•°
+      . return false å°†é˜»æ­¢åé¢çš„behaviorï¼Œä½†ä¸åœæ­¢ç¨‹åº
+    # è¡Œä¸ºçš„å­˜åœ¨è®©ä½ æ— éœ€æ”¹åŠ¨æ¡†æ¶å’Œåº”ç”¨ï¼Œè€Œåœ¨å¤–å›´é€šè¿‡æ‰©å±•æˆ–è€…é…ç½®æ¥æ”¹å˜æˆ–è€…å¢åŠ ä¸€äº›åŠŸèƒ½ã€‚
     # https://www.kancloud.cn/manual/thinkphp/1699
     # https://www.kancloud.cn/manual/thinkphp5/118130
-  * ÉèÖÃApp::$debug
-    . ÊÇ¿ØÖÆÊÇ·ñ±¨´íµÈµÄÖØÒªÅäÖÃ
-    . ÔÚ´Ë´¦ÉèÖÃÖ®Ç°Ä¬ÈÏfalse
-. Ä£¿é°ó¶¨
-  . ¶¨Òå`BIND_MODULE`³£Á¿¿ÉÒÔ°ó¶¨Ä£¿é
-  . ÅäÖÃ`auto_bind_module`£¬¿ÉÒÔÔÚÊ¹ÓÃÆäËüÈë¿Ú£¨ÎÄ¼ş£©Ê±×Ô¶¯°ó¶¨Í¬ÃûÄ£¿é£¨Ã»±ØÒª£¬ÔÚĞÂµÄÈë¿ÚÎÄ¼şÖĞ¶¨Òå`BIND_MODULE`¸üÖ±¹Û£©
+  * è®¾ç½®App::$debug
+    . æ˜¯æ§åˆ¶æ˜¯å¦æŠ¥é”™ç­‰çš„é‡è¦é…ç½®
+    . åœ¨æ­¤å¤„è®¾ç½®ä¹‹å‰é»˜è®¤false
+. æ¨¡å—ç»‘å®š
+  . å®šä¹‰`BIND_MODULE`å¸¸é‡å¯ä»¥ç»‘å®šæ¨¡å—
+  . é…ç½®`auto_bind_module`ï¼Œå¯ä»¥åœ¨ä½¿ç”¨å…¶å®ƒå…¥å£ï¼ˆæ–‡ä»¶ï¼‰æ—¶è‡ªåŠ¨ç»‘å®šåŒåæ¨¡å—ï¼ˆæ²¡å¿…è¦ï¼Œåœ¨æ–°çš„å…¥å£æ–‡ä»¶ä¸­å®šä¹‰`BIND_MODULE`æ›´ç›´è§‚ï¼‰
 . Lang
-  . Õì²â/ÉèÖÃÏµÍ³ÓïÑÔ£¬¼ÓÔØÓïÑÔ°ü
-  . Lang::get('hell'); // µ±²»´æÔÚÓÚÓïÑÔ°üÊ±£¬Ô­ÑùÊä³ö
-* Â·ÓÉ¼ì²â
-  . config::url_route_on // Â·ÓÉ¹Ø±Õºó£¬²»»á½âÎöÈÎºÎÂ·ÓÉ¹æÔò£¬²ÉÓÃÄ¬ÈÏµÄPATH_INFO Ä£Ê½·ÃÎÊURL
-  . config::route_config_file // Â·ÓÉÅäÖÃÎÄ¼ş
-  . config::url_domain_deploy // ÓòÃû²¿Êğ
-  * ½âÎö£¨¼æÈİÄ£Ê½ÏÂ£¬¼´`config::url_route_on=true;config::url_route_must=false`£©
-    1. ¶¨ÒåµÄÂ·ÓÉ¹æÔò
-    2. Èç¹û²»´æÔÚ£¬°´`path_info`µÄ`module-controller-action`¹æÔò½âÎö
-  . ¼ÇÂ¼µ±Ç°µ÷¶ÈĞÅÏ¢
+  . ä¾¦æµ‹/è®¾ç½®ç³»ç»Ÿè¯­è¨€ï¼ŒåŠ è½½è¯­è¨€åŒ…
+  . Lang::get('hell'); // å½“ä¸å­˜åœ¨äºè¯­è¨€åŒ…æ—¶ï¼ŒåŸæ ·è¾“å‡º
+* è·¯ç”±æ£€æµ‹
+  . config::url_route_on // è·¯ç”±å…³é—­åï¼Œä¸ä¼šè§£æä»»ä½•è·¯ç”±è§„åˆ™ï¼Œé‡‡ç”¨é»˜è®¤çš„PATH_INFO æ¨¡å¼è®¿é—®URL
+  . config::route_config_file // è·¯ç”±é…ç½®æ–‡ä»¶
+  . config::url_domain_deploy // åŸŸåéƒ¨ç½²
+  * è§£æï¼ˆå…¼å®¹æ¨¡å¼ä¸‹ï¼Œå³`config::url_route_on=true;config::url_route_must=false`ï¼‰
+    1. å®šä¹‰çš„è·¯ç”±è§„åˆ™
+    2. å¦‚æœä¸å­˜åœ¨ï¼ŒæŒ‰`path_info`çš„`module-controller-action`è§„åˆ™è§£æ
+  . è®°å½•å½“å‰è°ƒåº¦ä¿¡æ¯
     . $request->dispatch($dispatch);
-? ÇëÇó»º´æ
+? è¯·æ±‚ç¼“å­˜
 * App::exec()
   . type=function 
     * App::invokeFunction($function, $vars = [])
-      1 $reflect = new \ReflectionFunction($function); // ÀûÓÃPHP5µÄ·´Éä(reflection)»úÖÆ
+      1 $reflect = new \ReflectionFunction($function); // åˆ©ç”¨PHP5çš„åå°„(reflection)æœºåˆ¶
     * App::bindParams($reflect, $vars = [])
-      2 $vars = Request::instance()->route(); OR // Ë³Ğò²ÎÊı£¬Èç`/m/c/a/v1/v2`
-        $vars = Request::instance()->param(); // ³É¶Ô²ÎÊı£¬Èç`/m/c/a/p1/v1/p2/v2`
-      3 $reflect->getNumberOfParameters() // »ñÈ¡º¯Êı²ÎÊıÁĞ±í [ReflectionParameter...]
-      4.1 Èç¹û²ÎÊıÀàĞÍÊÇÀà(class)
-        ¡ı ²é¿´ÊÇ·ñ°ó¶¨ÁË`Request`:`Request::instance()->$name`(Request¶ÔÏóÖĞÓë²ÎÊıÃûÍ¬ÃûµÄÊôĞÔ)
-        ¡ı ²é¿´ÀàÊÇ·ñ´æÔÚ`static invoke`£¨×¢Òâ²»ÊÇ`__invoke`£©·½·¨£¬ÓÃ¸Ã·½·¨ÊµÀı»¯Àà£¬»á½«`Request`¶ÔÏó×÷Îª²ÎÊı
-        ¡ı ²é¿´ÀàÊÇ·ñ´æÔÚ`static instance`·½·¨
-        ¡ı new $className;
-      4.2 Èç¹ûurlÊÇ¡®Ë³Ğò²ÎÊı¡¯£¬Ôò°´Ë³Ğò½«¡®url²ÎÊı¡¯¶ÔÓ¦¡®·½·¨²ÎÊı¡¯
-        ! Òò´ËurlµÄ¡®Ë³Ğò²ÎÊı¡¯Ä£Ê½ÊÇ²»Ö§³Ö²ÎÊıÈ±Ê¡µÄ
-      4.3 Èç¹ûurlÊÇ¡®³É¶Ô²ÎÊı¡¯£¬Ôò°´²ÎÊıÃû¶ÔÓ¦
-        ! Èç¹ûurlÖĞ²»´æÔÚ¸Ã²ÎÊı£¬ÔòÊÔÍ¼È¡ÓÃ·½·¨¶¨ÒåÖĞµÄÄ¬ÈÏ²ÎÊı:`$reflectionParameter->getDefaultValue()`
+      2 $vars = Request::instance()->route(); OR // é¡ºåºå‚æ•°ï¼Œå¦‚`/m/c/a/v1/v2`
+        $vars = Request::instance()->param(); // æˆå¯¹å‚æ•°ï¼Œå¦‚`/m/c/a/p1/v1/p2/v2`
+      3 $reflect->getNumberOfParameters() // è·å–å‡½æ•°å‚æ•°åˆ—è¡¨ [ReflectionParameter...]
+      4.1 å¦‚æœå‚æ•°ç±»å‹æ˜¯ç±»(class)
+        â†“ æŸ¥çœ‹æ˜¯å¦ç»‘å®šäº†`Request`:`Request::instance()->$name`(Requestå¯¹è±¡ä¸­ä¸å‚æ•°ååŒåçš„å±æ€§)
+        â†“ æŸ¥çœ‹ç±»æ˜¯å¦å­˜åœ¨`static invoke`ï¼ˆæ³¨æ„ä¸æ˜¯`__invoke`ï¼‰æ–¹æ³•ï¼Œç”¨è¯¥æ–¹æ³•å®ä¾‹åŒ–ç±»ï¼Œä¼šå°†`Request`å¯¹è±¡ä½œä¸ºå‚æ•°
+        â†“ æŸ¥çœ‹ç±»æ˜¯å¦å­˜åœ¨`static instance`æ–¹æ³•
+        â†“ new $className;
+      4.2 å¦‚æœurlæ˜¯â€˜é¡ºåºå‚æ•°â€™ï¼Œåˆ™æŒ‰é¡ºåºå°†â€˜urlå‚æ•°â€™å¯¹åº”â€˜æ–¹æ³•å‚æ•°â€™
+        ! å› æ­¤urlçš„â€˜é¡ºåºå‚æ•°â€™æ¨¡å¼æ˜¯ä¸æ”¯æŒå‚æ•°ç¼ºçœçš„
+      4.3 å¦‚æœurlæ˜¯â€˜æˆå¯¹å‚æ•°â€™ï¼Œåˆ™æŒ‰å‚æ•°åå¯¹åº”
+        ! å¦‚æœurlä¸­ä¸å­˜åœ¨è¯¥å‚æ•°ï¼Œåˆ™è¯•å›¾å–ç”¨æ–¹æ³•å®šä¹‰ä¸­çš„é»˜è®¤å‚æ•°:`$reflectionParameter->getDefaultValue()`
   . type=method
     * App::invokeMethod($method, $vars = [])
-      1 ¾²Ì¬·½·¨: `$reflect = new \ReflectionMethod($method);`
-      2 ·Ç¾²Ì¬·½·¨: ·ÖÎöÀàµÄ`__construct`·½·¨ -> ½øĞĞÒÀÀµ×¢Èë£¨µ«²»Ö§³Ö¶ÔÆäËü²ÎÊı°ó¶¨£¿£©-> ÊµÀı»¯Àà -> 
-        ÀàºÍ·½·¨Ãû»ñµÃ`ReflectionMethod` -> ÒÀÀµ×¢Èë£¬²ÎÊı°ó¶¨ -> $reflect->invokeArgs($class, $args)
+      1 é™æ€æ–¹æ³•: `$reflect = new \ReflectionMethod($method);`
+      2 éé™æ€æ–¹æ³•: åˆ†æç±»çš„`__construct`æ–¹æ³• -> è¿›è¡Œä¾èµ–æ³¨å…¥ï¼ˆä½†ä¸æ”¯æŒå¯¹å…¶å®ƒå‚æ•°ç»‘å®šï¼Ÿï¼‰-> å®ä¾‹åŒ–ç±» -> 
+        ç±»å’Œæ–¹æ³•åè·å¾—`ReflectionMethod` -> ä¾èµ–æ³¨å…¥ï¼Œå‚æ•°ç»‘å®š -> $reflect->invokeArgs($class, $args)
   . type=module
     * App::module($dispatch, $config, $convert = null)
-      1 ·ÖÎö`$dispatch`»ñµÃ`M.C.A`
-      *2  ³õÊ¼»¯Ä£¿é: App::init($module)
-      ? Ä£¿éÇëÇó»º´æ¼ì²é
+      1 åˆ†æ`$dispatch`è·å¾—`M.C.A`
+      *2  åˆå§‹åŒ–æ¨¡å—: App::init($module)
+      ? æ¨¡å—è¯·æ±‚ç¼“å­˜æ£€æŸ¥
 * response->send()
 
 
@@ -87,8 +87,8 @@ Route
   Route::check
   Route::import
   Route::parseUrl
-  ÉèÖÃÂ·ÓÉÖ®ºó»áÆÁ±ÎÔ­url
-  Route::rule('test/:a/[:b]', 'admin/ajax/test?hello=world', 'get'); // ÒşÊ½²ÎÊı²»ÊÇGET²ÎÊı£¬ºÍ$a,$bÒ»Ñù
+  è®¾ç½®è·¯ç”±ä¹‹åä¼šå±è”½åŸurl
+  Route::rule('test/:a/[:b]', 'admin/ajax/test?hello=world', 'get'); // éšå¼å‚æ•°ä¸æ˜¯GETå‚æ•°ï¼Œå’Œ$a,$bä¸€æ ·
 Debug
   Debug::remark('behavior_start', 'time');
 Request
@@ -97,16 +97,16 @@ Request
 Response
 
 
-config::root_namespace ¿ÉÒÔÅäÖÃÃüÃû¿Õ¼ä
-config::extra_file_list ¶îÍâĞèÒª¼ÓÔØµÄÎÄ¼ş
+config::root_namespace å¯ä»¥é…ç½®å‘½åç©ºé—´
+config::extra_file_list é¢å¤–éœ€è¦åŠ è½½çš„æ–‡ä»¶
 config::default_ajax_return
 config::default_return_type
 config::app_trace
-config::default_module // µ÷ÓÃÄ³Ğ©·½·¨Ê±£¬»áÈ¡ÓÃ×÷Ä¬ÈÏÖµ£¬Èç`App::module`
-config::url_convert // ÊÇ·ñ×Ô¶¯×ª»»URLÖĞµÄ¿ØÖÆÆ÷ºÍ²Ù×÷Ãû(ÎªĞ¡Ğ´)
-config::url_param_type // URL²ÎÊı·½Ê½ 0 °´Ãû³Æ³É¶Ô½âÎö 1 °´Ë³Ğò½âÎö
+config::default_module // è°ƒç”¨æŸäº›æ–¹æ³•æ—¶ï¼Œä¼šå–ç”¨ä½œé»˜è®¤å€¼ï¼Œå¦‚`App::module`
+config::url_convert // æ˜¯å¦è‡ªåŠ¨è½¬æ¢URLä¸­çš„æ§åˆ¶å™¨å’Œæ“ä½œå(ä¸ºå°å†™)
+config::url_param_type // URLå‚æ•°æ–¹å¼ 0 æŒ‰åç§°æˆå¯¹è§£æ 1 æŒ‰é¡ºåºè§£æ
 
-TP¶àÈë¿Ú
+TPå¤šå…¥å£
 https://segmentfault.com/q/1010000002491453
 
 
@@ -115,14 +115,14 @@ https://segmentfault.com/q/1010000002491453
 
 
 
-'app_multi_module=> true, // urlÈı¼¶Â·¾¶
-define('BIND_MODULE','main'); // url¶ş¼¶Â·¾¶
-'app_multi_module=> false, // url¶ş¼¶Â·¾¶£¬applicationÄ¿Â¼ÏÂ²»ĞèÒªÓĞÄ£¿éÄ¿Â¼
+'app_multi_module=> true, // urlä¸‰çº§è·¯å¾„
+define('BIND_MODULE','main'); // urläºŒçº§è·¯å¾„
+'app_multi_module=> false, // urläºŒçº§è·¯å¾„ï¼Œapplicationç›®å½•ä¸‹ä¸éœ€è¦æœ‰æ¨¡å—ç›®å½•
 
-define('EXTEND_PATH','../vendor/'); // EXTEND_PATHÏÂ¿ÉÒÔ×Ô¶¯×¢²áÃüÃû¿Õ¼ä
-\think\Loader::addNamespace('my','../application/extend/my/'); // ÊÖ¶¯×¢²á
+define('EXTEND_PATH','../vendor/'); // EXTEND_PATHä¸‹å¯ä»¥è‡ªåŠ¨æ³¨å†Œå‘½åç©ºé—´
+\think\Loader::addNamespace('my','../application/extend/my/'); // æ‰‹åŠ¨æ³¨å†Œ
 
-/application/extra À©Õ¹ÅäÖÃ
+/application/extra æ‰©å±•é…ç½®
 
 
 
