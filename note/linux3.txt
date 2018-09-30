@@ -1,19 +1,53 @@
 8.1
 
-1.facl  (file access control list)
-*getfacl
-*setfacl
-	eg.	setfacl -m u:user1:rw file1
-	-m 添加
-	-x 取消
-	eg.	setfacl -m d:u:user1:rw dir1	给某个目录下的文件设置默认facl
-
-文件的安全上下文 owner->group->other
-现在追加为：	owner->facl.user->group->facl.group->other
+1.facl (file access control list)
+. 性质：传统`ugo|rwx`权限之外的 另一种权限机制，使用后两者将协同工作
+. 功能：可以对特定`user/group`添加对某文件的权限
+. 字段
+  . `ACL_USER_OBJ` 相当于Linux里file_owner的permission
+  . `ACL_USER` 定义了额外的用户可以对此文件拥有的permission
+  . `ACL_GROUP_OBJ` 相当于Linux里group的permission
+  . `ACL_GROUP` 定义了额外的组可以对此文件拥有的permission
+  . `ACL_MASK` 定义了ACL_USER, ACL_GROUP_OBJ和ACL_GROUP的最大权限 (这个我下面还会专门讨论)
+  . `ACL_OTHER` 相当于Linux里other的permission
+. ACL_MASK
+  . 该字段记录了有效权限(effective permission)
+  . 意义：规定了`ACL_USER`，`ACL_GROUP`和`ACL_GROUP_OBJ`的最高权限
+    . mask:rx
+    . user:admin:rwx	#effective:r-x
+    . group::rw			#effective:r--
+    . group:admin:wx	#effective:--x
+    ! 吐槽一下，这个设定太扭曲了，有什么必要偏偏为这三个字段设置掩码。。
+  . 另外请注意，当`ACL_MASK`值存在时
+    . ll somefile // rwx-wx--x
+    . 中间的`wx-`权限含义不再是 属组权限，而是`ACL_MASK`值
+. Default ACL
+  . 针对目录文件可以设置`Default ACL`
+  . 上面的六个字段都可以设置
+  . 设置默认`ACL`后，在目录下创建子文件将获得默认的`ACL`属性
+  . 如果是子目录，不仅应用默认`ACL`，而且继承`Default ACL`
+. 指令
+  . getfacl <file> // 读取ACL权限
+  . setfacl -m u:uid:perm <file> // 设置ACL_USER
+  . setfacl -m g:gid:perm <file> // 设置ACL_GROUP
+  . setfacl -m m:perm <file> // 设置ACL_MASK
+  . setfacl -m u:uid:perm <file> // 设置ACL_OTHER
+  . setfacl -m d:u:uid:perm <file> // 设置DEFAULT_ACL_USER；其它默认值的设置类似
+  . setfacl -b <file> // 删除所有`ACL`权限
+  . setfacl -x u:uid <file> // 删除ACL_USER
+    . 其它默认值的设置类似
+    . 不能删除基础的 `ACL_USER_OBJ` `ACL_GROUP_OBJ` `ACL_OTHER`
+  . 其它
+    . 设置空权限用`u:uid:-`
+    . 多条acl规则以`,`隔开
+    . -n // 在设置`ACL_USER``ACL_GROUP``ACL_GROUP_OBJ`原本会重新计算`ACL_MASK`，加`-n`参数不重新计算
+. 参考
+  # http://man.linuxde.net/setfacl【setfacl命令】【good】
+  # https://www.cnblogs.com/chrisDuan/p/4677408.html【Linux文件系统访问控制列表】
 
 2.who 显是当前登录系统的所有用户
--r 显示运行级别（run-level)
-*w命令，类似who，更详细
+-r 显示运行级别(run-level)
+w命令，类似who，更详细
 
 3.终端类型：
 control：控制台：物理连接服务器的显示器和键盘等，不会用来登录，没有用户概念，
@@ -22,42 +56,18 @@ tty:虚拟终端，虚拟控制台，一般在服务器本地，附加在物理�
 ttyS:串行终端
 pts：伪终端，模拟而成
 
-*******************以后笔记中#表示数字****************
-
 4.last 显示/var/log/wtmp文件，显示用户登录历史和系统重启历史
--n #	显示最近#条	
-
+last -n<num> // 显示最近几条	
 5.lastb 显示/var/log/btmp文件，显示错误的登录尝试
-
 6.lastlog 所有用户上次登录时间
 -u username 
 
 7.basename 取的目录或者文件的 基名（不含路径的名称）
 
-8.[变量] $0 位置变量，表示 脚本文件本身，其路径及名称
-
-$HOSTNAME 环境变量，主机名
-
 9.随机数生成器 /dev/random	/dev/urandom
-$RANDOM
-
-
-10.case 语句
-
-case SWITCH in
-value1)
-	...
-	;;
-value2)
-	...
-	;;
-*)
-	...
-	;;
-esac
-
-
-
+. cat /dev/urandom | od -x
+. 环境变量 $RANDOM
+# https://www.cnblogs.com/zhouhbing/p/5820899.html【Linux系统产生随机数/dev/random 和 /dev/urandom】
 
 9.3
 
@@ -67,7 +77,7 @@ esac
 
 2.
 buffer	元数据	高速区->低速区
-cache	数据	高速区<-低速区
+cache	数据		高速区<-低速区
 
 3.swap 交换空间，交换分区（windows叫虚拟内存）
 swapon	启用交换空间，性质类似挂载mount
@@ -86,54 +96,24 @@ swapoff
 9.4
 
 1.tar 归档
+tar <option> <files>
 -c 创建
--x 展开
--tf 不展开，但是查看内容
+-x 展开（到当前目录）
+  . tar -xf <sometar> <somefile> // 可以展开指定文件
+-tf 不展开，但是查看内容 list
 -f 操作的归档文件
+-r 向压缩归档文件末尾追加文件 
 --xattrs 归档时保留扩展属性信息
 -zcf 归档并压缩（gzip）
 -zxf 解压并展开
 -jcf ...（bzip2）
 -jxf ...
+https://blog.csdn.net/BigBirds911/article/details/60955492
 
 2.cpio 		copy files to and form archives		也是归档工具
 
 3.read
 -p propmt提示
 -t timeout时限
-
-4.while
-while CONDITION;do
-...
-done
-
-
-tr用来从标准输入中通过替换或删除操作进行字符转换
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

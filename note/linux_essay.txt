@@ -110,10 +110,10 @@ X Window
 
 
 [命令] 
-* exit	注销当前登录的账号
-* date
-* cal
-* bc
+* exit 注销当前登录的账号
+* date 日期
+* cal 日历
+* bc 计算器
 
 
 手册（manual）
@@ -184,11 +184,11 @@ tty
 *存疑： 
 	linux到底有哪些登录方式？
 	登录的含义又是什么？
-	我打开了虚拟机，登录时的tty1又是什么？
-	linux是多用户的，可是只有我一个人坐在电脑前呀？我是特殊地吗？
-	其它用户应该是远程连接，远程一定是通过网络？与我直接在主机面前有何不同？
-	所有登录都是登录到一个tty上吗？
-	同一个用户可以同时登录多个tty。那一个tty可以同时被多个用户登录吗？
+	我打开了虚拟机，登录时的tty1又是什么？ <= 控制终端
+	linux是多用户的，可是只有我一个人坐在电脑前呀？我是特殊地吗？ <= 是特殊的
+	其它用户应该是远程连接，远程一定是通过网络？与我直接在主机面前有何不同？ <= ssh登录到pts终端
+	所有登录都是登录到一个tty上吗？ <= 不是
+	同一个用户可以同时登录多个tty。那一个tty可以同时被多个用户登录吗？ <= 不能
 
 
 nano编辑器
@@ -381,7 +381,7 @@ FHS( Filesystem Hierarchy Standard )【重要】
 	.如果没有-r，会提示omit...
 * -i 如果目标文件已存在，会询问是否覆盖
 	. 默认是直接覆盖的
-* -f 强制【？？？】
+* -f 强制覆盖，不会询问
 * -u 更新。如果目标文件已存在，只有源文件mtime较新时才会覆盖	
 * -a 同 -pdr
 
@@ -521,18 +521,18 @@ FHS( Filesystem Hierarchy Standard )【重要】
 @ 文件系统结构
 * 引导扇区*1 + 块组（block group）*n
 * 块组：
-	. 超级块 *1 
-	  描述整个分区的文件系统信息，例如块大小、文件系统版本号、上次mount的时间等等。超级块在每个块组的开头都有一份拷贝
-	. 组描述符 *n
-	. block bitmap *1
-	. inode bitmap *1
-	. inode table *n
+	. 超级块 size=1块
+	  . 描述整个分区的文件系统信息，例如块大小、文件系统版本号、上次mount的时间等等。超级块在每个块组的开头都有一份拷贝
+	. 块组描述符表 size=n (blocks group descriptor)
+	  . 和超级块类似，块组描述符表在每个块组的开头也都有一份拷贝
+	. block bitmap size=1
+	. inode bitmap size=1
+	. inode table size=n
 		`size: 128byte
 		`记录属性：permission、owner、group、file size、[c|m|a]time、flag（特殊权限）
 		`记录文件存储的数据块data block，直接指向、间接、双间接、三间接
-			
 	. data block *n
-* http://www.cnblogs.com/peon/archive/2011/06/22/2086470.html
+* http://www.cnblogs.com/peon/archive/2011/06/22/2086470.html【分析ext2文件系统磁盘分区结构】【excellent】
   http://www.cnblogs.com/biyeymyhjob/archive/2012/07/26/2609649.html
 
 @ 文件系统 分为 索引式 和 链表式【？】
@@ -579,6 +579,10 @@ FHS( Filesystem Hierarchy Standard )【重要】
 @ ln -s 创建符号连接文件
 * 符号连接文件中其实只记录了 指向的文件路径
 * 可指向目录
+  . 删除目录的软链接请小心
+  	. `rm -rf foo` 和 `rm -rf foo/` 含义是一样的，都是删除`foo`目录
+  	! `rm -rf foo.ln`是删除软链接，`rm -rf foo.ln/`是删除指向的`foo`目录 
+  	# https://blog.csdn.net/linuxnews/article/details/51034316
 * 可跨文件系统
 
 @ fdisk 创建分区
@@ -623,7 +627,7 @@ FHS( Filesystem Hierarchy Standard )【重要】
   也就是说，曾经设备文件是一定要手动创建的
 * mknod FILENAME [bcp] [major] [minor]
 
-@ e2label
+@ e2label 卷标
 * e2label /dev/sda5 显示Label
 * e2label /dev/sda5 bigfish 	修改Label
 

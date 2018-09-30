@@ -1,189 +1,3 @@
-==================== EPR ====================
-
-审批
-
-提交审批
-@ flowrequest.app -> flowSelect
-@ flowrequest.class -> start_flow
-update base // 更新状态 $flow_info['start_status']
-insert request 
-insert approve 
-
-主办
-@ approve.app -> edit ( id )
-
-提交下一步
-@ approve.app -> edit ( is_transfer_next_step=1 )
-@ approve.class -> turnNext
-update approve
-update base
-@ approve.app -> edit ( op=turnNext )
-// 读配置，确定下一步骤；包括：跳过步骤
-
-确定
-@ approve.app -> edit ( post )
-@ approve.class -> edit ( approve_id )
-update approve // 结束前一条审批 status=2
-update base // 如果是flow的最后一步(step=0)，更新base_table状态为$flow_info['end_status']
-insert approve
-
---------------------
-
-回退
-
-@ approve.app -> turnBack ( id ) 弹窗界面
-@ approve.app -> turnBack ( POST )
-@ approve.class -> turnBack
-update approve // 结束当前步骤，status=3
-select approve // 目标步骤的之前数据，approve_member_id等
-insert approve // 插入新的审批，status=1
-
---------------------
-
-权限
-
-Part1: 左侧目录
-@ public/index.html
-@ default.app.php -> menu
-@ frame_tab.js -> L249 // welcome页
-
-Part2: 验证每个请求
-@ backend.app -> __construct
-@ backend.app -> checkLogin
-@ backend.app -> daohang
-@ operate.class -> daohang
-check app
-check act
-check operate【这里如果有多个op对应相同的app、act，多个op的权限只有其中一个有效，容易导致错误】
-
---------------------
-
-重复登录验证 和 60min未操作验证
-@ ajax.app -> adminLoginLog
-@ backend.app -> updateLoginLogActionTime
-
---------------------
-
-跳跃步骤
-
-@flowsort.class -> getNoFlowSortProcess // 获取当前流程模块中的当前步骤之前的步骤（不包含当前步骤）
-@loan.class -> getIsSkipNext 
-@flowrequestapprove.app -> edit (op=turnNext)
-评价：跳跃步骤的规则 不应该 分布在两处
-@loan.class -> getFilteringSteps // 步骤过滤
-这是 回退功能 使用的一个函数，与 跳跃步骤的规则 相一致。就是说，又有重复的代码。
-
-===============================================
-
-
-==========fuiou==================================================
-https://fht-test.fuiou.com/fuMer/faq_2.0.html
-
-https://fht-test.fuiou.com/fuMer/req.do // 代收 测试
-https://fht-test.fuiou.com/fuMer/inspro.do // 项目录入，测试
-https://fht.fuiou.com/inspro.do	// 项目录入，生产环境
-4.2.1 请求报文
-节点名称 中文名称 类型 可空 含义
-merid 商户号 否 由富友分配
-reqtype 请求类型 否 由富友分配
-xml 请求参数 否 使用 XML 表示，见各功能点的请求报文定义
-mac 校验值 否 商户号|富友分配给商户的密码|请求类型|业务
-参数 XML，用竖线拼接后用 MD5 散列后的
-16 进制文本
-Md5(merid+”|”+pwd+”|”+reqtype+”|”+xml)
-
-
-签约接口
-代扣必须要签约成功，代付不需要签约；签约分为线上和线下两种；
-线上：对接后，根据协议约定，由富友技术协调员提供相关的接口签约文档；
-线下：线下签约方式为 pos 签约，联系富友市场（商务）提供 pos 机；
-关于签约
-为了避免引起不必要的纠纷,P2P平台商户必须将与投资人的契约关系反应到本系统,只有签约成功的卡片才能成功扣款,具体参见《新版协议库签约文档》
-
-
-所需接口
-1. 签约查询
-2. 项目录入
-3. 代收
-4. 交易查询
-
-脚本http://st.local.com?app=fuiouAutoCharge&act=fuiou_auto_charge&debug=1
-=================================================================
-
-===user-index-review============
-* 公共cond方法
-* @loan.class -> getAllInfo 使用关联模型
-* 弹窗利用公共js class="J_info"
-* user.validate 的验证格式
-- 导出/列表用数据要分别处理
-- 表单中不同数据表的项，可以在name上用数组做区分 <input name="contract[att]"
-===loan-index-review============
-- 联表的处理用 loan_pay 中join_flag的方式更方便
-- 实现类型枚举值的功能，可以用const关键字 （loan.service vs general_period_record.model）
-- 使用一个$cond变量维护查询条件，很难表达“或”关系.
-  . loan_pay中用$model代替$cond
-  . loan中允许$cond使用非标准格式（如 $cond[] = "f1=v1 OR f2=v2"），然后重新处理$cond
-* js中使用了 字符串模板 和 函数简写
-===index-center-review============
-* 采用后台加载数据，拼接html的结构
-* ↑ 并对分页支持
-? 同一页面中，分多次请求数据
-===customervip-add-review==============
-* 弹窗中的js在父窗口中完成，使代码集中
-- JS也可以算日期 https://segmentfault.com/a/1190000000344899
-===gps-index-review==============
-* $('#search_form').append(input).submit();
-* 批量操作时使用doEdit操作数据
-- 批量导入时，中途有任意一处错误就会中断
-- ajax请求写在自己的控制器里，用op区分会更好
-===sms-review==============
-- getSmsWorkbench这样的功能应该在service
-? 质疑：sms表只需要 type | from | to | content | title | is_send | is_read | time
-- 系统头部的 消息入口 的badge 不能即时更新吗
-- 慢查询 SELECT COUNT(*) AS tp_count FROM `oa_sms` WHERE `mark` = 1 AND ( `send_id` =1 OR to_id=1 ) LIMIT 1 [ RunTime:17.080977s ]
-===usernotice-review==============
-- lists 和 index 可以做成同一个页面。content 和 detail也是
-- 编辑公告多选框
-* 用 query->insertAll 批量添加
-* 使用 layedit
-? 富文本~~没有必要~~不应该用htmlspecialchars过滤后保存
-? 有关图片存储的处理
-===customer-index-review==============
-* 我的客户/客户草稿/客户列表 三合一
-===udesk-review==============
-- 搜索条件(状态,放款时间)所需的联表，在没有该条件时也联了
-- 取最新的loan和record错误。SQL中`group`是作用在`order`之前的，不能通过`order`和`group`来取某个分组按某字段排序的第一个记录。用联表来实现就更不靠谱了。
-  方法：1.临时表 (SELECT customer_id,MAX('create_time') FROM oa_loan GROUP BY customer_id) 
-        2.查出最新一条loan   SELECT * FROM oa_customer customer  LEFT JOIN oa_loan loan ON loan.customer_id=customer.id 
-                             WHERE NOT EXISTS (SELECT * FROM oa_loan loan2 WHERE loan2.customer_id=loan.customer_id AND loan2.create_time>loan1.create_time)
-===contract-review==============
-* model('role')->kefu_role_id
-  \app\common\model\Role::kefu_role_id 更好
-- js不好看
-- 列表中没有判断是否需要直接联了所有表
-* 控制器精简
-===matchvehicle-review==============
-* layer.upload插件
-===statistics-commission-review==============
-* <input type="checkbox" name="" value="(945,1)" lay-skin="primary" class="checkitem">
-===servicefee-review==============
-- 用跳转页面的方式设置初始条件 header('Location:?pay_time='.date("Y-m-d",$month_begin).' ~ '.date("Y-m-d",$month_end)); 
-===rebate-review==============
-- 导出和列表处理数据代码冗余
-===repayfirst-review==============
-- 贷款期限选项构造复杂，且筛选错误
-===settleloan-review==============
-* $conditions = request()->only(['business_type', 'custom', 'customer', 'loan_type', 'real_repay_time', 'store_id'], 'post');
-===achievementtract-review==============
-* Paginator->each()
-
-===edit vs doEdit==============================================
-* 很早就发现，用`base.model->edit`(最终调用的`model->save`)方法连续两次写操作时，可能会造成数据错乱。
-  原因很简单，我们在不同地方用`model('xxx')`获取的模型对象其实是同一个对象。在做insert或update后，model会将自身属性设置为操作后的记录。。。。balabala
-* 但是`base.model->doEdit`(最终调用的`model::create`)方法不会有这个问题
-  public static function create(...) {$model = new static(); ...}
-  等同于我的解决方案：`(new TransferAudit())->edit()`
-  
 ===optimization==================================================
 @ 批量导出按钮优化
 @ 选择**弹框优化
@@ -1012,25 +826,14 @@ https://www.cnblogs.com/lanchang/p/6597372.html
 C^D EOF字符
 
 
-输入重定向
-< 输入某个文件
-<< EOF 手动输入，以‘EOF’作为结束标志
 
 
-cat > quz < qux
-cat < qux > quz
-两者结果相同
 
-command > file 2>&1
 command &> file
 将 stdout 和 stderr 合并后重定向到 file
 
 
-n > file 	将文件描述符为 n 的文件重定向到 file。
-n >> file 	将文件描述符为 n 的文件以追加的方式重定向到 file。
-n >& m 	将输出文件 m 和 n 合并。
-n <& m 	将输入文件 m 和 n 合并。
-
+？n <& m 	将输入文件 m 和 n 合并。
 ？文件描述符
 http://www.runoob.com/linux/linux-shell-io-redirections.html
 
@@ -1143,133 +946,11 @@ string="runoob is a great site"
 echo ${string:1:4} # 输出 unoo
 offset:length
 
-数组 
-array_name=(value0 value1 value2 value3)
-或
-array_name[0]=value0
-array_name[1]=value1
-array_name[n]=valuen
-读取
-${array_name[0]}
-# 取得数组元素的个数
-length=${#array_name[@]}
-# 或者
-length=${#array_name[*]}
-# 取得数组单个元素的长度
-lengthn=${#array_name[n]}
-# 数组中所有元素
-echo ${array_name[@]}
-echo ${array_name[*]}
-
-字符串转数组：
-foo="1 2 3"
-arr=($foo)
-或
-foo="1,2,3"
-OLD_IFS="$IFS"
-IFS="," // 这个变量定义了声明数组时所用的分割符？
-arr=($foo)
-IFS="$OLD_IFS"
-
-$( ) 或 ``	
-执行Shell命令
-$(( ))	
-用途1：简单算数运算
-用途2：支持三目运算符 $(( 表达式?数字:数字 ))
-[ ]	
-条件表达式，里面不支持逻辑判断符
-[[]]
-条件表达式，支持逻辑判断符(指||和 &&)
-$[ ]	
-简单算数运算
-{ }	
-对逗号（,）和点点（...）起作用，比如touch {1,2}创建1和2文件，touch {1..3}创建1、2和3文件
-http://blog.51cto.com/lizhenliang/1882219
-
-
-testsh a b c
-echo $1 // 第一个参数 a
-# 注意，$10 不能获取第十个参数，获取第十个参数需要${10}。当n>=10时，需要使用${n}来获取参数
-echo $0 // 当前脚本路径 /root/bin/testsh
-echo $4 // 没有第4个参数  输出空
-echo $# // 参数个数 3
-echo $* // a b c <= "a b c"
-echo $$ // 脚本运行的当前进程ID号
-echo $! // “后台”运行的最后一个进程的ID号
-echo $@ // a b c <= "a" "b" "c"
-echo $- // ？？？Shell使用的当前选项 hB
-echo $? // 上一个命令的结束代码（或函数返回值） 
-echo $_ // 上一个命令的最后一个参数
-
-
-运算
-`expr ...`
-echo `expr 1 == 1` // 1
-echo `expr 1 == 2` // 0 布尔值本质是1和0
-# 注意运算符两边空格一定要 空格
-
-if [[ ... ]] 
-then 
-  ...
-fi
-
-if [[ ... ]] 
-then 
-  ...
-else
-  ...
-fi
-
-if [[ ... ]] 
-then 
-  ...
-elif [[ ... ]]
-then
-  ...
-else
-  ...
-fi
 
 read <var>  # 标准输入
 
 echo -e "OK! \n" # -e 开启转义
 echo -e "OK! \c" # \c 抑制（不显示）输出结果中任何结尾的换行字符
-
-
-for loop in 1 2 3 4 5
-do
-    echo "The value is: $loop"
-done
-
-while condition
-do
-    command
-done
-
-until condition
-do
-    command
-done
-
-case 值 in
-模式1)
-    command
-    ;;
-模式2）
-    command
-    ;;
-esac
-
-break
-continue
-
-for((assignment;condition:next))
-do
-    command_1;
-    command_2;
-    commond_..;
-done;
-
 
 捕获信号
 trap commands signals
@@ -1277,7 +958,7 @@ trap commands signals
 应用程序收到信号后，有三种处理方式：忽略，默认，或捕捉
 如果给该信号指定了一个处理函数(捕捉)，则会中断当前进程正在执行的任务，转而去执行该信号的处理函数，返回后再继续执行被中断的任务
 
-临时文件一般用$$结尾
+多次运行的脚本 所建的临时文件，一般用"$$"(PID)结尾来区分
 
 
        1   Executable programs or shell commands
@@ -1310,4 +991,318 @@ https://blog.csdn.net/junbujianwpl/article/details/78650105
 # tail  -n 5 /etc/profile
 
 
-iconv -f gbk -t utf8 note/know.txt note/mark.txt 
+iconv -f gbk -t utf8 files
+cp -i -r -f source dest
+http://www.runoob.com/linux/linux-comm-cp.html
+如果有 -i 参数的话， 即使有 -f 依然需要 y|n 确认
+
+git显示颜色配置
+https://blog.csdn.net/furzoom/article/details/51278232
+git config --global color.ui true
+
+
+alias # 列表
+alias 别名='原命令' # 添加
+unalias 别名 # 删除
+alias命令的作用只局限于该次登入的操作。若要每次登入都能够使用这些命令别名，则可将相应的alias命令存放到bash的初始化文件/etc/bashrc中
+
+
+
+www.runoob.com/linux/linux-shell-printf.html【Shell printf 命令】
+
+funname
+{
+    action
+    return int
+}
+
+
+trap 0 | trap "-" 0 每个接收到的sigspec信号都将会被重置为它们进入shell时的值
+trap "" 0 忽略
+trap -p 0  prints the list of commands associated  with  each  signal
+trap -l  print a list of signal names and their corresponding numbers
+
+特殊信号
+EXIT(0)  on exit from the shell
+DEBUG  before every command
+RETURN  a shell  function  or  a  script executed with the . or source builtins finishes executing
+ERR  whenever a simple command has a non-zero exit status
+
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+
+       The  entries in the "Action" column of the tables below specify the default disposition for each
+       signal, as follows:
+       Term   Default action is to terminate the process.
+       Ign    Default action is to ignore the signal.
+       Core   Default action is to terminate the process and dump core (see core(5)).
+       Stop   Default action is to stop the process.
+       Cont   Default action is to continue the process if it is currently stopped.
+       
+       Signal     Value     Action   Comment
+       ----------------------------------------------------------------------
+       SIGHUP        1       Term    Hangup detected on controlling terminal
+                                     or death of controlling process		退出终端
+       SIGINT        2       Term    Interrupt from keyboard				^c
+       SIGQUIT       3       Core    Quit from keyboard						^\
+       SIGILL        4       Core    Illegal Instruction
+       SIGABRT       6       Core    Abort signal from abort(3)
+       SIGFPE        8       Core    Floating point exception
+       SIGKILL       9       Term    Kill signal
+       SIGSEGV      11       Core    Invalid memory reference
+       SIGPIPE      13       Term    Broken pipe: write to pipe with no
+                                     readers
+       SIGALRM      14       Term    Timer signal from alarm(2)
+       SIGTERM      15       Term    Termination signal
+       SIGUSR1   30,10,16    Term    User-defined signal 1
+       SIGUSR2   31,12,17    Term    User-defined signal 2
+       SIGCHLD   20,17,18    Ign     Child stopped or terminated
+       SIGCONT   19,18,25    Cont    Continue if stopped
+       SIGSTOP   17,19,23    Stop    Stop process							^z
+       SIGTSTP   18,20,24    Stop    Stop typed at tty
+       SIGTTIN   21,21,26    Stop    tty input for background process
+       SIGTTOU   22,22,27    Stop    tty output for background process
+
+       trap [-lp] [[arg] sigspec ...]
+  The command arg is to be read and executed when the shell receives signal(s) sigspec.  If
+  arg is absent (and there is a single sigspec) or -, each specified signal is reset to its
+  original disposition (the value it had upon entrance to the shell).  If arg is  the  null
+  string  the  signal specified by each sigspec is ignored by the shell and by the commands
+  it invokes.  If arg is not present and -p has been supplied, then the trap commands asso-
+  ciated  with  each  sigspec are displayed.  If no arguments are supplied or if only -p is
+  given, trap prints the list of commands associated  with  each  signal.   The  -l  option
+  causes  the  shell to print a list of signal names and their corresponding numbers.  Each
+  sigspec is either a signal name defined in <signal.h>, or a signal number.  Signal  names
+  are case insensitive and the SIG prefix is optional.
+
+  If  a  sigspec  is  EXIT  (0)  the  command arg is executed on exit from the shell.  If a
+  sigspec is DEBUG, the command arg is executed before every simple command,  for  command,
+  case  command, select command, every arithmetic for command, and before the first command
+  executes in a shell function (see SHELL GRAMMAR above).  Refer to the description of  the
+  extdebug  option  to the shopt builtin for details of its effect on the DEBUG trap.  If a
+  sigspec is RETURN, the command arg is executed each time a shell  function  or  a  script
+  executed with the . or source builtins finishes executing.
+
+  If a sigspec is ERR, the command arg is executed whenever a simple command has a non-zero
+  exit status, subject to the following conditions.  The ERR trap is not  executed  if  the
+  failed  command  is  part of the command list immediately following a while or until key-
+  word, part of the test in an if statement, part of a command executed in a && or ││ list,
+  or  if the command’s return value is being inverted via !.  These are the same conditions
+  obeyed by the errexit option.
+
+  Signals ignored upon entry to the shell cannot be trapped, reset or listed.  Trapped sig-
+  nals  that are not being ignored are reset to their original values in a subshell or sub-
+  shell environment when one is created.  The return status is  false  if  any  sigspec  is
+  invalid; otherwise trap returns true.
+
+
+
+trap "echo $$ >> ~/tmp; exit 233;" INT
+信号`SIGINT`原本的动作是`Term(terminate the process)`，被`trap`捕捉后，执行指定的操作，放弃默认动作
+
+trap "echo $$ >> ~/tmp; exit 233;" INT
+trap -p # 会打印当前捕捉信号的相关信息
+# trap -- 'echo 32713 >> ~/tmp; exit 233;' SIGINT
+
+trap "echo $$ >> ~/tmp; exit 233;" INT
+trap "-" INT 
+# 此前对`INT`信号设置的陷阱将被重置
+
+trap "echo $$ >> ~/tmp; exit 233;" INT
+trap "echo $$ >> ~/tmp; exit 400;" INT
+trap -p INT 
+# trap -- 'echo 32713 >> ~/tmp; exit 233;' SIGINT
+# 对同一个信号只能设置一次陷阱，后者会覆盖前者
+
+^c退出的状态码 默认是130
+https://unix.stackexchange.com/questions/223189/what-does-exit-code-130-mean-for-postgres-command
+
+状态码范围0-255
+当尝试`exit 300`时，实际得到`44`(300%256)
+
+
+Vim如何消除搜索后的关键字高亮
+:noh
+
+强行关闭终端时，先后收到了`TERM`和`HUP`信号
+
+Linux/Unix中向一个进程发送信号用kill命令，不要以为kill命令只是用来杀死进程的，它可以发送各种信号给进程，杀死进程只是用到了其中的一个SIGKILL信号
+
+TERM(15)可以被拦截 KILL(9) 不可以
+KILL(9)用来立即结束程序的运行. 本信号不能被阻塞, 处理和忽略。
+
+http://man.linuxde.net/trap【trap命令】【good】【但是翻译极差，建议`man trap` `man signal`】
+
+
+ctrl-c: ( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；
+ctrl-z: ( suspend foreground process ) 发送 SIGTSTP 信号给前台进程组中的所有进程，常用于挂起一个进程
+ctrl-d: ( Terminate input, or exit shell ) 一个特殊的二进制值，表示 EOF
+ctrl-/: 发送 SIGQUIT 信号给前台进程组中的所有进程，终止前台进程并生成 core 文件 
+Ctrl-s: 在终端下是有特殊用途的，那就是暂停该终端，
+  . 一说是阻止终端输出，但试验后发现`^s`后进程是暂定的，阻止输出这一说法不准确
+  # https://blog.csdn.net/bzhxuexi/article/details/35265753
+Ctrl-q: 退出这种状态，让终端继续运行
+ctrl-l   清屏
+https://www.cnblogs.com/klcf0220/p/6125777.html 
+
+w
+who
+last
+
+ echo hello > /dev/pts/1 可以打印到别到终端上
+
+
+？堆(keep)栈(stack)
+？堆？栈
+
+查看手册章节信息 whatis COMMAND 
+
+
+文本处理
+cat more  less head tail cut sort uniq grep
+管道和重定向
+> < >> <<
+用户 组 劝降
+bash及其特性
+
+
+sed awk grep
+
+
+/dev/null 软设备（软件模拟的设备）
+*功能：	bit bucket	数据黑洞
+*应用：	# id user1 &> /dev/null	有的情况不需要显示返回值
+
+setfacl
+
+chrony
+
+user::rwx
+user:chrony:-w-
+user:admin:--x
+group::---
+group:admin:-w-
+mask::-wx
+other::---
+default:user::rwx
+default:user:admin:r--
+default:group::---
+default:group:admin:--x
+default:mask::r-x
+default:other::---
+
+
+alphae.cn
+15052472050
+
+sort -t”,” -k 1n,1 -k 3rn,3 file.txt
+
+块（block）是文件存储空间的最小单位
+
+主设备号
+ 2 pty
+ 3 ttyp
+ 4 ttyS
+ 6 lp
+ 7 vcs
+ 10 misc
+ 13 input
+ 14 sound
+ 21 sg
+180 usbBlock devices:
+ 2 fd
+ 8 sd
+ 11 sr
+ 65 sd
+ 66 sd
+253 vd (virtio)
+https://www.cnblogs.com/sammyliu/p/5729026.html【识别 Linux上的设备（磁盘）类型】【good】
+面向包的网络设备驱动（package oriented network device driver）
+面向块的存储设备驱动（block oriented storage device driver），提供缓冲式（buffered）的设备访问。
+面向字节的字符设备驱动 （byte oriented char device driver）
+伪设备（pseudo device）
+
+
+service postfix start
+https://blog.csdn.net/csdnones/article/details/50717934【send-mail: fatal】
+
+
+From root@eva.localdomain  Fri Sep 28 16:00:02 2018
+Return-Path: <root@eva.localdomain>
+X-Original-To: root
+Delivered-To: root@eva.localdomain
+From: "(Cron Daemon)" <root@eva.localdomain>
+To: root@eva.localdomain
+Subject: Cron <root@eva> /usr/lib64/sa/sa1 1 1
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=3302>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/0>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=root>
+X-Cron-Env: <USER=root>
+Date: Fri, 28 Sep 2018 16:00:02 +0800 (CST)
+Status: R
+
+Cannot open /var/log/sa/sa28: No such file or directory
+
+
+http://www.cnblogs.com/MYSQLZOUQI/p/5186952.html【配置文件后面的rc的由来】
+运行控制文件  run control
+
+
+mail
+https://www.cnblogs.com/sunfie/p/5127591.html【 Linux学习之给指定用户发邮件】
+
+
+anacron 会执行关机期间未完成的 cron任务
+↑ 这个说法是错的
+
+
+/etc/init.d 是`System V`风格的启动脚本(init script)位置
+/etc/rc.d 是`BSD`风格
+
+
+`echo`怎么输出到stderr
+echo "this is stderr" 1>&2
+echo "this is stderr" >&2
+两种写法都可以，大概是因为所有`1`都是可以缺省的
+
+ctrl-d 不是发送信号，而是表示一个特殊的二进制值，表示 EOF
+
+bg 重新运行 暂停的(stopped)的后台工作
+
+bg %N // `%`是特别用来标志工作号的
+kill %num
+kill PID
+
+停止后台进程
+stop %num  
+kill -stop PID
+
+
+@ 中断(interrupt)
+中断是指计算机在执行期间，系统内发生任何非寻常的或非预期的急需处理事件，使得CPU暂时中断当前正在执行的程序而转去执行相应的事件处理程序，待处理完毕后又返回原来被中断处继续执行或调度新的进程执行的过程
+引起中断发生的事件被称为中断源
+中断源向CPU发出的请求中断处理信号称为中断请求，而CPU收到中断请求后转到相应的事件处理程序称为中断响应
+禁止中断 CPU内部的处理器状态字PSW的中断允许位已被清除
+
+
+
+
+

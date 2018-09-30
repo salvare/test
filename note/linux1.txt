@@ -67,6 +67,7 @@ s 套接字文件 socket
 
 5.查看环境变量 echo $PATH
 ？$PATH是什么东西
+↑ 是一个环境变量，当使用命令时，会依次寻找`PATH`中的路径直到找到该命令 2018-9-19
 
 6.类似rwxr--r--:
 *r:read; w:write x:execute
@@ -87,18 +88,14 @@ s 套接字文件 socket
 *命令：	w保存 q退出 q!强制退出不保存...
 *参考：	http://blog.csdn.net/xiazdong/article/details/7959495
 
-？readonly option is set add to override
-？e212 cant open file for writing
-？chmod operation not permitted
-
 9.修改文件权限 
 *命令：	chmod 777 FILENAME
 
-10.指令：ping HOST 停止ctrl+C 或ctrl+D
+10.指令：ping HOST 停止ctrl+C
 
 11.指令：查看当前路径： pwd
 
-12.指令：查看命令类型：type COMMAND 结果有 内建命令 和 ？
+12.指令：查看命令类型：type -t COMMAND 结果有 alias, keyword, function, builtin, or file
 
 13.词条
 window:dll(dynamic link library)
@@ -115,7 +112,8 @@ prompt命令提示符
 
 15.指令：显示当前目录 pwd
 
-16.解读ls -a的返回结果：
+16.解读ls -l的返回结果：
+文件类型 -dlcbsp （见2-1-3）
 文件权限 rwx(读，写，执行)
 文件硬链接次数
 文件属主 owner
@@ -123,9 +121,18 @@ prompt命令提示符
 文件大小 size（byte）
 
 17.时间戳 timestamp 
-*最近访问时间access； 
-*修改时间 modify 内容变动；
-*改变时间 change metadata元数据 属性变动；
+* access 
+  . 最近读取时间
+* modify 
+  . 内容 最近变动时间
+  . 修改文件内容 造成`mtime`变动，而`mtime`也是元数据，所以一定造成`ctime`变动
+* change metadata
+  . 元数据/属性 最近变动时间
+. 相关命令
+  . ls -lc filename 列出文件的 ctime （最后更改时间）
+  . ls -lu filename 列出文件的 atime（最后存取时间）
+  . ls -l filename 列出文件的 mtime （最后修改时间）   
+  . stat filename
 
 18.指令： cd 切换当前目录
 示例：cd /user 注意：只能打开目录，不能打开文件
@@ -133,23 +140,19 @@ cd 	回到 用户的 家目录/主目录(home directory) 在此目录下用户�
 cd ~user2	去user2的主目录 管理员才可以用
 cd - 	与前一个目录切换
 
-19.指令： type 查看命令类型
-示例： type ls
-
-20.指令可以分为：
-内置命令：shell内置。可以在任何目录下直接执行，因为命令真实位置列在环境变量中
-外部命令：在文件系统的某路径下有一个与命令名称相应的可执行文件
-
 21.变量的含义：命名的内存空间    
 *声明变量的过程，其实是申请内存使用的过程
 
-？堆(keep)栈(stack)
-？堆？栈
-
 22.指令 clear清屏
+  . `c^l`也可以
 23.指令 printenv打印环境变量
-24.指令 hash 查看缓存中的所有命令
+  . `env``export`也可以
+24.执行`set`打印所有变量
 
+24.指令 hash 查看缓存中的所有命令
+*已经执行过的命令会缓存，下次执行时可以迅速调用
+ ?是指不用再遍历`$PATH`?
+*hash本意映射，是一个键值数据库，执行速度达到o(1)  
 
 25.指令 date 查看系统时钟
 26.指令 clock 查看硬件时钟
@@ -200,17 +203,8 @@ SEE ASLO 另外参照
 *	n下一个		N前一个
 33.退出手册：	q退出
 
-34.文档：/user/share/doc
-
-？无法连接网络：
-http://jingyan.baidu.com/article/17bd8e521775fb85ab2bb8e0.html
-
 35.出现问题：运行vm上的redhat时，出现报错：无法打开内核设备 \\.\global\vmx86...
 *解决：	http://jingyan.baidu.com/article/3d69c5518b8bfef0cf02d7e1.html
-
-36.指令hash 显示缓存中存储的命令
-*已经执行过的命令会缓存，下次执行时可以迅速调用
-*hash本意映射，是一个键值数据库，执行速度达到o(1)
 
 
 2-2
@@ -282,9 +276,34 @@ http://jingyan.baidu.com/article/17bd8e521775fb85ab2bb8e0.html
 */var	功能：可变化文件
 	详情：cache、db、mail、run（记录进程id）
 */bin	功能：binary二进制，即可执行文件，用户命令
-*/sbin	功能：管理命令
+*/sbin	system binary	
+	功能：系统管理命令
 */usr	功能：universal shared read-only 
- 
+	一说：Unix System Resource
+	
+3.1[系统] `/` 与 `/usr` 与 `/usr/local`
+. 以下是分别是三者包含的文件，可以看出相似性
+  . bin lib etc lib64 sbin boot dev home lost+found media mnt opt proc root run srv sys tmp usr var
+  . bin lib etc lib64 sbin games include libexec share src tmp local
+  . bin lib etc lib64 sbin games include libexec share src aegis cloudmonitor
+. 但`/`下的几个目录是链接到`/usr`下的
+  . lrwxrwxrwx.  1 root root     7 Aug 18  2017 bin -> usr/bin
+  . lrwxrwxrwx.  1 root root     7 Aug 18  2017 lib -> usr/lib
+  . lrwxrwxrwx.  1 root root     9 Aug 18  2017 lib64 -> usr/lib64
+  . lrwxrwxrwx.  1 root root     8 Aug 18  2017 sbin -> usr/sbin
+. `usr`全称是`Unix System Resource`
+  * 可分享，不可变动
+  . bin sbin 可执行文件
+  . lib lib64 libexec? 共享库
+  . etc 配置文件
+  . include 头文件
+  . share 文档、手册、命令所属的脚本...
+  . src 源码
+. /usr/local
+  . 与`/usr`中的内容几乎一致
+  . 通常`/usr`下面的都是系统预装的内容，会随着系统升级而改变
+  . 而`/usr/local`目录是用户内容，不会被系统升级而丢失
+  
 4.[系统] 块设备 与 字符设备
 *块设备：可以随机访问的设备。如：硬盘
 *字符设备：线性访问。如鼠标，键盘，鼠标，显示器
@@ -296,18 +315,19 @@ http://jingyan.baidu.com/article/17bd8e521775fb85ab2bb8e0.html
 6.[指令] mkdir
 *功能：	创建空目录
 *使用：	mkdir root/x/y/z ;要带路径，如果路径不存在会失败
-*选项： mkdir -p root/m/n/j/k 如果路径不存在，创建整个路径
+*选项：	mkdir -p root/m/n/j/k 如果路径不存在，创建整个路径
 *选项：	mkdir -p root/m/n/{j/h,k} “命令行展开”用法
 *[指令]: rmdir 删除空目录
+
 7.[指令] tree
 *功能：	查看目录树
 
 8.[指令] touch
-*功能：	change file timestamp；也可以创建一个新文件
-*使用： touch FILENAME
-*选项：	touch -a xxx	改变访问时间
+*功能： change file timestamp；也可以创建一个新文件
+*使用： touch FILENAME 改变`atime` `mtime` `ctime`
+*选项： touch -a xxx	改变访问时间
 *选项： touch -m xxx	改变修改时间
-*选项： touch -m -t xxx	201601151038 改变为指定时间
+*选项： touch -t xxx 201601151038	 改变为指定时间
 
 9.[系统] 文件夹也是一种文件，因此同目录下不能有同名的文件和文件夹
 
@@ -331,33 +351,29 @@ http://jingyan.baidu.com/article/17bd8e521775fb85ab2bb8e0.html
 
 1.[指令] cp 
 *功能：	复制文件
-*用法：	cp SRC DESTINATION
+*用法：	cp SRC... DESTINATION
 *选项：	cp a b c /test/ 将a、b、c文件复制为test目录下的同名文件
-*选项：	cp -r /a/b /c/d 可以将文件夹b中整体复制到d。d不能已经存在
-*选项：	cp -p a b 保留原来的属主，时间戳
-*选项：	cp -a 归档复制，用于备份，保留所有原有信息
-
+*选项：	cp -r /a/b /c 递归复制整个目录
+	. 如果没有`-r`选项，复制时会忽略所有目录
+	. 目录`/a/b`本身也被复制，得到的新目录是`/c/b`
+*选项：	cp -r /a/b/* /c 
+	. 复制`/a/b`下的文件，得到的新目录是`/c`
+*选项：	cp -p a b 保留原来的属主，时间戳 (preserve)
+*选项：	cp -a 归档复制，用于备份，保留所有原有信息(archive)
+	. same as -dR --preserve=all
+	
 2.[指令] mv
 *功能：	移动文件，剪切
 *使用：	mv /test1/hello /test2 
 *选项：	mv /test1/hello /test2/world 
-	hello是个文件。如果world不存在，则剪切重命名为world；
-	如果world存在且是个文件，则询问是否要覆盖
-	如果world存在切是个文件夹，则剪切到world目录下；
-	hello是个文件夹。如果world不存在，命令无效；
-	如果world是个文件，命令无效；
-	如果world 是个文件夹，剪切到world目录下
+	如果hello是个文件，world不存在，则剪切重命名为world；
+	如果hello是个文件，world存在且是个文件，则询问是否要覆盖
+	如果hello是个文件，world存在切是个文件夹，则剪切到world目录下；
+	如果hello是个文件夹，world不存在，命令无效；
+	如果hello是个文件夹，world是个文件，命令无效；
+	如果hello是个文件夹，world是个文件夹，剪切到world目录下
 
 3.[指令] install
-
-
-文本处理
-cat more  less head tail cut sort uniq grep
-管道和重定向
-> < >> <<
-用户 组 劝降
-bash及其特性
-
 
 
 3-1
@@ -375,8 +391,7 @@ bash及其特性
 3.[指令] more 向后翻
 *命令： space后一夜 b前一页 return后一行
 4.[指令] less 向前翻
-*命令：	space b return 光标上下左右
-	q退出
+*命令：	space b return 光标上下左右 q退出
 5.[指令] head
 *功能：	显示前几行
 *使用：	head /test/hello
@@ -387,6 +402,7 @@ bash及其特性
 *选项：	tail -n 5 /test/hello
 *选项：	tail -f /etc/inittab  可以实时显示该文件后续追加的内容，比如有其它终端操作该文件
 	常用语查看日志
+	
 7.[单词] 
 *delimiter	分隔符	separator
 
@@ -395,8 +411,6 @@ bash及其特性
 *选项：	cut -d: -f1 xxx		f指定字段
 	cut -f 1,3		显示1和3字段
 	cut -f 1-3		显示1到3字段
-
-sed awk grep
 
 
 3-2
@@ -495,7 +509,24 @@ sed awk grep
 
 2.[系统] rwx权限：
 *对于文件：	可读，可写，可执行（作为一条命令提交给内核，发起进程）
-*对于文件夹：	可ls，可建文件，可ls -l
+*对于文件夹/目录：	可读(如：ls)，可写(如：mkdir,mv,rm)，可进入(cd)
+
+2.1[系统] 目录权限的具体含义
+. 试验					r w x rw rx wx rwx
+	ls					* x x *  *  x  *
+	ls -l				x x x x  *  x  *
+	stat				* * * *  *  *  *
+	touch (new file)	x x x x  x  *  *
+	cp					x x * x  *  *  *
+	cd					x x * x  *  *  *
+	读子文件				x x * x  *  *  *
+	执行子文件				x x * x  *  *  *
+	打开子目录				x x * x  *  *  *
+. 结论
+  . r 读取 子文件文件名
+  . w 添加/修改/删除 子文件名
+  . x 对子文件的任何操作， 进入目录作工作目录
+  . 目录/文件自身元数据的读取权限 是由其父目录的`x`权限提供的
 
 3.[系统] 
 *使用shell执行命令时，本质是用户运行一个可执行 文件 ，执行了一个程序
@@ -534,7 +565,7 @@ sed awk grep
 *SHELL		用户默认shell（大部分是bash，系统用户的值为notlogin）
 注：etc/shells文件中定义了所有合法shell
 
-8.[系统] shadow文件 字段
+8.[系统] etc/shadow文件 字段
 *account	用户名
 *encrypted password	加密密码，如果没有显示  !!
 *密码最后修改时间
@@ -669,7 +700,7 @@ chown chgrp chmod umask
 *用exit退出该组
 
 19.[system] 
-创建一个用户的过程，其实是修改了/etc/passwd /etc/shadow /etc/group文件，
+创建一个用户的过程，其实是修改了/etc/passwd /etc/shadow /etc/group文件，以及创建主目录复制/etc/skel
 使用useradd命令的效果，其实同等与直接修改文件
 
 20.[command] chage	改变密码过期信息
@@ -726,21 +757,23 @@ chown chgrp chmod umask
 *默认权限：	普通用户：	目录775		文件664
 		root用户：	目录755		文件644
 *umask：	掩码/遮罩码
-		普通用户：	002
-		root用户：	022
+		普通用户：	0002
+		root用户：	0022
 *为了安全linux的文件（区分目录）默认不能执行
-		目录最高权限	777
-		文件最高权限	666
+		目录最高权限	777		目录默认有`x`权限
+		文件最高权限	666		文件默认无`x`权限
 *计算规则	普通用户	777-022=755 	666-022=644
 		root用户	777-002=775 	666-002=664
 *command：	umask		查看/修改掩码
 		usage:		umask
 		option:		umask 022	修改当前用户umask，下次登录时会恢复默认，因为写在配置文件
 *重置umask后，文件 计算得到的权限 可能拥有 x权限，此时linux会强制当前权限+1
+*配置文件
+  . /etc/bashrc
+  . /etc/profile
 
 
-
-
+7.[system] bash的配置文件
 登录式shell	正常登录 / su - username
 非登陆shell	su username / 图形终端打开的命令窗口 /自动执行的shell脚本
 
@@ -778,19 +811,22 @@ bashrc文件的作用：
 		标准输出：STDOUT，1	显示器
 		标准输入：STDIN，0	键盘
 		标准错误输出：STDERR,2
-*重定向	>	覆盖重定向标准输出
-	>>	追加重定向标准输出
-	2>	覆盖重定向错误输出
-	2>>	追加重定向错误 输出
-	&>	标准输出 或是 错误输出
-	&>>	注意：其实没有这种写法
-
-	<	输入重定向	cat < /etc/abc	同	cat /etc/abc
-				tr 'a-z' 'A-Z' 原本接收标准输入，可以这样重定向
-				tr 'a-z' 'A-Z' < /test/abc  相当于输入abc文件的内容
-	<<	这个跟输入重定向没什么关系。。。
-		是 here document 功能？语法？
-		  Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序
+		
+1.1[system] 流重定向
+* 输出重定向
+	command > file		覆盖重定向标准输出
+	command >> file		追加重定向标准输出
+	command 2> file		覆盖重定向错误输出
+	command 2>> file	追加重定向错误 输出
+	command &> file		合并 标准输出 和 错误输出 
+	command &>> file	注意：其实没有这种写法
+	command > file 2>&1	合并 标准输出 和 错误输出
+* 输入重定向
+	<	指定一个文件将其内容作为输入
+		cat < /etc/abc	同	cat /etc/abc
+		tr 'a-z' 'A-Z' 原本接收标准输入，可以这样重定向
+		tr 'a-z' 'A-Z' < /test/abc  相当于输入abc文件的内容
+	<<	Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序
 		cat << END	END是结束符
 		> balabala
 		> niconico
@@ -800,11 +836,13 @@ bashrc文件的作用：
 		> xxx
 		> xxx
 		> EOF		这样生成了一个文档，并输出重定向到abc文件中
-
-*管道	|	一个命令的输出 不输出到屏幕或是文件，而是作为 另一个命令的输入
+. 同时使用输出重定向 和 输入重定向时，顺序随意
+	cat < /foo/bar > quz
+	cat > quz < /foo/bar
+* 管道	|	一个命令的输出 不输出到屏幕或是文件，而是作为 另一个命令的输入
 		例：	echo 'hello world' | tr 'a-z' 'A-Z'
 		例2：	echo 'apassword' | passwd --stdin user1
-*组合小命令完成复杂任务 是linux重要哲学思想之一
+* 组合小命令完成复杂任务 是linux重要哲学思想之一
 
 2.[command] set	bash的内建命令，设置
 *option:	C 设置能否覆盖方式输出内容到已存在的文件（覆盖重定向）
@@ -816,10 +854,7 @@ bashrc文件的作用：
 
 4-4
 
-
 grep egrep fgrep
-
-
 
 [command] grep	根据模式搜索文本并显示
 *usage:		grep [options] PATTERN [file]
@@ -832,14 +867,6 @@ grep egrep fgrep
 ? {} () 要转义	\? \{0,3\} \( \)
 <> 匹配词首词尾 需要转义 \<  \>
 
-
-ctrl+m
-
-cut	分割
-
-wc	单词数
-head
-sort
 
 
 

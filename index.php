@@ -2,6 +2,19 @@
 require 'public.php';
 require 'head.php';
 
+// . A && B || C // if(A){ B }else{ C }
+// . A || B && C // if(A){ C }elseif(B){ C }
+
+// ($a=1) && ($b=1) || ($c=1);
+$a=0 && $b=1 || $c=1;
+// $a=(0 && $b=(1 || $c=1));
+($a=0 && $b=1) || $c=1;
+
+dump($a);
+dump($b);
+dump($c);
+
+// true == false == true;
 
 ?>
 

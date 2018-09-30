@@ -21,7 +21,7 @@
             或归纳演绎，或印证类比
 * 同时学习一些软件：
   . 压缩
-　. 文本编辑器
+  . 文本编辑器
   . 正则表达式
   $ 目标一：学习软件的 使用方法，结构逻辑。
 	    很多工具软件（如svn）会有多种操作系统版本，我正常接触的是window图形界面软件，
@@ -272,6 +272,7 @@ done
 	. 以login shell方式读取配置文件
 * su -[m|p] 
 	. 使用当前环境，不读取配置文件
+# https://blog.csdn.net/zxyhhjs2017/article/details/77934875【如何理解login shell 和non-login shell】
 @ sudo
 *配置文件：/etc/sudoers
 	. 需要visudo命令编辑该文件，因为有特殊格式
@@ -349,12 +350,12 @@ command3;"
 	. 将很多小磁盘 整合成 一个大容量磁盘
 	! 扩大容量；提高读写性能；数据安全；
 *分类	
-	等级		容量	读	写	安全
-	RAID-0等量模式	100%	+	+	-
-	RAID-1		50%	+	*	+
-	0+1		50%	+	+	+
-	1+0		50%	+	+	+
-	RAID-5		N-1/N	+	+	+
+	等级		容量		读	写	安全
+	RAID-0	100%	+	+	-
+	RAID-1	50%		+	-	+
+	0+1		50%		+	+	+
+	1+0		50%		+	+	+
+	RAID-5	N-1/N	+	+	+
 *预备磁盘（Spare Disk）
  	. 在磁盘阵列中加入一块闲置磁盘，当某一块磁盘损毁时，会自动替换掉它
 *分类
@@ -394,6 +395,20 @@ command3;"
 	. 卸载 unmount /dev/md0 
 	. 取消自动挂载：/etc/fstab /etc/mdadm.conf
 	. 关闭：mdadm --stop /dev/md0 【hda[6-10] 不再与 md0 有关】
+.冗余磁盘校验原理
+	. 假设有三个分区`A``B``C`，`C`作冗余校验
+	. 写入`(A,B)=(1,0)`，作异或操作`1⊕0=1`，将1写入`C`,得到`(A,B,C)=(1,0,1)`
+	  . 异或 和 加运算结果是一样的（不算进位）
+	. 此时如果分区`A`损坏，则可以通过`(B,C)=(0,1)`反推得`A`的数据，换上新的磁盘后即可恢复数据
+	↑ 以上其实就是`RAID-4`
+	. 文件读写时都需访问校验盘(C)，工作压力大 
+	  ? 但是文件读写时不也都访问`A``B`盘吗，压力不是一样？
+	. 所以`RAID-5`中，三个盘轮流作校验盘  
+！注意：如果用作RAID的分区是同一个磁盘上的，如`hda1`和`hda2`，是起不到数据保护 和 读写优化 的作用的
+. 参考
+	# http://blog.51cto.com/dadonggg/1949443【Raid 0 1 5 1-0的原理、特点、性能区别】
+	# http://blog.51cto.com/11975865/2073245【RAID原理及软RAID的实现方式】
+	# https://baijiahao.baidu.com/s?id=1563446067322979&wfr=spider&for=pc【RAID0+1和RAID1+0】
 
 @ LVM
 *概要：
@@ -438,7 +453,6 @@ command3;"
 		  resize2fs /dev/my_vg/my_lv 2000M -> 	//调整文件系统大小
 		  mount	->				//挂载
 		  lvresize -l -89 /dev/my_vg/my_lv ->	//调整LV大小。此处会警告，缩小后容量不能小于实际数据大小
-		  
 *step4: FS
 	. mkfs
 @ LVM的系统快照
@@ -470,19 +484,26 @@ command3;"
 	. 后台执行，脱机运行，与当前bash无关
 	. 执行命令的任何输出，会以邮件方式发送
 	. 使用一个特殊的 at shell 执行命令
+	  . 该shell会获得 你的环境变量
+*batch
+	. 在未来的某个时间点执行一次任务
+	. 使用方法跟at相同
+	. 但是不同的是batch不需要指定时间，会自动在系统负载比较低的时候执行（平均负载小于0.8的时候）
 
 @ cron
-*定期循环执行一段命令【例行性工作调度】
+* 定期循环执行一段命令【例行性工作调度】
 *crond服务
-*/etc/cron.allow 
- /etc/cron.deny
+*/etc/cron.allow // 白名单用户
+ /etc/cron.deny // 仅在白名单不存在时有效；如果黑白名单都不存在，则只有root可用
 */var/spool/cron
+  . 例如`/var/spool/cron/admin`文件就配置了`admin`用户的工作
+  . 一般一个用户最多只有一个crontab文件
 @ crontab 
 *crontab [-u USER] [-l|e|r] 
 * 针对普通用户【相对于系统用户】
 * -u 只有root 才能帮 其它用户创建 crontab工作调度【受黑白名单限制吗？】
 * -e 编辑crontab
-	. 实际上编辑的是/var/spool/cron/USERNAME，每个用户会有一个cron文件【类似at】
+	. 实际上编辑的是/var/spool/cron/USERNAME，每个用户会有一个cron文件
 	. 可以添加/删除一项工作调度
 * -l 仅查阅
 * 字段 
@@ -495,7 +516,7 @@ command3;"
 		` /3 3,6,9...整除
 	. 周 不可以与 月/天同时 设置
 @ /etc/crontab
-* 系统用户 设置 例行性工作调度
+* 系统用户（及管理员） 设置 例行性工作调度
 
 @ anacron
 *起因：例行任务 会因为关机等原因 而遗漏执行
@@ -503,7 +524,7 @@ command3;"
 *逻辑：
 . anacron命令在开机时执行一次，此外也可以依赖crontab定时执行
 . 检查/etc/anacrontab，分析其中定义的工作，例如：第一个工作cron.daily
-. 取时间戳文件：/etc/spool/anacron/cron.daily，该文件记录最近一次执行该job的时间，记为last_time
+. 取时间戳文件：/var/spool/anacron/cron.daily，该文件记录最近一次执行该job的时间，记为last_time
   【注：时间戳文件只记录到“天”】
 . 如果(current_time-last_time > period ) 其中period定义了该job原本应该的执行周期（crontab中）
 . 执行anacron时的参数：
@@ -524,13 +545,14 @@ command3;"
 *子进程：
 	. 进程可以创建另一个进程
 	. 于是进程之间存在关联：父进程->子进程
-	. child.PPID = parent.PID。 PPID即父进程PID
+	. child.PPID = parent.PID // PPID即父进程PID
 *创建子进程的过程：fork & exec
 	. 父进程 PID=x 程序=zzz  --fork-->
-	  中间暂存进程 PID=y PPID=x 程序=zzz  --exec-->
-	  子进程 PID=y PPID=x 程序=qqq
+	. 中间暂存进程 PID=y PPID=x 程序=zzz  --exec-->
+	. 子进程 PID=y PPID=x 程序=qqq
 *服务（daemon）
 	. 【注意】daemon在linux中的含义：服务。【service呢？】
+	  ! `daemon`其实是‘守护进程’，上边称它为‘服务’，至少证明了两个概念是关联的
 	. 特征：一般命令创建的进程执行完毕就会终止，释放资源；
 	        而服务则是“常驻进程”，常驻与内存中。
 	. 分类：1.系统服务：为系统本身提供功能
@@ -601,7 +623,14 @@ command3;"
 *其它：	k 发送一个singal给某进程
 	n 设置nice值
 	q 退出
-
+.各字段含义
+  # https://www.cnblogs.com/ronli/p/centos-top.html【top命令各个数据的含义】
+  . load average
+    . 三个数分别是1分钟、5分钟、15分钟的负载情况。
+    . 如果这个数除以逻辑 CPU的数量，结果高于5的时候就表明系统在超负荷运转了。
+  . free(L4) + buffers(L4) + cached(L5) = 服务器的可用内存
+    . 即已使用(used)的内存中，用于缓冲(buffers)和缓存的(cached)的部分都是随时可以空闲出来使用的
+    
 @ pstree 查看进程树
 *pstree [-A] [-up] 
 
@@ -618,6 +647,11 @@ command3;"
 	. 产生：1.系统不稳定 2.用户操作不良 3.程序自身问题
 	. 解决：重启系统。因为所有僵尸进程由init控管
 *Stop	. [ctrl]-Z的job 就是这个状态
+1. Linux进程状态：R (TASK_RUNNING)，可执行状态&运行状态(在run_queue队列里的状态)
+2. Linux进程状态：S (TASK_INTERRUPTIBLE)，可中断的睡眠状态, 可处理signal
+3. Linux进程状态：D (TASK_UNINTERRUPTIBLE)，不可中断的睡眠状态,　可处理signal,　有延迟
+4. Linux进程状态：T (TASK_STOPPED or TASK_TRACED)，暂停状态或跟踪状态,　不可处理signal,　因为根本没有时间片运行代码
+5. Linux进程状态：Z (TASK_DEAD - EXIT_ZOMBIE)，退出状态，进程成为僵尸进程。不可被kill,　即不响应任务信号,　无法用SIGKILL杀死
 
 @ 信号 signal
 * 1 SIGHUP	启动被终止的进程【？】

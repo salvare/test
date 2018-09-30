@@ -704,7 +704,7 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
   . 等同于 `false == ($foo = true)`
   . 而非 `( false == $foo ) = true`
   * 分析
-    . 赋值运算符是从右向左结合的；优先级 赋值运算<逻辑运算
+    . 赋值运算符是向右结合的；优先级 赋值运算<逻辑运算
     . 赋值运算`=|+=|*=|...`的左侧必须是一个 左值(left-value)，简单来说就是必须是一个可以被赋值的变量，常量`1`表达式`(1+$a)`都是不行的
     ? 这么一看，赋值的结合性是最优被考虑的，比优先级的考量还要高
 . 例3 `false==$foo=true==$bar=true`
@@ -716,10 +716,35 @@ $rt = array_msort($list, ['a'=>SORT_ASC, 'b'=>SORT_ASC, 'c'=>SORT_ASC,]);
       . => `false==($foo=true+($bar=true)); dump($foo); // 结果是2`;
 . 例4 `false==false==false` // 语法错误
   * 因为 比较运算符 没有结合性
+. 例5 `A && B || C`
+  . 等同于`(A && B) || C`
+  . 作用等同于三目运算符 `A ? B : C`
+  ! 但并非因为`&&`优先级高于`||`，而是因为逻辑运算符结合性向左
+  ↓ 请看例6
+. 例6 `A || B && C`
+  . 等同于`(A || B) && C`
+  . 而非`A || (B && C)`
+  * 分析
+    . 优先级： `&&` 大于 `||`
+    . 结合性： `&&`向左， `||`向左
+    . 这里 结合性 的考量再一次优先于 优先级 
+  ↓ 如果同时有结合性 向左 和 向右 的运算符怎么办呢？
+. 例7 `$a=0 && $b=1 || $c=1`
+  . 等同于 `$a=(0 && $b=(1 || $c=1))`
+  . 而非 `($a=0 && $b=1) || $c=1`
+  * 分析：对`=`结合性的考量 优先于 `&&||`的结合性
+. 例8 `1 + 2 * 3`
+  . 等同于 `1+(2*3)` 而非 `(1+2)*3`
+  * 分析
+    . 结合性都 向左
+    . 优先级 `*` 高于 `+` 
+    * 情形与 例6 很相似，但是这里对 优先级 的考量高于 结合性。。。 
 * 总结
   . 结合性并不是某一种性质，而是具体的每种运算符各自的性质
+  ! 与其花时间理解这些破事，不如老实多用小括号
 # http://php.net/manual/zh/language.operators.precedence.php【运算符优先级】
 # http://www.jb51.net/article/29404.htm【三元运算符的结合性介绍】
+# http://www.php.net/manual/zh/language.operators.precedence.php
 
 35.[css] CSS3选择器 `:nth-child` 和 `:nth-of-type` 之间的差异
 # http://www.zhangxinxu.com/wordpress/2011/06/css3选择器nth-child和nth-of-type之间的差异
